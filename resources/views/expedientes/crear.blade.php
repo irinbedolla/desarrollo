@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -70,7 +70,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">*Título</label>
-                                            {!! Form::text('tilulo_universitario', ($persona != null) ? $persona->tilulo_universitario : null , array('class'=>'form-control', 'required')) !!}
+                                            {!! Form::text('tilulo_universitario', ($persona != null) ? $persona->tilulo_universitario : null , array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -89,7 +89,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>*Documento del estudios</label><br>
-                                            {!! Form::file('documentoEstudios', ['class' => 'form-control-file', 'accept' => '.pdf', 'required']) !!}
+                                            {!! Form::file('documentoEstudios', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                         </div>
                                     </div>
 
@@ -147,7 +147,7 @@
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Acciones de desarrollo</label>
+                                            <label for="name">Acciones de desarrollo <abbr title="Documentos ">Ayuda</abbr> </label>
                                             {!! Form::text('acciones_desarrollo',  ($persona != null) ? $persona->acciones_desarrollo : null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>

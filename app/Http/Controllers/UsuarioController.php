@@ -79,7 +79,7 @@ class UsuarioController extends Controller
         //Documentación de spatie para asignar roles
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios');
 
     }
 
@@ -141,7 +141,7 @@ class UsuarioController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
         $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios');
     }
 
     /**
@@ -154,6 +154,8 @@ class UsuarioController extends Controller
     {
         //
         $user = User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        //$usuarios = User::paginate(10);
+        //return view('usuarios.index',compact('usuarios'));
+        return redirect()->route('usuarios');
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar1')
 
 @section('content')
     <section class="section">
@@ -20,9 +20,6 @@
                                     </button>
                                 </div>
                             @endif
-                            <div class="card-title"> 
-                                <a class="btn btn-info" href="{{  route('miscapacitaciones.edit', $capacitacion->id) }}"> Regresar</a><br>
-                            </div>
 
                             @if($estatus == "En curso" || $estatus == "En prueba")
                                 {!! Form::open(array('route'=>'miscapacitaciones.guardar_respuestas', 'method'=>'POST')) !!}

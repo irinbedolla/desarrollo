@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -140,7 +140,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label>*Identificación oficial</label><br>
-                                        <a target="_blank" class="btn btn-primary" href="../../documentos/{{$poder->ine}}">Existente</a>
+                                        <a target="_blank" class="btn btn-primary" href="../../storage/app/documentos_abogados/{{$poder->ine}}">Existente</a>
                                         {!! Form::file('documentoIne', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label>*Documento que acredite la representación</label><br>
-                                        <a target="_blank" class="btn btn-primary" href="../../documentos/{{$poder->representacion}}">Existente</a>
+                                        <a target="_blank" class="btn btn-primary" href="../../storage/app/documentos_abogados/{{$poder->representacion}}">Existente</a>
                                         {!! Form::file('documentoRepresentacion', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                             if($poder->anexo === "Sin anexo")
                                                 echo "<td>S/A</td>";
                                             else
-                                                echo "<a target='_blank'  class='btn btn-primary' href='documentos/$poder->anexo'>PDF</a>";
+                                                echo "<a target='_blank'  class='btn btn-primary' href='../../storage/app/documentos_abogados/$poder->anexo'>Existente</a>";
                                         @endphp
                                         {!! Form::file('documentoAnexo', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                     </div>
@@ -173,7 +173,7 @@
                                             if($poder->cedula === "Sin anexo")
                                                 echo "<td>S/A</td>";
                                             else
-                                                echo "<a target='_blank' class='btn btn-primary' href='documentos/$poder->cedula'>PDF</a>";
+                                                echo "<a target='_blank' class='btn btn-primary' href='../../storage/app/documentos_abogados/$poder->cedula'>Existente</a>";
                                         @endphp
                                         {!! Form::file('documentoPoder', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                     </div>

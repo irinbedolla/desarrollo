@@ -1,18 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Capacitación</h3>
+            <h3 class="page__heading">Capacitación Módulo</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Agregar Modulo</h3>
+                            <h3 class="text-center">Agregar Módulo</h3>
 
                             <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
                             @if ($errors->any())
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>                              
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #6A0F49">Guardar</button>
                             {!! Form::close() !!}
                         </div>
                     </div>

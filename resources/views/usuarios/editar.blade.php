@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -28,13 +28,6 @@
                                 </div>
 
                             @endif
-
-                            <!-- Formulario normal
-                            <form action="/store" method="post">
-                                @csrf
-                                <button type="submit"></button>
-                            </form>
-                            -->
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                             {!! Form::model($user, ['method' => 'PATCH', 'route' => ['usuarios.update', $user->id]]) !!}
@@ -75,7 +68,7 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #6A0F49">Guardar</button>
                                     </div>
                                     
                                 </div>

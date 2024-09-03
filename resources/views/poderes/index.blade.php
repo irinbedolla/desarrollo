@@ -54,30 +54,32 @@
                                                     }
                                                     @endphp
                                                     <td>{{$persona->estatus}}</td>
-                                                    <td><a target="_blank" href="documentos/{{$persona->ine}}">PDF</a></td>
-                                                    <td><a target="_blank" href="documentos/{{$persona->representacion}}">PDF</a></td>
+                                                    <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->ine}}">PDF</a></td>
+                                                    <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->representacion}}">PDF</a></td>
                                                     @php
                                                     if($persona->anexo === "Sin anexo"){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='documentos/$persona->anexo'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../storage/app/documentos_abogados/$persona->anexo'>PDF</a></td>";
                                                     }
                                                     if($persona->cedula === "Sin anexo"){
                                                         echo "<td>S/A</td>";
                                                     }else{
-                                                        echo "<td><a target='_blank' href='documentos/$persona->cedula'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../storage/app/documentos_abogados/$persona->cedula'>PDF</a></td>";
                                                     }
                                                     @endphp
 
                                                     <td>
-                                                        @can('editar-abogado')
-                                                            <a class="btn btn-info" href="{{ route('poderes.edit', $persona->idAbogado)}}">Editar</a>
-                                                        @endcan
-                                                        @can('borrar-abogado')
-                                                        {!! Form::open(['method'=>'DELETE', 'route'=> ['poderes.destroy', $persona->idAbogado], 'style'=>'display:inline']) !!}
-                                                            {!! Form::submit('Borrar', ['class'=> 'btn btn-danger']) !!}
-                                                        {!! Form::close() !!}
-                                                        @endcan
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            @can('editar-abogado')
+                                                                <a class="btn btn-info" href="{{ route('poderes.edit', $persona->idAbogado)}}">Editar</a>
+                                                            @endcan
+                                                            @can('borrar-abogado')
+                                                            {!! Form::open(['method'=>'DELETE', 'route'=> ['poderes.destroy', $persona->idAbogado], 'style'=>'display:inline']) !!}
+                                                                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger']) !!}
+                                                            {!! Form::close() !!}
+                                                            @endcan
+                                                        </div>
                                                     </td>
                                                     
                                                 </tr>

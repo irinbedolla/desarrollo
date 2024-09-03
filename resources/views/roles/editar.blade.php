@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #6A0F49">Guardar</button>
                                 
                                     
                                 </div>

@@ -13,7 +13,7 @@
                             @can('crear-curso')
                                 <a class="btn btn-warning" href="{{ route('capacitaciones.nuevo_modulo', $capacitacion->id) }}"> Agregar módulo</a>
                             @endcan
-                                <a class="btn btn-info" href="{{ url('/capacitaciones') }}"> Regresar</a>
+                                <a class="btn btn-info" href="{{ route('capacitaciones') }}"> Regresar</a>
                             @can('ver-curso')
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
@@ -39,27 +39,27 @@
                                                     if($modulo->anexo1 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosModulos/$modulo->anexo1'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo1'>PDF</a></td>";
                                                     }
                                                     if($modulo->anexo2 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosModulos/$modulo->anexo2'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo2'>PDF</a></td>";
                                                     }
                                                     if($modulo->anexo3 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosModulos/$modulo->anexo3'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo3'>PDF</a></td>";
                                                     }
                                                     if($modulo->anexo4 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosModulos/$modulo->anexo4'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo4'>PDF</a></td>";
                                                     }
                                                     if($modulo->anexo5 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosModulos/$modulo->anexo5'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo5'>PDF</a></td>";
                                                     }
                                                     @endphp
                                                     <td>

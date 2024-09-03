@@ -28,23 +28,28 @@ class ExpedienteController extends Controller
     public function index()
     {
         //Depediendo del rol va regresar un listado o un solo registro
-        $id = auth()->user()->id;
+        $id      = auth()->user()->id;
         $usuario = User::find($id);
-        $rol = $usuario->getRoleNames()->first();
+        $rol     = $usuario->getRoleNames()->first();
+        $persona = "Existe";
         if($rol == "Super Usuario" || $rol == 'Capacitacion Admin'){
-            $personas = Persona::paginate(10);
-        }
-        else{
-            //Si la persona no existe va mandar una vandera 
-            $personas = Persona::where('id_usuario', $id)->get();
-            if($personas == null){
-                $personas = "no existe";
+            $personas       = Persona::paginate(10);
+            $persona_buscar = Persona::where('id_usuario', $id)->get();
+
+            if($persona_buscar == "[]"){
+                $persona = "no existe";
             }
         }
-        
-        return view('expedientes.index', compact('personas'));
+        else{
+            //Si la persona no existe va mandar una bandera 
+            $personas = Persona::where('id_usuario', $id)->get();
+            if($personas == "[]"){
+                $persona = "no existe";
+            }
+        }
+    
+        return view('expedientes.index', compact('personas','persona','rol'));
     }
-
 
     
     public function edit($id)
@@ -159,7 +164,7 @@ class ExpedienteController extends Controller
             //dd($data);
             Persona::create($data);
             Documentos::create($data_doc);  
-            return redirect()->route('expedientes.index')->with('success', 'Datos actualizados correctamente.'); 
+            return redirect()->route('expedientes')->with('success', 'Datos actualizados correctamente.'); 
         }
         //Si ya existe se va actualizar
         else{
@@ -235,7 +240,7 @@ class ExpedienteController extends Controller
 
             $documentos = Documentos::where('id_usuario', $id)->first();
             $documentos->update($data_doc);  
-            return redirect()->route('expedientes.index')->with('success', 'Datos actualizados correctamente.'); 
+            return redirect()->route('expedientes')->with('success', 'Datos actualizados correctamente.'); 
         }
     }
 

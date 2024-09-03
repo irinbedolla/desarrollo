@@ -36,6 +36,11 @@ class PoderController extends Controller
         return view('poderes.crear', compact('id_usuario'));
     }
 
+    public function registro()
+    {
+        return view('poder');
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -157,7 +162,7 @@ class PoderController extends Controller
                 );
             }
             Poder::create($data_insertar);  
-            return redirect()->route('poderes.index'); 
+            return redirect()->route('poderes'); 
         }
         else{
             return back()->withErrors('El poder ya tiene asignado ese abogado.');
@@ -231,15 +236,65 @@ class PoderController extends Controller
             }
             
 
+            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            //Validar si existe el documento registrado
+            $existe_ine = Storage::exists($nombre_ine);
+            if (file_exists($existe_ine)){
+                unlink(storage_path('app/documentos_abogados/'.$nombre_ine));
+            }
+            $path = Storage::putFileAs(
+                'documentos_abogados', $request->file('documentoIne'), $nombre_ine
+            );
+
+            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            //Validar si existe el documento registrado
+            $existe_reprecentacion = Storage::exists($nombre_representación);
+            if (file_exists($existe_reprecentacion)){
+                unlink(storage_path('app/documentos_abogados/'.$nombre_representación));
+            }
+            $path = Storage::putFileAs(
+                'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
+            );
+            
+
+            //Si no existe
+            if(!isset($data["documentoAnexo"])){
+                $nombre_anexo = "Sin anexo";
+            }
+            else{
+                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+                $existe_anexo = Storage::exists($nombre_anexo);
+                if (file_exists($existe_anexo)){
+                    unlink(storage_path('app/documentos_abogados/'.$nombre_anexo));
+                }
+                $path = Storage::putFileAs(
+                    'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
+                );
+            }
+
+            if(!isset($data["documentoPoder"])){
+                $nombre_anexo = "Sin anexo";
+            }
+            else{
+                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+                $existe_poder = Storage::exists($nombre_poder);
+                if (file_exists($existe_poder)){
+                    unlink(storage_path('app/documentos_abogados/'.$nombre_poder));
+                }
+                $path = Storage::putFileAs(
+                    'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
+                );
+            }
+
             $data_insertar= array(
                 'nombres'       => $data["nombresAbogadoAlta"],
                 'apellidos'     => $data["apellidosAbogadoAlta"], 
                 'telefono'      => $data["telefonoAbogadoAlta"], 
                 'email'         => $data["correoAbogadoAlta"],
-                'ine'           => $request->file('documentoIne')->getClientOriginalName(),
-                'cedula'        => $Poder,
-                'anexo'         => $Anexo,
-                'representacion'=> $request->file('documentoRepresentacion')->getClientOriginalName(),
+                'ine'           => $nombre_ine,
+                'cedula'        => $nombre_poder,
+                'anexo'         => $nombre_anexo,
+                'representacion'=> $nombre_representación,
                 'fechaRegistro' => date('y-m-d'),
                 'fechaVigencia' => $data["fechaVigenciaAlta"],
                 'empresa'       => $data["empresaAbogadoAlta"],
@@ -255,40 +310,7 @@ class PoderController extends Controller
                 'estatus'       => "Pendiente"
             );
 
-            unlink(storage_path('app/documentos_abogados/'.$poder->ine));
-            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
-            $path = Storage::putFileAs(
-                'documentos_abogados', $request->file('documentoIne'), $nombre_ine
-            );
 
-            unlink(storage_path('app/documentos_abogados/'.$poder->representacion));
-            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
-            $path = Storage::putFileAs(
-                'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
-            );
-
-            //Si no existe
-            if(!isset($data["documentoAnexo"])){
-                $nombre_anexo = "Sin anexo";
-            }
-            else{
-                unlink(storage_path('app/documentos_abogados/'.$poder->anexo));
-                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
-                );
-            }
-
-            if(!isset($data["documentoPoder"])){
-                $nombre_anexo = "Sin anexo";
-            }
-            else{
-                unlink(storage_path('app/documentos_abogados/'.$poder->cedula));
-                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
-                );
-            }
             Poder::create($data_insertar);  
 
             return back()->with('success', 'Poder registrado correctamente, tienes 10 dias habiles para pasar al CCL a confirmar tu documentacion.'); 
@@ -446,7 +468,7 @@ class PoderController extends Controller
         );
 
         $poder->update($data_update);
-        return redirect()->route('poderes.index');
+        return redirect()->route('poderes');
     }
 
 
@@ -464,6 +486,135 @@ class PoderController extends Controller
         }
         
         $poder = Poder::find($id)->delete();
-        return redirect()->route('poderes.index');
+        return redirect()->route('poderes');
     }
+
+    public function publico(Request $request)
+    {
+        $data = $request->all();
+        
+        if(!isset($data['moreliaSucursal'])){
+            $regionmorelia = "No";
+        }
+        else{
+            $regionmorelia = $data['moreliaSucursal'];
+        }
+        if(!isset($data['uruapanSucursal'])){
+            $regionuruapan = "No";
+        }
+        else{
+            $regionuruapan = $data['uruapanSucursal'];
+        }
+        if(!isset($data['zamoraSucursal'])){
+            $regionzamora = "No";
+        }
+        else{
+            $regionzamora = $data['zamoraSucursal'];
+        }
+
+        //Validar documentacion
+        request()->validate([
+            'nombresAbogadoAlta'        => 'required',
+            'apellidosAbogadoAlta'      => 'required',
+            'telefonoAbogadoAlta'       => 'required|digits:10',
+            'correoAbogadoAlta'         => 'required',
+            'empresaAbogadoAlta'        => 'required',
+            'curpAbogadoAlta'           => 'required',
+            'domicilioAbogadoAlta'      => 'required',
+            'fechaVigenciaAlta'         => 'required',
+            'industriaAlta'             => 'required',
+            'descripcionpoderAlta'      => 'required',
+            'documentoIne'              => 'required',
+            'documentoRepresentacion'   => 'required',
+            'documentoPoder'            => 'nullable',
+            'documentoAnexo'            => 'nullable',
+        ], $data);
+
+        //Validar las regiones
+        if($regionmorelia == "No" && $regionuruapan == "No" && $regionzamora == "No"){
+            return back()->withErrors('Debes seleccionar al menos una Región.');
+        }
+
+
+        //Validar que no exista el abogado
+        $abogado = Poder::where(['nombres' => $data["nombresAbogadoAlta"], 'apellidos' => $data["apellidosAbogadoAlta"], 'empresa' => $data["empresaAbogadoAlta"]])->first();
+        //User::where('username','like','%John%') -> first();
+        if(!$abogado){
+            if(!$request->file('documentoAnexo')){
+                $Anexo = "Sin anexo";
+            }
+            else{
+                $Anexo = $request->file('documentoAnexo')->getClientOriginalName();
+            }
+            if(!$request->file('documentoPoder')){
+                $Poder = "Sin carta poder";
+            }
+            else{
+                $Poder = $request->file('documentoPoder')->getClientOriginalName();
+            }
+            
+
+            $data_insertar= array(
+                'nombres'       => $data["nombresAbogadoAlta"],
+                'apellidos'     => $data["apellidosAbogadoAlta"], 
+                'telefono'      => $data["telefonoAbogadoAlta"], 
+                'email'         => $data["correoAbogadoAlta"],
+                'ine'           => $request->file('documentoIne')->getClientOriginalName(),
+                'cedula'        => $Poder,
+                'anexo'         => $Anexo,
+                'representacion'=> $request->file('documentoRepresentacion')->getClientOriginalName(),
+                'fechaRegistro' => date('y-m-d'),
+                'fechaVigencia' => $data["fechaVigenciaAlta"],
+                'empresa'       => $data["empresaAbogadoAlta"],
+                'eliminado'     => 0,
+                'curp'          => $data["curpAbogadoAlta"],
+                'domicilio'     => $data["domicilioAbogadoAlta"],
+                'rfc'           => $data["RFCAbogadoAlta"],
+                'industria'     => $data["industriaAlta"],
+                'poder'         => $data["descripcionpoderAlta"],
+                'regionMorelia' => $regionmorelia,
+                'regionUruapan' => $regionuruapan,
+                'regionZamora'  => $regionuruapan,
+                'estatus'       => "Pendiente"
+            );
+
+
+            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            $path = Storage::putFileAs(
+                'documentos_abogados', $request->file('documentoIne'), $nombre_ine
+            );
+
+            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            $path = Storage::putFileAs(
+                'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
+            );
+
+            //Si no existe
+            if(!isset($data["documentoAnexo"])){
+                $nombre_anexo = "Sin anexo";
+            }
+            else{
+                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+                $path = Storage::putFileAs(
+                    'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
+                );
+            }
+
+            if(!isset($data["documentoPoder"])){
+                $nombre_anexo = "Sin anexo";
+            }
+            else{
+                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+                $path = Storage::putFileAs(
+                    'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
+                );
+            }
+            //Poder::create($data_insertar);  
+            return redirect()->back()->with('success', ',tienes 5 dias para ir al centro de conciliación a confirmar tu identidad.');   
+        }
+        else{
+            return back()->withErrors('El poder ya tiene asignado ese abogado.');
+        }
+    }
+
 }

@@ -13,42 +13,68 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            
-                                @if($personas == "no existe")
-                                    <a class="btn btn-info" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>                               
-                                @endif
-                                @if($personas != "no existe")
-                                    <div class="table-responsive">
-                                        <table class="table table-striped mt-2">
-                                            <thead style="background-color: #4A001F;">
-                                                <th style="display: none;">ID</th>
-                                                <th style="color: #fff;">Nombres</th>
-                                                <th style="color: #fff;">Correo</th>
-                                                <th style="color: #fff;">Telefono</th>
-                                                <th style="color: #fff;">Acciones</th>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($personas as $persona)
-                                                    <tr>
-                                                        <td style="display: none;">{{$persona->id_usuario}}</td>
-                                                        <td>{{$persona->nombre}}</td>
-                                                        <td>{{$persona->email}}</td>
-                                                        <td>{{$persona->telefono}}</td>
-                                                        <td>
-                                                            <a class="btn btn-info" href="{{ route('expedientes.edit', $persona->id_usuario)}}">Editar</a>
-                                                            <a class="btn btn-info"    href="{{ route('expedientes.documentos', $persona->id_usuario)}}">Documentos</a>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <!-- Centramos la paginación a la derecha-->
-                                    <div class="pagination justify-content-end">
-                                    </div>
-                                @endif                            
+                        @if($rol == "Super Usuario" || $rol == 'Capacitacion Admin')
+                            <a class="btn btn-info" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>
+                            <div class="table-responsive">
+                                <table class="table table-striped mt-2">
+                                    <thead style="background-color: #4A001F;">
+                                        <th style="display: none;">ID</th>
+                                        <th style="color: #fff;">Nombres</th>
+                                        <th style="color: #fff;">Correo</th>
+                                        <th style="color: #fff;">Telefono</th>
+                                        <th style="color: #fff;">Acciones</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($personas as $persona)
+                                            <tr>
+                                                <td style="display: none;">{{$persona->id_usuario}}</td>
+                                                <td>{{$persona->nombre}}</td>
+                                                <td>{{$persona->email}}</td>
+                                                <td>{{$persona->telefono}}</td>
+                                                <td>
+                                                    <a class="btn btn-info" href="{{ route('expedientes.edit', $persona->id_usuario)}}">Editar</a>
+                                                    <a class="btn btn-info"    href="{{ route('expedientes.documentos', $persona->id_usuario)}}">Documentos</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            @if($persona == "no existe")
+                                <a class="btn btn-info" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>                               
+                            @endif
+                            @if($persona != "no existe")
+                                <div class="table-responsive">
+                                    <table class="table table-striped mt-2">
+                                        <thead style="background-color: #4A001F;">
+                                            <th style="display: none;">ID</th>
+                                            <th style="color: #fff;">Nombres</th>
+                                            <th style="color: #fff;">Correo</th>
+                                            <th style="color: #fff;">Telefono</th>
+                                            <th style="color: #fff;">Acciones</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($personas as $persona)
+                                                <tr>
+                                                    <td style="display: none;">{{$persona->id_usuario}}</td>
+                                                    <td>{{$persona->nombre}}</td>
+                                                    <td>{{$persona->email}}</td>
+                                                    <td>{{$persona->telefono}}</td>
+                                                    <td>
+                                                        <a class="btn btn-info" href="{{ route('expedientes.edit', $persona->id_usuario)}}">Editar</a>
+                                                        <a class="btn btn-info"    href="{{ route('expedientes.documentos', $persona->id_usuario)}}">Documentos</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Centramos la paginación a la derecha-->
+                                <div class="pagination justify-content-end">
+                                </div>
+                            @endif    
+                        @endif                        
                         </div>
                     </div>
                 </div>

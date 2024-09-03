@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                                <a class="btn btn-info" href="{{ url('/miscapacitaciones') }}"> Regresar</a>
+                                <a class="btn btn-info" href="{{ route('miscapacitaciones') }}"> Regresar</a>
                             @can('ver-curso')
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">

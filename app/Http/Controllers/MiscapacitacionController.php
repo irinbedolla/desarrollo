@@ -362,6 +362,7 @@ class MiscapacitacionController extends Controller
         ->where('capacitaciones_persona.persona', $persona->id)
         ->get();
     
-        return view('miscapacitaciones.modulos', compact('capacitacion','modulos'));
+        return redirect()->route('miscapacitaciones')->with('success', 'Datos actualizados correctamente.');
+        //return view('miscapacitaciones.modulos', compact('capacitacion','modulos'));
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Dashboard</h3>
+            <h3 class="page__heading">Usuarios</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -39,42 +39,56 @@
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                             {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST')) !!}
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre</label>
                                             {!! Form::text('name', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             {!! Form::email('email', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             {!! Form::password('password', array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="confirm-password">Confirmar Password</label>
                                             {!! Form::password('confirm-password', array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Roles</label>
                                             {!! Form::select('roles[]', $roles,[], array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Sede</label>
+                                            {!! Form::text('sede', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Sede</label>
+                                            {!! Form::text('sede', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
                                     

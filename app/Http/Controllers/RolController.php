@@ -71,7 +71,7 @@ class RolController extends Controller
             }            
             $role->syncPermissions($permissions);
             session()->flash('add_data');
-            return redirect()->route('roles.index');
+            return redirect()->route('roles');
         }
     }
 
@@ -124,7 +124,7 @@ class RolController extends Controller
             $permissions[intval($val)] = intval($val);
         }            
         $role->syncPermissions($permissions);
-        return redirect()->route('roles.index');
+        return redirect()->route('roles');
     }
 
     /**
@@ -137,6 +137,6 @@ class RolController extends Controller
     {
         //
         DB::table('roles')->where('id', $id)-> delete();
-        return redirect()->route('roles.index');
+        return redirect()->route('roles');
     }
 }

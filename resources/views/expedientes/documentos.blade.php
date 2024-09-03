@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('expedientes.index') }}"> Regresar</a>
+                            <a class="btn btn-warning" href="{{ route('expedientes') }}"> Regresar</a>
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
@@ -26,43 +26,33 @@
                                         <tbody>
                                             <tr>
                                                 @foreach($documentos as $doc)
-                                                    <td><a target="_blank" href="../../documentosPersonal/{{$doc->titulo}}">PDF</a></td>
-                                                    <td><a target="_blank" href="../../documentosPersonal/{{$doc->nivel_estudios}}">PDF</a></td>
-                                                    @php
-                                                    if($doc->especialidad == null){
-                                                        echo "<td>S/E</td>";
-                                                    }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosPersonal/$doc->especialidad'>PDF</a></td>";
-                                                    }
-                                                    @endphp
-                                                    @php
-                                                    if($doc->diplomado == null){
-                                                        echo "<td>S/D</td>";
-                                                    }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosPersonal/$doc->diplomado'>PDF</a></td>";
-                                                    }
-                                                    @endphp
-                                                    @php
-                                                    if($doc->seminario == null){
-                                                        echo "<td>S/S</td>";
-                                                    }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosPersonal/$doc->seminario'>PDF</a></td>";
-                                                    }
-                                                    @endphp
-                                                    @php
-                                                    if($doc->cursos == null){
-                                                        echo "<td>S/C</td>";
-                                                    }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosPersonal/$doc->cursos'>PDF</a></td>";
-                                                    }
-                                                    @endphp
-                                                    @php
-                                                    if($doc->desarrollo == null){
-                                                        echo "<td>S/D</td>";
-                                                    }else{ 
-                                                        echo "<td><a target='_blank' href='../../documentosPersonal/$doc->desarrollo'>PDF</a></td>";
-                                                    }
-                                                    @endphp
+                                                    <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->titulo}}">PDF</a></td>
+                                                    <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->nivel_estudios}}">PDF</a></td>
+                                                    @if($doc->especialidad == null)
+                                                        <td>S/E</td>
+                                                    @else 
+                                                        <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->especialidad}}">PDF</a></td>
+                                                    @endif
+                                                    @if($doc->diplomado == null)
+                                                        <td>S/D</td>
+                                                    @else 
+                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->diplomado}}'>PDF</a></td>
+                                                    @endif
+                                                    @if($doc->seminario == null)
+                                                        <td>S/S</td>
+                                                    @else 
+                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->seminario}}'>PDF</a></td>
+                                                    @endif
+                                                    @if($doc->cursos == null)
+                                                        <td>S/C</td>
+                                                    @else
+                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->cursos}}'>PDF</a></td>
+                                                    @endif
+                                                    @if($doc->desarrollo == null)
+                                                        <td>S/D</td>
+                                                    @else 
+                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->desarrollo}}'>PDF</a></td>
+                                                    @endif
                                                 @endforeach
                                             </tr>
                                         </tbody>

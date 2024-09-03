@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('auth.login');
+    }
+
+    public function publico(){
+        return view('welcome');
+    }
+
+    public function home()
+    {
+        //return redirect('home');
         return view('home');
     }
 }

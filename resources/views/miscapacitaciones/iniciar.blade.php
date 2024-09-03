@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar1')
 
 @section('content')
     <section class="section">
@@ -44,27 +44,27 @@
                                         if($modulos->anexo1 == null){
                                             echo "";
                                         }else{ 
-                                            echo "$modulos->anexo1 : <a target='_blank' class='btn btn-info' href='../../../documentosModulos/$modulos->anexo1'>Descargar</a><br>";
+                                            echo "$modulos->anexo1 : <a target='_blank' class='btn btn-info' href='../../../storage/app/documentos_modulo/$modulos->anexo1'>Descargar</a><br>";
                                         }
                                         if($modulos->anexo2 == null){
                                             echo "";
                                         }else{ 
-                                            echo "$modulos->anexo2 : <a target='_blank' class='btn btn-info' href='../../../documentosModulos/$modulos->anexo2'>Descargar</a><br>";
+                                            echo "$modulos->anexo2 : <a target='_blank' class='btn btn-info' href='../../../storage/app/documentos_modulo/$modulos->anexo2'>Descargar</a><br>";
                                         }
                                         if($modulos->anexo3 == null){
                                             echo "";
                                         }else{ 
-                                            echo "$modulos->anexo3 : <a target='_blank' class='btn btn-info' href='../../../documentosModulos/$modulos->anexo3'>Descargar</a><br>";
+                                            echo "$modulos->anexo3 : <a target='_blank' class='btn btn-info' href='../../../storage/app/documentos_modulo/$modulos->anexo3'>Descargar</a><br>";
                                         }
                                         if($modulos->anexo4 == null){
                                             echo "";
                                         }else{ 
-                                            echo "$modulos->anexo4 : <a target='_blank' class='btn btn-info' href='../../../documentosModulos/$modulos->anexo4'>Descargar</a><br>";
+                                            echo "$modulos->anexo4 : <a target='_blank' class='btn btn-info' href='../../../storage/app/documentos_modulo/$modulos->anexo4'>Descargar</a><br>";
                                         }
                                         if($modulos->anexo5 == null){
                                             echo "";
                                         }else{ 
-                                            echo "$modulos->anexo5 : <a target='_blank' class='btn btn-info' href='../../../documentosModulos/$modulos->anexo5'>Descargar</a><br>";
+                                            echo "$modulos->anexo5 : <a target='_blank' class='btn btn-info' href='../../../storage/app/documentos_modulo/$modulos->anexo5'>Descargar</a><br>";
                                         }
                                     @endphp
                                 </div>

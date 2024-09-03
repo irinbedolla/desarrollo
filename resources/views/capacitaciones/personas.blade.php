@@ -42,8 +42,10 @@
                                                     <td>{{$persona->cursos}}</td>
                                                     <td>{{$persona->acciones_desarrollo}}</td>
                                                     <td>
-                                                        <a style="width: 100%" class="btn btn-info"    href="{{ route('personas.documentos', $persona->id_usuario)}}">Documentos</a>
-                                                        <a style="width: 100%" class="btn btn-success" href="{{ route('capacitaciones.edit', $persona->id_usuario)}}">Validar</a>
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <a class="btn btn-info"    href="{{ route('personas.documentos', $persona->id_usuario)}}">Documentos</a>
+                                                            <a class="btn btn-success" href="{{ route('capacitaciones.edit', $persona->id_usuario)}}">Validar</a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

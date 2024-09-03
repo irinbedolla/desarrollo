@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get('/proyecto/{id}/niveles', 'PersonaController@obtenerSelect');
-
+/*
 Route::get('/municipio/{id}/niveles', [MunicipioController::class, 'obtenerLocal']);
 Route::get('/federal/{id}/niveles', [DistritoFederalController::class, 'obtenerFederal']);
 Route::get('/local/{id}/niveles', [DistritoLocalController::class, 'obtenerLocal']);
 Route::get('/seccion/{id}/niveles', [SeccionController::class, 'obtenerSeccion']);
-
+*/
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   //  return $request->user();
 //});
