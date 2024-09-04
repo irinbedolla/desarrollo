@@ -26,20 +26,12 @@ class UsuarioController extends Controller
         $this->middleware('permission:crear-usuario', ['only'=>['create','store']]);
         $this->middleware('permission:editar-usuario',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-usuario',['only'=>['destroy']]);
-
-
     }
     
     public function index()
     {
         $usuarios = User::paginate(10);
         return view('usuarios.index',compact('usuarios'));
-
-        /**
-         * Para la paginación hay que agregar el siguiente fragmento de código
-         * a la vista index
-         * {!! $usuarios->links() !!}
-         */
     }
 
     /**

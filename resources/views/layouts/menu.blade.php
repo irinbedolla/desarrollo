@@ -23,10 +23,10 @@
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">Revista</span>
             </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <x-gmdi-bookmark-added-tt /><span class="text-dark">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">SEEER</span>
             </a>
             <a class="nav-link" href="{{ route('seer.estadistica') }}">
-                <i class="fa fa-line-chart" aria-hidden="true"></i></i><span class="text-dark">Estadisticas</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">Estadisticas</span>
             </a>
         @endrole
     @endauth

@@ -58,9 +58,6 @@ Route::group(['middleware' => ['auth']], function(){
         //Route::redirect("/usuario", "usuarios");
     //Fin de ruta de los menus
 
-    //Expediente
-        Route::get('/expedientes/personas_documentos/{id}', [ExpedienteController::class, 'personas_documentos'])->name('expedientes.documentos');
-    //Fin expediente
     
     //Usuarios
         Route::get('/usuarios/index',           [UsuarioController::class, 'index'])->name('usuarios.index');

@@ -34,8 +34,32 @@ class SeerController extends Controller
     
     public function index()
     {
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name')->all();
+
+        $usuariosconciliador = User::where('users.delegacion', $user["delegacion"])
+        ->where('users->roles()->first()->name', 'Conciliador')->get();
+
+        dd($usuariosconciliador);
+
+        $relacionEloquent = 'roles';
+        $usuariosconciliador = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Conciliador')->Where('delegacion', $id);
+        })->get();
+        dd($usuariosconciliador);
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })->get();
+        $usuariosnotificadores = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Notificador');
+        })->get();
+
+
         $estadisticas = Seer::paginate(10);
-        return view('estadisticas.index',compact('estadisticas'));
+        return view('estadisticas.index',compact('estadisticas','userRole'));
     }
 
     public function create()
