@@ -55,13 +55,12 @@
 
 @include('profile.change_password')
 @include('profile.edit_profile')
-@livewireScripts
+
 </body>
 <script src="../../../public/assets/js/jquery.min.js"></script>
 <script src="../../../public/assets/js/popper.min.js"></script>
 <script src="../../../public/assets/js/bootstrap.min.js"></script>
 <script src="../../../public/assets/js/sweetalert.min.js"></script>
-<script src="../../../public/assets/js/iziToast.min.js'"></script>
 <script src="../../../public/assets/js/select2.min.js"></script>
 <script src="../../../public/assets/js/jquery.nicescroll.js"></script>
 

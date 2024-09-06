@@ -10,9 +10,9 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PoderController;
 use App\Http\Controllers\CapacitacionController;
 use App\Http\Controllers\MiscapacitacionController;
-use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\SeerController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +151,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/seer/mostrar',                   [SeerController::class, 'mostrar'])->name('seer.mostar');
     //Fin Seer
 
+    //Ruta por cada tabla para los indezx
+        Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
     //Estadistica
 
     //Fin de Estadistica

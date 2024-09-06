@@ -16,7 +16,8 @@
         "laravelcollective/html": "^6.4",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.12",
-        "spatie/laravel-permission": "^6.7"
+        "spatie/laravel-permission": "^6.7",
+        "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

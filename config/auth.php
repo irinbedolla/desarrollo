@@ -71,8 +71,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            Yajra\DataTables\DataTablesServiceProvider::class,
         ],
-
+        'aliases' => [
+            'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

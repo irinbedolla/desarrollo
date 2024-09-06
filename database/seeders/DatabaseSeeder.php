@@ -13,11 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name'  => 'Jhon Smith',
-            'email'     => 'admin@gmail.com',
-            'password'  => bcrypt('123456'),      
-        ]);
-        // \App\Models\User::factory(10)->create();
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 200; $i++) {
+            \DB::table('blogs')->insert([
+                'title' => $faker->sentence($nbWords = 6, 
+                        $variableNbWords = true),
+                'description' => $faker->paragraph
+                        ($nbSentences = 2,
+                        $variableNbSentences = true),
+                'content' => $faker->text($maxNbChars = 500),
+            ]);
+        }
     }
 }
