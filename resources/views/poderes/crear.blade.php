@@ -40,8 +40,15 @@
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="">Apellidos</label>
-                                            <input type="text" class="form-control" placeholder="*Apellidos" name="apellidosAbogadoAlta" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                            <label for="">Primer Apellido</label>
+                                            <input type="text" class="form-control" placeholder="*Apellidos" name="primer_apellido" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Segundo Apellido</label>
+                                            <input type="text" class="form-control" placeholder="*Apellidos" name="segundo_apellido" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
                                         </div>
                                     </div>
 

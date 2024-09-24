@@ -9,14 +9,9 @@
     <link href="{{ asset('public/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
-    <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
     
     <!-- Agregados para los Select del Formulario Personas-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
@@ -25,24 +20,35 @@
 
     @yield('page_css')
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     @yield('page_css')
 
     @yield('css')
 </head>
 
-<div id="app">
-   
-           
-       
+<div id="app">  
 
         <section class="section">
             <div class="section-header">
-                
-                <h3 class="page__heading">Sí Conciliacion registra tu poder.</h3>
+                <h3 style="text-align: center;">Sí Conciliación registra tu poder.</h3>
             </div>
             <div class="section-body">
+
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+</div>
+
+
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -86,15 +92,22 @@
                                         
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="">Apellidos</label>
-                                                <input type="text" class="form-control" placeholder="*Apellidos" name="apellidosAbogadoAlta" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                                <label for="">Primer Apellido</label>
+                                                <input type="text" class="form-control" placeholder="*Apellidos" name="primer_apellido" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Segundo Apellido</label>
+                                                <input type="text" class="form-control" placeholder="*Apellidos" name="segundo_apellido" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="">Teléfono</label>
-                                                <input type="text" class="form-control" placeholder="*Telefono"  name="telefonoAbogadoAlta" maxlength="10" pattern="[0-9]+" required>
+                                                <input type="number" class="form-control" placeholder="*Telefono"  name="telefonoAbogadoAlta" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
@@ -200,15 +213,7 @@
                                             </div>
                                         </div>
 
-
-                                        <div>
-                                        {!! Form::open(array('route' => 'poderes.store', 'method' => 'POST')) !!}
-                                        <input type="hidden" name="id_usuario_registro" value="{{ Auth::id() }}">
-                                        </div>
-                                        
-                                        
-
-                                        </div>                                    
+                                               
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                             <a href="{{ route('publico') }}" class="btn btn-primary">Regresar</a>
                                         
@@ -221,7 +226,3 @@
             </div>
         </section>
 </div>
-
-@section('scripts')
-    <script src="/js/personas/crear.js"></script>
-@endsection

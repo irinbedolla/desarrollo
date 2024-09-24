@@ -67,8 +67,8 @@ class PoderController extends Controller
         //Validar documentacion
         request()->validate([
             'nombresAbogadoAlta'        => 'required',
-            'apellidosAbogadoAlta'      => 'required',
-            'telefonoAbogadoAlta'       => 'required|digits:10',
+            'primer_apellido'           => 'required',
+            'segundo_apellido'          => 'required',
             'correoAbogadoAlta'         => 'required',
             'empresaAbogadoAlta'        => 'required',
             'curpAbogadoAlta'           => 'required',
@@ -89,32 +89,15 @@ class PoderController extends Controller
 
 
         //Validar que no exista el abogado
-        $abogado = Poder::where(['nombres' => $data["nombresAbogadoAlta"], 'apellidos' => $data["apellidosAbogadoAlta"], 'empresa' => $data["empresaAbogadoAlta"]])->first();
-        //User::where('username','like','%John%') -> first();
+        $abogado = Poder::where(['nombres' => $data["nombresAbogadoAlta"], 'primer_apellido' => $data["primer_apellido"], 
+        'segundo_apellido' => $data["segundo_apellido"], 'empresa' => $data["empresaAbogadoAlta"]])->first();
         if(!$abogado){
-            if(!$request->file('documentoAnexo')){
-                $Anexo = "Sin anexo";
-            }
-            else{
-                $Anexo = $request->file('documentoAnexo')->getClientOriginalName();
-            }
-            if(!$request->file('documentoPoder')){
-                $Poder = "Sin carta poder";
-            }
-            else{
-                $Poder = $request->file('documentoPoder')->getClientOriginalName();
-            }
-            
 
             $data_insertar= array(
                 'nombres'       => $data["nombresAbogadoAlta"],
                 'apellidos'     => $data["apellidosAbogadoAlta"], 
                 'telefono'      => $data["telefonoAbogadoAlta"], 
                 'email'         => $data["correoAbogadoAlta"],
-                'ine'           => $request->file('documentoIne')->getClientOriginalName(),
-                'cedula'        => $Poder,
-                'anexo'         => $Anexo,
-                'representacion'=> $request->file('documentoRepresentacion')->getClientOriginalName(),
                 'fechaRegistro' => date('y-m-d'),
                 'fechaVigencia' => $data["fechaVigenciaAlta"],
                 'empresa'       => $data["empresaAbogadoAlta"],
@@ -131,12 +114,12 @@ class PoderController extends Controller
             );
 
 
-            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoIne'), $nombre_ine
             );
 
-            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
             );
@@ -146,21 +129,27 @@ class PoderController extends Controller
                 $nombre_anexo = "Sin anexo";
             }
             else{
-                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
                 $path = Storage::putFileAs(
                     'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
                 );
             }
 
             if(!isset($data["documentoPoder"])){
-                $nombre_anexo = "Sin anexo";
+                $nombre_poder = "Sin carta poder";
             }
             else{
-                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
                 $path = Storage::putFileAs(
                     'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
                 );
             }
+
+            $data_insertar["ine"] = $nombre_ine;
+            $data_insertar["cedula"] = $nombre_poder;
+            $data_insertar["anexo"] = $nombre_anexo;
+            $data_insertar["representacion"] = $nombre_representación;
+
             Poder::create($data_insertar);  
             return redirect()->route('poderes'); 
         }
@@ -515,7 +504,8 @@ class PoderController extends Controller
         //Validar documentacion
         request()->validate([
             'nombresAbogadoAlta'        => 'required',
-            'apellidosAbogadoAlta'      => 'required',
+            'primer_apellido'           => 'required',
+            'segundo_apellido'          => 'required',
             'telefonoAbogadoAlta'       => 'required|digits:10',
             'correoAbogadoAlta'         => 'required',
             'empresaAbogadoAlta'        => 'required',
@@ -537,32 +527,16 @@ class PoderController extends Controller
 
 
         //Validar que no exista el abogado
-        $abogado = Poder::where(['nombres' => $data["nombresAbogadoAlta"], 'apellidos' => $data["apellidosAbogadoAlta"], 'empresa' => $data["empresaAbogadoAlta"]])->first();
-        //User::where('username','like','%John%') -> first();
+        $abogado = Poder::where(['nombres' => $data["nombresAbogadoAlta"], 'primer_apellido' => $data["primer_apellido"], 
+        'segundo_apellido' => $data["segundo_apellido"], 'empresa' => $data["empresaAbogadoAlta"]])->first();
         if(!$abogado){
-            if(!$request->file('documentoAnexo')){
-                $Anexo = "Sin anexo";
-            }
-            else{
-                $Anexo = $request->file('documentoAnexo')->getClientOriginalName();
-            }
-            if(!$request->file('documentoPoder')){
-                $Poder = "Sin carta poder";
-            }
-            else{
-                $Poder = $request->file('documentoPoder')->getClientOriginalName();
-            }
-            
 
-            $data_insertar= array(
+            $data_insertar = array(
                 'nombres'       => $data["nombresAbogadoAlta"],
-                'apellidos'     => $data["apellidosAbogadoAlta"], 
+                'primer_apellido'  => $data["primer_apellido"],
+                'segundo_apellido' => $data["segundo_apellido"],
                 'telefono'      => $data["telefonoAbogadoAlta"], 
                 'email'         => $data["correoAbogadoAlta"],
-                'ine'           => $request->file('documentoIne')->getClientOriginalName(),
-                'cedula'        => $Poder,
-                'anexo'         => $Anexo,
-                'representacion'=> $request->file('documentoRepresentacion')->getClientOriginalName(),
                 'fechaRegistro' => date('y-m-d'),
                 'fechaVigencia' => $data["fechaVigenciaAlta"],
                 'empresa'       => $data["empresaAbogadoAlta"],
@@ -578,13 +552,12 @@ class PoderController extends Controller
                 'estatus'       => "Pendiente"
             );
 
-
-            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoIne'), $nombre_ine
             );
 
-            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
             );
@@ -594,22 +567,28 @@ class PoderController extends Controller
                 $nombre_anexo = "Sin anexo";
             }
             else{
-                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+                $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
                 $path = Storage::putFileAs(
                     'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
                 );
             }
 
             if(!isset($data["documentoPoder"])){
-                $nombre_anexo = "Sin anexo";
+                $nombre_poder = "Sin carta poder";
             }
             else{
-                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+                $nombre_poder = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
                 $path = Storage::putFileAs(
                     'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
                 );
             }
-            //Poder::create($data_insertar);  
+
+            $data_insertar["ine"] = $nombre_ine;
+            $data_insertar["cedula"] = $nombre_poder;
+            $data_insertar["anexo"] = $nombre_anexo;
+            $data_insertar["representacion"] = $nombre_representación;
+
+            Poder::create($data_insertar);  
             return redirect()->back()->with('success', ',tienes 5 dias para ir al centro de conciliación a confirmar tu identidad.');   
         }
         else{

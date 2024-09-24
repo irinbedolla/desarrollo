@@ -20,11 +20,12 @@
                             
                             @can('ver-abogado')
                                 <div class="table-responsive">
-                                    <table class="table table-striped mt-2">
+                                    <table id="tabla_abogados" class="table table-striped mt-2">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Nombres</th>
-                                            <th style="color: #fff;">Apellidos</th>
+                                            <th style="color: #fff;">Primer apellido</th>
+                                            <th style="color: #fff;">Segundo apellido</th>
                                             <th style="color: #fff;">Telefono</th>
                                             <th style="color: #fff;">Poder</th>
                                             <th style="color: #fff;">Fecha Vigencia</th>
@@ -41,7 +42,8 @@
                                                 <tr>
                                                     <td style="display: none;">{{$persona->idAbogado}}</td>
                                                     <td>{{$persona->nombres}}</td>
-                                                    <td>{{$persona->apellidos}}</td>
+                                                    <td>{{$persona->primer_apellido}}</td>
+                                                    <td>{{$persona->segundo_apellido}}</td>
                                                     <td>{{$persona->telefono}}</td>
                                                     <td>{{$persona->empresa}}</td>
                                                     <td>{{$persona->fechaVigencia}}</td>
@@ -54,7 +56,7 @@
                                                     }
                                                     @endphp
                                                     <td>{{$persona->estatus}}</td>
-                                                    <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->ine}}">PDF</a></td>
+                                                    <td><a target="_blank" href="storage/app/documentos_abogados/{{$persona->ine}}">PDF</a></td>
                                                     <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->representacion}}">PDF</a></td>
                                                     @php
                                                     if($persona->anexo === "Sin anexo"){
@@ -62,7 +64,7 @@
                                                     }else{ 
                                                         echo "<td><a target='_blank' href='../storage/app/documentos_abogados/$persona->anexo'>PDF</a></td>";
                                                     }
-                                                    if($persona->cedula === "Sin anexo"){
+                                                    if($persona->cedula === "Sin carta poder"){
                                                         echo "<td>S/A</td>";
                                                     }else{
                                                         echo "<td><a target='_blank' href='../storage/app/documentos_abogados/$persona->cedula'>PDF</a></td>";

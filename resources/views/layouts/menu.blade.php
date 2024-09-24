@@ -22,9 +22,6 @@
             <a class="nav-link" href="#">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">Revista</span>
             </a>
-            <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">SEEER</span>
-            </a>
             <a class="nav-link" href="{{ route('seer.estadistica') }}">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark">Estadisticas</span>
             </a>

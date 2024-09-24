@@ -144,17 +144,15 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/seer/index',                         [SeerController::class, 'index'])->name('seer');
         Route::get('/seer/edit/{id}',                     [SeerController::class, 'edit'])->name('seer.edit');
         Route::get('/seer/create',                        [SeerController::class, 'create'])->name('seer.create');
-        Route::post('/seer/store',                        [SeerController::class, 'store'])->name('seer.store');
+        Route::post('/seer/store_auxiliar',               [SeerController::class, 'store_auxiliares'])->name('seer.store_auxiliar');
+        Route::post('/seer/store_notificador',            [SeerController::class, 'store_notificador'])->name('seer.store_notificador');
+        Route::post('/seer/store_conciliador',            [SeerController::class, 'store_conciliadores'])->name('seer.store_conciliador');
+        Route::post('/seer/store_delegado',               [SeerController::class, 'store_delegado'])->name('seer.store_delegado');
 
         //Estadistica
         Route::get('/seer/estadistica',               [SeerController::class, 'estadistica'])->name('seer.estadistica');
         Route::get('/seer/mostrar',                   [SeerController::class, 'mostrar'])->name('seer.mostar');
     //Fin Seer
 
-    //Ruta por cada tabla para los indezx
-        Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
-    //Estadistica
-
-    //Fin de Estadistica
 });
 

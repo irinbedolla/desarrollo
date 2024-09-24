@@ -20,6 +20,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+
         @livewireStyles
 
         @yield('page_css')
@@ -57,23 +58,24 @@
         @include('profile.edit_profile')
 
     </body>
-    
-<script src="../public/assets/js/jquery.min.js"></script>
-<script src="../public/assets/js/popper.min.js"></script>
-<script src="../public/assets/js/bootstrap.min.js"></script>
-<script src="../public/assets/js/sweetalert.min.js"></script>
-<script src="../public/assets/js/select2.min.js"></script>
-<script src="../public/assets/js/jquery.nicescroll.js"></script>
+        
+    <script src="../public/assets/js/jquery.min.js"></script>
+    <script src="../public/assets/js/popper.min.js"></script>
+    <script src="../public/assets/js/bootstrap.min.js"></script>
+    <script src="../public/assets/js/sweetalert.min.js"></script>
+    <script src="../public/assets/js/select2.min.js"></script>
+    <script src="../public/assets/js/jquery.nicescroll.js"></script>
 
-<!-- Template JS File -->
-<script src="../public/web/js/stisla.js"></script>
-<script src="../public/web/js/scripts.js"></script>
-<script src="../public/assets/js/profile.js"></script>
-<script src="../public/assets/js/custom/custom.js"></script>
+    <!-- Template JS File -->
+    <script src="../public/web/js/stisla.js"></script>
+    <script src="../public/web/js/scripts.js"></script>
+    <script src="../public/assets/js/profile.js"></script>
+    <script src="../public/assets/js/custom/custom.js"></script>
+
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap4.js"></script>
 @yield('page_js')
 
-@yield('js')
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/js/dataTables.min.js">
 
 @yield('scripts')
 <script>
@@ -91,5 +93,14 @@
             }
         };
     }(jQuery));
+</script>
+<script>
+    $('#tabla_usuarios').DataTable();
+    $('#tabla_roles').DataTable();
+    $('#tabla_abogados').DataTable();
+    $('#tabla_capacitaciones').DataTable();
+    $('#tabla_seer_auxiliar').DataTable();
+    $('#tabla_seer_conciliador').DataTable();
+    $('#tabla_seer_notificador').DataTable();
 </script>
 </html>

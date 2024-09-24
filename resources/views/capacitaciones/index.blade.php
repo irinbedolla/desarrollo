@@ -19,7 +19,7 @@
 
                             @can('ver-curso')
                                 <div class="table-responsive">
-                                    <table class="table table-striped mt-1">
+                                    <table id="tabla_capacitaciones" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Capacitacíon</th>
