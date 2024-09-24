@@ -56,7 +56,7 @@
                                                     }
                                                     @endphp
                                                     <td>{{$persona->estatus}}</td>
-                                                    <td><a target="_blank" href="storage/app/documentos_abogados/{{$persona->ine}}">PDF</a></td>
+                                                    <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->ine}}">PDF</a></td>
                                                     <td><a target="_blank" href="../storage/app/documentos_abogados/{{$persona->representacion}}">PDF</a></td>
                                                     @php
                                                     if($persona->anexo === "Sin anexo"){

@@ -107,7 +107,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="">Teléfono</label>
-                                                <input type="number" class="form-control" placeholder="*Telefono"  name="telefonoAbogadoAlta" maxlength="10" pattern="[0-9]+" required>
+                                                <input type="number" class="form-control" placeholder="*Telefono"  name="telefonoAbogadoAlta" maxlength="10" required>
                                             </div>
                                         </div>
 
@@ -128,7 +128,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="">CURP</label>
-                                                <input type="text" class="form-control" placeholder="*CURP" aria-label="CURP" name="curpAbogadoAlta"maxlength="18" oninput="this.value = this.value.toUpperCase()" required>
+                                                <input type="text" class="form-control" placeholder="*CURP" aria-label="CURP" name="curpAbogadoAlta" minlength="18" maxlength="18" oninput="this.value = this.value.toUpperCase()" required>
                                             </div>
                                         </div>
 
@@ -142,7 +142,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="">RFC</label>
-                                                <input type="text" class="form-control" placeholder="RFC Empresa" name="RFCAbogadoAlta" maxlength="13" oninput="this.value = this.value.toUpperCase()">
+                                                <input type="text" class="form-control" placeholder="RFC Empresa" name="RFCAbogadoAlta" minlength="13" maxlength="13" oninput="this.value = this.value.toUpperCase()">
                                             </div>
                                         </div>
 
