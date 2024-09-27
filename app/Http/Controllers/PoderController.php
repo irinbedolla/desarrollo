@@ -346,7 +346,8 @@ class PoderController extends Controller
 
         request()->validate([
             'nombresAbogadoAlta'        => 'required',
-            'apellidosAbogadoAlta'      => 'required',
+            'primer_apellido'           => 'required',
+            'segundo_apellido'          => 'required',
             'telefonoAbogadoAlta'       => 'required|digits:10',
             'correoAbogadoAlta'         => 'required',
             'empresaAbogadoAlta'        => 'required',
@@ -368,64 +369,72 @@ class PoderController extends Controller
             return back()->withErrors('Debes seleccionar al menos una Región.');
         }
         
+
+        //Vamos a revisar si cambiaron algun documento
         if(!$request->file('documentoIne')){
             $nombre_ine = $poder->ine;
         }
         else{
-            $Ine = $request->file('documentoIne')->getClientOriginalName();
+            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            //$Ine = $request->file('documentoIne')->getClientOriginalName();
         }
         if(!$request->file('documentoRepresentacion')){
             $nombre_representación = $poder->representacion;
         }
         else{
-            $Reprecentacion = $request->file('documentoRepresentacion')->getClientOriginalName();
+            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            //$Reprecentacion = $request->file('documentoRepresentacion')->getClientOriginalName();
         }
         if(!$request->file('documentoAnexo')){
             if($poder->anexo === "Sin anexo"){
-                $Anexo = "Sin anexo";
+                $nombre_anexo = "Sin anexo";
             }
             else{
                 $nombre_anexo = $poder->anexo;
             }
         }
         else{
-            $Anexo = $request->file('documentoAnexo')->getClientOriginalName();
+            $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+            //$Anexo = $request->file('documentoAnexo')->getClientOriginalName();
         }
         if(!$request->file('documentoPoder')){
             if($poder->cedula === "Sin anexo"){
-                $Poder = "Sin anexo";
+                $nombre_poder = "Sin anexo";
             }
             else{
                 $nombre_poder = $poder->poder;
             }
         }
         else{
-            $Poder = $request->file('documentoPoder')->getClientOriginalName();
+            $nombre_poder = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+            //$Poder = $request->file('documentoPoder')->getClientOriginalName();
         }
 
+
+
         if(isset($data["documentoIne"])){
-            $nombre_ine = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
+            //$nombre_ine = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoIne'), $nombre_ine
             );
         }
 
         if(isset($data["documentoRepresentacion"])){
-            $nombre_representación = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
+            //$nombre_representación = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_REPRESENTACION.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoRepresentacion'), $nombre_representación
             );
         }
 
         if(isset($data["documentoAnexo"])){
-            $nombre_anexo = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
+            //$nombre_anexo = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_ANEXO.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoAnexo'), $nombre_anexo
             );
         }
 
         if(isset($data["documentoPoder"])){
-            $nombre_poder = $data["nombresAbogadoAlta"]."".$data["apellidosAbogadoAlta"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
+            //$nombre_poder = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_PODER.pdf";
             $path = Storage::putFileAs(
                 'documentos_abogados', $request->file('documentoPoder'), $nombre_poder
             );
@@ -434,7 +443,8 @@ class PoderController extends Controller
         
         $data_update= array(
             'nombres'       => $data["nombresAbogadoAlta"],
-            'apellidos'     => $data["apellidosAbogadoAlta"], 
+            'primer_apellido' => $data["primer_apellido"],
+            'segundo_apellido'=> $data["segundo_apellido"], 
             'telefono'      => $data["telefonoAbogadoAlta"], 
             'email'         => $data["correoAbogadoAlta"],
             'ine'           => $nombre_ine,
@@ -455,6 +465,7 @@ class PoderController extends Controller
             'regionZamora'  => $regionuruapan,
             'estatus'       => $data["estatus"]
         );
+
 
         $poder->update($data_update);
         return redirect()->route('poderes');

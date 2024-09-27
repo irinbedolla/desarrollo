@@ -29,7 +29,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::model($poder, ['method' => 'PATCH', 'files' => true, 'route' => ['poderes.update', $poder ,$poder->id]] ) !!}
+                            {!! Form::model($poder, ['method' => 'PATCH', 'files' => true, 'route' => ['poderes.update', $poder ,$poder->id]], 'class' => 'needs-validation','novalidate', 'id' => 'myForm' ) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -40,10 +40,17 @@
                                 
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="">Apellidos</label>
-                                        <input type="text" class="form-control" value="{{ $poder->apellidos }}" name="apellidosAbogadoAlta" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                        <label for="">Primer Apellido</label>
+                                        <input type="text" class="form-control" value="{{ $poder->primer_apellido }}" name="primer_apellido" id="apellidosAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
                                     </div>
-                                </div>
+                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Segundo Apellido</label>
+                                        <input type="text" class="form-control" value="{{ $poder->segundo_apellido }}" name="segundo_apellido"  oninput="this.value = this.value.toUpperCase()" required>
+                                    </div>
+                                </div>                        
 
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -170,7 +177,7 @@
                                     <div class="form-group">
                                         <label>Anexos 2</label><br>
                                         @php
-                                            if($poder->cedula === "Sin anexo")
+                                            if($poder->cedula === "Sin carta poder")
                                                 echo "<td>S/A</td>";
                                             else
                                                 echo "<a target='_blank' class='btn btn-primary' href='../../storage/app/documentos_abogados/$poder->cedula'>Existente</a>";
@@ -200,3 +207,11 @@
     </section>
 @endsection
 
+<div id="crear_poder" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+@section('scripts')
+    <script src="../public/js/poderes/general.js"></script>
+@endsection

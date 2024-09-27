@@ -14,6 +14,19 @@
     <link href="public/assets/css/iziToast.min.css" rel="stylesheet">
     <link href="public/assets/css/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="public/assets/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .8;
+        }
+    </style>
+        
 </head>
 
 <body>
@@ -42,7 +55,14 @@
 <script src="public/assets/js/jquery.nicescroll.js"></script>
 
 <!-- JS Libraies -->
-
+<script type="text/javascript">
+    alert("aqui");
+    const myForm = document.getElementById('login');
+    login.addEventListener('submit', (event) => {
+        alert("llego");
+        $('#login_div').show();
+    });
+</script>
 <!-- Template JS File -->
 <script src="public/web/js/stisla.js"></script>
 <script src="public/web/js/scripts.js"></script>

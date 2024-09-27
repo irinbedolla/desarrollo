@@ -7,7 +7,7 @@
         <div class="card-header"><h4>Sí conciliación</h4></div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" id="login">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger p-0">
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" style="background-color: #6A0F49">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" style="background-color: #6A0F49" id="boton_login">
                         Ingresar
                     </button>
                 </div>
@@ -50,3 +50,9 @@
         </div>
     </div>
 @endsection
+
+<div id="login_div" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
