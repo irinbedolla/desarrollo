@@ -76,7 +76,7 @@
                                 <h3 class="text-center">Agregar Poder</h3>
 
                                 <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                                {!! Form::open(array('route'=>'poderes.publico', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate', 'id' => 'myForm')) !!}
+                                {!! Form::open(array('route'=>'poderes.publico', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">

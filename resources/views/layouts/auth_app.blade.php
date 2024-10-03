@@ -56,10 +56,8 @@
 
 <!-- JS Libraies -->
 <script type="text/javascript">
-    alert("aqui");
     const myForm = document.getElementById('login');
     login.addEventListener('submit', (event) => {
-        alert("llego");
         $('#login_div').show();
     });
 </script>

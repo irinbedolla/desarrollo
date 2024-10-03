@@ -29,7 +29,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::model($poder, ['method' => 'PATCH', 'files' => true, 'route' => ['poderes.update', $poder ,$poder->id]], 'class' => 'needs-validation','novalidate', 'id' => 'myForm' ) !!}
+                            {!! Form::model($poder, ['method' => 'PATCH', 'files' => true, 'route' => ['poderes.update', $poder ,$poder->idAbogado], 'class' => 'needs-validation','novalidate' ]) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -213,5 +213,5 @@
 </div>
 
 @section('scripts')
-    <script src="../public/js/poderes/general.js"></script>
+    <script src="../../public/js/poderes/general.js"></script>
 @endsection

@@ -19,7 +19,6 @@
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
-                                            <!--<span class="badge badge-danger">{{ $error }}</span>-->
                                         @endforeach
                                     </ul>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,7 +28,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'poderes.store', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate', 'id' => 'myForm')) !!}
+                            {!! Form::open(array('route'=>'poderes.store', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">

@@ -29,14 +29,17 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'roles.store', 'method'=>'POST')) !!}
+                            {!! Form::open(array('route'=>'roles.store', 'method'=>'POST', 'class' => 'needs-validation','novalidate', 'id' => 'form_roles')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="name">Nombre del Rol</label>
-                                            {!! Form::text('name', null, array('class'=>'form-control')) !!}
+                                            {!! Form::text('name', null, array('class'=>'form-control', 'required' => 'required')) !!}
                                         </div>
-                                    </div>                       
+                                    </div>         
+                                    <div class="invalid-feedback">
+                                        El tipo es obligatorio.
+                                    </div>              
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
@@ -50,6 +53,9 @@
                                                 <br/>
                                             @endforeach
                                         </div>
+                                        <div class="invalid-feedback">
+                                        El tipo es obligatorio.
+                                    </div>
                                     </div>                                    
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                         {!! Form::close() !!}
@@ -63,3 +69,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/roles/roles.js"></script>
+@endsection

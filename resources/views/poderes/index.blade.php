@@ -15,7 +15,7 @@
                             
 
                             @can('crear-abogado')
-                                <a class="btn btn-warning" href="{{ route('poderes.create') }}"> Nuevo</a>
+                                <a class="btn btn-warning" href="{{ route('poderes.create') }}"  onclick=nuevo_poder();> Nuevo</a>
                             @endcan
                             
                             @can('ver-abogado')
@@ -72,16 +72,14 @@
                                                     @endphp
 
                                                     <td>
-                                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                                            @can('editar-abogado')
-                                                                <a class="btn btn-info" href="{{ route('poderes.edit', $persona->idAbogado)}}">Editar</a>
-                                                            @endcan
-                                                            @can('borrar-abogado')
+                                                        @can('editar-abogado')
+                                                            <a class="btn btn-info" href="{{ route('poderes.edit', $persona->idAbogado)}}" onclick=editar_poder();>Editar</a>
+                                                        @endcan
+                                                        @can('borrar-abogado')
                                                             {!! Form::open(['method'=>'DELETE', 'route'=> ['poderes.destroy', $persona->idAbogado], 'style'=>'display:inline']) !!}
-                                                                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger']) !!}
+                                                                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger', 'onclick' => 'editar_poder()']) !!}
                                                             {!! Form::close() !!}
-                                                            @endcan
-                                                        </div>
+                                                        @endcan
                                                     </td>
                                                     
                                                 </tr>
@@ -105,3 +103,11 @@
     </section>
 @endsection
 
+<div id="nuevo_poder" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+@section('scripts')
+    <script src="../public/js/poderes/general.js"></script>
+@endsection

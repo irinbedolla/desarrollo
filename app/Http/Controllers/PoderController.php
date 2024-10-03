@@ -311,7 +311,6 @@ class PoderController extends Controller
 
     public function edit($id)
     {
-        
         $poder = Poder::find($id);
         return view('poderes.editar', compact('poder'));
     }
@@ -476,7 +475,7 @@ class PoderController extends Controller
     {
         //Borrar la documentacion
         $poder = Poder::find($id);
-        unlink(storage_path('app/documentos_abogados/'.$poder->ine));
+        /*unlink(storage_path('app/documentos_abogados/'.$poder->ine));
         unlink(storage_path('app/documentos_abogados/'.$poder->representacion));
         if($poder->anexo !== "Sin anexo"){
             unlink(storage_path('app/documentos_abogados/'.$poder->anexo));
@@ -484,7 +483,7 @@ class PoderController extends Controller
         if($poder->cedula !== "Sin anexo"){
             unlink(storage_path('app/documentos_abogados/'.$poder->cedula));
         }
-        
+        */
         $poder = Poder::find($id)->delete();
         return redirect()->route('poderes');
     }

@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-usuario')
-                                <a class="btn btn-warning" href="{{ route('usuarios.create') }}"> Nuevo</a>
+                                <a class="btn btn-warning" href="{{ route('usuarios.create') }}" onclick=crear_usuario();> Nuevo</a>
                             @endcan
 
                             @can('ver-usuario')
@@ -40,13 +40,13 @@
                                                     </td>
                                                     <td>
                                                         @can('editar-usuario')
-                                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}">Editar</a>
+                                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}" onclick=editar_usuario();>Editar</a>
                                                         @endcan
                                                         <!--Utilizamos las librerías de laravel collective para hacer la 
                                                         eliminación más sencilla con un formulario utilizando el metodo DELETE-->
                                                         @can('borrar-usuario')
                                                             {!! Form::open(['method'=>'DELETE', 'route'=> ['usuarios.destroy', $usuario->id], 'style'=>'display:inline']) !!}
-                                                                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger']) !!}
+                                                                {!! Form::submit('Borrar', ['class'=> 'btn btn-danger', 'onclick' => 'editar_usuario()']) !!}
                                                             {!! Form::close() !!}
                                                         @endcan
                                                     </td>
@@ -68,3 +68,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/general/menu.js"></script>
+@endsection

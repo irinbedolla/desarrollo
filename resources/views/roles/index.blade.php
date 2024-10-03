@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             
-                            <a class="btn btn-warning" href="{{ route('roles.create') }}">Nuevo</a>
+                            <a class="btn btn-warning" href="{{ route('roles.create') }}" onclick=crear_rol();>Nuevo</a>
                             <div class="table-responsive">
                                 <table id="tabla_roles" class="table table-striped mt-2">
                                     <thead style="background-color:#4A001F">
@@ -24,11 +24,11 @@
                                             <td>{{ $role->name }}</td>
                                             <td>
                                                 
-                                                    <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Editar</a>
+                                                    <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}" onclick=editar_rol();>Editar</a>
                                                 
 
                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style'=>'display:inline' ]) !!}
-                                                        {!! Form::submit('Borrar', ['class' => 'btn btn-danger'])  !!}
+                                                        {!! Form::submit('Borrar', ['class' => 'btn btn-danger', 'onclick' => 'editar_rol()'])  !!}
                                                     {!! Form::close() !!}
                                             </td>
                                         </tr>
@@ -50,3 +50,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/general/menu.js"></script>
+@endsection

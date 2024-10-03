@@ -29,21 +29,17 @@
 
                             @endif
 
-                            <!-- Formulario normal
-                            <form action="/store" method="post">
-                                @csrf
-                                <button type="submit"></button>
-                            </form>
-                            -->
-
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST')) !!}
+                            {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST', 'class' => 'needs-validation','novalidate', 'id' => 'form_usuarios')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre</label>
-                                            {!! Form::text('name', null, array('class'=>'form-control')) !!}
+                                            {!! Form::text('name', null, array('class'=>'form-control', required)) !!}
                                         </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El nombre es obligatorio.
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -52,12 +48,18 @@
                                             {!! Form::email('email', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
+                                    <div class="invalid-feedback">
+                                        El Email es obligatorio.
+                                    </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             {!! Form::password('password', array('class'=>'form-control')) !!}
                                         </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        La contraseña es obligatoria.
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -66,6 +68,9 @@
                                             {!! Form::password('confirm-password', array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
+                                    <div class="invalid-feedback">
+                                        La contraseña es obligatoria.
+                                    </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
@@ -73,19 +78,36 @@
                                             {!! Form::select('roles[]', $roles,[], array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Sede</label>
-                                            {!! Form::text('sede', null, array('class'=>'form-control')) !!}
-                                        </div>
+                                    <div class="invalid-feedback">
+                                        Debes seleccionar un Rol.
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Sede</label>
-                                            {!! Form::text('sede', null, array('class'=>'form-control')) !!}
+                                            <label for="name">Delegacion</label>
+                                            <select name="delegacion" class="form-control">
+                                                <option value="Morelia">Morelia</option>
+                                                <option value="Uruapan">Uruapan</option>
+                                                <option value="Zamora">Zamora</option>
+                                            </select>
                                         </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        La delegacion es obligatoria.
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Tipo</label>
+                                            <select name="type" class="form-control">
+                                                <option value="Seer">Seer</option>
+                                                <option value="Si concilio">Si concilio</option>
+                                                <option value="Ambos">Ambos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El tipo es obligatorio.
                                     </div>
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -104,3 +126,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/usuarios/usuarios.js"></script>
+@endsection
