@@ -6,36 +6,40 @@
     <title>Sí Conciliación</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
-    <link href="{{ asset('public/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="public/assets_seer/assets/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="public/assets/css/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link href="public/assets/css/iziToast.min.css" rel="stylesheet">
+    <link href="public/assets/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="public/assets/css/select2.min.css" rel="stylesheet" type="text/css"/>
     
     <!-- Agregados para los Select del Formulario Personas-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-        <style>
-            .loader {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url('../public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
-                opacity: .8;
-            }
-        </style>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .8;
+        }
+    </style>
 
     @livewireStyles
 
-
     @yield('page_css')
     <!-- Template CSS -->
+    <link rel="stylesheet" href="public/web/css/style.css">
+    <link rel="stylesheet" href="public/web/css/components.css">
     @yield('page_css')
-
-    @yield('css')
 </head>
 
     <div id="app">  
@@ -203,10 +207,23 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Descripción del poder</label>
+                                                <textarea class="form-control" aria-describedby="basic-addon1" name="descripcionpoderAlta" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    La descripción es obligatoria.
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label>*Identificación oficial</label><br>
                                                 {!! Form::file('documentoIne', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                                <div class="invalid-feedback">
+                                                    La Identificación es obligatoria.
+                                                </div>
                                             </div>
                                         </div>
 
@@ -214,6 +231,9 @@
                                             <div class="form-group">
                                                 <label>*Documento que acredite la representación</label><br>
                                                 {!! Form::file('documentoRepresentacion', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                                <div class="invalid-feedback">
+                                                    El documento de representación es obligatorio.
+                                                </div>
                                             </div>
                                         </div>
 
@@ -231,10 +251,14 @@
                                             </div>
                                         </div>
 
-                                               
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
-                                            <a href="{{ url('/'); }}" class="btn btn-primary">Regresar</a>
+                                        <div>
+                                            {!! Form::open(array('route' => 'poderes.store', 'method' => 'POST')) !!}
+                                            <input type="hidden" name="id_usuario_registro" value="{{ Auth::id() }}">
+                                        </div>
                                         
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <a href="{{ url('/'); }}" class="btn btn-primary">Regresar</a>    
                                 {!! Form::close() !!}
                                 </div>
                             </div>
@@ -245,6 +269,26 @@
         </section>
     </div>
 
+
+    <script src="public/assets/js/jquery.min.js"></script>
+    <script src="public/assets/js/popper.min.js"></script>
+    <script src="public/assets/js/bootstrap.min.js"></script>
+    <script src="public/assets/js/sweetalert.min.js"></script>
+    <script src="public/assets/js/select2.min.js"></script>
+    <script src="public/assets/js/jquery.nicescroll.js"></script>
+
+    <!-- Template JS File -->
+    <script src="public/web/js/stisla.js"></script>
+    <script src="public/web/js/scripts.js"></script>
+    <script src="public/assets/js/profile.js"></script>
+    <script src="public/assets/js/custom/custom.js"></script>
+
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap4.js"></script>
+    @yield('page_js')
+
+
+    @yield('scripts')
 
 
 <div id="crear_poder" style ="display: none;">

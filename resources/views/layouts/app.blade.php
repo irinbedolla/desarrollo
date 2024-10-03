@@ -40,8 +40,6 @@
         <link rel="stylesheet" href="../public/web/css/style.css">
         <link rel="stylesheet" href="../public/web/css/components.css">
         @yield('page_css')
-
-
     </head>
     <body>
 
