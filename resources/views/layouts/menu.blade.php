@@ -26,7 +26,7 @@
             <a class="nav-link" href="{{ route('seer.estadistica') }}">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">Estadisticas</span>
             </a>
-            <a class="nav-link" href="{{ route('seer.estadistica') }}">
+            <a class="nav-link" href="{{ route('turnos') }}">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Turnos</span>
             </a>
         @endrole
