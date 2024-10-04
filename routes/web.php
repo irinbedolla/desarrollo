@@ -13,7 +13,7 @@ use App\Http\Controllers\MiscapacitacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\SeerController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\Turnosontroller;
+use App\Http\Controllers\TurnosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,13 +156,13 @@ Route::group(['middleware' => ['auth']], function(){
     //Fin Seer
 
     //Turnos
-        Route::get('/turnos/index',           [Turnosontroller::class, 'index'])->name('turnos.index');
-        Route::get('/turnos/index',           [Turnosontroller::class, 'index'])->name('turnos');
-        Route::get('/turnos/create',          [Turnosontroller::class, 'create'])->name('turnos.create');
-        Route::get('/turnos/edit/{id}',       [Turnosontroller::class, 'edit'])->name('turnos.edit');
-        Route::post('/turnos/store',          [Turnosontroller::class, 'store'])->name('turnos.store');
-        Route::patch('/turnos/update/{post}', [Turnosontroller::class, 'update'])->name('turnos.update');
-        Route::delete('/turnos/destroy/{id}', [Turnosontroller::class, 'destroy'])->name('turnos.destroy');
+        Route::get('/turnos/index',           [TurnosController::class, 'index'])->name('turnos.index');
+        Route::get('/turnos/index',           [TurnosController::class, 'index'])->name('turnos');
+        Route::get('/turnos/create',          [TurnosController::class, 'create'])->name('turnos.create');
+        Route::get('/turnos/edit/{id}',       [TurnosController::class, 'edit'])->name('turnos.edit');
+        Route::post('/turnos/store',          [TurnosController::class, 'store'])->name('turnos.store');
+        Route::patch('/turnos/update/{post}', [TurnosController::class, 'update'])->name('turnos.update');
+        Route::delete('/turnos/destroy/{id}', [TurnosController::class, 'destroy'])->name('turnos.destroy');
     //Fin de Turnos
 });
 

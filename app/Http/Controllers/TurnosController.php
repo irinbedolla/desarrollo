@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 
-class UsuarioController extends Controller
+class TurnosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +32,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $turnos = Turnos::paginate(10);
-        return view('turnos.index',compact('usuarios'));
+        return view('turnos.index',compact('turnos'));
     }
 
     /**
