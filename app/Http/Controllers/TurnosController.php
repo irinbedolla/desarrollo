@@ -11,6 +11,8 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+
 
 class TurnosController extends Controller
 {
@@ -43,8 +45,8 @@ class TurnosController extends Controller
     public function create()
     {
         //Vamos a traer un usuario para asignarle los roles
-        $roles = Role::pluck('name','name')->all();
-        return view('usuarios.crear', compact('roles'));
+        $id_usuario = Auth::id();
+        return view('turnos.crear', compact('id_usuario'));
     }
 
     /**
@@ -55,96 +57,37 @@ class TurnosController extends Controller
      */
     public function store(Request $request)
     {
-        //Procedimiento para almacenar de los campos que vamos a ingresar
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required',
-            'delegacion' => 'required',
-            'type' => 'required' 
-        ]);
+        $data = $request->all();
 
-        $input = $request->all();
-        //Hacemos un hash del campo que tiene el password
-        $input['password'] = Hash::make($input['password']);
+        request()->validate([
+            'nombre' => 'required',
+        ], $data);
+
+        	
+        $fecha_actual = date('Y-m-d');
+        $hora_actual  = date("H:i:s");
+        
+        $consecutivo = Turnos::where('fecha', $fecha_actual)->get();
+        //seleccionar el campo consecutivo de la fecha actual consecutivo
+        //obtener el axiliar disponible auxiliar
+        $data_insertar= array(
+            'solicitante'   => $data["nombre"],
+            'fecha'         => $fecha_actual,
+            'hora'          => $hora_actual,
+            'estatus'       => 'no atendido'
+        );
 
         $user = User::create($input);
-        //Documentación de spatie para asignar roles
-        $user->assignRole($request->input('roles'));
-
+        
         return redirect()->route('usuarios');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //Se invocan los dos modelos User y rol
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-        return view('usuarios.editar', compact('user','roles','userRole'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //Primero se hace la validación como en store
-        $this->validate($request, [
-            'name' => 'required',
-            //Se guarda el campo email y se pide que sea de tipo email y único y se agrega el id
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required',
-            'delegacion' => 'required',
-            'type' => 'required' 
-        ]);
-
-        //Hacemos un condicional sobre los inputs que tenemos
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        }else {
-            $input = Arr::except($input, array('password'));
-        }
-        
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

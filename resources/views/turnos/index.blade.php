@@ -15,7 +15,7 @@
                                 <a class="btn btn-warning" href="{{ route('turnos.create') }}" onclick=crear_turnos();> Nuevo</a>
                             @endcan
 
-                            @can('ver-usuario')
+                            @can('ver-turno')
                                 <div class="table-responsive">
                                     <table id="tabla_usuarios" class="table table-striped mt-2">
                                         <thead style="background-color: #4A001F;">
