@@ -45,3 +45,7 @@ function crear_rol() {
 function editar_rol() {
     $('#menu_carga').show();
 }
+
+function turnos() {
+    $('#menu_carga').show();
+}
