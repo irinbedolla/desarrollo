@@ -35,11 +35,11 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="name">Nombre del solicitante</label>
-                                            {!! Form::text('name', null, array('class'=>'form-control', 'required')) !!}
+                                            <input type="text" name="nombre" class="form-control" required> 
+                                            <div class="invalid-feedback">
+                                                El nombre es obligatorio.
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        El nombre es obligatorio.
                                     </div>
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-6">

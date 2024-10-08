@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Turnos;
+use App\Models\TurnoDisponible;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -37,11 +38,7 @@ class TurnosController extends Controller
         return view('turnos.index',compact('turnos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //Vamos a traer un usuario para asignarle los roles
@@ -49,12 +46,6 @@ class TurnosController extends Controller
         return view('turnos.crear', compact('id_usuario'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->all();
@@ -66,20 +57,77 @@ class TurnosController extends Controller
         	
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
+        $numero_consecutivo = 0;
+        $consecutivo  = Turnos::where('fecha', $fecha_actual)->get();
+        $ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->where('estatus', 'Ocupado')->get();
+
+        if(empty($consecutivo["id"])){
+            $numero_consecutivo = 1;
+        }
+        else{
+            $numero_consecutivo = $consecutivo["consecutivo"]++;
+        }
         
-        $consecutivo = Turnos::where('fecha', $fecha_actual)->get();
-        //seleccionar el campo consecutivo de la fecha actual consecutivo
-        //obtener el axiliar disponible auxiliar
+        $relacionEloquent = 'roles';
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })->get();
+
+        $listado_ocupados = array();
+        $listado_auxiliares = array(); 
+
+        foreach($ocupados as $token ){
+            array_push($listado_ocupados, $token["id_auxiliar"]);
+        }
+
+        foreach($usuariosauxiliares as $token ){
+            //Validar que solo sea morelia
+            if($token["delegacion"] == "Morelia"){
+                //Si la lista no esta vacia
+                if(!empty($listado_ocupados)){
+                    //Buscamos si existen auxiliares libres
+                    if(in_array($token["id"], $listado_ocupados)){
+                        echo "Este no se agrega";
+                    }
+                    else{
+                        echo "SI se agrega";
+                        array_push($listado_auxiliares, $token["id"]);
+                    }
+                }
+                //Si la lista es vacia agregamos a todos los auxiliares
+                else{
+                    array_push($listado_auxiliares, $token["id"]);
+                }
+            }
+        }
+        //validar si hay disponibles
+
+        $random = array_rand($listado_auxiliares);
+
         $data_insertar= array(
+            'consecutivo'   => $numero_consecutivo,
             'solicitante'   => $data["nombre"],
+            'auxiliar'      => $listado_auxiliares[$random],
             'fecha'         => $fecha_actual,
             'hora'          => $hora_actual,
             'estatus'       => 'no atendido'
         );
+        $data_insertar_disponible= array(
+            'id_auxiliar'   => $listado_auxiliares[$random],
+            'fecha'         => $fecha_actual,
+            'hora'          => $hora_actual,
+            'estatus'       => 'Ocupado'
+        );
 
-        $user = User::create($input);
+        Turnos::create($data_insertar);
+        TurnoDisponible::create($data_insertar_disponible);
+
+        //Fin de si hay dispobibles
+
+        //Si no hay dispobibles
         
-        return redirect()->route('usuarios');
+        
+        //return redirect()->route('turnos');
 
     }
 
