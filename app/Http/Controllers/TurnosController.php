@@ -34,10 +34,38 @@ class TurnosController extends Controller
     
     public function index()
     {
-        $turnos = Turnos::paginate(10);
-        return view('turnos.index',compact('turnos'));
-    }
+        $fecha_actual = date('Y-m-d');
+        $relacionEloquent = 'roles';
+        
+        $auxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })
+        ->where('delegacion', 'Morelia')
+        ->get();
 
+        $auxiliares_morelia = array();
+        foreach($auxiliares as $auxiliar){
+            $estatus = "Disponible";
+            $ocupados = TurnoDisponible::where('fecha', $fecha_actual)
+            ->where('id_auxiliar', $auxiliar["id"])
+            ->select('turno_disponible.estatus')
+            ->get();
+
+            if(!count($ocupados) == 0){
+                $estatus = $ocupados[0]["estatus"];
+            }
+            $data_insertar = [
+                'id'        => $auxiliar["id"],
+                'name'      => $auxiliar["name"],
+                'delegacion'=> $auxiliar["delegacion"],
+                'estatus'   => $estatus,
+            ];
+            array_push($auxiliares_morelia, $data_insertar);
+        }
+        $total = count($auxiliares_morelia);
+
+        return view('turnos.index',compact('auxiliares_morelia','total'));
+    }
 
     public function create()
     {
@@ -60,14 +88,16 @@ class TurnosController extends Controller
         $numero_consecutivo = 0;
         $consecutivo  = Turnos::where('fecha', $fecha_actual)->get();
         $ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->where('estatus', 'Ocupado')->get();
+        //$ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->get();
 
-        if(empty($consecutivo["id"])){
+        if(count($consecutivo) == 0){
             $numero_consecutivo = 1;
         }
         else{
-            $numero_consecutivo = $consecutivo["consecutivo"]++;
+            $numero_consecutivo = $consecutivo[0]["consecutivo"]++;
         }
         
+        dd($numero_consecutivo);
         $relacionEloquent = 'roles';
         $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
             return $query->where('name', '=', 'Auxiliar');
@@ -76,6 +106,7 @@ class TurnosController extends Controller
         $listado_ocupados = array();
         $listado_auxiliares = array(); 
 
+        //Voy a leer los usuario que tengan estatus ocupado
         foreach($ocupados as $token ){
             array_push($listado_ocupados, $token["id_auxiliar"]);
         }
@@ -100,40 +131,84 @@ class TurnosController extends Controller
                 }
             }
         }
+
         //validar si hay disponibles
+        if(empty($listado_auxiliares["id"])){
+            $random = array_rand($listado_auxiliares);
 
-        $random = array_rand($listado_auxiliares);
+            $data_insertar= array(
+                'consecutivo'   => $numero_consecutivo,
+                'solicitante'   => $data["nombre"],
+                'auxiliar'      => $listado_auxiliares[$random],
+                'fecha'         => $fecha_actual,
+                'hora'          => $hora_actual,
+                'estatus'       => 'no atendido'
+            );
+            Turnos::create($data_insertar);
+            //Validar si tiene estatus disponible para insertar o actualizar
+            $validar_estatus = TurnoDisponible::where('fecha', $fecha_actual)
+            ->where('id_auxiliar', $listado_auxiliares[$random])
+            ->select('turno_disponible.estatus')
+            ->get();
 
-        $data_insertar= array(
-            'consecutivo'   => $numero_consecutivo,
-            'solicitante'   => $data["nombre"],
-            'auxiliar'      => $listado_auxiliares[$random],
-            'fecha'         => $fecha_actual,
-            'hora'          => $hora_actual,
-            'estatus'       => 'no atendido'
-        );
+            if(empty($validar_estatus["id"])){
+                $data_insertar_disponible= array(
+                    'id_auxiliar'   => $listado_auxiliares[$random],
+                    'fecha'         => $fecha_actual,
+                    'hora'          => $hora_actual,
+                    'estatus'       => 'Ocupado'
+                );
+                
+                TurnoDisponible::create($data_insertar_disponible);
+            }
+            else{
+                $data_update = DB::table('turno_disponible')
+                ->where('id_auxiliar', $listado_auxiliares[$random])
+                ->update(['estatus' => 'Disponible']);
+            }
+            
+        }
+        //Si no hay disponibles se va agregar turno con el auxiliar en 0 que es en espera 
+        else{
+            $data_insertar= array(
+                'consecutivo'   => $numero_consecutivo,
+                'solicitante'   => $data["nombre"],
+                'auxiliar'      => 0,
+                'fecha'         => $fecha_actual,
+                'hora'          => $hora_actual,
+                'estatus'       => 'no atendido'
+            );
+            Turnos::create($data_insertar);
+        }
+        
+        return redirect()->route('turnos');
+    }
+
+    public function activo($id)
+    {
+        $fecha_actual = date('Y-m-d');
+
+        $data_update = DB::table('turno_disponible')
+        ->where('id_auxiliar', $id)
+        ->update(['estatus' => 'Disponible']);
+
+        return redirect()->route('turnos');
+    }
+
+    public function noactivo($id)
+    {
+        $fecha_actual = date('Y-m-d');
+        $hora_actual  = date("H:i:s");
+
         $data_insertar_disponible= array(
-            'id_auxiliar'   => $listado_auxiliares[$random],
+            'id_auxiliar'   => $id,
             'fecha'         => $fecha_actual,
             'hora'          => $hora_actual,
             'estatus'       => 'Ocupado'
         );
-
-        Turnos::create($data_insertar);
         TurnoDisponible::create($data_insertar_disponible);
 
-        //Fin de si hay dispobibles
-
-        //Si no hay dispobibles
-        
-        
-        //return redirect()->route('turnos');
-
-    }
-
-    public function show($id)
-    {
-        //
+        return redirect()->route('turnos');
     }
 
     public function destroy($id)

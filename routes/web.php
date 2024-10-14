@@ -12,7 +12,6 @@ use App\Http\Controllers\CapacitacionController;
 use App\Http\Controllers\MiscapacitacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\SeerController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TurnosController;
 
 /*
@@ -30,21 +29,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('pantalla', function () {
+    return view('pantalla');
+});
 
 // Gate::authorize('see-reports'); 
+
     Route::get('publico', [HomeController::class, 'publico'])->name('publico');
     Route::get('home',    [HomeController::class, 'home'])->name('home');
     Route::get('/poder-crear', [PoderController::class, 'registro'])->name('poder-crear');
     Route::get('/poder', [App\Http\Controllers\PoderController::class, 'show'])->name('poder');
     Route::post('/poderes/publico', [PoderController::class, 'publico'])->name('poderes.publico');
-
-
-//Calendario
-    //Route::get('calendar-event', [CalenderController::class, 'index'])->name('calendario');
-    //Route::get('calendario_horario/{fecha}', [CalenderController::class, 'calendario_horario'])->name('calendario.horario');
-    //Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
-//Fin Calenadrio
+    Route::get('publico', [HomeController::class, 'publico'])->name('publico');
 
 Auth::routes();
 
@@ -159,10 +155,12 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/index',           [TurnosController::class, 'index'])->name('turnos.index');
         Route::get('/turnos/index',           [TurnosController::class, 'index'])->name('turnos');
         Route::get('/turnos/create',          [TurnosController::class, 'create'])->name('turnos.create');
-        Route::get('/turnos/edit/{id}',       [TurnosController::class, 'edit'])->name('turnos.edit');
+        Route::get('/turnos/activo/{id}',     [TurnosController::class, 'activo'])->name('turnos.activo');
+        Route::get('/turnos/noactivo/{id}',   [TurnosController::class, 'noactivo'])->name('turnos.noactivo');
         Route::post('/turnos/store',          [TurnosController::class, 'store'])->name('turnos.store');
-        Route::patch('/turnos/update/{post}', [TurnosController::class, 'update'])->name('turnos.update');
-        Route::delete('/turnos/destroy/{id}', [TurnosController::class, 'destroy'])->name('turnos.destroy');
+        //Route::patch('/turnos/update/{post}', [TurnosController::class, 'update'])->name('turnos.update');
+        //Route::delete('/turnos/destroy/{id}', [TurnosController::class, 'destroy'])->name('turnos.destroy');
     //Fin de Turnos
 });
+
 

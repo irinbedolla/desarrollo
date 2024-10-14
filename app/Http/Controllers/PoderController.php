@@ -195,9 +195,6 @@ class PoderController extends Controller
             'descripcionpoderAlta'      => 'required',
             'documentoIne'              => 'required',
             'documentoRepresentacion'   => 'required',
-            //'moreliaSucursal'           => 'required_without_all:uruapanSucursal,zamoraSucursal',
-            //'uruapanSucursal'           => 'required_without_all:moreliaSucursal,zamoraSucursal',
-            //'zamoraSucursal'            => 'required_without_all:moreliaSucursal,uruapanSucursal',
             'documentoPoder'            => 'nullable',
             'documentoAnexo'            => 'nullable',
         ], $data);

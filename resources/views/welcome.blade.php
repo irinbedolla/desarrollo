@@ -128,8 +128,8 @@
                                 <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
                             </div>
                             <div class="carousel-caption text-start">
-                            <h1>Sí Concilación.</h1>
-                            <p>Sistema integral de conciliación.</p>
+                            <h1>Sí Conciliación.</h1>
+                            <p>Sistema integral de Conciliación.</p>
                             <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
                                 Ingresar</a>
                             </p>
@@ -143,7 +143,7 @@
                                 <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
                             </div>
                             <div class="carousel-caption text-start">
-                                <h1>SEEER.</h1>
+                                <h1>SEER.</h1>
                                 <p> Sistema Estatal de Estadísticas y Evaluación de Conciliadores.</p>
                                 <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
                                     Ingresar</a>

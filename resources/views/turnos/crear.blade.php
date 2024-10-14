@@ -58,12 +58,12 @@
     </section>
 @endsection
 
-<div id="menu_carga" style ="display: none;">
+<div id="nuevo_turno" style ="display: none;">
     <div>.</div>
     <div class="loader"></div>
 </div>
 
 
 @section('scripts')
-    <script src="../public/js/usuarios/usuarios.js"></script>
+    <script src="../public/js/turnos/turnos.js"></script>
 @endsection
