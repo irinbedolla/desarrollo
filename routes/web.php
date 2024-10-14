@@ -29,9 +29,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('pantalla', function () {
-    return view('pantalla');
-});
+
+Route::get('pantalla', [HomeController::class, 'pantalla'])->name('pantalla');
 
 // Gate::authorize('see-reports'); 
 

@@ -97,7 +97,6 @@ class TurnosController extends Controller
             $numero_consecutivo = $consecutivo[0]["consecutivo"]++;
         }
         
-        dd($numero_consecutivo);
         $relacionEloquent = 'roles';
         $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
             return $query->where('name', '=', 'Auxiliar');
