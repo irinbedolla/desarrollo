@@ -26,7 +26,9 @@
                                                 <td>{{$turnos->solicitante}}</td>
                                                 <td>{{$turnos->estatus}}</td>
                                                 <td>
+                                                    @if($turnos->estatus == "no atendido")
                                                     <a class="btn btn-info" href="{{ route('turnos.terminado', $turnos->id)}}" onclick=no_disponible();>Terminado</a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

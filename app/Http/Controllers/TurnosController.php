@@ -188,10 +188,17 @@ class TurnosController extends Controller
     {
         $fecha_actual = date('Y-m-d');
 
-        $data_update = DB::table('turno_disponible')
+        $ocupados = TurnoDisponible::where('fecha', $fecha_actual)
         ->where('id_auxiliar', $id)
-        ->update(['estatus' => 'Disponible']);
+        ->get();
 
+        //Si existe voy actilizar
+        if(count($ocupados) == 0){
+            $data_update = DB::table('turno_disponible')
+            ->where('id_auxiliar', $id)
+            ->update(['estatus' => 'Disponible']);
+        }
+        
         return redirect()->route('turnos');
     }
 
@@ -200,13 +207,23 @@ class TurnosController extends Controller
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
 
-        $data_insertar_disponible= array(
-            'id_auxiliar'   => $id,
-            'fecha'         => $fecha_actual,
-            'hora'          => $hora_actual,
-            'estatus'       => 'Ocupado'
-        );
-        TurnoDisponible::create($data_insertar_disponible);
+        $ocupados = TurnoDisponible::where('fecha', $fecha_actual)
+        ->where('id_auxiliar', $id)
+        ->get();
+
+        if(count($ocupados) == 0){
+            $data_insertar_disponible= array(
+                'id_auxiliar'   => $id,
+                'fecha'         => $fecha_actual,
+                'hora'          => $hora_actual,
+                'estatus'       => 'Ocupado'
+            );
+            TurnoDisponible::create($data_insertar_disponible);
+        }else{
+            $data_update = DB::table('turno_disponible')
+            ->where('id_auxiliar', $id)
+            ->update(['estatus' => 'Ocupado']);
+        }
 
         return redirect()->route('turnos');
     }
@@ -236,7 +253,10 @@ class TurnosController extends Controller
         $IDauxiliar = $turnos["auxiliar"];
        
         $fecha_actual = date('Y-m-d');
+        $hora_actual  = date("H:i:s");
+        
         $turno_update= array(
+            'hora_fin'      =>  $hora_actual,
             'estatus'       => 'atendido'
         );
         $disponible_update= array(

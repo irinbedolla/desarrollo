@@ -29,7 +29,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
+
 Route::get('/pantalla', function () {
     $fecha_actual = date('Y-m-d');
 
@@ -41,7 +41,7 @@ Route::get('/pantalla', function () {
 
     return view('pantalla', compact('turnos'));
 });
-*/
+
 // Gate::authorize('see-reports'); 
 
     Route::get('publico', [HomeController::class, 'publico'])->name('publico');

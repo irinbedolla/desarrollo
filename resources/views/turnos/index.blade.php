@@ -35,7 +35,7 @@
                                                     <td>{{$auxiliares_morelia[$i]["estatus"]}}</td>
                                                     <td>
                                                         <a class="btn btn-info"   href="{{ route('turnos.activo',   $auxiliares_morelia[$i]['id']) }}" onclick=disponibles();>Disponible</a>
-                                                        <a class="btn btn-danger" href="{{ route('turnos.noactivo', $auxiliares_morelia[$i]['id']) }}" onclick=no_disponible();>Ocupados</a>
+                                                        <a class="btn btn-danger" href="{{ route('turnos.noactivo', $auxiliares_morelia[$i]['id']) }}" onclick=no_disponible();>Ocupado</a>
                                                     </td>
                                                 </tr>
                                             @endfor
