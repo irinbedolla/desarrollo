@@ -303,7 +303,7 @@ class TurnosController extends Controller
         $turnos = DB::table('turnos')
         ->where('turnos.fecha', $fecha_actual)
         ->where('turnos.estatus','no atendido')
-        ->join('users', 'users.id', '=', 'turnos.auxiliar')
+        ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
         ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus')
         ->get();
 
