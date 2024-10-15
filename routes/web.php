@@ -29,9 +29,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+Route::get('/pantalla', function () {
+    $fecha_actual = date('Y-m-d');
 
-Route::get('pantalla', [HomeController::class, 'pantalla'])->name('pantalla');
+    $turnos = DB::table('turnos')
+    ->join('users', 'users.id', '=', 'turnos.auxiliar')
+    ->select('users.id', 'users.name', 'turnos.solicitante')
+    ->where('turnos.fecha', $fecha_actual)
+    ->paginate(10);
 
+    return view('pantalla', compact('turnos'));
+});
+*/
 // Gate::authorize('see-reports'); 
 
     Route::get('publico', [HomeController::class, 'publico'])->name('publico');
@@ -157,9 +167,9 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/activo/{id}',     [TurnosController::class, 'activo'])->name('turnos.activo');
         Route::get('/turnos/noactivo/{id}',   [TurnosController::class, 'noactivo'])->name('turnos.noactivo');
         Route::post('/turnos/store',          [TurnosController::class, 'store'])->name('turnos.store');
-        //Route::patch('/turnos/update/{post}', [TurnosController::class, 'update'])->name('turnos.update');
-        //Route::delete('/turnos/destroy/{id}', [TurnosController::class, 'destroy'])->name('turnos.destroy');
-    //Fin de Turnos
+        Route::get('/turnos/misturnos',       [TurnosController::class, 'misturnos'])->name('misturnos');
+        Route::get('/turnos/terminado/{id}',  [TurnosController::class, 'terminado'])->name('turnos.terminado');
+    //Fin de  turnos
 });
 
 

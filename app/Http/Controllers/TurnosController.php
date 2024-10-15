@@ -86,15 +86,18 @@ class TurnosController extends Controller
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
         $numero_consecutivo = 0;
-        $consecutivo  = Turnos::where('fecha', $fecha_actual)->get();
+        $consecutivo  = Turnos::latest('id')
+        ->where('fecha', $fecha_actual)
+        ->first();
         $ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->where('estatus', 'Ocupado')->get();
         //$ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->get();
 
-        if(count($consecutivo) == 0){
+        if(empty($consecutivo)){
             $numero_consecutivo = 1;
         }
         else{
-            $numero_consecutivo = $consecutivo[0]["consecutivo"]++;
+            $numero_consecutivo = $consecutivo["consecutivo"];
+            $numero_consecutivo++;
         }
         
         $relacionEloquent = 'roles';
@@ -130,9 +133,8 @@ class TurnosController extends Controller
                 }
             }
         }
-
         //validar si hay disponibles
-        if(empty($listado_auxiliares["id"])){
+        if(isset($listado_auxiliares) && count($listado_auxiliares) > 0 ){
             $random = array_rand($listado_auxiliares);
 
             $data_insertar= array(
@@ -212,10 +214,45 @@ class TurnosController extends Controller
 
     public function destroy($id)
     {
-        //
         $user = User::find($id)->delete();
-        //$usuarios = User::paginate(10);
-        //return view('usuarios.index',compact('usuarios'));
         return redirect()->route('usuarios');
+    }
+
+    public function misturnos(){
+        $id = auth()->user()->id;
+        $fecha_actual = date('Y-m-d');
+
+        $misturnos = Turnos::where('fecha', $fecha_actual)
+        ->where('auxiliar', $id)
+        ->get();
+
+        return view('turnos.misturnos',compact('misturnos'));
+    }
+
+    public function terminado($id)
+    {
+        $fecha_actual = date('Y-m-d');
+
+        $turno_update= array(
+            'estatus'       => 'atendido'
+        );
+        $disponible_update= array(
+            'estatus'       => 'Disponible'
+        );
+
+        //Se actualizan los estatus
+        $turno = Turnos::find($id);
+        $turno->update($turno_update);
+
+        $persona = DB::table('turno_disponible')
+        ->where('id_auxiliar', $id)
+        ->where('fecha', $fecha_actual)
+        ->update(['estatus' => $data["estatus"]]);
+
+        //Se va buscar en fila si existe algun otro y se va asiganar
+
+        
+
+        return redirect()->route('misturnos');
     }
 }
