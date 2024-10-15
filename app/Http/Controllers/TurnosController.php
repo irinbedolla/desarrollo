@@ -90,7 +90,6 @@ class TurnosController extends Controller
         ->where('fecha', $fecha_actual)
         ->first();
         $ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->where('estatus', 'Ocupado')->get();
-        //$ocupados     = TurnoDisponible::where('fecha', $fecha_actual)->get();
 
         if(empty($consecutivo)){
             $numero_consecutivo = 1;
@@ -231,8 +230,12 @@ class TurnosController extends Controller
 
     public function terminado($id)
     {
+        // $id es la variable de la tabla de turnos
+        //Obtenemos el id de del auxiliar que esta terminado el turno 
+        $turnos = Turnos::where('id', $id)->first();
+        $IDauxiliar = $turnos["auxiliar"];
+       
         $fecha_actual = date('Y-m-d');
-
         $turno_update= array(
             'estatus'       => 'atendido'
         );
@@ -245,14 +248,45 @@ class TurnosController extends Controller
         $turno->update($turno_update);
 
         $persona = DB::table('turno_disponible')
-        ->where('id_auxiliar', $id)
+        ->where('id_auxiliar', $IDauxiliar)
         ->where('fecha', $fecha_actual)
-        ->update(['estatus' => $data["estatus"]]);
+        ->update(['estatus' => 'Disponible']);
 
         //Se va buscar en fila si existe algun otro y se va asiganar
+        $ocupados = Turnos::where('fecha', $fecha_actual)->where('auxiliar', 0)->orderBy('id', 'asc')->first();
+        //Si hay fila se va asiganar el primero de la fila al axulilar librre
+        if(!empty($ocupados)){
+            $id_turno = $ocupados["id"];
 
-        
+            $turno_update= array(
+                'auxiliar'  => $IDauxiliar
+            );
+            $disponible_update= array(
+                'estatus'       => 'Ocupado'
+            );
+
+            $turno = Turnos::find($id_turno);
+            $turno->update($turno_update);
+
+            $persona = DB::table('turno_disponible')
+            ->where('id_auxiliar', $IDauxiliar)
+            ->where('fecha', $fecha_actual)
+            ->update(['estatus' => 'Ocupado']);
+        }
 
         return redirect()->route('misturnos');
+    }
+
+    public function turnos(){
+        $fecha_actual = date('Y-m-d');
+
+        $turnos = DB::table('turnos')
+        ->where('turnos.fecha', $fecha_actual)
+        ->join('users', 'users.id', '=', 'turnos.auxiliar')
+        ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus')
+        ->get();
+
+        
+        return view('turnos.turnos',compact('turnos'));
     }
 }

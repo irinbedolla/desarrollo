@@ -13,7 +13,7 @@
                         <div class="card-body">
                             @can('crear-turnos')
                                 <a class="btn btn-warning" href="{{ route('turnos.create') }}"  onclick=crear_turnos();> Nuevo</a>
-                                <a class="btn btn-info"    href="{{ route('turnos.listado') }}" onclick=crear_turnos();> Turnos</a>
+                                <a class="btn btn-info"    href="{{ route('turnos') }}" onclick=crear_turnos();> Auxiliares</a>
                             @endcan
 
                             @can('ver-turno')
@@ -21,24 +21,21 @@
                                     <table id="tabla_usuarios" class="table table-striped">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
-                                            <th style="color: #fff;">Nombre</th>
-                                            <th style="color: #fff;">Delegacion</th>
+                                            <th style="color: #fff;">Auxiliar</th>
+                                            <th style="color: #fff;">Solicitante</th>
                                             <th style="color: #fff;">Estatus</th>
-                                            <th style="color: #fff;">Acciones</th>
+                                            <th style="color: #fff;">Hora</th>
                                         </thead>
                                         <tbody>
-                                            @for ($i = 0; $i < $total; $i++)
+                                            @foreach($turnos as $turno)
                                                 <tr>
-                                                    <td style="display: none;">{{$auxiliares_morelia[$i]["id"]}}</td>
-                                                    <td>{{$auxiliares_morelia[$i]["name"]}}</td>
-                                                    <td>{{$auxiliares_morelia[$i]["delegacion"]}}</td>
-                                                    <td>{{$auxiliares_morelia[$i]["estatus"]}}</td>
-                                                    <td>
-                                                        <a class="btn btn-info"   href="{{ route('turnos.activo',   $auxiliares_morelia[$i]['id']) }}" onclick=disponibles();>Disponible</a>
-                                                        <a class="btn btn-danger" href="{{ route('turnos.noactivo', $auxiliares_morelia[$i]['id']) }}" onclick=no_disponible();>Ocupados</a>
-                                                    </td>
+                                                    <td style="display: none;">{{$turno->id}}</td>
+                                                    <td>{{$turno->name}}</td>
+                                                    <td>{{$turno->solicitante}}</td>
+                                                    <td>{{$turno->estatus}}</td>
+                                                    <td>{{$turno->fecha}}:{{$turno->hora}}</td>
                                                 </tr>
-                                            @endfor
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

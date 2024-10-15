@@ -169,6 +169,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/turnos/store',          [TurnosController::class, 'store'])->name('turnos.store');
         Route::get('/turnos/misturnos',       [TurnosController::class, 'misturnos'])->name('misturnos');
         Route::get('/turnos/terminado/{id}',  [TurnosController::class, 'terminado'])->name('turnos.terminado');
+        Route::get('/turnos/turnos',          [TurnosController::class, 'turnos'])->name('turnos.listado');
     //Fin de  turnos
 });
 
