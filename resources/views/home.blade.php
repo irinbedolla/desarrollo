@@ -114,7 +114,7 @@
         <div class="main-content">
             <section class="section">
                 <div class="section-header">
-                    <h3 class="page__heading">Sí Conciliación</h3>
+                    <h3 class="page__heading">Sistema integral de conciliación</h3>
                 </div>
                 <div class="section-body">
                     <div class="row">

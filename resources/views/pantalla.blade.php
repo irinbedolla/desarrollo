@@ -45,19 +45,10 @@
     @yield('css')
 </head>
 
-<div id="app">
-    <div class="main-wrapper main-wrapper-1">
-        
-        
-        <div class="main-content">
-            <section class="section">
-                <div class="section-header">
-                </div>
-                <div class="section-body">
+                <div id="app">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-body">
                                     <div class="row">
                                         <ul class="navbar-nav flex-grow-1 justify-content-center">
                                             <li class="nav-item text-center">
@@ -69,7 +60,6 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <div class="row">
                                                             <div class="table-responsive">
                                                                 <table id="tabla_usuarios" class="table table-striped mt-2">
                                                                     <thead style="background-color: #4A001F;">
@@ -88,24 +78,16 @@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-        <footer class="main-footer">
-        </footer>
-    </div>
-</div>
 
 
 

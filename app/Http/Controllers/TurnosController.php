@@ -193,7 +193,7 @@ class TurnosController extends Controller
         ->get();
 
         //Si existe voy actilizar
-        if(count($ocupados) == 0){
+        if(!count($ocupados) == 0){
             $data_update = DB::table('turno_disponible')
             ->where('id_auxiliar', $id)
             ->update(['estatus' => 'Disponible']);
@@ -254,7 +254,7 @@ class TurnosController extends Controller
        
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
-        
+
         $turno_update= array(
             'hora_fin'      =>  $hora_actual,
             'estatus'       => 'atendido'
@@ -302,6 +302,7 @@ class TurnosController extends Controller
 
         $turnos = DB::table('turnos')
         ->where('turnos.fecha', $fecha_actual)
+        ->where('turnos.estatus','no atendido')
         ->join('users', 'users.id', '=', 'turnos.auxiliar')
         ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus')
         ->get();
