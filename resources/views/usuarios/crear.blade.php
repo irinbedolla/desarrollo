@@ -30,84 +30,86 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST', 'class' => 'needs-validation','novalidate', 'id' => 'form_usuarios')) !!}
+                            {!! Form::open(array('route'=>'usuarios.store', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre</label>
-                                            {!! Form::text('name', null, array('class'=>'form-control', required)) !!}
+                                            {!! Form::text('name', null, array('class'=>'form-control', 'required')) !!}
+                                            <div class="invalid-feedback">
+                                                El nombre es obligatorio.
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        El nombre es obligatorio.
-                                    </div>
-
+                                    
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            {!! Form::email('email', null, array('class'=>'form-control')) !!}
+                                            {!! Form::email('email', null, array('class'=>'form-control', 'required')) !!}
+                                            <div class="invalid-feedback">
+                                                El Email es obligatorio.
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        El Email es obligatorio.
-                                    </div>
-
+                                   
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            {!! Form::password('password', array('class'=>'form-control')) !!}
+                                            {!! Form::password('password', array('class'=>'form-control', 'required')) !!}
+                                            <div class="invalid-feedback">
+                                                La contraseña es obligatoria.
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        La contraseña es obligatoria.
-                                    </div>
-
+                                    
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="confirm-password">Confirmar Password</label>
-                                            {!! Form::password('confirm-password', array('class'=>'form-control')) !!}
+                                            {!! Form::password('confirm-password', array('class'=>'form-control', 'required')) !!}
+                                            <div class="invalid-feedback">
+                                                La contraseña es obligatoria.
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        La contraseña es obligatoria.
-                                    </div>
-
+                                    
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Roles</label>
-                                            {!! Form::select('roles[]', $roles,[], array('class'=>'form-control')) !!}
+                                            {!! Form::select('roles[]', $roles,[], array('class'=>'form-control', 'required')) !!}
+                                            <div class="invalid-feedback">
+                                                Debes seleccionar un Rol.
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Debes seleccionar un Rol.
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Delegacion</label>
-                                            <select name="delegacion" class="form-control">
+                                            <select name="delegacion" class="form-control" required>
+                                                <option value="">Seleccione</option>
                                                 <option value="Morelia">Morelia</option>
                                                 <option value="Uruapan">Uruapan</option>
                                                 <option value="Zamora">Zamora</option>
                                             </select>
+                                            <div class="invalid-feedback">
+                                                La delegacion es obligatoria.
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        La delegacion es obligatoria.
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Tipo</label>
-                                            <select name="type" class="form-control">
+                                            <select name="type" class="form-control" required>
+                                                <option value="">Seleccione</option>
                                                 <option value="Seer">Seer</option>
                                                 <option value="Si concilio">Si concilio</option>
                                                 <option value="Ambos">Ambos</option>
                                             </select>
+                                            <div class="invalid-feedback">
+                                                El tipo es obligatorio.
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        El tipo es obligatorio.
                                     </div>
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-6">
