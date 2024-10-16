@@ -120,10 +120,8 @@ class TurnosController extends Controller
                 if(!empty($listado_ocupados)){
                     //Buscamos si existen auxiliares libres
                     if(in_array($token["id"], $listado_ocupados)){
-                        echo "Este no se agrega";
                     }
                     else{
-                        echo "SI se agrega";
                         array_push($listado_auxiliares, $token["id"]);
                     }
                 }
@@ -166,6 +164,9 @@ class TurnosController extends Controller
                 case 23: 
                     //Sandra
                     $lugar_auxiliar = "Auxiliar 7";
+                    break;
+                default:
+                    $lugar_auxiliar = "Pendiente";
                     break;
             }
 
@@ -345,6 +346,9 @@ class TurnosController extends Controller
                 case 23: 
                     //Sandra
                     $lugar_auxiliar = "Auxiliar 7";
+                    break;
+                default:
+                    $lugar_auxiliar = "Pendiente";
                     break;
             }
             

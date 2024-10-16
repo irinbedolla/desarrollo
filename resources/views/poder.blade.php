@@ -28,7 +28,7 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            background: url('../public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+            background: url('public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
             opacity: .8;
         }
     </style>
@@ -45,7 +45,7 @@
     <div id="app">  
         <section class="section">
             <div class="section-header">
-                <h3 style="text-align: center;">Sí Conciliación registra tu poder.</h3>
+                <h3 style="text-align: center;">Registro de poder patronal.</h3>
             </div>
             <div class="section-body">
                 <div class="row">
@@ -77,7 +77,7 @@
                                         </button>
                                     </div>
                                 @endif
-                                <h3 class="text-center">Agregar Poder</h3>
+                                <h3 class="text-center">Datos del representante legal.</h3>
 
                                 <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                                 {!! Form::open(array('route'=>'poderes.publico', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
@@ -268,6 +268,17 @@
             </div>
         </section>
     </div>
+
+
+    <div id="crear_poder" style ="display: none;">
+        <div>.</div>
+        <div class="loader"></div>
+    </div>
+
+@section('scripts')
+    <script src="public/js/poderes/general.js"></script>
+@endsection
+
 
 
     <script src="public/assets/js/jquery.min.js"></script>

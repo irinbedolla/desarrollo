@@ -52,7 +52,7 @@
                                                         echo'<td>Vigente</td>';
                                                     }
                                                     elseif($persona->fechaVigencia  < $fechaActual) {
-                                                        echo'<td>Vencido</td>';
+                                                        echo'<td style="background-color: red;">Vencido</td>';
                                                     }
                                                     @endphp
                                                     <td>{{$persona->estatus}}</td>
