@@ -37,6 +37,7 @@ Route::get('/pantalla', function () {
     ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
     ->select('users.id', 'turnos.id', 'turnos.tipo', 'turnos.auxiliar', 'turnos.lugar_auxiliar')
     ->where('turnos.fecha', $fecha_actual)
+    ->where('turnos.estatus', 'no atendido')
     ->limit(10)
     ->paginate(10);
 

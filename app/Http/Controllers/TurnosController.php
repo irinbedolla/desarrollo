@@ -122,7 +122,17 @@ class TurnosController extends Controller
                     if(in_array($token["id"], $listado_ocupados)){
                     }
                     else{
-                        array_push($listado_auxiliares, $token["id"]);
+                        //if validar si es ratificaccion
+                        if($data["tipo"] == "Ratificación"){
+                            //Validar si random es diferente de 3-5-7
+                            if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7){
+                            }
+                            else{
+                                array_push($listado_auxiliares, $token["id"]);    
+                            }
+                        }else{
+                            array_push($listado_auxiliares, $token["id"]);
+                        }
                     }
                 }
                 //Si la lista es vacia agregamos a todos los auxiliares
@@ -137,31 +147,31 @@ class TurnosController extends Controller
             
             //Relacion auxiliar con usuario
             switch($listado_auxiliares[$random]){
-                case 4: 
+                case 6: 
                     //Erandi
                     $lugar_auxiliar = "Auxiliar 1";
                     break;
-                case 22: 
+                case 8: 
                     //Rosario
                     $lugar_auxiliar = "Auxiliar 2";
                     break;
-                case 20: 
+                case 9: 
                     //Mayra
                     $lugar_auxiliar = "Auxiliar 3";
                     break;
-                case 21: 
+                case 10: 
                     //Luis
                     $lugar_auxiliar = "Auxiliar 4";
                     break;
-                case 24: 
+                case 3: 
                     //Yessiu
                     $lugar_auxiliar = "Auxiliar 5";
                     break;
-                case 14: 
+                case 7: 
                     //Clever
                     $lugar_auxiliar = "Auxiliar 6";
                     break;
-                case 23: 
+                case 5: 
                     //Sandra
                     $lugar_auxiliar = "Auxiliar 7";
                     break;
@@ -319,31 +329,31 @@ class TurnosController extends Controller
 
             //Relacion auxiliar con usuario
             switch($IDauxiliar){
-                case 4: 
+                case 6: 
                     //Erandi
                     $lugar_auxiliar = "Auxiliar 1";
                     break;
-                case 22: 
+                case 8: 
                     //Rosario
                     $lugar_auxiliar = "Auxiliar 2";
                     break;
-                case 20: 
+                case 9: 
                     //Mayra
                     $lugar_auxiliar = "Auxiliar 3";
                     break;
-                case 21: 
+                case 10: 
                     //Luis
                     $lugar_auxiliar = "Auxiliar 4";
                     break;
-                case 24: 
+                case 3: 
                     //Yessiu
                     $lugar_auxiliar = "Auxiliar 5";
                     break;
-                case 14: 
+                case 7: 
                     //Clever
                     $lugar_auxiliar = "Auxiliar 6";
                     break;
-                case 23: 
+                case 5: 
                     //Sandra
                     $lugar_auxiliar = "Auxiliar 7";
                     break;
