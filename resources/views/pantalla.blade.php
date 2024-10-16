@@ -20,6 +20,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+    <script>
+        let segundos_recarga = 10;
+        //let miFecha = new Date();
+        //let dato_url = miFecha.getYear().toString() + miFecha.getMonth().toString() + miFecha.getDate().toString() + miFecha.getHours().toString() + miFecha.getMinutes().toString() + miFecha.getSeconds().toString();
+        setTimeout( function() {
+            //window.location = `recarga-constante.html?parametro=${dato_url}`;
+            window.location.href = "{{URL::to('pantalla')}}";
+        }, segundos_recarga * 1000);
+    </script>
+
     <style>
         .loader {
             position: fixed;
@@ -63,16 +73,16 @@
                                                             <div class="table-responsive">
                                                                 <table id="tabla_usuarios" class="table table-striped mt-2">
                                                                     <thead style="background-color: #4A001F;">
-                                                                        <th style="display: none;">ID</th>
-                                                                        <th style="color: #fff;">Nombre</th>
-                                                                        <th style="color: #fff;">Solicitante</th>
+                                                                        <th style="color: #fff; text-align: center;">Folio</th>
+                                                                        <th style="color: #fff; text-align: center;">Auxiliar</th>
+                                                                        <th style="color: #fff; text-align: center;">Tramite</th>
                                                                     </thead>
                                                                     <tbody>
                                                                         @foreach($turnos as $turno)
                                                                             <tr>
-                                                                                <td style="display: none;">{{$turno->id}}</td>
-                                                                                <td>{{$turno->name}}</td>
-                                                                                <td>{{$turno->solicitante}}</td>
+                                                                                <td style="text-align: center;">{{$turno->id}}</td>
+                                                                                <td style="text-align: center;">{{$turno->lugar_auxiliar}}</td>
+                                                                                <td style="text-align: center;">{{$turno->tipo}}</td>
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>

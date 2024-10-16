@@ -34,9 +34,10 @@ Route::get('/pantalla', function () {
     $fecha_actual = date('Y-m-d');
 
     $turnos = DB::table('turnos')
-    ->join('users', 'users.id', '=', 'turnos.auxiliar')
-    ->select('users.id', 'users.name', 'turnos.solicitante')
+    ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
+    ->select('users.id', 'turnos.id', 'turnos.tipo', 'turnos.auxiliar', 'turnos.lugar_auxiliar')
     ->where('turnos.fecha', $fecha_actual)
+    ->limit(10)
     ->paginate(10);
 
     return view('pantalla', compact('turnos'));

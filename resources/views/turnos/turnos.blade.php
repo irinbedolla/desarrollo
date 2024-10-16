@@ -20,18 +20,24 @@
                                 <div class="table-responsive">
                                     <table id="tabla_usuarios" class="table table-striped">
                                         <thead style="background-color: #4A001F;">
-                                            <th style="display: none;">ID</th>
+                                            <th style="color: #fff;">Folio</th>
                                             <th style="color: #fff;">Auxiliar</th>
                                             <th style="color: #fff;">Solicitante</th>
+                                            <th style="color: #fff;">Tipo</th>
                                             <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Hora</th>
                                         </thead>
                                         <tbody>
                                             @foreach($turnos as $turno)
                                                 <tr>
-                                                    <td style="display: none;">{{$turno->id}}</td>
-                                                    <td>{{$turno->name}}</td>
+                                                    <td>{{$turno->id}}</td>
+                                                    @if($turno->name != '')
+                                                        <td>{{$turno->name}}</td>
+                                                    @else
+                                                        <td>Pendiente</td>
+                                                    @endif
                                                     <td>{{$turno->solicitante}}</td>
+                                                    <td>{{$turno->tipo}}</td>
                                                     <td>{{$turno->estatus}}</td>
                                                     <td>{{$turno->fecha}}:{{$turno->hora}}</td>
                                                 </tr>
