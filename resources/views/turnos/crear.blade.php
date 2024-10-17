@@ -32,7 +32,7 @@
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                             {!! Form::open(array('route'=>'turnos.store', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre del solicitante</label>
                                             <input type="text" name="nombre" class="form-control" required> 
@@ -41,7 +41,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Tipo Solicitud</label>
+                                            <select name="tipo" class="form-control" required>
+                                                <option value="">Seleccione</option>
+                                                <option value="Solicitud">Solicitud</option>
+                                                <option value="Ratificación">Ratificación</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                El tipo de solicitud es obligatoria.
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>

@@ -20,6 +20,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+    <script>
+        let segundos_recarga = 10;
+        //let miFecha = new Date();
+        //let dato_url = miFecha.getYear().toString() + miFecha.getMonth().toString() + miFecha.getDate().toString() + miFecha.getHours().toString() + miFecha.getMinutes().toString() + miFecha.getSeconds().toString();
+        setTimeout( function() {
+            //window.location = `recarga-constante.html?parametro=${dato_url}`;
+            window.location.href = "{{URL::to('pantalla')}}";
+        }, segundos_recarga * 1000);
+    </script>
+
     <style>
         .loader {
             position: fixed;
@@ -45,19 +55,10 @@
     @yield('css')
 </head>
 
-<div id="app">
-    <div class="main-wrapper main-wrapper-1">
-        
-        
-        <div class="main-content">
-            <section class="section">
-                <div class="section-header">
-                </div>
-                <div class="section-body">
+                <div id="app">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-body">
                                     <div class="row">
                                         <ul class="navbar-nav flex-grow-1 justify-content-center">
                                             <li class="nav-item text-center">
@@ -69,25 +70,23 @@
                                                 <div class="col-lg-12">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <div class="row">
                                                             <div class="table-responsive">
                                                                 <table id="tabla_usuarios" class="table table-striped mt-2">
                                                                     <thead style="background-color: #4A001F;">
-                                                                        <th style="display: none;">ID</th>
-                                                                        <th style="color: #fff;">Nombre</th>
-                                                                        <th style="color: #fff;">Solicitante</th>
+                                                                        <th style="color: #fff; text-align: center;">Folio</th>
+                                                                        <th style="color: #fff; text-align: center;">Auxiliar</th>
+                                                                        <th style="color: #fff; text-align: center;">Tramite</th>
                                                                     </thead>
                                                                     <tbody>
                                                                         @foreach($turnos as $turno)
                                                                             <tr>
-                                                                                <td style="display: none;">{{$turno->id}}</td>
-                                                                                <td>{{$turno->name}}</td>
-                                                                                <td>{{$turno->solicitante}}</td>
+                                                                                <td style="text-align: center;">{{$turno->id}}</td>
+                                                                                <td style="text-align: center;">{{$turno->lugar_auxiliar}}</td>
+                                                                                <td style="text-align: center;">{{$turno->tipo}}</td>
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
                                                                 </table>
-                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -95,17 +94,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-        <footer class="main-footer">
-        </footer>
-    </div>
-</div>
 
 
 

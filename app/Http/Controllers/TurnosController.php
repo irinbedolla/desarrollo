@@ -80,6 +80,7 @@ class TurnosController extends Controller
 
         request()->validate([
             'nombre' => 'required',
+            'tipo' => 'required',
         ], $data);
 
         	
@@ -119,11 +120,19 @@ class TurnosController extends Controller
                 if(!empty($listado_ocupados)){
                     //Buscamos si existen auxiliares libres
                     if(in_array($token["id"], $listado_ocupados)){
-                        echo "Este no se agrega";
                     }
                     else{
-                        echo "SI se agrega";
-                        array_push($listado_auxiliares, $token["id"]);
+                        //if validar si es ratificaccion
+                        if($data["tipo"] == "Ratificación"){
+                            //Validar si random es diferente de 3-5-7
+                            if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7){
+                            }
+                            else{
+                                array_push($listado_auxiliares, $token["id"]);    
+                            }
+                        }else{
+                            array_push($listado_auxiliares, $token["id"]);
+                        }
                     }
                 }
                 //Si la lista es vacia agregamos a todos los auxiliares
@@ -135,15 +144,53 @@ class TurnosController extends Controller
         //validar si hay disponibles
         if(isset($listado_auxiliares) && count($listado_auxiliares) > 0 ){
             $random = array_rand($listado_auxiliares);
+            
+            //Relacion auxiliar con usuario
+            switch($listado_auxiliares[$random]){
+                case 6: 
+                    //Erandi
+                    $lugar_auxiliar = "Auxiliar 1";
+                    break;
+                case 8: 
+                    //Rosario
+                    $lugar_auxiliar = "Auxiliar 2";
+                    break;
+                case 9: 
+                    //Mayra
+                    $lugar_auxiliar = "Auxiliar 3";
+                    break;
+                case 10: 
+                    //Luis
+                    $lugar_auxiliar = "Auxiliar 4";
+                    break;
+                case 3: 
+                    //Yessiu
+                    $lugar_auxiliar = "Auxiliar 5";
+                    break;
+                case 7: 
+                    //Clever
+                    $lugar_auxiliar = "Auxiliar 6";
+                    break;
+                case 5: 
+                    //Sandra
+                    $lugar_auxiliar = "Auxiliar 7";
+                    break;
+                default:
+                    $lugar_auxiliar = "Pendiente";
+                    break;
+            }
 
             $data_insertar= array(
                 'consecutivo'   => $numero_consecutivo,
                 'solicitante'   => $data["nombre"],
                 'auxiliar'      => $listado_auxiliares[$random],
+                'lugar_auxiliar'=> $lugar_auxiliar,
+                'tipo'          => $data["tipo"],
                 'fecha'         => $fecha_actual,
                 'hora'          => $hora_actual,
                 'estatus'       => 'no atendido'
             );
+
             Turnos::create($data_insertar);
             //Validar si tiene estatus disponible para insertar o actualizar
             $validar_estatus = TurnoDisponible::where('fecha', $fecha_actual)
@@ -174,6 +221,8 @@ class TurnosController extends Controller
                 'consecutivo'   => $numero_consecutivo,
                 'solicitante'   => $data["nombre"],
                 'auxiliar'      => 0,
+                'lugar_auxiliar'=> "Pendiente",
+                'tipo'          => $data["tipo"],
                 'fecha'         => $fecha_actual,
                 'hora'          => $hora_actual,
                 'estatus'       => 'no atendido'
@@ -193,7 +242,7 @@ class TurnosController extends Controller
         ->get();
 
         //Si existe voy actilizar
-        if(count($ocupados) == 0){
+        if(!count($ocupados) == 0){
             $data_update = DB::table('turno_disponible')
             ->where('id_auxiliar', $id)
             ->update(['estatus' => 'Disponible']);
@@ -254,7 +303,7 @@ class TurnosController extends Controller
        
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
-        
+
         $turno_update= array(
             'hora_fin'      =>  $hora_actual,
             'estatus'       => 'atendido'
@@ -278,8 +327,44 @@ class TurnosController extends Controller
         if(!empty($ocupados)){
             $id_turno = $ocupados["id"];
 
+            //Relacion auxiliar con usuario
+            switch($IDauxiliar){
+                case 6: 
+                    //Erandi
+                    $lugar_auxiliar = "Auxiliar 1";
+                    break;
+                case 8: 
+                    //Rosario
+                    $lugar_auxiliar = "Auxiliar 2";
+                    break;
+                case 9: 
+                    //Mayra
+                    $lugar_auxiliar = "Auxiliar 3";
+                    break;
+                case 10: 
+                    //Luis
+                    $lugar_auxiliar = "Auxiliar 4";
+                    break;
+                case 3: 
+                    //Yessiu
+                    $lugar_auxiliar = "Auxiliar 5";
+                    break;
+                case 7: 
+                    //Clever
+                    $lugar_auxiliar = "Auxiliar 6";
+                    break;
+                case 5: 
+                    //Sandra
+                    $lugar_auxiliar = "Auxiliar 7";
+                    break;
+                default:
+                    $lugar_auxiliar = "Pendiente";
+                    break;
+            }
+            
             $turno_update= array(
-                'auxiliar'  => $IDauxiliar
+                'auxiliar'       => $IDauxiliar,
+                'lugar_auxiliar' => $lugar_auxiliar
             );
             $disponible_update= array(
                 'estatus'       => 'Ocupado'
@@ -302,8 +387,9 @@ class TurnosController extends Controller
 
         $turnos = DB::table('turnos')
         ->where('turnos.fecha', $fecha_actual)
-        ->join('users', 'users.id', '=', 'turnos.auxiliar')
-        ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus')
+        ->where('turnos.estatus','no atendido')
+        ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
+        ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo')
         ->get();
 
         

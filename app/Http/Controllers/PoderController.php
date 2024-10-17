@@ -596,7 +596,9 @@ class PoderController extends Controller
             $data_insertar["representacion"] = $nombre_representación;
 
             Poder::create($data_insertar);  
-            return redirect()->back()->with('success', ',tienes 5 dias para ir al centro de conciliación a confirmar tu identidad.');   
+            $data = Poder::latest('idAbogado')->first();
+
+            return redirect()->back()->with('success', ', Tu número de folio es: '.$data["idAbogado"].' Tienes 5 días para presentarte al centro de conciliación laboral, para confirmar tu identidad, con los documentos originales y una copia para cotejo, para la validación de tu registro.');   
         }
         else{
             return back()->withErrors('El poder ya tiene asignado ese abogado.');

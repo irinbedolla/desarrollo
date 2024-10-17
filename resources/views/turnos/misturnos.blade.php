@@ -14,7 +14,7 @@
                             <div class="table-responsive">
                                 <table id="tabla_usuarios" class="table table-striped mt-2">
                                     <thead style="background-color: #4A001F;">
-                                        <th style="display: none;">ID</th>
+                                        <th style="color: #fff;">ID</th>
                                         <th style="color: #fff;">Nombre</th>
                                         <th style="color: #fff;">Estatus</th>
                                         <th style="color: #fff;">Acciones</th>
@@ -22,7 +22,7 @@
                                     <tbody>
                                         @foreach($misturnos as $turnos)
                                             <tr>
-                                                <td style="display: none;">{{$turnos->id}}</td>
+                                                <td>{{$turnos->id}}</td>
                                                 <td>{{$turnos->solicitante}}</td>
                                                 <td>{{$turnos->estatus}}</td>
                                                 <td>

@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="text-center">Alta de Usuarios</h3>
-                            
+                             
                             <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
