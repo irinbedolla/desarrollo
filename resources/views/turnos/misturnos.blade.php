@@ -11,6 +11,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            <a class="btn btn-warning" href="{{ route('misturnos') }}"  onclick=crear_turnos();>Cargar turnos</a>
                             <div class="table-responsive">
                                 <table id="tabla_usuarios" class="table table-striped mt-2">
                                     <thead style="background-color: #4A001F;">

@@ -87,7 +87,7 @@ class UsuarioController extends Controller
         //
     }
 
-    /**
+    /**w
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

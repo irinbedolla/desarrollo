@@ -32,6 +32,9 @@
             <a class="nav-link" href="{{ route('misturnos') }}">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Mis turnos</span>
             </a>
+            <a class="nav-link" href="{{ route('turno_estadistica') }}">
+                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica_turno()">Estadistica turno</span>
+            </a>
         @endrole
     @endauth
     @auth

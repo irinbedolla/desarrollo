@@ -125,9 +125,7 @@ class TurnosController extends Controller
                         //if validar si es ratificaccion
                         if($data["tipo"] == "Ratificación"){
                             //Validar si random es diferente de 3-5-7
-                            if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7){
-                            }
-                            else{
+                            if($token["id"] != 3 || $token["id"] != 5 || $token["id"] !=7 ){
                                 array_push($listado_auxiliares, $token["id"]);    
                             }
                         }else{
@@ -151,15 +149,15 @@ class TurnosController extends Controller
                     //Erandi
                     $lugar_auxiliar = "Auxiliar 1";
                     break;
-                case 8: 
+                case 10: 
                     //Rosario
                     $lugar_auxiliar = "Auxiliar 2";
                     break;
-                case 9: 
+                case 8: 
                     //Mayra
                     $lugar_auxiliar = "Auxiliar 3";
                     break;
-                case 10: 
+                case 9: 
                     //Luis
                     $lugar_auxiliar = "Auxiliar 4";
                     break;
@@ -198,7 +196,9 @@ class TurnosController extends Controller
             ->select('turno_disponible.estatus')
             ->get();
 
-            if(empty($validar_estatus["id"])){
+            
+
+            if(empty($validar_estatus)){
                 $data_insertar_disponible= array(
                     'id_auxiliar'   => $listado_auxiliares[$random],
                     'fecha'         => $fecha_actual,
@@ -211,7 +211,7 @@ class TurnosController extends Controller
             else{
                 $data_update = DB::table('turno_disponible')
                 ->where('id_auxiliar', $listado_auxiliares[$random])
-                ->update(['estatus' => 'Disponible']);
+                ->update(['estatus' => 'Ocupado']);
             }
             
         }
@@ -260,7 +260,7 @@ class TurnosController extends Controller
         ->where('id_auxiliar', $id)
         ->get();
 
-        if(count($ocupados) == 0){
+        if(empty($validar_estatus)){
             $data_insertar_disponible= array(
                 'id_auxiliar'   => $id,
                 'fecha'         => $fecha_actual,
@@ -333,15 +333,15 @@ class TurnosController extends Controller
                     //Erandi
                     $lugar_auxiliar = "Auxiliar 1";
                     break;
-                case 8: 
+                case 10: 
                     //Rosario
                     $lugar_auxiliar = "Auxiliar 2";
                     break;
-                case 9: 
+                case 8: 
                     //Mayra
                     $lugar_auxiliar = "Auxiliar 3";
                     break;
-                case 10: 
+                case 9: 
                     //Luis
                     $lugar_auxiliar = "Auxiliar 4";
                     break;
@@ -394,5 +394,62 @@ class TurnosController extends Controller
 
         
         return view('turnos.turnos',compact('turnos'));
+    }
+
+    public function estadistica(){
+        $auxiliares = User::whereHas('roles', function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })
+        ->where('delegacion', 'Morelia')
+        ->get();
+
+        return view('turnos.estadistica',compact('auxiliares'));
+    }
+
+    public function mostrar(Request $request){
+        //Voy a recibir todos los parametros en voy a realizar la consulta y mostrar los datos
+        $data = $request->all();
+
+        request()->validate([
+            'fecha_inicial' => 'required|date',
+            'fecha_final'   => 'required|date',
+        ], $data);
+
+        if($data["auxiliares"] == "" && $data["tipo"] == ""){
+            $turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->select('turnos.*')
+            ->get();
+        }
+        else if($data["auxiliares"] != "" && $data["tipo"] == ""){
+            $turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.tipo',$data["tipo"])
+            ->select('turnos.*')
+            ->get();
+        }
+        else if($data["auxiliares"] == "" && $data["tipo"] != ""){
+            $turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.auxiliar',$data["auxiliares"])
+            ->select('turnos.*')
+            ->get();
+        }
+        else{
+            $turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.tipo',$data["tipo"])
+            ->where('turnos.auxiliar',$data["auxiliares"])
+            ->select('turnos.*')
+            ->get();
+        }
+
+        dd($turnos);
+
+        return view('turnos.estadistica',compact('turnos'));        
     }
 }
