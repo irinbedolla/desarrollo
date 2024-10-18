@@ -24,7 +24,6 @@ use Carbon\Carbon;
                                             <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Fecha</th>
                                             <th style="color: #fff;">Hora inicio</th>
-                                            <th style="color: #fff;">Hora conclución</th>
                                             <th style="color: #fff;">Duración</th>
                                         </thead>
                                         <tbody>
@@ -37,11 +36,9 @@ use Carbon\Carbon;
                                                     <td>{{$turno->estatus}}</td>
                                                     <td>{{$turno->fecha}}</td>
                                                     <td>{{$turno->hora}}</td>
-                                                    <td>{{$turno->hora_fin}}</td>
                                                         @php
                                                         $inicio = new DateTime("$turno->fecha $turno->hora");
-                                                        $fin    = new DateTime("$turno->fecha $turno->hora_fin");
-                                                        $duracion = $inicio->diff($fin);
+                                                        $duracion = $inicio->diff($turno->updated_at);
                                                         @endphp
 
                                                     <td>{{$duracion->format('%H hora(s) %i minutos');}}</td>

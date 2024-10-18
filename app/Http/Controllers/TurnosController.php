@@ -481,7 +481,7 @@ class TurnosController extends Controller
             $turnos = Turnos::where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin')
+            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
 
             
@@ -500,7 +500,7 @@ class TurnosController extends Controller
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.tipo',$data["tipo"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin')
+            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
         }
         else if($data["auxiliares"] == "" && $data["tipo"] != ""){
@@ -517,7 +517,7 @@ class TurnosController extends Controller
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.auxiliar',$data["auxiliares"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin')
+            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
         }
         else{
@@ -536,7 +536,7 @@ class TurnosController extends Controller
             ->where('turnos.tipo',$data["tipo"])
             ->where('turnos.auxiliar',$data["auxiliares"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin')
+            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
         }
 
