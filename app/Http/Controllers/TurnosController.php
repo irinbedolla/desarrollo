@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -207,7 +208,6 @@ class TurnosController extends Controller
                 TurnoDisponible::create($data_insertar_disponible);
             }
             else{
-                dd("else");
                 $data_update = DB::table('turno_disponible')
                 ->where('id_auxiliar', $listado_auxiliares[$random])
                 ->update(['estatus' => 'Ocupado']);
@@ -472,13 +472,28 @@ class TurnosController extends Controller
         ], $data);
 
         if($data["auxiliares"] == "" && $data["tipo"] == ""){
-            $turnos = DB::table('turnos')
+            $suma_turnos = DB::table('turnos')
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->selectRaw('count(id) as total')
+            ->first();
+
+            $turnos = Turnos::where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->select('turnos.*')
             ->get();
+
+            
         }
         else if($data["auxiliares"] != "" && $data["tipo"] == ""){
+            $suma_turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.tipo',$data["tipo"])
+            ->selectRaw('count(id) as total')
+            ->first();
+
+
             $turnos = DB::table('turnos')
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
@@ -487,6 +502,14 @@ class TurnosController extends Controller
             ->get();
         }
         else if($data["auxiliares"] == "" && $data["tipo"] != ""){
+            $suma_turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.auxiliar',$data["auxiliares"])
+            ->selectRaw('count(id) as total')
+            ->first();
+
+
             $turnos = DB::table('turnos')
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
@@ -495,6 +518,15 @@ class TurnosController extends Controller
             ->get();
         }
         else{
+            $suma_turnos = DB::table('turnos')
+            ->where("turnos.fecha",">=",$data["fecha_inicial"])
+            ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.tipo',$data["tipo"])
+            ->where('turnos.auxiliar',$data["auxiliares"])
+            ->selectRaw('count(id) as total')
+            ->first();
+
+
             $turnos = DB::table('turnos')
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
@@ -503,9 +535,7 @@ class TurnosController extends Controller
             ->select('turnos.*')
             ->get();
         }
-
-        dd($turnos);
-
-        return view('turnos.estadistica',compact('turnos'));        
+        
+        return view('turnos.mostrar',compact('turnos','suma_turnos'));        
     }
 }
