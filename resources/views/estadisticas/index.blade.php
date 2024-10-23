@@ -11,10 +11,10 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-seer')
-                                <a class="btn btn-warning" href="{{ route('seer.create') }}"> Nuevo</a>
+                                <a class="btn btn-warning" href="{{ route('seer.create_persona') }}"> Registrar</a>
+                                <a class="btn btn-warning" href="{{ route('seer.create') }}"> Consentrado</a>
                             @endcan
                             
-
                             @can('ver-seer')
                                 @if($userRole[0] == "Auxiliar")
                                     <div class="table-responsive">
@@ -54,22 +54,17 @@
                                         </table>
                                     </div>
                                 @endif
-                                @if($userRole[0] == "Notificador")
+                                @if($userRole[0] == "Conciliador")
                                     <div class="table-responsive">
                                         <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
-                                                <th style="color: #fff;">Citatorios</th>
-                                                <th style="color: #fff;">Asesorías</th>
-                                                <th style="color: #fff;">Solicitudes levantadas</th>
-                                                <th style="color: #fff;">Ratificaciones</th>
-                                                <th style="color: #fff;">Razones registradas</th>
-                                                <th style="color: #fff;">Multas Notificadas</th>
-                                                <th style="color: #fff;">Informes diarios</th>
-                                                <th style="color: #fff;">Informes foraneos</th>
-                                                <th style="color: #fff;">Expediente integrado</th>
-                                                <th style="color: #fff;">Escaneo de documentos</th>
+                                                <th style="color: #fff;">Número unico de identificación</th>
+                                                <th style="color: #fff;">Solicitante</th>
+                                                <th style="color: #fff;">Municipio</th>
+                                                <th style="color: #fff;">Citado</th>
+                                                <th style="color: #fff;">Detalles</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($estadisticas as $estadistica)
@@ -80,19 +75,16 @@
                                                         <td>{{$estadistica->asesorias_notificador}}</td>
                                                         <td>{{$estadistica->solicitudes_levantadas}}</td>
                                                         <td>{{$estadistica->ratificaciones_notificador}}</td>
-                                                        <td>{{$estadistica->razon_registrada}}</td>
-                                                        <td>{{$estadistica->multas_notificador}}</td>
-                                                        <td>{{$estadistica->informe_diario}}</td>
-                                                        <td>{{$estadistica->informe_foraneo}}</td>
-                                                        <td>{{$estadistica->integrar_expediente}}</td>
-                                                        <td>{{$estadistica->escaneo_documentos}}</td>
+                                                        <td><a class="btn btn-primary" href="{{ route('roles.edit', $estadistica->id) }}" onclick=editar_rol();>Consultar</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+
+        
                                 @endif
-                                @if($userRole[0] == "Conciliador")
+                                @if($userRole[0] == "Notificador")
                                     <div class="table-responsive">
                                         <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
@@ -215,6 +207,8 @@
                 </div>
             </div>
         </div>
+        
     </section>
 @endsection
+
 

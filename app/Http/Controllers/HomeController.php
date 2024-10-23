@@ -50,4 +50,11 @@ class HomeController extends Controller
 
         return view('pantalla', compact('turnos'));
     }
+
+
+    public function modalDetalle($id){
+        dd("llego");
+        //$portfolio = Portafolio::find($id);
+        return $id;
+    }
 }

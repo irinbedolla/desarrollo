@@ -79,17 +79,14 @@
     
     @auth
         @role('Conciliador')
-        <a class="nav-link" href="{{ route('poderes') }}">
+        |<a class="nav-link" href="{{ route('poderes') }}">
                 <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
-            </a>
-            <a class="nav-link" href="{{ route('miscapacitaciones') }}">
-                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="mis_capacitaciones()">Mis capacitaciones</span>
             </a>
             <a class="nav-link" href="{{ route('expedientes') }}">
                 <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
             </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>
         @endrole
     @endauth
@@ -107,7 +104,7 @@
                 <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
             </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>
         @endrole
     @endauth
@@ -117,14 +114,8 @@
             <a class="nav-link" href="{{ route('poderes') }}">
                 <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
             </a>
-            <a class="nav-link" href="{{ route('miscapacitaciones') }}">
-                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="mis_capacitaciones()">Mis capacitaciones</span>
-            </a>
-            <a class="nav-link" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
-            </a>
-            <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+            <a class="nav-link" href="{{ route('turno_estadistica') }}">
+                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica_turno()">Estadistica turno</span>
             </a>
         @endrole
     @endauth

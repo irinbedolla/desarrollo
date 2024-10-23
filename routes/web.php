@@ -152,6 +152,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/seer/index',                         [SeerController::class, 'index'])->name('seer');
         Route::get('/seer/edit/{id}',                     [SeerController::class, 'edit'])->name('seer.edit');
         Route::get('/seer/create',                        [SeerController::class, 'create'])->name('seer.create');
+        Route::get('/seer/create_persona',                [SeerController::class, 'create_persona'])->name('seer.create_persona');
+        
         Route::post('/seer/store_auxiliar',               [SeerController::class, 'store_auxiliares'])->name('seer.store_auxiliar');
         Route::post('/seer/store_notificador',            [SeerController::class, 'store_notificador'])->name('seer.store_notificador');
         Route::post('/seer/store_conciliador',            [SeerController::class, 'store_conciliadores'])->name('seer.store_conciliador');
@@ -160,6 +162,7 @@ Route::group(['middleware' => ['auth']], function(){
         //Estadistica
         Route::get('/seer/estadistica',               [SeerController::class, 'estadistica'])->name('seer.estadistica');
         Route::get('/seer/mostrar',                   [SeerController::class, 'mostrar'])->name('seer.mostar');
+
     //Fin Seer
 
     //Turnos
@@ -175,6 +178,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/estadistica',     [TurnosController::class, 'estadistica'])->name('turno_estadistica');
         Route::post('/turnos/mostrar',        [TurnosController::class, 'mostrar'])->name('turnos_mostrar');
     //Fin de  turnos
+
 });
 
 

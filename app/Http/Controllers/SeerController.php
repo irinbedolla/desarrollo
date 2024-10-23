@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sedes;
 use App\Models\Usuarios;
+use Illuminate\Support\Facades\DB;
 
 
 class SeerController extends Controller
@@ -224,5 +225,21 @@ class SeerController extends Controller
 
     public function mostar(){
 
+    }
+
+
+    public function create_persona(){
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name')->all();
+
+        $municipios = DB::table('municipios')
+        ->join('estados_municipios', 'estados_municipios.id', '=', 'municipios.id')
+        ->select('municipios.id', 'municipios.municipio')
+        ->where('estados_municipios.estados_id', 16)
+        ->get();
+        
+        return view('estadisticas.crear_persona', compact('user','userRole','municipios'));
     }
 }
