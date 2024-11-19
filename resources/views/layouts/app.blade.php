@@ -112,5 +112,12 @@
     $('#tabla_seer_auxiliar').DataTable();
     $('#tabla_seer_conciliador').DataTable();
     $('#tabla_seer_notificador').DataTable();
+
+    $('#tabla_seer_auxiliares').DataTable();
+    $('#tabla_seer_conciliadores').DataTable();
+    $('#tabla_seer_audienicias').DataTable();
+    $('#tabla_seer_convenios').DataTable();
+    $('#tabla_seer_colectivas').DataTable();
+
 </script>
 </html>

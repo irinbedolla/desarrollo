@@ -51,16 +51,13 @@
         </header>
 
         <main>
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true"> 
-         <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
-         </div>
-             <div class="carousel-inner">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
                     <div class="carousel-item active">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
                         <div class="container">
@@ -98,36 +95,6 @@
                                 <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
                             </div>
                             <div class="carousel-caption text-start">
-                                <h1>Audiencias remotas.</h1>
-                                <p>Consulta la fecha y hora de tu audiencia remota.</p>
-                                <p><a class="btn btn-primary" href="#" style="text-decoration: none; background-color: #DEC512;">
-                                    Consultar</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
-                                <h1>Cursos.</h1>
-                                <p>Realiza los cursos en linea.</p>
-                                <p><a class="btn btn-lg btn-primary" href="#" style="text-decoration: none; background-color: #DEC512;">
-                                    Cursos</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
                             <h1>Sí Conciliación.</h1>
                             <p>Sistema integral de Conciliación.</p>
                             <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
@@ -136,35 +103,17 @@
                         </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
-                                <h1>SEER.</h1>
-                                <p> Sistema Estatal de Estadísticas y Evaluación de Conciliadores.</p>
-                                <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
-                                    Ingresar</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
                 </button>
-                </div>
-
-
-                
+            </div>
 
 
             <!-- Marketing messaging and featurettes

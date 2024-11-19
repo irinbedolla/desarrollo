@@ -11,8 +11,24 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-seer')
-                                <a class="btn btn-warning" href="{{ route('seer.create_persona') }}"> Registrar</a>
-                                <a class="btn btn-warning" href="{{ route('seer.create') }}"> Consentrado</a>
+                                @if($userRole[0] == "Auxiliar")
+                                    <a class="btn btn-warning" href="{{ route('create_persona_solicitud') }}"    onclick=nuevo_estadistica();>Solicitud</a>
+                                    <a class="btn btn-warning" href="{{ route('create_persona_ratificacion') }}" onclick=nuevo_estadistica();>Ratificación</a>
+                                    @if($estadisticas == null)
+                                        <a class="btn btn-warning" href="{{ route('create_consentrado_aux') }}" onclick=nuevo_estadistica();> Consentrado</a>
+                                    @else
+                                        <a class="btn btn-warning" href="{{ route('create_consentrado_ver') }}" onclick=nuevo_estadistica();> Ver</a>
+                                    @endif
+                                @endif
+                                @if($userRole[0] == "Conciliador")
+                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"    onclick=nuevo_estadistica();>Convenios</a>
+                                    <a class="btn btn-warning" href="{{ route('index_colectivas') }}"    onclick=nuevo_estadistica();>Colectivas</a>
+                                    @if($estadisticas == null)
+                                        <a class="btn btn-warning" href="{{ route('create_consentrado_con') }}" onclick=nuevo_estadistica();> Consentrado</a>
+                                    @else
+                                        <a class="btn btn-warning" href="{{ route('create_consentrado_ver') }}" onclick=nuevo_estadistica();> Ver</a>
+                                    @endif
+                                @endif
                             @endcan
                             
                             @can('ver-seer')
@@ -22,32 +38,20 @@
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
-                                                <th style="color: #fff;">Solicitudes</th>
-                                                <th style="color: #fff;">Ratificaciones</th>
-                                                <th style="color: #fff;">Asesorías</th>
-                                                <th style="color: #fff;">Consulta Expediente</th>
-                                                <th style="color: #fff;">Escanear Expediente</th>
-                                                <th style="color: #fff;">Folear Expediente</th>
-                                                <th style="color: #fff;">Cuantificaciones</th>
-                                                <th style="color: #fff;">Exhortos</th>
-                                                <th style="color: #fff;">Audiencias Celebradas</th>
-                                                <th style="color: #fff;">Registrar cumplimiento</th>
+                                                <th style="color: #fff;">Número unico de identificación</th>
+                                                <th style="color: #fff;">Solicitante</th>
+                                                <th style="color: #fff;">Citado</th>
+                                                <th style="color: #fff;">Detalles</th>
                                             </thead>
                                             <tbody>
-                                                @foreach($estadisticas as $estadistica)
+                                                @foreach($personas as $persona)
                                                     <tr>
-                                                        <td style="display: none;">{{$estadistica->id}}</td>
-                                                        <td>{{$estadistica->fecha}}</td>
-                                                        <td>{{$estadistica->solicitudes}}</td>
-                                                        <td>{{$estadistica->ratificaciones}}</td>
-                                                        <td>{{$estadistica->asesorias}}</td>
-                                                        <td>{{$estadistica->expediente_consulta}}</td>
-                                                        <td>{{$estadistica->expediente_escaneo}}</td>
-                                                        <td>{{$estadistica->expediente_foliar}}</td>
-                                                        <td>{{$estadistica->cuantificacion}}</td>
-                                                        <td>{{$estadistica->exhortos}}</td>
-                                                        <td>{{$estadistica->audiencias_celebradas}}</td>
-                                                        <td>{{$estadistica->cumplimientos}}</td>
+                                                        <td style="display: none;">{{$persona->id}}</td>
+                                                        <td>{{$persona->fecha}}</td>
+                                                        <td>{{$persona->NUE}}</td>
+                                                        <td>{{$persona->solicitante}}</td>
+                                                        <td>{{$persona->citado}}</td>
+                                                        <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -55,34 +59,34 @@
                                     </div>
                                 @endif
                                 @if($userRole[0] == "Conciliador")
-                                    <div class="table-responsive">
-                                        <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
+                                    <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
+                                        <div class="table-responsive">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
                                                 <th style="color: #fff;">Número unico de identificación</th>
                                                 <th style="color: #fff;">Solicitante</th>
-                                                <th style="color: #fff;">Municipio</th>
                                                 <th style="color: #fff;">Citado</th>
                                                 <th style="color: #fff;">Detalles</th>
                                             </thead>
                                             <tbody>
-                                                @foreach($estadisticas as $estadistica)
+                                                @foreach($personas as $persona)
                                                     <tr>
-                                                        <td style="display: none;">{{$estadistica->id}}</td>
-                                                        <td>{{$estadistica->fecha}}</td>
-                                                        <td>{{$estadistica->citatorios}}</td>
-                                                        <td>{{$estadistica->asesorias_notificador}}</td>
-                                                        <td>{{$estadistica->solicitudes_levantadas}}</td>
-                                                        <td>{{$estadistica->ratificaciones_notificador}}</td>
-                                                        <td><a class="btn btn-primary" href="{{ route('roles.edit', $estadistica->id) }}" onclick=editar_rol();>Consultar</a></td>
+                                                        <td style="display: none;">{{$persona->id}}</td>
+                                                        <td>{{$persona->fecha}}</td>
+                                                        <td>{{$persona->NUE}}</td>
+                                                        <td>{{$persona->solicitante}}</td>
+                                                        <td>{{$persona->citado}}</td>
+                                                        @if($persona->validado_conciliador == "Pendiente")
+                                                            <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
+                                                        @else
+                                                            <td><a class="btn btn-primary" href="{{ route('persona_ver', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                        </table>
-                                    </div>
-
-        
+                                        </div>
+                                    </table>
                                 @endif
                                 @if($userRole[0] == "Notificador")
                                     <div class="table-responsive">
@@ -212,3 +216,12 @@
 @endsection
 
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

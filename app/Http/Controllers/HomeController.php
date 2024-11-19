@@ -3,26 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turnos;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('auth.login');
@@ -51,10 +42,4 @@ class HomeController extends Controller
         return view('pantalla', compact('turnos'));
     }
 
-
-    public function modalDetalle($id){
-        dd("llego");
-        //$portfolio = Portafolio::find($id);
-        return $id;
-    }
 }

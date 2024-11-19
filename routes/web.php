@@ -148,21 +148,37 @@ Route::group(['middleware' => ['auth']], function(){
     //Fin de Expedientes
     
     //Seer
-        Route::get('/seer/index',                         [SeerController::class, 'index'])->name('seer.index');
-        Route::get('/seer/index',                         [SeerController::class, 'index'])->name('seer');
-        Route::get('/seer/edit/{id}',                     [SeerController::class, 'edit'])->name('seer.edit');
-        Route::get('/seer/create',                        [SeerController::class, 'create'])->name('seer.create');
-        Route::get('/seer/create_persona',                [SeerController::class, 'create_persona'])->name('seer.create_persona');
+        Route::get('/seer/index',                       [SeerController::class, 'index'])->name('seer.index');
+        Route::get('/seer/index',                       [SeerController::class, 'index'])->name('seer');
+        //Rutas de auxiliares
+        Route::get('/seer/create',                      [SeerController::class, 'create'])->name('create_consentrado_aux');
+        Route::get('/seer/ver',                         [SeerController::class, 'ver_consentrado_aux'])->name('create_consentrado_ver');
+        Route::get('/seer/persona_s',                   [SeerController::class, 'create_persona_s'])->name('create_persona_solicitud');
+        Route::get('/seer/persona_r',                   [SeerController::class, 'create_persona_r'])->name('create_persona_ratificacion');
+        Route::post('/seer/personar',                   [SeerController::class, 'auxiliar_personar'])->name('seer.auxiliar_personar');
+        //Rutas de conciliadores
+        Route::get('/seer/createCon',                   [SeerController::class, 'create_conciliador'])->name('create_consentrado_con');
+        Route::get('/seer/personac/{id}',               [SeerController::class, 'crear_audiencia'])->name('create_persona_con');
+        Route::post('/seer/personac',                   [SeerController::class, 'conciliador_persona'])->name('seer.conciliador_persona');
+        Route::get('/seer/personacon/{id}',             [SeerController::class, 'ver_conciliador'])->name('persona_ver');
+        Route::get('/seer/convenios',                   [SeerController::class, 'index_convenios'])->name('index_convenios');
+        Route::get('/seer/colectivas',                  [SeerController::class, 'index_colectivas'])->name('index_colectivas');
+        Route::get('/seer/convenio',                    [SeerController::class, 'crear_convenio'])->name('convenios_agregar');
+        Route::post('/seer/convenioa',                  [SeerController::class, 'store_convenio'])->name('seer.crear_convenio');
+        Route::get('/seer/colectiva',                   [SeerController::class, 'crear_colectiva'])->name('colectivas_agregar');
+        Route::post('/seer/colectivaa',                 [SeerController::class, 'store_colectiva'])->name('seer.crear_colectivas');
         
-        Route::post('/seer/store_auxiliar',               [SeerController::class, 'store_auxiliares'])->name('seer.store_auxiliar');
-        Route::post('/seer/store_notificador',            [SeerController::class, 'store_notificador'])->name('seer.store_notificador');
-        Route::post('/seer/store_conciliador',            [SeerController::class, 'store_conciliadores'])->name('seer.store_conciliador');
-        Route::post('/seer/store_delegado',               [SeerController::class, 'store_delegado'])->name('seer.store_delegado');
 
-        //Estadistica
-        Route::get('/seer/estadistica',               [SeerController::class, 'estadistica'])->name('seer.estadistica');
-        Route::get('/seer/mostrar',                   [SeerController::class, 'mostrar'])->name('seer.mostar');
+        
+        Route::post('/seer/store_auxiliar',             [SeerController::class, 'store_auxiliares'])->name('seer.store_auxiliar');
+        Route::post('/seer/store_notificador',          [SeerController::class, 'store_notificador'])->name('seer.store_notificador');
+        Route::post('/seer/store_conciliador',          [SeerController::class, 'store_conciliadores'])->name('seer.store_conciliador');
+        Route::post('/seer/store_delegado',             [SeerController::class, 'store_delegado'])->name('seer.store_delegado');
 
+        Route::get('/seer/estadistica',                 [SeerController::class, 'estadistica'])->name('seer.estadistica');
+        Route::post('/seer/mostrar',                    [SeerController::class, 'mostrar_reporte'])->name('seer.mostar');
+        Route::post('/seer/persona',                    [SeerController::class, 'auxiliar_persona'])->name('seer.auxiliar_persona');
+        Route::get('/seer/persona/{id}',                [SeerController::class, 'ver_auxiliar'])->name('seer.estadistica_consultar');
     //Fin Seer
 
     //Turnos

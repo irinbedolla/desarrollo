@@ -13,6 +13,7 @@ use Carbon\Carbon;
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                                <a class="btn btn-info"    href="{{ route('turno_estadistica') }}" onclick=crear_turnos();>Regresar</a>
                                 Total atendidos: {{$suma_turnos->total}}
                                 <div class="table-responsive">
                                     <table id="tabla_usuarios" class="table table-striped">

@@ -27,84 +27,78 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                             @endif
 
-                            @if($userRole[0] == "Conciliador")
-                                <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                                {!! Form::open(array('route'=>'seer.store_conciliador', 'method'=>'POST')) !!}
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Número unico de expediente</label>
-                                                <input type="text" class="form-control" name="nue" minlength="18" maxlength="18" required>
-                                            </div>
+                            @if($userRole[0] == "Auxiliar")
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-2">
+                                        <div class="form-group">
+                                            <label for="name">Solicitudes</label>
+                                            <input type="number" class="form-control" value="<?=$suma_solicitudes["total"];?>" >
                                         </div>
+                                    </div>
 
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="email">Solicitante</label>
-                                                <input type="text" class="form-control" name="solicitante" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="password">Municipio</label>
-                                                <select class="form-control" name="municipio" required>
-                                                <option value="">Seleccione</option>
-                                                    @foreach($municipios as $mun)
-                                                        <option value="{{$mun['id']}}">{{$mun['municipio']}}</option>
-                                                    @endforeach
-                                            </select>
+                                                <label for="email">Ratificaciones</label>
+                                                <input type="number" class="form-control" name="ratificaciones" value="<?=$suma_ratificaciones["total"];?>" >
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Convenios Conciliatorios</label>
-                                                <input type="number" class="form-control" name="convenios_conciliatorios" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Ratificaciones de convenio</label>
-                                                <input type="number" class="form-control" name="ratificaciones_convenio" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Constancias de no conciliación</label>
-                                                <input type="number" class="form-control" name="contancias_no_conciliacion" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Cuentificación Total($)</label>
-                                                <input type="number" class="form-control" name="cuantificaciones" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Asesorias</label>
+                                                <label for="password">Asesorias</label>
                                                 <input type="number" class="form-control" name="asesorias" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Integración de Expediente</label>
-                                                <input type="number" class="form-control" name="integracion_expediente" required>
+                                                <label for="confirm-password">Consulta Expediente</label>
+                                                <input type="number" class="form-control" name="expediente_consulta" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Conciliaciones Colectivas</label>
-                                                <input type="number" class="form-control" name="colectivas" required>
+                                                <label for="confirm-password">Escanear Expediente</label>
+                                                <input type="number" class="form-control" name="expediente_escaneo" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Foliar Expediente</label>
+                                                <input type="number" class="form-control" name="expediente_foliar" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Exhortos</label>
+                                                <input type="number" class="form-control" name="exhortos" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Audiencias Celebradas</label>
+                                                <input type="number" class="form-control" name="audiencias_celebradas"  required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Registro Cumplimiento</label>
+                                                <input type="number" class="form-control" name="cumplimientos" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Cuentificación Total($)</label>
+                                                <input type="number" class="form-control" name="cuantificacion" value="<?=$total["monto"];?>" required>
                                             </div>
                                         </div>
 
@@ -115,8 +109,6 @@
                                     </div>
                                 {!! Form::close() !!}
                             @endif
-
-
 
                         </div>
                     </div>

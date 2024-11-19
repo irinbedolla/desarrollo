@@ -11,134 +11,251 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Estadistica</h3>
+                            <h3 class="text-center">Obligatorios</h3>
                             
-                            <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>¡Revise los campos!</strong>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            <!--<span class="badge badge-danger">{{ $error }}</span>-->
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                            @can('ver-reporte-estadistica')
+                                <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
+                                @if ($errors->any())
+                                    <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                                        <strong>¡Revise los campos!</strong>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                <!--<span class="badge badge-danger">{{ $error }}</span>-->
+                                            @endforeach
+                                        </ul>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                            @endif
+                                @endif
 
-                            <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'seer.mostar', 'method'=>'POST')) !!}
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Fecha Inicial</label>
-                                            <input type="date" class="form-control" name="fecha_inicial">
+                                <!--Se realiza el envío de datos con formulario de Laravel Collective-->
+                                {!! Form::open(array('route'=>'seer.mostar', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Fecha Inicial</label>
+                                                <input type="date" class="form-control" name="fecha_inicial" required>
+                                                <div class="invalid-feedback">
+                                                    La fecha inicial es obligatorio.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Fecha Final</label>
+                                                <input type="date" class="form-control" name="fecha_final" required>
+                                                <div class="invalid-feedback">
+                                                    La fecha final es obligatorio.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label multiple for="name">Tipo de reporte</label>
+                                                <select  class="form-control" name="tipo_reporte" required>
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Cuantificaciones">Cuantificaciones</option>
+                                                    <option value="Detallado">Detallado</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Debes seleccionar un tipo de reporte.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Filtros solicitud</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label multiple for="name">Auxiliar</label>
+                                                <select class="form-control" name="auxiliar">
+                                                    <option value="">Seleccione</option>
+                                                    @foreach($usuariosauxiliares as $user)
+                                                        <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Tipo solicitud</label>
+                                                <select  class="form-control" name="tipo_solicitud">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Solictudes">Solictudes</option>
+                                                    <option value="Ratificaciones">Ratificaciones</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Tipo de persona</label>
+                                                <select  class="form-control" name="tipo_persona">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Solictudes">Fisica</option>
+                                                    <option value="Ratificaciones">Moral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Motivo</label>
+                                                <select  class="form-control" name="motivo">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Despido">Despido</option>
+                                                    <option value="Pago de prestaciones">Pago de prestaciones</option>
+                                                    <option value="Recision de la relación laboral">Recision de la relación laboral</option>
+                                                    <option value="Derecho de preferencia">Derecho de preferencia</option>
+                                                    <option value="Derecho de antiguedad">Derecho de antiguedad</option>
+                                                    <option value="Derecho de ascesnso">Derecho de ascesnso</option>
+                                                    <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Estatus</label>
+                                                <select  class="form-control" name="estatus">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Pendiente">Pendiente</option>
+                                                    <option value="Parcial">Parcial</option>
+                                                    <option value="Cumplido">Cumplido</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Notificación</label>
+                                                <select  class="form-control" name="centro">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Centro">Centro</option>
+                                                    <option value="Trabajador">Trabajador</option>
+                                                    <option value="Ambos">Ambos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Filtros audiencias</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Conciliador</label>
+                                                <select  class="form-control" name="conciliador">
+                                                    <option value="">Seleccione</option>
+                                                    @foreach($usuariosconciliador as $user)
+                                                        <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                    @endforeach
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label multiple for="name">Tipo estatus</label>
+                                                <select  class="form-control" name="tipo_audiencia">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Conciliacion">Conciliacion</option>
+                                                    <option value="No conciliacion">No conciliacion</option>
+                                                    <option value="Archivado">Archivado</option>
+                                                    <option value="Archivado por incomparecencia">Archivado por incomparecencia</option>
+                                                    <option value="Regenerada">Regenerada</option>
+                                                    <option value="Incompetencia">Incompetencia</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label multiple for="name">Tipo de audiencia</label>
+                                                <select  class="form-control" name="tipo_audiencia">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Presencial">Presencial</option>
+                                                    <option value="Linea">Linea</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Filtros generales</h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Sede</label>
+                                                <select class="form-control" name="sede">
+                                                    <option value="">Seleccione</option>
+                                                    @foreach($estadisticas as $aKey => $aSport)
+                                                        <option value="{{$aSport}}">{{$aSport}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label multiple for="name">Sexo</label>
+                                                <select  class="form-control" name="sexo">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Hombre">Hombres</option>
+                                                    <option value="Mujeres">Mujeres</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="password">Estado del solicitante</label>
+                                                    <select class="form-control" name="estado_solicitante">
+                                                        <option value="">Seleccione</option>
+                                                        @foreach($estados as $est)
+                                                            <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="password">Municipio del solicitante</label>
+                                                        <select name="mun_solicitante" class="form-control">
+                                                        <option value="">Seleccione</option>
+                                                        @foreach($municipios as $mun)
+                                                                <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                </div>
+                                            </div>
+
+                                            
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <button type="submit" class="btn btn-primary">General</button>
                                         </div>
                                     </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Fecha Final</label>
-                                            <input type="date" class="form-control" name="fecha_final">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Sede *puedes seleccionar mas de uno.</label>
-                                            <select multiple class="form-control" name="sedes[]" style="height: 120%">
-                                                <option value="">Seleccione</option>
-                                                @foreach($estadisticas as $aKey => $aSport)
-                                                    <option value="{{$aKey}}">{{$aSport}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Conciliador *puedes seleccionar mas de uno.</label>
-                                            <select multiple class="form-control" name="conciliadores[]" style="height: 120%">
-                                                <option value="">Seleccione</option>
-                                                @foreach($usuariosconciliador as $user)
-                                                    <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label multiple for="name">Auxiliares</label>
-                                            <select multiple class="form-control" name="auxiliares[]" style="height: 120%">
-                                                <option value="">Seleccione</option>
-                                                @foreach($usuariosauxiliares as $user)
-                                                    <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                @endforeach
-                                            </select>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label multiple for="name">Notificadores</label>
-                                            <select multiple class="form-control" name="notificadores[]" style="height: 120%">
-                                                <option value="">Seleccione</option>
-                                                @foreach($usuariosnotificadores as $user)
-                                                    <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                @endforeach
-                                            </select>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label multiple for="name">Tipo</label>
-                                            <select multiple class="form-control" name="notificadores[]" style="height: 120%">
-                                                <option value="">Seleccione</option>
-                                                <option value="Personas Atendidas">Personas Atendidas</option>
-                                                <option value="Asesorias">Asesorias</option>
-                                                <option value="Solicitudes para inicio de tramite de conciliación">Solicitudes para inicio de tramite de conciliación</option>
-                                                <option value="Audiencias programadas">Audiencias programadas</option>
-                                                <option value="Auciencias celebradas">Auciencias celebradas</option>
-                                                <option value="Solicitudes declaradas como incopetencia">Solicitudes declaradas como incopetencia</option>
-                                                <option value="Convenio en audiencia">Convenio en audiencia</option>
-                                                <option value="Ratificación de convenios">Ratificación de convenios</option>
-                                                <option value="Monto de convenios">Monto de convenios</option>
-                                                <option value="Notificaciones">Notificaciones</option>
-                                                <option value="Constancias de no conciliacion por incoparecencia patronal">Constancias de no conciliacion por incoparecencia patronal</option>
-                                                <option value="Constancias de no conciliacion por falta de notificaciones">Constancias de no conciliacion por falta de notificaciones</option>
-                                                <option value="Solicitudes archivadas por falta de interes">Solicitudes archivadas por falta de interes</option>
-                                                <option value="Conciliaciones colectivas">Conciliaciones colectivas</option>
-                                                <option value="M">M</option>
-                                                <option value="H">H</option>
-                                                <option value="Despidos injustificados">Despidos injustificados</option>
-                                                <option value="Finiquito por rescicion de contrato">Finiquito por rescicion de contrato</option>
-                                                <option value="Derecho de preferencia">Derecho de preferencia</option>
-                                                <option value="Pago de prestaciones pendientes">Pago de prestaciones pendientes</option>
-                                                <option value="Terminacion voluntaria de la relacion laboral">Terminacion voluntaria de la relacion laboral</option>
-                                                <option value="Supuesto de excepcion 685 TER LFT">Supuesto de excepcion 685 TER LFT</option>
-                                                <option value="Otros">Otros</option>
-                                                <option value="Multas">Multas</option>
-                                                <option value="50 UMAS">50 UMAS</option>
-                                                <option value="100 UMAS">100 UMAS</option>
-                                                <option value="Otro monto">Otro monto</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                    </div>
-                                </div>
-                            {!! Form::close() !!}
-
+                                {!! Form::close() !!}
+                            @endcan
                         </div>
                     </div>
                 </div>
