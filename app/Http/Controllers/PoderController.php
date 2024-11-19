@@ -94,23 +94,24 @@ class PoderController extends Controller
         if(!$abogado){
 
             $data_insertar= array(
-                'nombres'       => $data["nombresAbogadoAlta"],
-                'apellidos'     => $data["apellidosAbogadoAlta"], 
-                'telefono'      => $data["telefonoAbogadoAlta"], 
-                'email'         => $data["correoAbogadoAlta"],
-                'fechaRegistro' => date('y-m-d'),
-                'fechaVigencia' => $data["fechaVigenciaAlta"],
-                'empresa'       => $data["empresaAbogadoAlta"],
-                'eliminado'     => 0,
-                'curp'          => $data["curpAbogadoAlta"],
-                'domicilio'     => $data["domicilioAbogadoAlta"],
-                'rfc'           => $data["RFCAbogadoAlta"],
-                'industria'     => $data["industriaAlta"],
-                'poder'         => $data["descripcionpoderAlta"],
-                'regionMorelia' => $regionmorelia,
-                'regionUruapan' => $regionuruapan,
-                'regionZamora'  => $regionuruapan,
-                'estatus'       => "Pendiente"
+                'nombres'           => $data["nombresAbogadoAlta"],
+                'primer_apellido'   => $data["primer_apellido"], 
+                'segundo_apellido'  => $data["segundo_apellido"], 
+                'telefono'          => $data["telefonoAbogadoAlta"], 
+                'email'             => $data["correoAbogadoAlta"],
+                'fechaRegistro'     => date('y-m-d'),
+                'fechaVigencia'     => $data["fechaVigenciaAlta"],
+                'empresa'           => $data["empresaAbogadoAlta"],
+                'eliminado'         => 0,
+                'curp'              => $data["curpAbogadoAlta"],
+                'domicilio'         => $data["domicilioAbogadoAlta"],
+                'rfc'               => $data["RFCAbogadoAlta"],
+                'industria'         => $data["industriaAlta"],
+                'poder'             => $data["descripcionpoderAlta"],
+                'regionMorelia'     => $regionmorelia,
+                'regionUruapan'     => $regionuruapan,
+                'regionZamora'      => $regionuruapan,
+                'estatus'           => "Pendiente"
             );
 
 
@@ -539,24 +540,24 @@ class PoderController extends Controller
         if(!$abogado){
 
             $data_insertar = array(
-                'nombres'       => $data["nombresAbogadoAlta"],
-                'primer_apellido'  => $data["primer_apellido"],
-                'segundo_apellido' => $data["segundo_apellido"],
-                'telefono'      => $data["telefonoAbogadoAlta"], 
-                'email'         => $data["correoAbogadoAlta"],
-                'fechaRegistro' => date('y-m-d'),
-                'fechaVigencia' => $data["fechaVigenciaAlta"],
-                'empresa'       => $data["empresaAbogadoAlta"],
-                'eliminado'     => 0,
-                'curp'          => $data["curpAbogadoAlta"],
-                'domicilio'     => $data["domicilioAbogadoAlta"],
-                'rfc'           => $data["RFCAbogadoAlta"],
-                'industria'     => $data["industriaAlta"],
-                'poder'         => $data["descripcionpoderAlta"],
-                'regionMorelia' => $regionmorelia,
-                'regionUruapan' => $regionuruapan,
-                'regionZamora'  => $regionuruapan,
-                'estatus'       => "Pendiente"
+                'nombres'           => $data["nombresAbogadoAlta"],
+                'primer_apellido'   => $data["primer_apellido"],
+                'segundo_apellido'  => $data["segundo_apellido"],
+                'telefono'          => $data["telefonoAbogadoAlta"], 
+                'email'             => $data["correoAbogadoAlta"],
+                'fechaRegistro'     => date('y-m-d'),
+                'fechaVigencia'     => $data["fechaVigenciaAlta"],
+                'empresa'           => $data["empresaAbogadoAlta"],
+                'eliminado'         => 0,
+                'curp'              => $data["curpAbogadoAlta"],
+                'domicilio'         => $data["domicilioAbogadoAlta"],
+                'rfc'               => $data["RFCAbogadoAlta"],
+                'industria'         => $data["industriaAlta"],
+                'poder'             => $data["descripcionpoderAlta"],
+                'regionMorelia'     => $regionmorelia,
+                'regionUruapan'     => $regionuruapan,
+                'regionZamora'      => $regionuruapan,
+                'estatus'           => "Pendiente"
             );
 
             $nombre_ine = $data["nombresAbogadoAlta"]."".$data["primer_apellido"]."".$data["segundo_apellido"]."-".$data["empresaAbogadoAlta"]."_IDENTIFICACION.pdf";

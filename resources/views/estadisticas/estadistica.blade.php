@@ -36,6 +36,20 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-4">
                                             <div class="form-group">
+                                                <label multiple for="name">Tipo de reporte</label>
+                                                <select  class="form-control" name="tipo_reporte" required>
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Cuantificaciones">Cuantificaciones</option>
+                                                    <option value="Detallado">Detallado</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Debes seleccionar un tipo de reporte.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
                                                 <label for="name">Fecha Inicial</label>
                                                 <input type="date" class="form-control" name="fecha_inicial" required>
                                                 <div class="invalid-feedback">
@@ -50,20 +64,6 @@
                                                 <input type="date" class="form-control" name="fecha_final" required>
                                                 <div class="invalid-feedback">
                                                     La fecha final es obligatorio.
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label multiple for="name">Tipo de reporte</label>
-                                                <select  class="form-control" name="tipo_reporte" required>
-                                                    <option value="">Seleccione</option>
-                                                    <option value="Cuantificaciones">Cuantificaciones</option>
-                                                    <option value="Detallado">Detallado</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Debes seleccionar un tipo de reporte.
                                                 </div>
                                             </div>
                                         </div>
@@ -216,8 +216,8 @@
                                                 <label multiple for="name">Sexo</label>
                                                 <select  class="form-control" name="sexo">
                                                     <option value="">Seleccione</option>
-                                                    <option value="Hombre">Hombres</option>
-                                                    <option value="Mujeres">Mujeres</option>
+                                                    <option value="H">Hombres</option>
+                                                    <option value="M">Mujeres</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -265,3 +265,12 @@
 @endsection
 
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

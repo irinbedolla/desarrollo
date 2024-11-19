@@ -292,283 +292,433 @@ class SeerController extends Controller
         //Validar documentacion
         request()->validate([
             //General
-            'fecha_inicial' => 'required|date',
-            'fecha_final'   => 'required|date',
             'tipo_reporte'  => 'required|in:Cuantificaciones,Detallado',
 
         ], $data);
-
-        if(isset($data["sede"]))
-            $sede = $data["sede"];
-        else
-            $sede = "";
-        if(isset($data["conciliador"]))
-            $conciliador = $data["conciliador"];
-        else
-            $conciliador = "";
-        if(isset($data["auxiliar"]))
-            $auxiliar = $data["auxiliar"];
-        else
-            $auxiliar = "";
-        if(isset($data["notificador"]))
-            $notificador = $data["notificador"];
-        else
-            $notificador = "";
-        if(isset($data["tipo_audiencia"]))
-            $tipo_audiencia = $data["tipo_audiencia"];
-        else
-            $tipo_audiencia = "";
-        if(isset($data["sexo"]))
-            $sexo = $data["sexo"];
-        else
-            $sexo = "";
-        if(isset($data["tipo_solicitud"]))
-            $tipo_solicitud = $data["tipo_solicitud"];
-        else
-            $tipo_solicitud = "";
-        if(isset($data["estado_solicitante"]))
-            $estado_solicitante = $data["estado_solicitante"];
-        else
-            $estado_solicitante = "";
-        if(isset($data["mun_solicitante"]))
-            $mun_solicitante = $data["mun_solicitante"];
-        else
-            $mun_solicitante = "";
-        if(isset($data["centro"]))
-            $centro = $data["centro"];
-        else
-            $centro = "";
-        if(isset($data["motivo"]))
-            $motivo = $data["motivo"];
-        else
-            $motivo = "";
-        if(isset($data["estatus"]))
-            $estatus = $data["estatus"];
-        else
-            $estatus = "";
-        if(isset($data["tipo_persona"]))
-            $tipo_persona = $data["tipo_persona"];
-        else
-            $tipo_persona = "";
-            
+        //Filtros
+            if(isset($data["sede"]))
+                $sede = $data["sede"];
+            else
+                $sede = "";
+            if(isset($data["conciliador"]))
+                $conciliador = $data["conciliador"];
+            else
+                $conciliador = "";
+            if(isset($data["auxiliar"]))
+                $auxiliar = $data["auxiliar"];
+            else
+                $auxiliar = "";
+            if(isset($data["notificador"]))
+                $notificador = $data["notificador"];
+            else
+                $notificador = "";
+            if(isset($data["tipo_audiencia"]))
+                $tipo_audiencia = $data["tipo_audiencia"];
+            else
+                $tipo_audiencia = "";
+            if(isset($data["sexo"]))
+                $sexo = $data["sexo"];
+            else
+                $sexo = "";
+            if(isset($data["tipo_solicitud"]))
+                $tipo_solicitud = $data["tipo_solicitud"];
+            else
+                $tipo_solicitud = "";
+            if(isset($data["estado_solicitante"]))
+                $estado_solicitante = $data["estado_solicitante"];
+            else
+                $estado_solicitante = "";
+            if(isset($data["mun_solicitante"]))
+                $mun_solicitante = $data["mun_solicitante"];
+            else
+                $mun_solicitante = "";
+            if(isset($data["centro"]))
+                $centro = $data["centro"];
+            else
+                $centro = "";
+            if(isset($data["motivo"]))
+                $motivo = $data["motivo"];
+            else
+                $motivo = "";
+            if(isset($data["estatus"]))
+                $estatus = $data["estatus"];
+            else
+                $estatus = "";
+            if(isset($data["tipo_persona"]))
+                $tipo_persona = $data["tipo_persona"];
+            else
+                $tipo_persona = "";
+            if(isset($data["NUE"]))
+                $NUE = $data["NUE"];
+            else
+                $NUE = "";
+            if(isset($data["fecha_inicial"]))
+                $fecha_inicial = $data["fecha_inicial"];
+            else
+                $fecha_inicial = "";
+            if(isset($data["fecha_final"]))
+                $fecha_final = $data["fecha_final"];
+            else
+                $fecha_final = "";
+        //Filtros end
         //Primeramente reporte detallado
         if($data["tipo_reporte"] == "Detallado"){
-            //No se selecciono nada y va buscar todo de fecha a otra
-            if($sede == "" && $conciliador == "" && $auxiliar == "" && $notificador == "" && $tipo_audiencia == "" 
-            && $sexo == "" && $tipo_solicitud == "" && $estado_solicitante == "" && $mun_solicitante == ""){
-                $solicitudes  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
+            //SOLICITUDES
+                $solicitudes = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"]);
+                $solicitudes = $solicitudes->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("users","users.id","=","seer_general.user_id")
-                ->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_auxiliares.actividad_economica",
+                ->join("users","users.id","=","seer_general.user_id");
+
+                if($sede != ""){
+                    $solicitudes = $solicitudes->where("seer_general.delegacion", $sede);
+                }
+                if($tipo_persona != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.tipo_persona", $tipo_persona);
+                }
+                if($motivo != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.motivo", $motivo);
+                }
+                if($estatus != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.estatus", $estatus);
+                }
+                if($centro != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.notificacion", $centro);
+                }
+                if($auxiliar != ""){
+                    $solicitudes = $solicitudes->where("seer_general.user_id", $auxiliar);
+                }
+                if($notificador != ""){
+                    $solicitudes = $solicitudes->where("seer_general.user_id", $notificador);
+                }
+                if($sexo != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($tipo_solicitud != ""){
+                $solicitudes = $solicitudes->where("seer_auxiliares.tipo_solicitud", $tipo_solicitud);
+                }
+                if($estado_solicitante != ""){
+                    $solicitudes = $solicitudes->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $solicitudes = $solicitudes->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+
+                $solicitudes = $solicitudes->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_auxiliares.actividad_economica",
                 "estados.nombre as estado","municipios.nombre as municipio","seer_general.citado","seer_auxiliares.sexo","seer_auxiliares.tipo_persona","seer_auxiliares.motivo",
                 "seer_auxiliares.notificacion","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Solicitud")
                 ->get();
 
+            //RATIFICACIONES
                 $ratificaciones  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
                 ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("users","users.id","=","seer_general.user_id")
-                ->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_auxiliares.actividad_economica",
+                ->join("users","users.id","=","seer_general.user_id");
+                if($fecha_inicial != ""){
+                    $ratificaciones = $ratificaciones->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $ratificaciones = $ratificaciones->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.delegacion", $sede);
+                }
+                if($auxiliar != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.user_id", $auxiliar);
+                }
+                if($sexo != ""){
+                    $ratificaciones = $ratificaciones->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $ratificaciones = $ratificaciones->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_auxiliares.actividad_economica",
                 "estados.nombre as estado","municipios.nombre as municipio","seer_general.citado","seer_auxiliares.sexo","seer_auxiliares.tipo_persona","seer_auxiliares.motivo",
                 "seer_auxiliares.monto","seer_auxiliares.estatus","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Ratificación")
                 ->get();
             
-
+            //AUDIENCIA
                 $audiencia  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
                 ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("users","users.id","=","seer_general.user_id")
-                ->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_general.citado","seer_auxiliares.actividad_economica",
+                ->join("users","users.id","=","seer_general.user_id");
+                if($fecha_inicial != ""){
+                    $audiencia = $audiencia->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $audiencia = $audiencia->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $audiencia = $audiencia->where("seer_general.delegacion", $sede);
+                }
+                if($conciliador != ""){
+                    $audiencia = $audiencia->where("seer_general.conciliador_id", $conciliador);
+                }
+                if($tipo_audiencia != ""){
+                    $audiencia = $audiencia->where("seer_conciliadores.estatus_conciliacion", $tipo_audiencia);
+                }
+                if($sexo != ""){
+                    $audiencia = $audiencia->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $audiencia = $audiencia->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $audiencia = $audiencia->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $audiencia = $audiencia->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_general.citado",
+                "seer_auxiliares.actividad_economica",
                 "seer_conciliadores.numero_audiencia","seer_conciliadores.estatus_conciliacion","seer_conciliadores.monto","seer_conciliadores.cumplimiento_pago",
                 "seer_conciliadores.observaciones","seer_conciliadores.multa","seer_conciliadores.tipo",
                 "estados.nombre as estado","municipios.nombre as municipio","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Solicitud")
                 ->get();
-
+            //COLECTIVAS
                 $colectivas = SeerColectivas::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("users","users.id","=","seer_colectivas.conciliador")
-                ->select("seer_colectivas.*","users.name as usuario")
+                ->join("users","users.id","=","seer_colectivas.conciliador");
+                if($fecha_inicial != ""){
+                    $colectivas = $colectivas->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $colectivas = $colectivas->where("fecha","<=",$data["fecha_final"]);
+                }
+                if($conciliador != ""){
+                    $colectivas = $colectivas->where("seer_colectivas.conciliador", $conciliador);
+                }
+                if($estado_solicitante != ""){
+                    $colectivas = $colectivas->where("seer_colectivas.estado_solicitante", $estado_solicitante);
+                }
+                $colectivas = $colectivas->select("seer_colectivas.*","users.name as usuario")
                 ->get();
-
+            //CONVENIOS
                 $convenios = SeerConvenios::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("users","users.id","=","seer_convenios.conciliador")
-                ->select("seer_convenios.*","users.name as usuario")
+                ->join("users","users.id","=","seer_convenios.conciliador");
+                if($fecha_inicial != ""){
+                    $convenios = $convenios->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $convenios = $convenios->where("fecha","<=",$data["fecha_final"]);
+                }
+                if($conciliador != ""){
+                    $convenios = $convenios->where("seer_convenios.conciliador", $conciliador);
+                }
+                if($estado_solicitante != ""){
+                    $convenios = $convenios->where("seer_convenios.estado_solicitante", $estado_solicitante);
+                }
+                $convenios = $convenios->select("seer_convenios.*","users.name as usuario")
                 ->get();
-            }
-
             return view('estadisticas.ver_reporte', compact('solicitudes','ratificaciones','audiencia','colectivas','convenios'));
         }
         else if($data["tipo_reporte"] == "Cuantificaciones"){
-            $solicitudes  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"]);
-            $solicitudes = $solicitudes->where("fecha","<=",$data["fecha_final"]);
-            $solicitudes = $solicitudes->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+            //SOLICITUDES
+                $solicitudes  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+                if($fecha_inicial != ""){
+                    $solicitudes = $solicitudes->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $solicitudes = $solicitudes->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $solicitudes = $solicitudes->where("seer_general.delegacion", $sede);
+                }
+                if($tipo_persona != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.tipo_persona", $tipo_persona);
+                }
+                if($motivo != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.motivo", $motivo);
+                }
+                if($estatus != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.estatus", $estatus);
+                }
+                if($centro != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.notificacion", $centro);
+                }
+                if($auxiliar != ""){
+                    $solicitudes = $solicitudes->where("seer_general.user_id", $auxiliar);
+                }
+                if($notificador != ""){
+                    $solicitudes = $solicitudes->where("seer_general.user_id", $notificador);
+                }
+                if($sexo != ""){
+                    $solicitudes = $solicitudes->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($tipo_solicitud != ""){
+                $solicitudes = $solicitudes->where("seer_auxiliares.tipo_solicitud", $tipo_solicitud);
+                }
+                if($estado_solicitante != ""){
+                    $solicitudes = $solicitudes->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $solicitudes = $solicitudes->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $solicitudes = $solicitudes->where("seer_auxiliares.tipo_solicitud", "Solicitud")
+                ->selectRaw('count(seer_general.id) as solicitudes')
+                ->first();
+            //RATIFICACIONES
+                $ratificaciones  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+                if($fecha_inicial != ""){
+                    $ratificaciones = $ratificaciones->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $ratificaciones = $ratificaciones->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.delegacion", $sede);
+                }
+                if($auxiliar != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.user_id", $auxiliar);
+                }
+                if($sexo != ""){
+                    $ratificaciones = $ratificaciones->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $ratificaciones = $ratificaciones->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $ratificaciones  = $ratificaciones->where("seer_auxiliares.tipo_solicitud", "Ratificación");
+                $ratificaciones  = $ratificaciones->selectRaw('count(seer_general.id) as ratificaciones')
+                ->first();
+            //MONTO DE AUDIENCIA
+                $montoratificaciones  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+                if($fecha_inicial != ""){
+                    $montoratificaciones = $montoratificaciones->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $montoratificaciones = $montoratificaciones->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $montoratificaciones = $montoratificaciones->where("seer_general.delegacion", $sede);
+                }
+                if($auxiliar != ""){
+                    $montoratificaciones = $montoratificaciones->where("seer_general.user_id", $auxiliar);
+                }
+                if($sexo != ""){
+                    $montoratificaciones = $montoratificaciones->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $montoratificaciones = $montoratificaciones->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $montoratificaciones = $montoratificaciones->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $montoratificaciones = $montoratificaciones->where("seer_auxiliares.tipo_solicitud", "Ratificación");
+                $montoratificaciones = $montoratificaciones->selectRaw('sum(seer_auxiliares.monto) as ratificaciones')
+                ->first();
+            //AUDIENCIA 
+                $audiencia  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+                $audiencia  = $audiencia->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id");
+                if($fecha_inicial != ""){
+                    $audiencia = $audiencia->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $audiencia = $audiencia->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $audiencia = $audiencia->where("seer_general.delegacion", $sede);
+                }
+                if($conciliador != ""){
+                    $audiencia = $audiencia->where("seer_general.conciliador_id", $conciliador);
+                }
+                if($tipo_audiencia != ""){
+                    $audiencia = $audiencia->where("seer_conciliadores.estatus_conciliacion", $tipo_audiencia);
+                }
+                if($sexo != ""){
+                    $audiencia = $audiencia->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $audiencia = $audiencia->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $audiencia = $audiencia->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                $audiencia  = $audiencia->where("seer_auxiliares.tipo_solicitud", "Solicitud");
+                $audiencia  = $audiencia->selectRaw('count(seer_general.id) as audiencia')
+                ->first();
+            //MONTO DE AUDIENCIA
+            $montoaudiencia  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+            $montoaudiencia  = $montoaudiencia->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id");
+            if($fecha_inicial != ""){
+                $montoaudiencia = $montoaudiencia->where("fecha",">=",$fecha_inicial);
+            }   
+            if($fecha_final != ""){
+                $montoaudiencia = $montoaudiencia->where("fecha","<=",$fecha_final);
+            }
             if($sede != ""){
-                $solicitudes = $solicitudes->where("seer_general.delegacion", $sede);
-            }
-            if($tipo_persona != ""){
-                $solicitudes = $solicitudes->where("seer_auxiliares.tipo_persona", $tipo_persona);
-            }
-            if($motivo != ""){
-                $solicitudes = $solicitudes->where("seer_auxiliares.motivo", $motivo);
-            }
-            if($estatus != ""){
-                $solicitudes = $solicitudes->where("seer_auxiliares.estatus", $estatus);
-            }
-            if($centro != ""){
-                $solicitudes = $solicitudes->where("seer_auxiliares.notificacion", $centro);
-            }
-            if($auxiliar != ""){
-                $solicitudes = $solicitudes->where("seer_general.user_id", $auxiliar);
-            }
-            if($notificador != ""){
-                $solicitudes = $solicitudes->where("seer_general.user_id", $notificador);
-            }
-            if($sexo != ""){
-                $solicitudes = $solicitudes->where("seer_auxiliares.sexo", $sexo);
-            }
-            if($tipo_solicitud != ""){
-            $solicitudes = $solicitudes->where("seer_auxiliares.tipo_solicitud", $tipo_solicitud);
-            }
-            if($estado_solicitante != ""){
-                $solicitudes = $solicitudes->where("seer_general.estado_solicitante", $estado_solicitante);
-            }
-            if($mun_solicitante != ""){
-                $solicitudes = $solicitudes->where("seer_general.mun_solicitante", $mun_solicitante);
-            }
-            $solicitudes = $solicitudes->where("seer_auxiliares.tipo_solicitud", "Solicitud")
-            ->selectRaw('count(seer_general.id) as solicitudes')
-            ->first();
-
-            $ratificaciones  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"]);
-            $ratificaciones  = $ratificaciones->where("fecha","<=",$data["fecha_final"]);
-            $ratificaciones  = $ratificaciones->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
-            if($sede != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.delegacion", $sede);
+                $montoaudiencia = $montoaudiencia->where("seer_general.delegacion", $sede);
             }
             if($conciliador != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.conciliador_id", $conciliador);
+                $montoaudiencia = $montoaudiencia->where("seer_general.conciliador_id", $conciliador);
             }
-            /*
-            if($auxiliar != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.user_id", $auxiliar);
-            }
-            if($notificador != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.user_id", $notificador);
-            }
-            */
-            if($sexo != ""){
-                $ratificaciones = $ratificaciones->where("seer_auxiliares.sexo", $sexo);
-            }
-            /*
-            if($tipo_solicitud != ""){
-                $ratificaciones = $ratificaciones->where("seer_auxiliares.tipo_solicitud", $tipo_solicitud);
-            }
-            */
-            if($estado_solicitante != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.estado_solicitante", $estado_solicitante);
-            }
-            if($mun_solicitante != ""){
-                $ratificaciones = $ratificaciones->where("seer_general.mun_solicitante", $mun_solicitante);
-            }
-            $ratificaciones  = $ratificaciones->where("seer_auxiliares.tipo_solicitud", "Ratificación");
-            $ratificaciones  = $ratificaciones->selectRaw('count(seer_general.id) as ratificaciones')
-            ->first();
-
-            $montoratificaciones  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"]);
-            $montoratificaciones = $montoratificaciones->where("fecha","<=",$data["fecha_final"]);
-            $montoratificaciones = $montoratificaciones->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
-            if($sede != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.delegacion", $sede);
-            }
-            /*
-            if($conciliador != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.conciliador_id", $conciliador);
-            }
-            */
-            if($auxiliar != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.user_id", $auxiliar);
-            }
-            if($notificador != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.user_id", $notificador);
-            }
-            if($sexo != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_auxiliares.sexo", $sexo);
-            }
-            /*
-            if($tipo_solicitud != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_auxiliares.tipo_solicitud", $tipo_solicitud);
-            }
-            */
-            if($estado_solicitante != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.estado_solicitante", $estado_solicitante);
-            }
-            if($mun_solicitante != ""){
-                $montoratificaciones = $montoratificaciones->where("seer_general.mun_solicitante", $mun_solicitante);
-            }
-            $montoratificaciones = $montoratificaciones->where("seer_auxiliares.tipo_solicitud", "Ratificación");
-            $montoratificaciones = $montoratificaciones->selectRaw('sum(seer_auxiliares.monto) as ratificaciones')
-            ->first();
-            
-            $audiencia  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"]);
-            $audiencia  = $audiencia->where("fecha","<=",$data["fecha_final"]);
-            $audiencia  = $audiencia->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
-            $audiencia  = $audiencia->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id");
-            if($sede != ""){
-                $audiencia = $audiencia->where("seer_general.delegacion", $sede);
-            }
-            if($conciliador != ""){
-                $audiencia = $audiencia->where("seer_general.conciliador_id", $conciliador);
-            }
-            /*
-            if($auxiliar != ""){
-                $audiencia = $audiencia->where("seer_general.user_id", $auxiliar);
-            }
-            */
             if($tipo_audiencia != ""){
-                $audiencia = $audiencia->where("seer_conciliadores.estatus_conciliacion", $tipo_audiencia);
+                $montoaudiencia = $montoaudiencia->where("seer_conciliadores.estatus_conciliacion", $tipo_audiencia);
             }
             if($sexo != ""){
-                $audiencia = $audiencia->where("seer_auxiliares.sexo", $sexo);
+                $montoaudiencia = $montoaudiencia->where("seer_auxiliares.sexo", $sexo);
             }
             if($estado_solicitante != ""){
-                $audiencia = $audiencia->where("seer_general.estado_solicitante", $estado_solicitante);
+                $montoaudiencia = $montoaudiencia->where("seer_general.estado_solicitante", $estado_solicitante);
             }
             if($mun_solicitante != ""){
-                $audiencia = $audiencia->where("seer_general.mun_solicitante", $mun_solicitante);
-            }
-            $audiencia  = $audiencia->where("seer_auxiliares.tipo_solicitud", "Solicitud");
-            $audiencia  = $audiencia->selectRaw('count(seer_general.id) as audiencia')
+                $montoaudiencia = $montoaudiencia->where("seer_general.mun_solicitante", $mun_solicitante);
+            }/*
+            if($NUE != ""){
+                $montoaudiencia = $montoaudiencia->where("seer_general.NUE", $NUE);
+            }*/
+            $montoaudiencia = $montoaudiencia->where("seer_auxiliares.tipo_solicitud", "Solicitud");
+            $montoaudiencia = $montoaudiencia->selectRaw('sum(seer_conciliadores.monto) as audiencia')
             ->first();
 
-                $montoaudiencia  = SeerPerGeneral::
-                where("fecha",">=",$data["fecha_inicial"])
-                ->where("fecha","<=",$data["fecha_final"])
-                ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
-                ->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id")
-                ->where("seer_auxiliares.tipo_solicitud", "Solicitud")
-                ->selectRaw('sum(seer_conciliadores.monto) as audiencia')
+            //COLECTIVAS
+                $colectivas = SeerColectivas::join("users","users.id","=","seer_colectivas.conciliador");
+                if($fecha_inicial != ""){
+                    $colectivas = $colectivas->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $colectivas = $colectivas->where("fecha","<=",$data["fecha_final"]);
+                }
+                if($conciliador != ""){
+                    $colectivas = $colectivas->where("seer_colectivas.conciliador", $conciliador);
+                }
+                if($estado_solicitante != ""){
+                    $colectivas = $colectivas->where("seer_colectivas.estado_solicitante", $estado_solicitante);
+                }/*
+                if($NUE != ""){
+                    $colectivas = $colectivas->where("seer_colectivas.NUE", $NUE);
+                }*/
+                $colectivas = $colectivas->selectRaw('count(seer_colectivas.id) as colectivas')
+                ->first();
+            //CONVENIOS
+                $convenios = SeerConvenios::join("users","users.id","=","seer_convenios.conciliador");
+                if($fecha_inicial != ""){
+                    $convenios = $convenios->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $convenios = $convenios->where("fecha","<=",$data["fecha_final"]);
+                }
+                if($conciliador != ""){
+                    $convenios = $convenios->where("seer_convenios.conciliador", $conciliador);
+                }
+                if($estado_solicitante != ""){
+                    $convenios = $convenios->where("seer_convenios.estado_solicitante", $estado_solicitante);
+                }/*
+                if($NUE != ""){
+                    $convenios = $convenios->where("seer_convenios.NUE", $NUE);
+                }*/
+                $convenios = $convenios->selectRaw('count(seer_convenios.id) as convenios')
                 ->first();
 
-                $colectivas = SeerColectivas::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("users","users.id","=","seer_colectivas.conciliador")
-                ->selectRaw('count(seer_colectivas.id) as colectivas')
-                ->first();
-
-                $convenios = SeerConvenios::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("users","users.id","=","seer_convenios.conciliador")
-                ->selectRaw('count(seer_convenios.id) as convenios')
-                ->first();
-
-                return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios'));
+            return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios'));
         }
-        
     }
 
     public function create_persona_s(){
