@@ -51,60 +51,84 @@
         </header>
 
         <main>
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+        
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#6A0F49"/>
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
-                                <h1>Solicitud en linea.</h1>
-                                <p>Puedes realizar tu solicitud en linea.</p>
-                                <p><a class="btn btn-lg btn-primary" href="https://michoacan.cencolab.mx/asesoria/seleccion" style="text-decoration: none; background-color: #DEC512;">
-                                    Generar Solicitud</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
-                                <h1>Registrar poder.</h1>
-                                <p>Inicia tu registro como apoderado.</p>
-                                <p><a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #DEC512;">
-                                    Generar Registro
-                                </a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#6A0F49"/></svg>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                            </div>
-                            <div class="carousel-caption text-start">
-                            <h1>Sí Conciliación.</h1>
-                            <p>Sistema integral de Conciliación.</p>
-                            <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
-                                Ingresar</a>
-                            </p>
-                        </div>
-                        </div>
-                    </div>
+                <div class="carousel-caption text-start">
+                    <h1>Solicitud en línea.</h1>
+                    <p>Puedes realizar tu solicitud en línea.</p>
+                    <p>
+                        <a class="btn btn-lg btn-primary" href="https://michoacan.cencolab.mx/asesoria/seleccion" style="text-decoration: none; background-color: #DEC512;">
+                            Generar Solicitud
+                        </a>
+                    </p>
                 </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#6A0F49"/>
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                </div>
+                <div class="carousel-caption text-start">
+                    <h1>Registrar poder.</h1>
+                    <p>Inicia tu registro como apoderado.</p>
+                    <p>
+                        <a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #DEC512;">
+                            Generar Registro
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#6A0F49"/>
+            </svg>
+            <div class="container">
+                <div class="carousel-caption text-end">
+                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                </div>
+                <div class="carousel-caption text-start">
+                    <h1>Sí Conciliación.</h1>
+                    <p>Sistema integral de Conciliación.</p>
+                    <p>
+                        <a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
+                            Ingresar
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
+
+            
                 <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
