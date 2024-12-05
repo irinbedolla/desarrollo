@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SeerColectivas extends Model
+class Registro extends Model
 {
     //use HasFactory;
-    protected $table = 'seer_colectivas';
+    protected $table = 'segundo_encuentro';
     protected $primaryKey = 'id';
-    protected $fillable = ['conciliador','fecha','NUE', 'solicitante', 'citado', 'juzgado', 'estado'];
+    protected $fillable = ['correo','nombre','estado','celular','genero','estatus'];
 
 }

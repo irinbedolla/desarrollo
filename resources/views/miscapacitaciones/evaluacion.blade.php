@@ -22,7 +22,7 @@
                             @endif
 
                             @if($estatus == "En curso" || $estatus == "En prueba")
-                                {!! Form::open(array('route'=>'miscapacitaciones.guardar_respuestas', 'method'=>'POST')) !!}
+                                {!! Form::open(array('route'=>'miscapacitaciones.guardar_respuestas', 'method'=>'POST','class' => 'needs-validation','novalidate')) !!}
                                     <input type="hidden" name="cap" value="{{$capacitacion->id}}">
                                     <input type="hidden" name="mod" value="{{$mod}}">
                                     <div class="row">
@@ -80,3 +80,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../../../public/js/estadistica/estadistica.js"></script>
+@endsection

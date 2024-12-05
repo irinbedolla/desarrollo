@@ -1,5 +1,6 @@
 
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
+    
     @auth
         @role('Super Usuario')
             <a class="nav-link" href="{{ route('usuarios') }}">
@@ -53,17 +54,6 @@
             </a>
         @endrole
     @endauth
-
-    @auth
-        @role('Auxiliar')
-        <a class="nav-link" href="{{ route('poderes') }}">
-            <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
-        </a>
-        <a class="nav-link" href="{{ route('misturnos') }}">
-            <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Mis turnos</span>
-        </a>   
-        @endrole
-    @endauth
     
     @auth
         @role('Capacitacion Admin')
@@ -79,25 +69,32 @@
     
     @auth
         @role('Conciliador')
-        <a class="nav-link" href="{{ route('poderes') }}">
+            <a class="nav-link" href="{{ route('poderes') }}">
                 <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
             </a>
-            <a class="nav-link" href="{{ route('miscapacitaciones') }}">
-                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="mis_capacitaciones()">Mis capacitaciones</span>
-            </a>
-            <a class="nav-link" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
-            </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>
         @endrole
     @endauth
     
+    @auth
+        @role('Auxiliar')
+            <a class="nav-link" href="{{ route('poderes') }}">
+                <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
+            </a>
+            <a class="nav-link" href="{{ route('misturnos') }}">
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Mis turnos</span>
+            </a>   
+            <a class="nav-link" href="{{ route('expedientes') }}">
+                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
+            </a>
+        @endrole
+    @endauth
 
     @auth
         @role('Notificador')
-        <a class="nav-link" href="{{ route('poderes') }}">
+            <a class="nav-link" href="{{ route('poderes') }}">
                 <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
             </a>
             <a class="nav-link" href="{{ route('miscapacitaciones') }}">
@@ -107,7 +104,7 @@
                 <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
             </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>
         @endrole
     @endauth
@@ -124,7 +121,7 @@
                 <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
             </a>
             <a class="nav-link" href="{{ route('seer') }}">
-                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEEER</span>
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>
         @endrole
     @endauth
@@ -145,6 +142,18 @@
             </a>
         @endrole
     @endauth
+
+    @auth
+        @role('Registro')
+            <a class="nav-link" href="{{ route('turnos') }}">
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Turnos</span>
+            </a>
+            <a class="nav-link" href="{{ route('registro') }}">
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="turnos()">Registro</span>
+            </a>
+        @endrole
+    @endauth
+
 </li>
 
 

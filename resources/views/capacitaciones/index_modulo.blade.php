@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
@@ -11,9 +11,9 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-curso')
-                                <a class="btn btn-warning" href="{{ route('capacitaciones.nuevo_modulo', $capacitacion->id) }}"> Agregar módulo</a>
+                                <a class="btn btn-warning" href="{{ route('capacitaciones.nuevo_modulo', $capacitacion->id) }}" onclick=nuevo_estadistica();> Agregar módulo</a>
                             @endcan
-                                <a class="btn btn-info" href="{{ route('capacitaciones') }}"> Regresar</a>
+                                <a class="btn btn-info" href="{{ route('capacitaciones') }}" onclick=nuevo_estadistica();> Regresar</a>
                             @can('ver-curso')
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
@@ -39,33 +39,33 @@
                                                     if($modulo->anexo1 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo1'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' class='btn btn-info' href='../../storage/app/documentos_modulo/$modulo->anexo1'>Ver</a></td>";
                                                     }
                                                     if($modulo->anexo2 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo2'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' class='btn btn-info' href='../../storage/app/documentos_modulo/$modulo->anexo2'>Ver</a></td>";
                                                     }
                                                     if($modulo->anexo3 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo3'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' class='btn btn-info' href='../../storage/app/documentos_modulo/$modulo->anexo3'>Ver</a></td>";
                                                     }
                                                     if($modulo->anexo4 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo4'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' class='btn btn-info' href='../../storage/app/documentos_modulo/$modulo->anexo4'>Ver</a></td>";
                                                     }
                                                     if($modulo->anexo5 == null){
                                                         echo "<td>S/A</td>";
                                                     }else{ 
-                                                        echo "<td><a target='_blank' href='../../storage/app/documentos_modulo/$modulo->anexo5'>PDF</a></td>";
+                                                        echo "<td><a target='_blank' class='btn btn-info' href='../../storage/app/documentos_modulo/$modulo->anexo5'>Ver</a></td>";
                                                     }
                                                     @endphp
                                                     <td>
-                                                        <a class="btn btn-success" href="{{ route('capacitaciones.editar_encuesta', ['id' => $capacitacion->id, 'mod' => $modulo->id_modulo] )}}">Encuesta</a>
-                                                        <a class="btn btn-info"    href="{{ route('capacitaciones.editar_modulo', $modulo->id)}}">Editar</a>
-                                                        <a class="btn btn-danger" href="{{ route('capacitaciones.borrar', ['id' => $capacitacion->id, 'mod' => $modulo->id_modulo]) }}"> Borrar</a>
+                                                        <a class="btn btn-success" href="{{ route('capacitaciones.editar_encuesta', ['id' => $capacitacion->id, 'mod' => $modulo->id_modulo] )}}" onclick=nuevo_estadistica();>Encuesta</a>
+                                                        <a class="btn btn-info"    href="{{ route('capacitaciones.editar_modulo', $modulo->id)}}" onclick=nuevo_estadistica();>Editar</a>
+                                                        <a class="btn btn-danger" href="{{ route('capacitaciones.borrar', ['id' => $capacitacion->id, 'mod' => $modulo->id_modulo]) }}" onclick=nuevo_estadistica();> Borrar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -85,3 +85,13 @@
     </section>
 @endsection
 
+
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../../public/js/estadistica/estadistica.js"></script>
+@endsection

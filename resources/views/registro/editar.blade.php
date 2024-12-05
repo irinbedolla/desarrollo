@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.app_editar')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Capacitaciones</h3>
+            <h3 class="page__heading">Editar registro</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Editar Capacitación</h3>
+                            <h3 class="text-center">Editar registro</h3>
                             
                             <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
                             @if ($errors->any())
@@ -26,43 +26,67 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::model($capacitacion, ['method' => 'PATCH', 'route' => ['actualizar_capacitacion', $capacitacion->id], 'class' => 'needs-validation','novalidate']) !!}
+                            {!! Form::model($registro, ['method' => 'PATCH', 'route' => ['registro.update', $registro->id], 'class' => 'needs-validation','novalidate']) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre</label>
-                                            {!! Form::text('nombre', $capacitacion->nombre, array('class'=>'form-control')) !!}
+                                            {!! Form::text('nombre', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El nombre es obligatorio.
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            {!! Form::email('correo', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El Email es obligatorio.
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Celular</label>
+                                            {!! Form::text('celular', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El Email es obligatorio.
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Estado</label>
+                                            {!! Form::text('estado', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El Email es obligatorio.
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Estatus</label>
+                                            <select name="genero" class="form-control">
+                                                <option value="Validado">Validado</option>
+                                                <option value="Pendiente">Pendiente</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                El estatus es obligatorio.
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="">N° Módulos</label>
-                                            {!! Form::number('modulos', $capacitacion->modulos, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Inicio de la capacitación</label>
-                                            {!! Form::date('inicio', $capacitacion->inicio, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Final de la capacitación</label>
-                                            {!! Form::date('fin', $capacitacion->fin, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-
-                                    
-
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #6A0F49">Guardar</button>
                                     </div>
                                     
                                 </div>
@@ -77,7 +101,6 @@
     </section>
 @endsection
 
-
 <div id="menu_carga" style ="display: none;">
     <div>.</div>
     <div class="loader"></div>
@@ -85,5 +108,5 @@
 
 
 @section('scripts')
-    <script src="../public/js/estadistica/estadistica.js"></script>
+    <script src="../../public/js/usuarios/usuarios.js"></script>
 @endsection

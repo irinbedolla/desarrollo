@@ -56,6 +56,16 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
+                                                    <label for="email">Actividad economica</label>
+                                                    <input type="text" class="form-control" name="actividad_economica"  oninput="this.value = this.value.toUpperCase()" required>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
                                                     <label for="password">Estado del solicitante</label>
                                                     <select id="estado_solicitante" class="form-control" name="estado_solicitante" required>
                                                         <option value="">Seleccione</option>
@@ -167,7 +177,7 @@
                                                         <option value="Derecho de preferencia">Derecho de preferencia</option>
                                                         <option value="Derecho de antiguedad">Derecho de antiguedad</option>
                                                         <option value="Derecho de ascesnso">Derecho de ascesnso</option>
-                                                        <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>
+                                                        <option value="Terminación voluntaria de relación laboral" selected>Terminación voluntaria de relación laboral</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         El motivo es obligatorio.

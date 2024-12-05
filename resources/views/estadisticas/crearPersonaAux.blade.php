@@ -46,6 +46,13 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
+                                                    <label for="confirm-password">Fecha de confirmación de la solicitud</label>
+                                                    <input type="date" class="form-control" name="fecha_confirmacion" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
                                                     <label for="email">Solicitante</label>
                                                     <input type="text" class="form-control" name="solicitante"  oninput="this.value = this.value.toUpperCase()" required>
                                                     <div class="invalid-feedback">

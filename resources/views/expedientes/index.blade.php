@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-body">
                         @if($rol == "Super Usuario" || $rol == 'Capacitacion Admin')
-                            <a class="btn btn-info" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>
+                            <a class="btn btn-warning" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>
                             <div class="table-responsive">
                                 <table class="table table-striped mt-2">
                                     <thead style="background-color: #4A001F;">
@@ -42,7 +42,7 @@
                             </div>
                         @else
                             @if($persona == "no existe")
-                                <a class="btn btn-info" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>                               
+                                <a class="btn btn-warning" href="{{ route('expedientes.edit', $id)}}">Registrar Expediente</a>                               
                             @endif
                             @if($persona != "no existe")
                                 <div class="table-responsive">
@@ -83,3 +83,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

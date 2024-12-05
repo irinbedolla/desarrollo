@@ -39,7 +39,7 @@
                                                 <label multiple for="name">Tipo de reporte</label>
                                                 <select  class="form-control" name="tipo_reporte" required>
                                                     <option value="">Seleccione</option>
-                                                    <option value="Cuantificaciones">Cuantificaciones</option>
+                                                    <option value="Cuantificaciones">Resumido</option>
                                                     <option value="Detallado">Detallado</option>
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -51,7 +51,7 @@
                                         <div class="col-xs-12 col-sm-6 col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Fecha Inicial</label>
-                                                <input type="date" class="form-control" name="fecha_inicial" required>
+                                                <input type="date" class="form-control" name="fecha_inicial" >
                                                 <div class="invalid-feedback">
                                                     La fecha inicial es obligatorio.
                                                 </div>
@@ -61,7 +61,7 @@
                                         <div class="col-xs-12 col-sm-6 col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Fecha Final</label>
-                                                <input type="date" class="form-control" name="fecha_final" required>
+                                                <input type="date" class="form-control" name="fecha_final" >
                                                 <div class="invalid-feedback">
                                                     La fecha final es obligatorio.
                                                 </div>
@@ -78,7 +78,7 @@
                                             <div class="form-group">
                                                 <label multiple for="name">Auxiliar</label>
                                                 <select class="form-control" name="auxiliar">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     @foreach($usuariosauxiliares as $user)
                                                         <option value="{{$user['id']}}">{{$user['name']}}</option>
                                                     @endforeach
@@ -91,7 +91,7 @@
                                             <div class="form-group">
                                                 <label for="name">Tipo solicitud</label>
                                                 <select  class="form-control" name="tipo_solicitud">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Solictudes">Solictudes</option>
                                                     <option value="Ratificaciones">Ratificaciones</option>
                                                 </select>
@@ -102,7 +102,7 @@
                                             <div class="form-group">
                                                 <label for="name">Tipo de persona</label>
                                                 <select  class="form-control" name="tipo_persona">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Solictudes">Fisica</option>
                                                     <option value="Ratificaciones">Moral</option>
                                                 </select>
@@ -113,7 +113,7 @@
                                             <div class="form-group">
                                                 <label for="name">Motivo</label>
                                                 <select  class="form-control" name="motivo">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Despido">Despido</option>
                                                     <option value="Pago de prestaciones">Pago de prestaciones</option>
                                                     <option value="Recision de la relación laboral">Recision de la relación laboral</option>
@@ -129,7 +129,7 @@
                                             <div class="form-group">
                                                 <label for="name">Estatus</label>
                                                 <select  class="form-control" name="estatus">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Pendiente">Pendiente</option>
                                                     <option value="Parcial">Parcial</option>
                                                     <option value="Cumplido">Cumplido</option>
@@ -141,7 +141,7 @@
                                             <div class="form-group">
                                                 <label for="name">Notificación</label>
                                                 <select  class="form-control" name="centro">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Centro">Centro</option>
                                                     <option value="Trabajador">Trabajador</option>
                                                     <option value="Ambos">Ambos</option>
@@ -159,7 +159,7 @@
                                             <div class="form-group">
                                                 <label for="name">Conciliador</label>
                                                 <select  class="form-control" name="conciliador">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     @foreach($usuariosconciliador as $user)
                                                         <option value="{{$user['id']}}">{{$user['name']}}</option>
                                                     @endforeach
@@ -171,7 +171,7 @@
                                             <div class="form-group">
                                                 <label multiple for="name">Tipo estatus</label>
                                                 <select  class="form-control" name="tipo_audiencia">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Conciliacion">Conciliacion</option>
                                                     <option value="No conciliacion">No conciliacion</option>
                                                     <option value="Archivado">Archivado</option>
@@ -186,7 +186,7 @@
                                             <div class="form-group">
                                                 <label multiple for="name">Tipo de audiencia</label>
                                                 <select  class="form-control" name="tipo_audiencia">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="Presencial">Presencial</option>
                                                     <option value="Linea">Linea</option>
                                                 </select>
@@ -203,7 +203,7 @@
                                             <div class="form-group">
                                                 <label for="name">Sede</label>
                                                 <select class="form-control" name="sede">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     @foreach($estadisticas as $aKey => $aSport)
                                                         <option value="{{$aSport}}">{{$aSport}}</option>
                                                     @endforeach
@@ -213,9 +213,16 @@
 
                                         <div class="col-xs-12 col-sm-6 col-md-4">
                                             <div class="form-group">
-                                                <label multiple for="name">Sexo</label>
+                                                <label for="name">Número de expediente</label>
+                                                <input type="text" name="nuc" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label multiple for="name">Sexo del solicitante</label>
                                                 <select  class="form-control" name="sexo">
-                                                    <option value="">Seleccione</option>
+                                                    <option value="">Todos</option>
                                                     <option value="H">Hombres</option>
                                                     <option value="M">Mujeres</option>
                                                 </select>
@@ -224,31 +231,53 @@
 
                                         
 
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Estado del solicitante</label>
-                                                    <select class="form-control" name="estado_solicitante">
-                                                        <option value="">Seleccione</option>
-                                                        @foreach($estados as $est)
-                                                            <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="password">Estado del solicitante</label>
+                                                <select class="form-control" name="estado_solicitante">
+                                                    <option value="">Todos</option>
+                                                    @foreach($estados as $est)
+                                                        <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="password">Municipio del solicitante</label>
+                                                <select name="mun_solicitante" class="form-control">
+                                                    <option value="">Todos</option>
+                                                    @foreach($municipios as $mun)
+                                                            <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
                                                         @endforeach
-                                                    </select>
-                                                </div>
+                                                </select>
                                             </div>
-                                            
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Municipio del solicitante</label>
-                                                        <select name="mun_solicitante" class="form-control">
-                                                        <option value="">Seleccione</option>
-                                                        @foreach($municipios as $mun)
-                                                                <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                </div>
-                                            </div>
+                                        </div>
 
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="password">Estado del citado</label>
+                                                <select class="form-control" name="estado_citado">
+                                                    <option value="">Todos</option>
+                                                    @foreach($estados as $est)
+                                                        <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                             
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="password">Municipio del citado</label>
+                                                <select name="mun_citado" class="form-control">
+                                                    <option value="">Todos</option>
+                                                    @foreach($municipios as $mun)
+                                                            <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+                                                        @endforeach
+                                                </select>
+                                            </div>
+                                        </div>    
 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">General</button>

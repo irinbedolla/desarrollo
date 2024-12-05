@@ -261,6 +261,7 @@ class MiscapacitacionController extends Controller
         })
         ->select('capacitaciones_modulo.id_modulo','capacitaciones_modulo.nombre', 'capacitaciones_persona.estatus', 'capacitaciones_persona.calificacion')
         ->where('capacitaciones_persona.persona', $persona->id)
+        ->where('capacitaciones_persona.capacitacion', $id)
         ->get();
 
         return view('miscapacitaciones.modulos', compact('capacitacion','modulos'));
@@ -312,7 +313,6 @@ class MiscapacitacionController extends Controller
             }
             $numero_respuesta++;
         }
-
         $calif = ($calificacion / $numero_respuesta) * 100;
 
         $persona_update = DB::table('capacitaciones_persona')
@@ -362,7 +362,7 @@ class MiscapacitacionController extends Controller
         ->where('capacitaciones_persona.persona', $persona->id)
         ->get();
     
-        return redirect()->route('miscapacitaciones')->with('success', 'Datos actualizados correctamente.');
+        return redirect()->route('miscapacitaciones')->with('success', 'Tu calificación es '.$calif.'.');
         //return view('miscapacitaciones.modulos', compact('capacitacion','modulos'));
     }
 }

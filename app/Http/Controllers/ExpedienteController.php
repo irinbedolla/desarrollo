@@ -51,22 +51,18 @@ class ExpedienteController extends Controller
         return view('expedientes.index', compact('personas','persona','rol'));
     }
 
-    
     public function edit($id)
     {
-        //$id = auth()->user()->id;
         $usuario = User::find($id);
         $persona = Persona::where('id_usuario', $id)->first();
         return view('expedientes.crear', compact('usuario','persona'));
     }
-
 
     public function store(Request $request)
     {
         $id = auth()->user()->id;
         $data = $request->all();
         $data_doc = [];
-        $data_doc['id_usuario'] = $id;
 
         //Validar documentacion
         request()->validate([
@@ -75,20 +71,6 @@ class ExpedienteController extends Controller
             'cargo'                     => 'required',
             'area_adcripcion'           => 'required',
             'telefono'                  => 'required|digits:10',
-            'tilulo_universitario'      => 'required',
-            'documentoTitulo'           => 'nullable',
-            'estudio_maximo'            => 'required',
-            'documentoEstudios'         => 'nullable',
-            'especialidades'            => 'nullable',
-            'documentoEspecialidades'   => 'nullable',
-            'diplomados'                => 'nullable',
-            'documentoDiplomado'        => 'nullable',
-            'seminarios'                => 'nullable',
-            'documentoSeminario'        => 'nullable',
-            'cursos'                    => 'nullable',
-            'documentoCursos'           => 'nullable',
-            'acciones_desarrollo'       => 'nullable',
-            'documentoDesarrollo'       => 'nullable',
         ], $data);
         
         $data['id_usuario'] = $id;
@@ -98,154 +80,53 @@ class ExpedienteController extends Controller
 
         //Si no existe se va registro
         if($persona == null){
-            //documento de titulo
-            $nombretitulo = $data["nombre"]."_Titulo.pdf";
-            $path = Storage::putFileAs(
-                'documentos_personal', $request->file('documentoTitulo'), $nombretitulo
-            );
-            $data_doc['titulo'] = $nombretitulo;
-
-
-            //documento de Estudios
-            $nombreestudios = $data["nombre"]."_Estudios.pdf";
-            $path = Storage::putFileAs(
-                'documentos_personal', $request->file('documentoEstudios'), $nombreestudios
-            );
-            $data_doc['nivel_estudios'] = $nombreestudios;
-
-
-
-            //documento de Especialidades si lo selecciona
-            if(isset($data["documentoEspecialidades"])){
-                $nombreespecialidades = $data["nombre"]."_Especialidades.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoEspecialidades'), $nombreespecialidades
-                );
-                $data_doc['especialidad'] = $nombreespecialidades;
-            }
-
-
-            //documento de diplomado
-            if(isset($data["documentoDiplomado"])){
-                $nombrediplomado = $data["nombre"]."_Diplomados.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoDiplomado'), $nombrediplomado
-                );
-                $data_doc['diplomado'] = $nombrediplomado;
-            }
-
-
-            if(isset($data["documentoSeminario"])){
-                $nombreseminario = $data["nombre"]."_Diplomados.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoSeminario'), $nombreseminario
-                );
-                $data_doc['seminario'] = $nombreseminario;
-            }
-
-
-            if(isset($data["documentoCursos"])){
-                $nombrecursos = $data["nombre"]."_Cursos.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoCursos'), $nombrecursos
-                );
-                $data_doc['cursos'] = $nombrecursos;
-            }
-
-
-            if(isset($data["documentoDesarrollo"])){
-                $nombredesarrollo = $data["nombre"]."_Desarrollo.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoDesarrollo'), $nombredesarrollo
-                );
-                $data_doc['desarrollo'] = $nombredesarrollo;
-            }
-
-            //dd($data);
             Persona::create($data);
-            Documentos::create($data_doc);  
             return redirect()->route('expedientes')->with('success', 'Datos actualizados correctamente.'); 
         }
         //Si ya existe se va actualizar
         else{
-            //documento de titulo
-            if(isset($data["documentoTitulo"])){
-                $nombretitulo = $data["nombre"]."_Titulo.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoTitulo'), $nombretitulo
-                );
-                $data_doc['titulo'] = $nombretitulo;
-            }
-
-
-            //documento de Estudios
-            if(isset($data["documentoEstudios"])){
-                $nombreestudios = $data["nombre"]."_Estudios.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoEstudios'), $nombreestudios
-                );
-                $data_doc['nivel_estudios'] = $nombreestudios;
-            }
-
-
-            //documento de Especialidades si lo selecciona
-            if(isset($data["documentoEspecialidades"])){
-                $nombreespecialidades = $data["nombre"]."_Especialidades.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoEspecialidades'), $nombreespecialidades
-                );
-                $data_doc['especialidad'] = $nombreespecialidades;
-            }
-
-
-            //documento de diplomado
-            if(isset($data["documentoDiplomado"])){
-                $nombrediplomado = $data["nombre"]."_Diplomados.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoDiplomado'), $nombrediplomado
-                );
-                $data_doc['diplomado'] = $nombrediplomado;
-            }
-
-
-            if(isset($data["documentoSeminario"])){
-                $nombreseminario = $data["nombre"]."_Diplomados.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoSeminario'), $nombreseminario
-                );
-                $data_doc['seminario'] = $nombreseminario;
-            }
-
-
-            if(isset($data["documentoCursos"])){
-                $nombrecursos = $data["nombre"]."_Cursos.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoCursos'), $nombrecursos
-                );
-                $data_doc['cursos'] = $nombrecursos;
-            }
-
-
-            if(isset($data["documentoDesarrollo"])){
-                $nombredesarrollo = $data["nombre"]."_Desarrollo.pdf";
-                $path = Storage::putFileAs(
-                    'documentos_personal', $request->file('documentoDesarrollo'), $nombredesarrollo
-                );
-                $data_doc['desarrollo'] = $nombredesarrollo;
-            }
-
-
             $capacitacion = Persona::where('id_usuario', $id)->first();
             $capacitacion->update($data);
-
-            $documentos = Documentos::where('id_usuario', $id)->first();
-            $documentos->update($data_doc);  
             return redirect()->route('expedientes')->with('success', 'Datos actualizados correctamente.'); 
         }
     }
 
     public function personas_documentos($id){
         $documentos = Documentos::where('id_usuario', $id)->get();
-        return view('expedientes.documentos', compact('documentos'));
+        return view('expedientes.documentos', compact('documentos','id'));
+    }
+
+    public function documento($id){
+        $usuario = User::find($id);
+        $persona = Persona::where('id_usuario', $id)->first();
+        return view('expedientes.subir', compact('usuario','persona','id'));
+    }
+
+    public function store_documento(Request $request){
+        $data = $request->all();
+        $documentos = Documentos::where('id_usuario', $data["id"])->get();
+        
+        if(isset($data["documentoTitulo"])){
+            $nombrediplomado = $data["documentoTitulo"]->getClientOriginalName();
+            $path = Storage::putFileAs(
+                'documentos_personal/'.$data["id"], $request->file('documentoTitulo'), $nombrediplomado
+            );
+
+            $data_doc['id_usuario'] = $data["id"];
+            $data_doc['nombre']     = $data["tilulo_universitario"];
+            $data_doc['documento']  = $nombrediplomado;
+        }
+
+        Documentos::create($data_doc);
+        return redirect()->route('expedientes.documentos', $data["id"]);
+    }
+
+    public function destroy($id)
+    {
+        $documento = Documentos::find($id);
+        unlink(storage_path('app/documentos_personal/'.$documento["id_usuario"].'/'.$documento->documento));
+        $documento = Documentos::find($id)->delete();
+
+        return redirect()->route('expedientes.documentos', $id);
     }
 }

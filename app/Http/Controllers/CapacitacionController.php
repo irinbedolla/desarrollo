@@ -170,7 +170,7 @@ class CapacitacionController extends Controller
 
         //Anexo 4
         if(isset($data["anexo4"])){
-            $nombreAnexo = $data["nombre"]."_Anexo4.pdf";
+            $nombreAnexo = $data["nombre"]."_Anexo4.mp4";
             $path = Storage::putFileAs(
                 'documentos_modulo', $request->file('anexo4'), $nombreAnexo
             );
@@ -179,7 +179,7 @@ class CapacitacionController extends Controller
 
         //Anexo 5
         if(isset($data["anexo5"])){
-            $nombreAnexo = $data["nombre"]."_Anexo5.pdf";
+            $nombreAnexo = $data["nombre"]."_Anexo5.mp4";
             $path = Storage::putFileAs(
                 'documentos_modulo', $request->file('anexo5'), $nombreAnexo
             );
@@ -294,7 +294,7 @@ class CapacitacionController extends Controller
 
         //Anexo 4
         if(isset($data["anexo4"])){
-            $nombreAnexo4 = $data["cap"]."-".$data["id"]."-".$data["nombre"]."_Anexo4.pdf";
+            $nombreAnexo4 = $data["cap"]."-".$data["id"]."-".$data["nombre"]."_Anexo4.mp4";
             $path = Storage::putFileAs(
                 'documentos_modulo', $request->file('anexo4'), $nombreAnexo4
             );
@@ -303,7 +303,7 @@ class CapacitacionController extends Controller
 
         //Anexo 5
         if(isset($data["anexo5"])){
-            $nombreAnexo5 = $data["cap"]."-".$data["id"]."-".$data["nombre"]."_Anexo5.pdf";
+            $nombreAnexo5 = $data["cap"]."-".$data["id"]."-".$data["nombre"]."_Anexo5.mp4";
             $path = Storage::putFileAs(
                 'documentos_modulo', $request->file('anexo5'), $nombreAnexo5
             );
@@ -321,7 +321,8 @@ class CapacitacionController extends Controller
         $capacitacion = Capacitacion::find($data["cap"]);
         $modulos = Modulo::where('id_cap', $data["cap"])->get();
 
-        return view('capacitaciones.index_modulo', compact('capacitacion','modulos'));
+        //return view('capacitaciones.index_modulo', compact('capacitacion','modulos'));
+        return redirect()->route('capacitaciones');
     }
 
     public function editar_encuesta($id,$mod){
@@ -360,7 +361,7 @@ class CapacitacionController extends Controller
         $capacitacion = $id;
         $personas_aceptadas = DB::table('persona')
         ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
-        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion', 'persona.tilulo_universitario', 'persona.estudio_maximo', 'persona.diplomados', 'persona.seminarios', 'persona.cursos', 'persona.acciones_desarrollo')
+        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $id)
         ->groupBy('capacitaciones_persona.persona')
         ->paginate(10);
@@ -370,10 +371,8 @@ class CapacitacionController extends Controller
     }
 
     public function persona_incluir($cap, $per){
-        $capacitacion = $cap;
-
         $modulos = Modulo::where('id_cap', $cap)->get();   
-        
+
         foreach($modulos as $mod){
             $data = [
                 'capacitacion' => $cap,
@@ -381,12 +380,12 @@ class CapacitacionController extends Controller
                 'modulo'       => $mod->id_modulo,
                 'estatus'      => 'En curso',
             ];
-            $agregar = CapacitacionPersona::create($data);
+            CapacitacionPersona::create($data);
         }
 
         $personas_aceptadas = DB::table('persona')
         ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
-        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion', 'persona.tilulo_universitario', 'persona.estudio_maximo', 'persona.diplomados', 'persona.seminarios', 'persona.cursos', 'persona.acciones_desarrollo')
+        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $cap)
         ->groupBy('persona.id')->get();
         //$personas = Persona::where('estatus', 'Aceptado')->paginate(10); 
@@ -400,7 +399,7 @@ class CapacitacionController extends Controller
 
         $personas_aceptadas = DB::table('persona')
         ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
-        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion', 'persona.tilulo_universitario', 'persona.estudio_maximo', 'persona.diplomados', 'persona.seminarios', 'persona.cursos', 'persona.acciones_desarrollo')
+        ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $cap)
         ->groupBy('capacitaciones_persona.persona')
         ->paginate(10);

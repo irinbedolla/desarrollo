@@ -31,7 +31,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'capacitaciones.guardar_encuesta_editar', 'method'=>'POST')) !!}
+                            {!! Form::open(array('route'=>'capacitaciones.guardar_encuesta_editar', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                 <input type="hidden" name="cot" value="<?=$modulo->id_cap?>">
                                 <input type="hidden" name="mod" value="<?=$modulo->id_modulo?>">
                                 @foreach($encuestas as $encuesta)

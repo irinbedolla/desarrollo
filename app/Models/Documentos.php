@@ -10,6 +10,6 @@ class Documentos extends Model
     //use HasFactory;
     protected $table = 'documentacion_persona';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_usuario','nivel_estudios', 'titulo', 'especialidad', 'diplomado', 'seminario', 'cursos', 'desarrollo'];
+    protected $fillable = ['id_usuario','nombre', 'documento'];
 
 }

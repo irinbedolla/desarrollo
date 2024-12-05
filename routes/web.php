@@ -13,6 +13,7 @@ use App\Http\Controllers\MiscapacitacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\SeerController;
 use App\Http\Controllers\TurnosController;
+use App\Http\Controllers\RegistroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,8 +107,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::patch('/capacitaciones/update/{post}', [CapacitacionController::class, 'update'])->name('capacitaciones.update');
         Route::delete('/capacitaciones/destroy/{id}', [CapacitacionController::class, 'destroy'])->name('capacitaciones.destroy');
 
-
-
         Route::get('/capacitaciones/personas',                      [CapacitacionController::class, 'personas'])->name('capacitaciones.personas');
         Route::get('/capacitaciones/personas_documentos/{id}',      [CapacitacionController::class, 'personas_documentos'])->name('personas.documentos');
         Route::get('/capacitaciones/modulos/{id}',                  [CapacitacionController::class, 'modulos'])->name('capacitaciones.modulos');
@@ -139,12 +138,15 @@ Route::group(['middleware' => ['auth']], function(){
     //Fin mis capacitaciones
     
     //Expedientes
-        Route::get('/expedientes/index',                         [ExpedienteController::class, 'index'])->name('expedientes.index');
-        Route::get('/expedientes/index',                         [ExpedienteController::class, 'index'])->name('expedientes');
-        Route::get('/expedientes/edit/{id}',                     [ExpedienteController::class, 'edit'])->name('expedientes.edit');
-        Route::get('/expedientes/create',                        [ExpedienteController::class, 'create'])->name('expedientes.create');
-        Route::post('/expedientes/store',                        [ExpedienteController::class, 'store'])->name('expedientes.store');
-        Route::get('/expedientes/documentos/{id}',               [ExpedienteController::class, 'personas_documentos'])->name('expedientes.documentos');
+        Route::get('/expedientes/index',                        [ExpedienteController::class, 'index'])->name('expedientes.index');
+        Route::get('/expedientes/index',                        [ExpedienteController::class, 'index'])->name('expedientes');
+        Route::get('/expedientes/edit/{id}',                    [ExpedienteController::class, 'edit'])->name('expedientes.edit');
+        Route::get('/expedientes/doc/{id}',                     [ExpedienteController::class, 'documento'])->name('expedientes.documento');
+        Route::get('/expedientes/create',                       [ExpedienteController::class, 'create'])->name('expedientes.create');
+        Route::post('/expedientes/store',                       [ExpedienteController::class, 'store'])->name('expedientes.store');
+        Route::get('/expedientes/documentos/{id}',              [ExpedienteController::class, 'personas_documentos'])->name('expedientes.documentos');
+        Route::post('/expedientes/doc',                         [ExpedienteController::class, 'store_documento'])->name('subir_doc');
+        Route::delete('/expedientes/destroy/{id}',              [ExpedienteController::class, 'destroy'])->name('expedientes.delete');
     //Fin de Expedientes
     
     //Seer
@@ -168,13 +170,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/seer/colectiva',                   [SeerController::class, 'crear_colectiva'])->name('colectivas_agregar');
         Route::post('/seer/colectivaa',                 [SeerController::class, 'store_colectiva'])->name('seer.crear_colectivas');
         
-
-        
         Route::post('/seer/store_auxiliar',             [SeerController::class, 'store_auxiliares'])->name('seer.store_auxiliar');
         Route::post('/seer/store_notificador',          [SeerController::class, 'store_notificador'])->name('seer.store_notificador');
         Route::post('/seer/store_conciliador',          [SeerController::class, 'store_conciliadores'])->name('seer.store_conciliador');
         Route::post('/seer/store_delegado',             [SeerController::class, 'store_delegado'])->name('seer.store_delegado');
-
         Route::get('/seer/estadistica',                 [SeerController::class, 'estadistica'])->name('seer.estadistica');
         Route::post('/seer/mostrar',                    [SeerController::class, 'mostrar_reporte'])->name('seer.mostar');
         Route::post('/seer/persona',                    [SeerController::class, 'auxiliar_persona'])->name('seer.auxiliar_persona');
@@ -193,8 +192,16 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/turnos',          [TurnosController::class, 'turnos'])->name('turnos.listado');
         Route::get('/turnos/estadistica',     [TurnosController::class, 'estadistica'])->name('turno_estadistica');
         Route::post('/turnos/mostrar',        [TurnosController::class, 'mostrar'])->name('turnos_mostrar');
+        Route::get('/turnos/cambiar/{id}',    [TurnosController::class, 'cambiar'])->name('cambiar');
     //Fin de  turnos
 
+    //Segundo_encuentro
+        Route::get('/registro/index',           [RegistroController::class, 'index'])->name('registro');
+        Route::get('/registro/edit/{id}',       [RegistroController::class, 'edit'])->name('registro.edit');
+        Route::patch('/registro/update/{post}', [RegistroController::class, 'update'])->name('registro.update');
+        Route::get('/registro/create',          [RegistroController::class, 'create'])->name('registro.create');
+        Route::post('/registro/store',          [RegistroController::class, 'store'])->name('registro.store');
+    //FIN Segundo_encuentro
 });
 
 

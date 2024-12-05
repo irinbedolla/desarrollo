@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Poder</h3>
+            <h3 class="page__heading">Persona</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -29,7 +29,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::model($persona, ['method' => 'PATCH', 'route' => ['capacitaciones.update', $persona->id_usuario]] ) !!}
+                            {!! Form::model($persona, ['method' => 'PATCH', 'route' => ['capacitaciones.update', $persona->id_usuario], 'class' => 'needs-validation','novalidate'] ) !!}
                                 <input type="hidden" name="id" value="<?=$persona->id_usuario?>">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -59,3 +59,13 @@
     </section>
 @endsection
 
+
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

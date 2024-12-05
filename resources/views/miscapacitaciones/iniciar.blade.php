@@ -39,7 +39,7 @@
                             <div class="row">.</div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Documentación Anexa.</label><br>
+                                    <label for="name">Documentación del módulo.</label><br>
                                     @php
                                         if($modulos->anexo1 == null){
                                             echo "";
@@ -81,3 +81,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../../../public/js/estadistica/estadistica.js"></script>
+@endsection

@@ -40,7 +40,7 @@
                                                         {{$capacitacion->calificacion}}
                                                     </td>
                                                     <td> 
-                                                        <a class="btn btn-info" href="{{ route('miscapacitaciones.edit', $capacitacion->id)}}">Iniciar</a>
+                                                        <a class="btn btn-info" href="{{ route('miscapacitaciones.edit', $capacitacion->id)}}" onclick=nuevo_estadistica();>Iniciar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -59,3 +59,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

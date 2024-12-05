@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-info" href="{{ route('capacitaciones') }}"> Regresar</a><br>
+                            <a class="btn btn-warning" href="{{ route('capacitaciones') }}" onclick=nuevo_estadistica();> Regresar</a><br>
                             @can('aceptar-persona')
                                 <div class="table-responsive">
                                     <h3>Aceptados</h3>
@@ -20,8 +20,6 @@
                                             <th style="color: #fff;">Nombre</th>
                                             <th style="color: #fff;">Cargo</th>
                                             <th style="color: #fff;">Área</th>
-                                            <th style="color: #fff;">Título</th>
-                                            <th style="color: #fff;">Estudio</th>
                                             <th style="color: #fff;">Acciones</th>
                                         </thead>
                                         <tbody>
@@ -30,10 +28,8 @@
                                                     <td>{{$persona->nombre}}</td>
                                                     <td>{{$persona->cargo}}</td>
                                                     <td>{{$persona->area_adcripcion}}</td>
-                                                    <td>{{$persona->tilulo_universitario}}</td>
-                                                    <td>{{$persona->estudio_maximo}}</td>
                                                     <td>
-                                                        <a class="btn btn-success" href="{{ route('capacitaciones.quitar_persona', ['cap' => $capacitacion, 'per' => $persona->id] )}}">Quitar</a>
+                                                        <a class="btn btn-success" href="{{ route('capacitaciones.quitar_persona', ['cap' => $capacitacion, 'per' => $persona->id] )}}" onclick=nuevo_estadistica();>Quitar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -48,8 +44,6 @@
                                             <th style="color: #fff;">Nombre</th>
                                             <th style="color: #fff;">Cargo</th>
                                             <th style="color: #fff;">Área</th>
-                                            <th style="color: #fff;">Título</th>
-                                            <th style="color: #fff;">Estudio</th>
                                             <th style="color: #fff;">Acciones</th>
                                         </thead>
                                         <tbody>
@@ -58,10 +52,8 @@
                                                     <td>{{$persona->nombre}}</td>
                                                     <td>{{$persona->cargo}}</td>
                                                     <td>{{$persona->area_adcripcion}}</td>
-                                                    <td>{{$persona->tilulo_universitario}}</td>
-                                                    <td>{{$persona->estudio_maximo}}</td>
                                                     <td>
-                                                        <a class="btn btn-success" href="{{ route('capacitaciones.agregar_persona', ['cap' => $capacitacion, 'per' => $persona->id] )}}">Agregar</a>
+                                                        <a class="btn btn-success" href="{{ route('capacitaciones.agregar_persona', ['cap' => $capacitacion, 'per' => $persona->id] )}}" onclick=nuevo_estadistica();>Agregar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -81,3 +73,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../../public/js/estadistica/estadistica.js"></script>
+@endsection

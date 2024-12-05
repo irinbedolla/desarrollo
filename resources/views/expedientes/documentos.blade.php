@@ -1,5 +1,4 @@
 @extends('layouts.app_editar')
-
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -11,50 +10,29 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('expedientes') }}"> Regresar</a>
+                            <a class="btn btn-info" href="{{ route('expedientes.documento', $id) }}" onclick="nuevo_estadistica()";> Subir</a>
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
-                                            <th style="color: #fff;">Titulo</th>
-                                            <th style="color: #fff;">Nivel Estudios</th>
-                                            <th style="color: #fff;">Especialidades</th>
-                                            <th style="color: #fff;">Diplomados</th>
-                                            <th style="color: #fff;">Seminario</th>
-                                            <th style="color: #fff;">Cursos</th>
-                                            <th style="color: #fff;">Desarrollo</th>
+                                            <th style="color: #fff;">Nombre del documento</th>
+                                            <th style="color: #fff;">Documento</th>
+                                            <th style="color: #fff;">Ver</th>
+                                            <th style="color: #fff;">Borrar</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                @foreach($documentos as $doc)
-                                                    <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->titulo}}">PDF</a></td>
-                                                    <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->nivel_estudios}}">PDF</a></td>
-                                                    @if($doc->especialidad == null)
-                                                        <td>S/E</td>
-                                                    @else 
-                                                        <td><a target="_blank" href="../../storage/app/documentos_personal/{{$doc->especialidad}}">PDF</a></td>
-                                                    @endif
-                                                    @if($doc->diplomado == null)
-                                                        <td>S/D</td>
-                                                    @else 
-                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->diplomado}}'>PDF</a></td>
-                                                    @endif
-                                                    @if($doc->seminario == null)
-                                                        <td>S/S</td>
-                                                    @else 
-                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->seminario}}'>PDF</a></td>
-                                                    @endif
-                                                    @if($doc->cursos == null)
-                                                        <td>S/C</td>
-                                                    @else
-                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->cursos}}'>PDF</a></td>
-                                                    @endif
-                                                    @if($doc->desarrollo == null)
-                                                        <td>S/D</td>
-                                                    @else 
-                                                        <td><a target='_blank' href='../../storage/app/documentos_personal/{{$doc->desarrollo}}'>PDF</a></td>
-                                                    @endif
-                                                @endforeach
-                                            </tr>
+                                            @foreach($documentos as $doc)
+                                                <tr>
+                                                    <td>{{ $doc->nombre }}</td>
+                                                    <td>{{ $doc->documento }}</td>
+                                                    <td><a target="_blank" class="btn btn-info" href="../../storage/app/documentos_personal/{{$doc->id_usuario}}/{{$doc->documento}}">PDF</a></td>
+                                                    <td>
+                                                    {!! Form::open(['method'=>'DELETE', 'route'=> ['expedientes.delete', $doc->id], 'style'=>'display:inline']) !!}
+                                                        {!! Form::submit('Borrar', ['class'=> 'btn btn-danger', 'onclick' => 'nuevo_estadistica()']) !!}
+                                                    {!! Form::close() !!}
+                                                    </td>
+                                                </tr>
+                                            @endforeach    
                                         </tbody>
                                     </table>
                                 </div>
@@ -69,3 +47,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../../public/js/estadistica/estadistica.js"></script>
+@endsection

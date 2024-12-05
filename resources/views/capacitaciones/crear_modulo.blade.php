@@ -31,7 +31,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'capacitaciones.crear_modulo', 'method'=>'POST', 'files' => true)) !!}
+                            {!! Form::open(array('route'=>'capacitaciones.crear_modulo', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                 <input type="hidden" name="cap" value="<?=$capacitacion->id?>">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -75,13 +75,13 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Documento Anexo</label><br>
-                                            {!! Form::file('anexo4', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                            {!! Form::file('anexo4', ['class' => 'form-control-file', 'accept' => '.mp4']) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Documento Anexo</label><br>
-                                            {!! Form::file('anexo5', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                            {!! Form::file('anexo5', ['class' => 'form-control-file', 'accept' => '.mp4']) !!}
                                         </div>
                                     </div>
                                 </div>      
@@ -108,7 +108,12 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/personas/crear.js"></script>
+    <div id="crear_poder" style ="display: none;">
+        <div>.</div>
+        <div class="loader"></div>
+    </div>
+
+    <script src="../../js/personas/crear.js"></script>
     <script>
          function agregar_pregunta(){
             var contador = $('.obra-social').length + 1;
@@ -151,4 +156,8 @@
             $('#contenedor').append(bloque);
         }
     </script>
+
+    <script src="../../public/js/poderes/general.js"></script>
 @endsection
+
+

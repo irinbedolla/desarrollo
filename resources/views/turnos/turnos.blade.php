@@ -26,6 +26,7 @@
                                             <th style="color: #fff;">Tipo</th>
                                             <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Hora</th>
+                                            <th style="color: #fff;">Acciones</th>
                                         </thead>
                                         <tbody>
                                             @foreach($turnos as $turno)
@@ -40,6 +41,8 @@
                                                     <td>{{$turno->tipo}}</td>
                                                     <td>{{$turno->estatus}}</td>
                                                     <td>{{$turno->fecha}}:{{$turno->hora}}</td>
+                                                    <td><a class="btn btn-info" href="{{ route('cambiar',$turno->id) }}" onclick=disponibles();>Cambiar</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

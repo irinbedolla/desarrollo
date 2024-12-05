@@ -31,7 +31,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'capacitaciones.editar_modulo_guardar', 'method'=>'POST', 'files' => true)) !!}
+                            {!! Form::open(array('route'=>'capacitaciones.editar_modulo_guardar', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                 <input type="hidden" name="cap" value="<?=$modulo->id_cap?>">
                                 <input type="hidden" name="id" value="<?=$modulo->id?>">
                                 <div class="row">
@@ -66,6 +66,13 @@
     </section>
 @endsection
 
+
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
 @section('scripts')
-    <script src="/js/personas/crear.js"></script>
+    <script src="../../public/js/estadistica/estadistica.js"></script>
 @endsection

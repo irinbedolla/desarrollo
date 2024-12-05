@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-warning" href="{{ route('capacitaciones') }}"> Regresar</a>
                             @can('aceptar-persona')
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
@@ -19,13 +19,6 @@
                                             <th style="color: #fff;">Capacitacíon</th>
                                             <th style="color: #fff;">Cargo</th>
                                             <th style="color: #fff;">Área</th>
-                                            <th style="color: #fff;">Título</th>
-                                            <th style="color: #fff;">Estudio</th>
-                                            <th style="color: #fff;">Especialidades</th>
-                                            <th style="color: #fff;">Diplomados</th>
-                                            <th style="color: #fff;">Seminarios</th>
-                                            <th style="color: #fff;">Cursos</th>
-                                            <th style="color: #fff;">A. Desarrollo</th>
                                             <th style="color: #fff;">Acciones</th>
                                         </thead>
                                         <tbody>
@@ -34,17 +27,10 @@
                                                     <td>{{$persona->nombre}}</td>
                                                     <td>{{$persona->cargo}}</td>
                                                     <td>{{$persona->area_adcripcion}}</td>
-                                                    <td>{{$persona->tilulo_universitario}}</td>
-                                                    <td>{{$persona->estudio_maximo}}</td>
-                                                    <td>{{$persona->especialidades}}</td>
-                                                    <td>{{$persona->diplomados}}</td>
-                                                    <td>{{$persona->seminarios}}</td>
-                                                    <td>{{$persona->cursos}}</td>
-                                                    <td>{{$persona->acciones_desarrollo}}</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <a class="btn btn-info"    href="{{ route('personas.documentos', $persona->id_usuario)}}">Documentos</a>
-                                                            <a class="btn btn-success" href="{{ route('capacitaciones.edit', $persona->id_usuario)}}">Validar</a>
+                                                            <a class="btn btn-info"    href="{{ route('personas.documentos', $persona->id_usuario)}}" onclick=nuevo_estadistica();>Documentos</a>
+                                                            <a class="btn btn-success" href="{{ route('capacitaciones.edit', $persona->id_usuario)}}" onclick=nuevo_estadistica();>Validar</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -65,3 +51,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

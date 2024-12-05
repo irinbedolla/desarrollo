@@ -18,13 +18,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TurnosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    //Se agrega un constructor
     function __contruct()
     {
         $this->middleware('permission:ver-usuario | crear-usuario | editar-usuario | borrar-usuario', ['only'=>['index']]);
@@ -687,5 +680,118 @@ class TurnosController extends Controller
         }
 
         return view('turnos.mostrar',compact('turnos','suma_turnos'));        
+    }
+
+    public function cambiar($id)
+    {
+        $fecha_actual = date('Y-m-d');
+        $hora_actual  = date("H:i:s");
+
+        //Se actualizan los estatus
+        $turno              = Turnos::find($id);
+        $IDauxiliar         = $turno["auxiliar"];
+        $turno_disponible   = TurnoDisponible::where('id_auxiliar', $IDauxiliar)->where('fecha', $fecha_actual)->get();
+
+        $disponibles     = TurnoDisponible::where('fecha', $fecha_actual)->where('estatus', 'Disponible')->get();
+        $listado_ocupados   = array();
+        $listado_auxiliares = array();
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })->get();
+
+        //Voy a leer los usuario que tengan estatus ocupado
+        foreach($disponibles as $token ){
+            array_push($listado_ocupados, $token["id_auxiliar"]);            
+        }
+        
+        foreach($usuariosauxiliares as $token ){
+            //Validar que solo sea morelia
+            if($token["delegacion"] == "Morelia"){
+                //Si la lista no esta vacia
+                if(!empty($listado_ocupados)){
+                    //Buscamos si existen auxiliares libres
+                    if(in_array($token["id"], $listado_ocupados)){
+                    }
+                    else{
+                        //if validar si es ratificaccion
+                        if($data["tipo"] == "Ratificación"){
+                            //Validar si random es diferente de 3-5-7
+                            if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7 ){
+                            }
+                            else{
+                                array_push($listado_auxiliares, $token["id"]);    
+                            }
+                        }else{
+                            array_push($listado_auxiliares, $token["id"]);
+                        }
+                    }
+                }
+                //Si la lista es vacia agregamos a todos los auxiliares
+                else{
+                    if($data["tipo"] == "Ratificación"){
+                        //Validar si random es diferente de 3-5-7
+                        if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7 ){
+                        }
+                        else{
+                            array_push($listado_auxiliares, $token["id"]);
+                        }
+                    }else{
+                        array_push($listado_auxiliares, $token["id"]);
+                    }
+                }
+            }
+        }
+
+        //validar si hay disponibles
+        $random = array_rand($listado_auxiliares);
+            
+        //Relacion auxiliar con usuario
+        switch($listado_auxiliares[$random]){
+            case 6: 
+                //Erandi
+                $lugar_auxiliar = "Auxiliar 1";
+                break;
+            case 10: 
+                //Rosario
+                $lugar_auxiliar = "Auxiliar 2";
+                break;
+            case 8: 
+                //Mayra
+                $lugar_auxiliar = "Auxiliar 3";
+                break;
+            case 9: 
+                //Luis
+                $lugar_auxiliar = "Auxiliar 4";
+                break;
+            case 3: 
+                //Yessiu
+                $lugar_auxiliar = "Auxiliar 5";
+                break;
+            case 7: 
+                //Clever
+                $lugar_auxiliar = "Auxiliar 6";
+                break;
+            case 5: 
+                //Sandra
+                $lugar_auxiliar = "Auxiliar 7";
+                break;
+            default:
+                $lugar_auxiliar = "Pendiente";
+                break;
+        }
+
+        $turno_update= array(
+            'hora_fin'      =>  $hora_actual,
+            'auxiliar'      =>  $random,
+            'lugar_auxiliar'=>  $lugar_auxiliar
+        );
+        $disponible_update= array(
+            'estatus'       => 'Disponible'
+        );
+
+        $turno->update($turno_update);
+        $turno_disponible->update($disponible_update);
+        
+        return redirect()->route('misturnos');
     }
 }

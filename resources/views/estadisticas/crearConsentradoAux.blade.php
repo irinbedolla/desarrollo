@@ -31,13 +31,14 @@
                             @endif
 
                             @if($userRole[0] == "Auxiliar")
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-2">
-                                        <div class="form-group">
-                                            <label for="name">Solicitudes</label>
-                                            <input type="number" class="form-control" value="<?=$suma_solicitudes["total"];?>" >
+                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST' , 'class' => 'needs-validation','novalidate')) !!}
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="name">Solicitudes</label>
+                                                <input type="number" name="solicitudes" class="form-control" value="<?=$suma_solicitudes["total"];?>" >
+                                            </div>
                                         </div>
-                                    </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">

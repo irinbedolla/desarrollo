@@ -30,7 +30,7 @@
 
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'expedientes.store', 'method'=>'POST', 'files' => true)) !!}
+                            {!! Form::open(array('route'=>'expedientes.store', 'method'=>'POST', 'files' => true , 'class' => 'needs-validation','novalidate')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         *Los campos con (*) son obligatorios.
@@ -67,97 +67,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">*Título</label>
-                                            {!! Form::text('tilulo_universitario', ($persona != null) ? $persona->tilulo_universitario : null , array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>*Documento del título</label><br>
-                                            {!! Form::file('documentoTitulo', ['class' => 'form-control-file', 'accept' => '.pdf'] ) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">*Nivel de estudios</label>
-                                            {!! Form::text('estudio_maximo', ($persona != null) ? $persona->estudio_maximo : null , array('class'=>'form-control',) ) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>*Documento del estudios</label><br>
-                                            {!! Form::file('documentoEstudios', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Especialidades</label>
-                                            {!! Form::text('especialidades', ($persona != null) ? $persona->especialidades : null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Documento del especialidades</label><br>
-                                            {!! Form::file('documentoEspecialidades', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Diplomados</label>
-                                            {!! Form::text('diplomados', ($persona != null) ? $persona->diplomados : null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Documento del diplomado</label><br>
-                                            {!! Form::file('documentoDiplomado', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Seminarios</label>
-                                            {!! Form::text('seminarios', ($persona != null) ? $persona->seminarios : null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Documento del seminario</label><br>
-                                            {!! Form::file('documentoSeminario', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Cursos</label>
-                                            {!! Form::text('cursos',  ($persona != null) ? $persona->cursos : null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Documento del los cursos</label><br>
-                                            {!! Form::file('documentoCursos', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Acciones de desarrollo <abbr title="Documentos ">Ayuda</abbr> </label>
-                                            {!! Form::text('acciones_desarrollo',  ($persona != null) ? $persona->acciones_desarrollo : null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Documento del desarrollo</label><br>
-                                            {!! Form::file('documentoDesarrollo', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
-                                        </div>
-                                    </div>
-
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-primary">Guardar</button>

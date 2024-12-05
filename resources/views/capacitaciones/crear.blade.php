@@ -29,7 +29,7 @@
                             @endif
 
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::open(array('route'=>'capacitaciones.store', 'method'=>'POST', 'files' => true)) !!}
+                            {!! Form::open(array('route'=>'capacitaciones.store', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
@@ -75,6 +75,13 @@
     </section>
 @endsection
 
+
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
 @section('scripts')
-    <script src="/js/personas/crear.js"></script>
+    <script src="../../public/js/estadistica/estadistica.js"></script>
 @endsection
