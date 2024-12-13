@@ -132,14 +132,36 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="confirm-password">Estatus de audiencias</label>
-                                                    <select class="form-control" name="estatus" required>
+                                                    <select id="estatus" class="form-control" name="estatus" required>
                                                         <option value="">Seleccione</option>
                                                         <option value="Conciliacion">Conciliacion</option>
                                                         <option value="No conciliacion">No Conciliacion</option>
-                                                        <option value="Archivado por incomparecencia">Archivado por incomparecencia</option>
                                                         <option value="Regenerada">Regenerada</option>
+                                                        <option value="Archivada">Archivada</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="Archivadas" style="display:none" class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="confirm-password">Motivo archivardo</label>
+                                                    <select class="form-control" name="motivo_archivo">
+                                                        <option value="Falta de interes">Falta de interes</option>
                                                         <option value="Incompetencia">Incompetencia</option>
                                                     </select>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="Reprogramada" style="display:none" class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="confirm-password">Fecha programación</label>
+                                                    <input type="date" name="fecha_reprogracion" class="form-control">
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
@@ -231,5 +253,22 @@
 
 @section('scripts')
     <script src="../../public/js/estadistica/estadistica.js"></script>
+    <script>
+        $('#estatus').change(function(){
+            var valorCambiado =$(this).val();
+            if((valorCambiado == 'Archivada')){
+                $('#Archivadas').css('display','block');
+                $('#Reprogramada').css('display','none');
+            }
+            else if((valorCambiado == 'Regenerada')){
+                $('#Archivadas').css('display','none');
+                $('#Reprogramada').css('display','block');
+            }
+            else{
+                $('#Archivadas').css('display','none');
+                $('#Reprogramada').css('display','none');
+            }
+        });
+    </script>
 @endsection
 

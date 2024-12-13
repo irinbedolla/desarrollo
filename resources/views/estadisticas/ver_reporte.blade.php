@@ -62,16 +62,17 @@
                                     <table id="tabla_seer_auxiliares" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
+                                            <th style="color: #fff;">Fecha de registro</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
                                             <th style="color: #fff;">Número unico de identificación</th>
                                             <th style="color: #fff;">Solicitante</th>
                                             <th style="color: #fff;">Sexo del solicitante</th>
-                                            <th style="color: #fff;">Estado</th>
-                                            <th style="color: #fff;">Municipio</th>
+                                            <th style="color: #fff;">Estado del solicitante</th>
+                                            <th style="color: #fff;">Municipio del solicitante</th>
                                             <th style="color: #fff;">Citado</th>
                                             <th style="color: #fff;">Actividad Economica</th>
-                                            <th style="color: #fff;">Estado</th>
-                                            <th style="color: #fff;">Municipio</th>
+                                            <th style="color: #fff;">Estado del citado</th>
+                                            <th style="color: #fff;">Municipio del citado</th>
                                             <th style="color: #fff;">Motivo</th>
                                             <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Usuario</th>
@@ -80,6 +81,7 @@
                                             @foreach($solicitudes as $solicitud)
                                                 <tr>
                                                     <td style="display: none;">{{$solicitud->id}}</td>
+                                                    <td>{{$solicitud->fecha}}</td>
                                                     <td>{{$solicitud->fecha_confirmacion}}</td>
                                                     <td>{{$solicitud->NUE}}</td>
                                                     <td>{{$solicitud->solicitante}}</td>
@@ -88,7 +90,6 @@
                                                     <td>{{$solicitud->municipio}}</td>
                                                     <td>{{$solicitud->citado}}</td>
                                                     <td>{{$solicitud->actividad_economica}}</td>
-                                                    
                                                     <td>{{$solicitud->motivo}}</td>
                                                     <td>{{$solicitud->notificacion}}</td>
                                                     <td>{{$solicitud->usuario}}</td>

@@ -134,20 +134,26 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="">Empresa</label>
-                                                <input type="text" class="form-control" placeholder="*Empresa representación" name="empresaAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
+                                                <label for="">CURP</label>
+                                                <input type="text" class="form-control" placeholder="*CURP" aria-label="CURP" name="curpAbogadoAlta" minlength="18" maxlength="18" oninput="this.value = this.value.toUpperCase()" required>
                                                 <div class="invalid-feedback">
-                                                    La empresa es obligatoria.
+                                                    La CURP es obligatoria.
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Datos de la empresa</h4>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="">CURP</label>
-                                                <input type="text" class="form-control" placeholder="*CURP" aria-label="CURP" name="curpAbogadoAlta" minlength="18" maxlength="18" oninput="this.value = this.value.toUpperCase()" required>
+                                                <label for="">Empresa</label>
+                                                <input type="text" class="form-control" placeholder="*Empresa representación" name="empresaAbogadoAlta" oninput="this.value = this.value.toUpperCase()" required>
                                                 <div class="invalid-feedback">
-                                                    La CURP es obligatoria.
+                                                    La empresa es obligatoria.
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +187,7 @@
                                         
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="">Industria</label>
+                                                <label for="">Giro Comercial</label>
                                                 <input type="text" class="form-control" placeholder="Giro Comercial" name="industriaAlta" required>
                                                 <div class="invalid-feedback">
                                                     La industria es obligatoria.
@@ -217,6 +223,12 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Documentos</h4>
+                                            </div>
+                                        </div>
+
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label>*Identificación oficial</label><br>
@@ -239,14 +251,14 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label>Anexos</label><br>
+                                                <label>Anexos(Solo si se requiere)</label><br>
                                                 {!! Form::file('documentoAnexo', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label>Anexos 2</label><br>
+                                                <label>Anexos 2(Solo si se requiere)</label><br>
                                                 {!! Form::file('documentoPoder', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
                                             </div>
                                         </div>

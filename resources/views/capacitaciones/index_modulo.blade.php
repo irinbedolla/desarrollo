@@ -11,7 +11,10 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-curso')
-                                <a class="btn btn-warning" href="{{ route('capacitaciones.nuevo_modulo', $capacitacion->id) }}" onclick=nuevo_estadistica();> Agregar módulo</a>
+                                @if($capacitacion->estatus != "Terminado")
+                                    <a class="btn btn-warning" href="{{ route('capacitaciones.nuevo_modulo', $capacitacion->id) }}" onclick=nuevo_estadistica();> Agregar módulo</a>
+                                @endif
+                                <a class="btn btn-success" href="{{ route('capacitaciones.terminado', $capacitacion->id) }}" onclick=nuevo_estadistica();> Terminar</a>
                             @endcan
                                 <a class="btn btn-info" href="{{ route('capacitaciones') }}" onclick=nuevo_estadistica();> Regresar</a>
                             @can('ver-curso')

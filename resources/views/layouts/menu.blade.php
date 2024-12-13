@@ -103,9 +103,6 @@
         |   <a class="nav-link" href="{{ route('poderes') }}">
                 <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
             </a>
-            <a class="nav-link" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
-            </a>
             <a class="nav-link" href="{{ route('seer') }}">
                 <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
             </a>

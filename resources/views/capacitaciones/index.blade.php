@@ -33,7 +33,11 @@
                                                 <tr>
                                                     <td>{{$capacitacion->nombre}}</td>
                                                     <td><a class="btn btn-success" href="{{ route('capacitaciones.modulos', $capacitacion->id)}}" onclick=nuevo_estadistica();>Consultar</a></td>
-                                                    <td><a class="btn btn-success" href="{{ route('capacitaciones.addpersonas', $capacitacion->id)}}" onclick=nuevo_estadistica();>Agregar</a></td>
+                                                    <td>
+                                                    @if($capacitacion->estatus == "Terminado")
+                                                        <a class="btn btn-success" href="{{ route('capacitaciones.addpersonas', $capacitacion->id)}}" onclick=nuevo_estadistica();>Agregar</a>
+                                                    @endif
+                                                    </td>
                                                     <td><a class="btn btn-success" href="{{ route('capacitaciones.calificaciones', $capacitacion->id)}}" onclick=nuevo_estadistica();>Consultar</a></td>
                                                     <td>{{$capacitacion->inicio}} : {{$capacitacion->fin}}</td>
                                                     <td>

@@ -749,8 +749,44 @@ class SeerController extends Controller
                 }
                 $convenios = $convenios->selectRaw('count(seer_convenios.id) as convenios')
                 ->first();
+            //El numero de convenios con contancias de no conciliacion
+                $no_conciliacion  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
+                $no_conciliacion  = $audiencia->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id");
+                if($fecha_inicial != ""){
+                    $no_conciliacion = $no_conciliacion->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $no_conciliacion = $no_conciliacion->where("fecha","<=",$fecha_final);
+                }
+                if($sede != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_general.delegacion", $sede);
+                }
+                if($conciliador != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_general.conciliador_id", $conciliador);
+                }
+                if($tipo_audiencia != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_conciliadores.estatus_conciliacion", $tipo_audiencia);
+                }
+                if($sexo != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_auxiliares.sexo", $sexo);
+                }
+                if($estado_solicitante != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_general.estado_solicitante", $estado_solicitante);
+                }
+                if($mun_solicitante != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_general.mun_solicitante", $mun_solicitante);
+                }
+                if($nue != ""){
+                    $no_conciliacion = $no_conciliacion->where("seer_general.NUE", $nue);
+                }
+                $no_conciliacion  = $no_conciliacion->where("seer_conciliadores.estatus_conciliacion", "No conciliacion");
+                $no_conciliacion  = $no_conciliacion->selectRaw('count(seer_general.id) as audiencia')
+                ->first();
 
-            return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios'));
+            $convenios_total = $solicitudes["solicitudes"] + $ratificaciones["ratificaciones"];
+            $porcenaje = ($convenios_total) / ($convenios_total + $no_conciliacion["audiencia"]);
+             
+            return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios','porcenaje'));
         }
     }
 
@@ -821,6 +857,7 @@ class SeerController extends Controller
 
         $data_general = [
             'fecha'                 => $fecha_actual,
+            'fecha_confimacion'     => $data["fecha_confirmacion"],
             'NUE'                   => $data["NUE"],
             'solicitante'           => $data["solicitante"],
             'estado_solicitante'    => $data["estado_solicitante"],
@@ -943,7 +980,7 @@ class SeerController extends Controller
             'citado'                => 'required',
             'actividad_economica'   => 'required',
             'numero_audiencia'      => 'required',
-            'estatus'               => 'required|in:Conciliacion,No conciliacion,Incompetencia,Regenerada,Archivado por incomparecencia',
+            'estatus'               => 'required|in:Conciliacion,No conciliacion,Regenerada,Archivada',
             'monto'                 => 'required|numeric',
             'multa'                 => 'required|in:Si,No',
             'solicitud'             => 'required|in:Presencial,Linea',
@@ -971,6 +1008,13 @@ class SeerController extends Controller
             'tipo'                  => $data["solicitud"],
             'validado'              => 'Validado',
         ];
+        if($data["motivo_archivo"] != null || $data["motivo_archivo"] != ''){
+            $data_conciliador["motivo_archivo"] = $data["motivo_archivo"];
+        }
+        if($data["fecha_reprogracion"] != null || $data["fecha_reprogracion"] != ''){
+            $data_conciliador["fecha_reprogracion"] = $data["fecha_reprogracion"];
+        }
+
         SeerPerConciliador::create($data_conciliador);  
 
         return redirect()->route('seer');

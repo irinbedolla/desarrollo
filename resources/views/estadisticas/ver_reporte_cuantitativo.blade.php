@@ -14,25 +14,45 @@
                             <a class="btn btn-primary" href="{{ route('seer.estadistica') }}">Regresar</a>
                             <div id="solicitud" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_auxiliares" class="table table-striped mt-1">
+                                    <table id="tabla_seer_auxiliares1" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="color: #fff;">Solicitudes</th>
                                             <th style="color: #fff;">Ratificaciones</th>
-                                            <th style="color: #fff;">Monto de ratificaciones</th>
-                                            <th style="color: #fff;">Audiencias</th>
-                                            <th style="color: #fff;">Monto de audiencias</th>
-                                            <th style="color: #fff;">Convenios</th>
-                                            <th style="color: #fff;">Colectivas</th>
+                                            <th style="color: #fff;">Convenio en ratificaciones</th>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{$solicitudes->solicitudes}}</td>
                                                 <td>{{$ratificaciones->ratificaciones}}</td>
                                                 <td>${{ number_format($montoratificaciones->ratificaciones,2) }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table id="tabla_seer_auxiliares1" class="table table-striped mt-1">
+                                        <thead style="background-color: #4A001F;">
+                                            <th style="color: #fff;">Audiencias</th>
+                                            <th style="color: #fff;">Convenio de audiencias</th>
+                                            <th style="color: #fff;">Convenios</th>
+                                            <th style="color: #fff;">Colectivas</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
                                                 <td>{{$audiencia->audiencia}}</td>
                                                 <td>${{ number_format($montoaudiencia->audiencia,2) }}</td>
                                                 <td>{{$colectivas->colectivas}}</td>
                                                 <td>{{$convenios->convenios}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table id="tabla_seer_auxiliares1" class="table table-striped mt-1">
+                                        <thead style="background-color: #4A001F;">
+                                            <th style="color: #fff;">Porcentaje de Efectividad</th>
+                                            <th style="color: #fff;">Total Convenido</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{($porcenaje)*100}}%</td>
+                                                <td>${{ number_format(($montoratificaciones->ratificaciones+$montoaudiencia->audiencia),2) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -232,7 +232,6 @@ class CapacitacionController extends Controller
         $modulos = Modulo::where('id_cap', $id)->get();
 
         return redirect()->route('capacitaciones');
-//        return view('capacitaciones.index_modulo', compact('capacitacion','modulos'));
     }
 
     public function editar_modulo($id){
@@ -430,5 +429,15 @@ class CapacitacionController extends Controller
 
             ->paginate(10);
         return view('capacitaciones.calificaciones', compact('capacitaciones'));
+    }
+
+    public function terminar($id){
+        $capacitacion = Capacitacion::find($id);
+        $data_update = [
+            'estatus'          => 'Terminado',
+        ];
+        $capacitacion->update($data_update);
+        
+        return redirect()->route('capacitaciones');
     }
 }
