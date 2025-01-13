@@ -76,6 +76,7 @@
                                             <th style="color: #fff;">Motivo</th>
                                             <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Usuario</th>
+                                            <th style="color: #fff;">Dias Transcurridos</th>
                                         </thead>
                                         <tbody>
                                             @foreach($solicitudes as $solicitud)
@@ -90,9 +91,17 @@
                                                     <td>{{$solicitud->municipio}}</td>
                                                     <td>{{$solicitud->citado}}</td>
                                                     <td>{{$solicitud->actividad_economica}}</td>
+                                                    <td>{{$solicitud->estado_citado}}</td>
+                                                    <td>{{$solicitud->municipio_citado}}</td>
                                                     <td>{{$solicitud->motivo}}</td>
                                                     <td>{{$solicitud->notificacion}}</td>
                                                     <td>{{$solicitud->usuario}}</td>
+                                                    @php 
+                                                        $datetime1 = date_create($solicitud->fecha);
+                                                        $datetime2 = date_create($solicitud->fecha_confirmacion);  
+                                                        $interval = date_diff($datetime1, $datetime2);
+                                                    @endphp
+                                                    <td>{{$interval->format('%R%a días')}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -104,37 +113,50 @@
                                     <table id="tabla_seer_conciliadores" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
-                                            <th style="color: #fff;">Fecha</th>
+                                            <th style="color: #fff;">Fecha de registro</th>
+                                            <th style="color: #fff;">Fecha confirmacíon</th>
                                             <th style="color: #fff;">Número unico de identificación</th>
                                             <th style="color: #fff;">Solicitante</th>
-                                            <th style="color: #fff;">Actividad Economica</th>
-                                            <th style="color: #fff;">Estado</th>
-                                            <th style="color: #fff;">Municipio</th>
+                                            <th style="color: #fff;">Sexo del solicitante</th>
+                                            <th style="color: #fff;">Estado del solicitante</th>
+                                            <th style="color: #fff;">Municipio del solicitante</th>
                                             <th style="color: #fff;">Citado</th>
-                                            <th style="color: #fff;">Sexo</th>
-                                            <th style="color: #fff;">Tipo</th>
+                                            <th style="color: #fff;">Actividad Economica</th>
+                                            <th style="color: #fff;">Estado del citado</th>
+                                            <th style="color: #fff;">Municipio del citado</th>
                                             <th style="color: #fff;">Motivo</th>
+                                            <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Monto</th>
                                             <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Usuario</th>
+                                            <th style="color: #fff;">Dias Transcurridos</th>
                                         </thead>
                                         <tbody>
                                             @foreach($ratificaciones as $ratificacion)
                                                 <tr>
                                                     <td style="display: none;">{{$ratificacion->id}}</td>
                                                     <td>{{$ratificacion->fecha}}</td>
+                                                    <td>{{$ratificacion->fecha_confirmacion}}</td>
                                                     <td>{{$ratificacion->NUE}}</td>
                                                     <td>{{$ratificacion->solicitante}}</td>
+                                                    <td>{{$ratificacion->sexo}}</td>
                                                     <td>{{$ratificacion->actividad_economica}}</td>
                                                     <td>{{$ratificacion->estado}}</td>
                                                     <td>{{$ratificacion->municipio}}</td>
                                                     <td>{{$ratificacion->citado}}</td>
-                                                    <td>{{$ratificacion->sexo}}</td>
+                                                    <td>{{$ratificacion->estado_citado}}</td>
+                                                    <td>{{$ratificacion->municipio_citado}}</td>
                                                     <td>{{$ratificacion->tipo_persona}}</td>
                                                     <td>{{$ratificacion->motivo}}</td>
                                                     <td>${{number_format($ratificacion->monto,2)}}</td>
                                                     <td>{{$ratificacion->estatus}}</td>
                                                     <td>{{$ratificacion->usuario}}</td>
+                                                    @php 
+                                                        $datetime1 = date_create($solicitud->fecha);
+                                                        $datetime2 = date_create($solicitud->fecha_confirmacion);  
+                                                        $interval = date_diff($datetime1, $datetime2);
+                                                    @endphp
+                                                    <td>{{$interval->format('%R%a días')}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

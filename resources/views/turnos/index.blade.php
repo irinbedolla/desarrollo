@@ -18,7 +18,7 @@
 
                             @can('ver-turno')
                                 <div class="table-responsive">
-                                    <table id="tabla_usuarios" class="table table-striped">
+                                    <table id="example" class="table-striped" style="width:100%">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Nombre</th>

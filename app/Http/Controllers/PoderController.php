@@ -26,7 +26,7 @@ class PoderController extends Controller
     public function index()
     {
         //Paginar las personas
-        $poderes = Poder::paginate(10);
+        $poderes = Poder::all();
         return view('poderes.index', compact('poderes'));
     }
 

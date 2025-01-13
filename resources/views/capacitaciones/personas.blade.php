@@ -41,7 +41,6 @@
                             @endcan
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
-                                {!! $personas->links() !!}
                             </div>                        
                         </div>
                     </div>

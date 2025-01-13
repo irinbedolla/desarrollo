@@ -13,7 +13,7 @@
                             
                             <a class="btn btn-warning" href="{{ route('roles.create') }}" onclick=crear_rol();>Nuevo</a>
                             <div class="table-responsive">
-                                <table id="tabla_roles" class="table table-striped mt-2">
+                                <table id="example" class="table table-striped mt-2">
                                     <thead style="background-color:#4A001F">
                                         <th style="color:#fff">Rol</th>
                                         <th style="color:#fff">Acciones</th>
@@ -39,7 +39,6 @@
 
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
-                                {!! $roles->links() !!}
                             </div>
                         
                         </div>

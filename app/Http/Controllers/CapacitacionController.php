@@ -31,7 +31,7 @@ class CapacitacionController extends Controller
     public function index()
     {
         //Paginar las personas
-        $capacitaciones = Capacitacion::paginate(10);
+        $capacitaciones = Capacitacion::all();
         return view('capacitaciones.index', compact('capacitaciones'));
     }
 
@@ -96,7 +96,7 @@ class CapacitacionController extends Controller
     }
 
     public function personas(){
-        $personas = Persona::where('estatus', 'Pendiente')->paginate(10);
+        $personas = Persona::where('estatus', 'Pendiente')->get();
         return view('capacitaciones.personas', compact('personas'));
     }
 
@@ -358,14 +358,13 @@ class CapacitacionController extends Controller
 
     public function agregar_personas($id){
         $capacitacion = $id;
-        $personas_aceptadas = DB::table('persona')
-        ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
+        $personas_aceptadas = Persona::join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
         ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $id)
         ->groupBy('capacitaciones_persona.persona')
-        ->paginate(10);
+        ->get();
 
-        $personas = Persona::where('estatus', 'Aceptado')->paginate(10);
+        $personas = Persona::where('estatus', 'Aceptado')->get();
         return view('capacitaciones.personas_agregar', compact('capacitacion','personas','personas_aceptadas'));
     }
 
@@ -401,7 +400,7 @@ class CapacitacionController extends Controller
         ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $cap)
         ->groupBy('capacitaciones_persona.persona')
-        ->paginate(10);
+        ->all();
 
         //$personas = Persona::where('estatus', 'Aceptado')->paginate(10);
         //return view('capacitaciones.personas_agregar', compact('capacitacion','personas','personas_aceptadas'));
@@ -427,7 +426,7 @@ class CapacitacionController extends Controller
             ->select('capacitaciones.id', 'capacitaciones.nombre as capacitacion', 'capacitaciones_modulo.nombre as modulo', 'persona.nombre as persona', 'capacitaciones_calificacion.calificacion' )
             ->where('capacitaciones.id', $id)
 
-            ->paginate(10);
+            ->get();
         return view('capacitaciones.calificaciones', compact('capacitaciones'));
     }
 

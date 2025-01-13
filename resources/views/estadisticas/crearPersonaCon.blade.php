@@ -121,8 +121,18 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="email">Número de audiencia</label>
+                                                    <label for="email">Folio de la audiencia</label>
                                                     <input type="text" class="form-control" name="numero_audiencia" required>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="email">Número de audiencias</label>
+                                                    <input type="number" class="form-control" name="numero_audiencias" required>
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
@@ -171,7 +181,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Monto del convenio</label>
-                                                    <input type="number" name="monto" class="form-control" required>   
+                                                    <input type="number" name="monto" class="form-control"  required>   
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>

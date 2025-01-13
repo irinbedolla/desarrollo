@@ -30,85 +30,84 @@
 
                             @endif
 
-                            @if($userRole[0] == "Auxiliar")
-                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST' , 'class' => 'needs-validation','novalidate')) !!}
+                            @if($userRole[0] == "Conciliador")
+                                <!--Se realiza el envío de datos con formulario de Laravel Collective-->
+                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST')) !!}
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="name">Solicitudes</label>
-                                                <input type="number" name="solicitudes" class="form-control" value="<?=$suma_solicitudes["total"];?>" >
+                                                <label for="name">Solicitudes Atendidas</label>
+                                                <input type="number" class="form-control" name="solicitues_atendidas" value="<?=$estadisticas["solicitues_atendidas"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="email">Ratificaciones</label>
-                                                <input type="number" class="form-control" name="ratificaciones" value="<?=$suma_ratificaciones["total"];?>" >
+                                                <label for="email">Audiencias Programadas</label>
+                                                <input type="number" class="form-control" name="audiencia_programada" value="<?=$estadisticas["audiencia_programada"];?>" >
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="password">Asesorias</label>
-                                                <input type="number" class="form-control" name="asesorias" required>
+                                                <label for="password">Audiencias Celebradas</label>
+                                                <input type="number" class="form-control" name="audiencia_celebradas" value="<?=$estadisticas["audiencia_celebradas"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Consulta Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_consulta" required>
+                                                <label for="confirm-password">Convenios Conciliatorios</label>
+                                                <input type="number" class="form-control" name="convenios_conciliatorios" value="<?=$estadisticas["convenios_conciliatorios"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Escanear Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_escaneo" required>
+                                                <label for="confirm-password">Ratificaciones de convenio</label>
+                                                <input type="number" class="form-control" name="ratificaciones_convenio" value="<?=$estadisticas["ratificaciones_convenio"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Foliar Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_foliar" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Exhortos</label>
-                                                <input type="number" class="form-control" name="exhortos" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Audiencias Celebradas</label>
-                                                <input type="number" class="form-control" name="audiencias_celebradas"  required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Registro Cumplimiento</label>
-                                                <input type="number" class="form-control" name="cumplimientos" required>
+                                                <label for="confirm-password">Constancias de no conciliación</label>
+                                                <input type="number" class="form-control" name="contancias_no_conciliacion" value="<?=$estadisticas["contancias_no_conciliacion"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
                                                 <label for="confirm-password">Cuentificación Total($)</label>
-                                                <input type="number" class="form-control" name="cuantificacion" value="<?=$total["monto"];?>" required>
+                                                <input type="number" class="form-control" name="cuantificaciones"  value="<?=$estadisticas["cuantificaciones"];?>" >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Asesorias</label>
+                                                <input type="number" class="form-control" name="asesorias" value="<?=$estadisticas["asesorias"];?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Integración de Expediente</label>
+                                                <input type="number" class="form-control" name="integracion_expediente" value="<?=$estadisticas["integracion_expediente"];?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Conciliaciones Colectivas</label>
+                                                <input type="number" class="form-control" name="colectivas" value="<?=$estadisticas["colectivas"];?>">
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <a class="btn btn-primary" href="{{ route('seer') }}">Regresar</a>
                                         </div>
-                                        
                                     </div>
-                                {!! Form::close() !!}
                             @endif
 
                         </div>
@@ -119,12 +118,3 @@
     </section>
 @endsection
 
-<div id="menu_carga" style ="display: none;">
-    <div>.</div>
-    <div class="loader"></div>
-</div>
-
-
-@section('scripts')
-    <script src="../public/js/estadistica/estadistica.js"></script>
-@endsection

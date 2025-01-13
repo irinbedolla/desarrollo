@@ -33,7 +33,7 @@ class ExpedienteController extends Controller
         $rol     = $usuario->getRoleNames()->first();
         $persona = "Existe";
         if($rol == "Super Usuario" || $rol == 'Capacitacion Admin'){
-            $personas       = Persona::paginate(10);
+            $personas       = Persona::all();
             $persona_buscar = Persona::where('id_usuario', $id)->get();
 
             if($persona_buscar == "[]"){

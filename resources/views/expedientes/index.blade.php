@@ -46,7 +46,7 @@
                             @endif
                             @if($persona != "no existe")
                                 <div class="table-responsive">
-                                    <table class="table table-striped mt-2">
+                                    <table id="example" class="table table-striped mt-2">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Nombres</th>

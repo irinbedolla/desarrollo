@@ -26,7 +26,7 @@
                                     @if($estadisticas == null)
                                         <a class="btn btn-warning" href="{{ route('create_consentrado_con') }}" onclick=nuevo_estadistica();> Consentrado</a>
                                     @else
-                                        <a class="btn btn-warning" href="{{ route('create_consentrado_ver') }}" onclick=nuevo_estadistica();> Ver</a>
+                                        <a class="btn btn-warning" href="{{ route('ver_consentrado_con') }}" onclick=nuevo_estadistica();> Ver</a>
                                     @endif
                                 @endif
                             @endcan

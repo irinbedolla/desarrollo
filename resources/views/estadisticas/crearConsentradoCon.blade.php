@@ -44,7 +44,7 @@
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
                                                 <label for="email">Audiencias Programadas</label>
-                                                <input type="number" class="form-control" name="audiencia_programada" required>
+                                                <input type="number" class="form-control" name="audiencia_programada" value="<?=$suma_solicitudes_conciliador["total"];?>" required>
                                             </div>
                                         </div>
 
@@ -79,7 +79,7 @@
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
                                                 <label for="confirm-password">Cuentificación Total($)</label>
-                                                <input type="number" class="form-control" name="cuantificaciones" required>
+                                                <input type="number" class="form-control" name="cuantificaciones"  value="<?=$total_audiencia["monto"];?>" required>
                                             </div>
                                         </div>
 
@@ -121,3 +121,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection

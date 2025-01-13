@@ -20,7 +20,7 @@
                             
                             @can('ver-abogado')
                                 <div class="table-responsive">
-                                    <table id="tabla_abogados" class="table table-striped mt-2">
+                                    <table id="example" class="table table-striped mt-2">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Nombres</th>
@@ -91,7 +91,6 @@
 
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
-                                {!! $poderes->links() !!}
                             </div>
 
                             

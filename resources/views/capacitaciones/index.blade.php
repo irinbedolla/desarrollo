@@ -19,7 +19,7 @@
 
                             @can('ver-curso')
                                 <div class="table-responsive">
-                                    <table id="tabla_capacitaciones" class="table table-striped mt-1">
+                                    <table id="example" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="color: #fff;">Capacitacíon</th>
                                             <th style="color: #fff;">Modulos</th>
@@ -53,7 +53,6 @@
                             @endcan
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
-                                {!! $capacitaciones->links() !!}
                             </div>                        
                         </div>
                     </div>

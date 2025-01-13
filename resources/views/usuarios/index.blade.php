@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -14,10 +13,9 @@
                             @can('crear-usuario')
                                 <a class="btn btn-warning" href="{{ route('usuarios.create') }}" onclick=crear_usuario();> Nuevo</a>
                             @endcan
-
                             @can('ver-usuario')
                                 <div class="table-responsive">
-                                    <table id="tabla_usuarios" class="table table-striped mt-2">
+                                    <table id="example" class="table-striped" style="width:100%">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Nombre</th>
@@ -25,7 +23,7 @@
                                             <th style="color: #fff;">Rol</th>
                                             <th style="color: #fff;">Acciones</th>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="contenidobusqueda">
                                             @foreach($usuarios as $usuario)
                                                 <tr>
                                                     <td style="display: none;">{{$usuario->id}}</td>
@@ -58,7 +56,7 @@
                             @endcan
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
-                                {!! $usuarios->links() !!}
+                               
                             </div>                        
                         </div>
                     </div>
@@ -75,5 +73,5 @@
 
 
 @section('scripts')
-    <script src="../public/js/general/menu.js"></script>
+    
 @endsection

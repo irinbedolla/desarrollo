@@ -37,10 +37,11 @@
                                         <div class="col-xs-12 col-sm-6 col-md-4">
                                             <div class="form-group">
                                                 <label multiple for="name">Tipo de reporte</label>
-                                                <select  class="form-control" name="tipo_reporte" required>
+                                                <select id="reporte" class="form-control" name="tipo_reporte" required>
                                                     <option value="">Seleccione</option>
                                                     <option value="Cuantificaciones">Resumido</option>
                                                     <option value="Detallado">Detallado</option>
+                                                    <option value="Concentrado">Concentrado</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Debes seleccionar un tipo de reporte.
@@ -68,217 +69,243 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <h4 class="text-center">Filtros solicitud</h4>
+                                        <div id="resu_detalla"  style="display:none" class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <h4 class="text-center">Filtros solicitud</h4>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label multiple for="name">Auxiliar</label>
-                                                <select class="form-control" name="auxiliar">
-                                                    <option value="">Todos</option>
-                                                    @foreach($usuariosauxiliares as $user)
-                                                        <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                    @endforeach
-                                                </select>
-                                                </select>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label multiple for="name">Auxiliar</label>
+                                                    <select class="form-control" name="auxiliar">
+                                                        <option value="">Todos</option>
+                                                        @foreach($usuariosauxiliares as $user)
+                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Tipo solicitud</label>
-                                                <select  class="form-control" name="tipo_solicitud">
-                                                    <option value="">Todos</option>
-                                                    <option value="Solictudes">Solictudes</option>
-                                                    <option value="Ratificaciones">Ratificaciones</option>
-                                                </select>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Tipo solicitud</label>
+                                                    <select  class="form-control" name="tipo_solicitud">
+                                                        <option value="">Todos</option>
+                                                        <option value="Solictudes">Solictudes</option>
+                                                        <option value="Ratificaciones">Ratificaciones</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Tipo de persona</label>
-                                                <select  class="form-control" name="tipo_persona">
-                                                    <option value="">Todos</option>
-                                                    <option value="Solictudes">Fisica</option>
-                                                    <option value="Ratificaciones">Moral</option>
-                                                </select>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Tipo de persona</label>
+                                                    <select  class="form-control" name="tipo_persona">
+                                                        <option value="">Todos</option>
+                                                        <option value="Solictudes">Fisica</option>
+                                                        <option value="Ratificaciones">Moral</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Motivo</label>
-                                                <select  class="form-control" name="motivo">
-                                                    <option value="">Todos</option>
-                                                    <option value="Despido">Despido</option>
-                                                    <option value="Pago de prestaciones">Pago de prestaciones</option>
-                                                    <option value="Recision de la relación laboral">Recision de la relación laboral</option>
-                                                    <option value="Derecho de preferencia">Derecho de preferencia</option>
-                                                    <option value="Derecho de antiguedad">Derecho de antiguedad</option>
-                                                    <option value="Derecho de ascesnso">Derecho de ascesnso</option>
-                                                    <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Estatus</label>
-                                                <select  class="form-control" name="estatus">
-                                                    <option value="">Todos</option>
-                                                    <option value="Pendiente">Pendiente</option>
-                                                    <option value="Parcial">Parcial</option>
-                                                    <option value="Cumplido">Cumplido</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Notificación</label>
-                                                <select  class="form-control" name="centro">
-                                                    <option value="">Todos</option>
-                                                    <option value="Centro">Centro</option>
-                                                    <option value="Trabajador">Trabajador</option>
-                                                    <option value="Ambos">Ambos</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <h4 class="text-center">Filtros audiencias</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Conciliador</label>
-                                                <select  class="form-control" name="conciliador">
-                                                    <option value="">Todos</option>
-                                                    @foreach($usuariosconciliador as $user)
-                                                        <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                    @endforeach
-                                            </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label multiple for="name">Tipo estatus</label>
-                                                <select  class="form-control" name="tipo_audiencia">
-                                                    <option value="">Todos</option>
-                                                    <option value="Conciliacion">Conciliacion</option>
-                                                    <option value="No conciliacion">No conciliacion</option>
-                                                    <option value="Archivado">Archivado</option>
-                                                    <option value="Archivado por incomparecencia">Archivado por incomparecencia</option>
-                                                    <option value="Regenerada">Regenerada</option>
-                                                    <option value="Incompetencia">Incompetencia</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label multiple for="name">Tipo de audiencia</label>
-                                                <select  class="form-control" name="tipo_audiencia">
-                                                    <option value="">Todos</option>
-                                                    <option value="Presencial">Presencial</option>
-                                                    <option value="Linea">Linea</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <h4 class="text-center">Filtros generales</h4>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Sede</label>
-                                                <select class="form-control" name="sede">
-                                                    <option value="">Todos</option>
-                                                    @foreach($estadisticas as $aKey => $aSport)
-                                                        <option value="{{$aSport}}">{{$aSport}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Número de expediente</label>
-                                                <input type="text" name="nuc" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label multiple for="name">Sexo del solicitante</label>
-                                                <select  class="form-control" name="sexo">
-                                                    <option value="">Todos</option>
-                                                    <option value="H">Hombres</option>
-                                                    <option value="M">Mujeres</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        
-
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="password">Estado del solicitante</label>
-                                                <select class="form-control" name="estado_solicitante">
-                                                    <option value="">Todos</option>
-                                                    @foreach($estados as $est)
-                                                        <option value="{{$est['id']}}">{{$est['nombre']}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
                                             
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="password">Municipio del solicitante</label>
-                                                <select name="mun_solicitante" class="form-control">
-                                                    <option value="">Todos</option>
-                                                    @foreach($municipios as $mun)
-                                                            <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Motivo</label>
+                                                    <select  class="form-control" name="motivo">
+                                                        <option value="">Todos</option>
+                                                        <option value="Despido">Despido</option>
+                                                        <option value="Pago de prestaciones">Pago de prestaciones</option>
+                                                        <option value="Recision de la relación laboral">Recision de la relación laboral</option>
+                                                        <option value="Derecho de preferencia">Derecho de preferencia</option>
+                                                        <option value="Derecho de antiguedad">Derecho de antiguedad</option>
+                                                        <option value="Derecho de ascesnso">Derecho de ascesnso</option>
+                                                        <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Estatus</label>
+                                                    <select  class="form-control" name="estatus">
+                                                        <option value="">Todos</option>
+                                                        <option value="Pendiente">Pendiente</option>
+                                                        <option value="Parcial">Parcial</option>
+                                                        <option value="Cumplido">Cumplido</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Notificación</label>
+                                                    <select  class="form-control" name="centro">
+                                                        <option value="">Todos</option>
+                                                        <option value="Centro">Centro</option>
+                                                        <option value="Trabajador">Trabajador</option>
+                                                        <option value="Ambos">Ambos</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <h4 class="text-center">Filtros audiencias</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="name">Conciliador</label>
+                                                    <select  class="form-control" name="conciliador">
+                                                        <option value="">Todos</option>
+                                                        @foreach($usuariosconciliador as $user)
+                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
                                                         @endforeach
                                                 </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="password">Estado del citado</label>
-                                                <select class="form-control" name="estado_citado">
-                                                    <option value="">Todos</option>
-                                                    @foreach($estados as $est)
-                                                        <option value="{{$est['id']}}">{{$est['nombre']}}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label multiple for="name">Tipo estatus</label>
+                                                    <select  class="form-control" name="tipo_audiencia">
+                                                        <option value="">Todos</option>
+                                                        <option value="Conciliacion">Conciliacion</option>
+                                                        <option value="No conciliacion">No conciliacion</option>
+                                                        <option value="Archivado">Archivado</option>
+                                                        <option value="Archivado por incomparecencia">Archivado por incomparecencia</option>
+                                                        <option value="Regenerada">Regenerada</option>
+                                                        <option value="Incompetencia">Incompetencia</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label multiple for="name">Tipo de audiencia</label>
+                                                    <select  class="form-control" name="tipo_audiencia">
+                                                        <option value="">Todos</option>
+                                                        <option value="Presencial">Presencial</option>
+                                                        <option value="Linea">Linea</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <h4 class="text-center">Filtros generales</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="name">Sede</label>
+                                                    <select class="form-control" name="sede">
+                                                        <option value="">Todos</option>
+                                                        @foreach($estadisticas as $aKey => $aSport)
+                                                            <option value="{{$aSport}}">{{$aSport}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="name">Número de expediente</label>
+                                                    <input type="text" name="nuc" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label multiple for="name">Sexo del solicitante</label>
+                                                    <select  class="form-control" name="sexo">
+                                                        <option value="">Todos</option>
+                                                        <option value="H">Hombres</option>
+                                                        <option value="M">Mujeres</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             
-                                        <div class="col-xs-12 col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label for="password">Municipio del citado</label>
-                                                <select name="mun_citado" class="form-control">
-                                                    <option value="">Todos</option>
-                                                    @foreach($municipios as $mun)
-                                                            <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password">Estado del solicitante</label>
+                                                    <select class="form-control" name="estado_solicitante">
+                                                        <option value="">Todos</option>
+                                                        @foreach($estados as $est)
+                                                            <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password">Municipio del solicitante</label>
+                                                    <select name="mun_solicitante" class="form-control">
+                                                        <option value="">Todos</option>
+                                                        @foreach($municipios as $mun)
+                                                                <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password">Estado del citado</label>
+                                                    <select class="form-control" name="estado_citado">
+                                                        <option value="">Todos</option>
+                                                        @foreach($estados as $est)
+                                                            <option value="{{$est['id']}}">{{$est['nombre']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password">Municipio del citado</label>
+                                                    <select name="mun_citado" class="form-control">
+                                                        <option value="">Todos</option>
+                                                        @foreach($municipios as $mun)
+                                                                <option value="{{$mun['id']}}">{{$mun['nombre']}}</option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        <div id="concentrado"  style="display:none">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label multiple for="name">Auxiliar</label>
+                                                    <select class="form-control" name="auxiliar">
+                                                        <option value="">Todos</option>
+                                                        @foreach($usuariosauxiliares as $user)
+                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="name">Conciliador</label>
+                                                    <select  class="form-control" name="conciliador">
+                                                        <option value="">Todos</option>
+                                                        @foreach($usuariosconciliador as $user)
+                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
                                                         @endforeach
                                                 </select>
+                                                </div>
                                             </div>
-                                        </div>    
-
+                                        </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">General</button>
                                         </div>
@@ -302,4 +329,17 @@
 
 @section('scripts')
     <script src="../public/js/estadistica/estadistica.js"></script>
+    <script>
+        $('#reporte').change(function(){
+            var valorCambiado =$(this).val();
+            if((valorCambiado == 'Concentrado')){
+                $('#resu_detalla').css('display','none');
+                $('#concentrado').css('display','block');
+            }
+            else{
+                $('#resu_detalla').css('display','block');
+                $('#concentrado').css('display','none');
+            }
+        });
+    </script>
 @endsection

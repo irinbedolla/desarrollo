@@ -10,6 +10,6 @@ class SeerPerConciliador extends Model
     //use HasFactory;
     protected $table = 'seer_conciliadores';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_solicitud','numero_audiencia', 'estatus_conciliacion', 'monto', 'cumplimiento_pago','observaciones','multa','tipo','motivo_archivo','fecha_reprogracion'];
+    protected $fillable = ['id_solicitud','numero_audiencia', 'numero_audiencias', 'estatus_conciliacion', 'monto', 'cumplimiento_pago','observaciones','multa','tipo','motivo_archivo','fecha_reprogracion'];
 
 }
