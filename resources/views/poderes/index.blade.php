@@ -22,7 +22,7 @@
                                 <div class="table-responsive">
                                     <table id="example" class="table table-striped mt-2">
                                         <thead style="background-color: #4A001F;">
-                                            <th style="display: none;">ID</th>
+                                            <th style="color: #fff;">Folio</th>
                                             <th style="color: #fff;">Nombres</th>
                                             <th style="color: #fff;">Primer apellido</th>
                                             <th style="color: #fff;">Segundo apellido</th>
@@ -40,7 +40,7 @@
                                         <tbody>
                                             @foreach($poderes as $persona)
                                                 <tr>
-                                                    <td style="display: none;">{{$persona->idAbogado}}</td>
+                                                    <td>{{$persona->idAbogado}}</td>
                                                     <td>{{$persona->nombres}}</td>
                                                     <td>{{$persona->primer_apellido}}</td>
                                                     <td>{{$persona->segundo_apellido}}</td>

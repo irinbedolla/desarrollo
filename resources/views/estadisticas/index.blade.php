@@ -34,7 +34,7 @@
                             @can('ver-seer')
                                 @if($userRole[0] == "Auxiliar")
                                     <div class="table-responsive">
-                                        <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
+                                        <table id="example" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
@@ -59,8 +59,8 @@
                                     </div>
                                 @endif
                                 @if($userRole[0] == "Conciliador")
-                                    <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
-                                        <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
@@ -85,12 +85,12 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                        </div>
-                                    </table>
+                                        </table>
+                                    </div>
                                 @endif
                                 @if($userRole[0] == "Notificador")
                                     <div class="table-responsive">
-                                        <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
+                                        <table id="example" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
@@ -128,7 +128,7 @@
                                 @endif
                                 @if($userRole[0] == "Delegado")
                                     <div class="table-responsive">
-                                        <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
+                                        <table id="example" class="table table-striped mt-1">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>

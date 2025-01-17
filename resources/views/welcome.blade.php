@@ -8,8 +8,6 @@
         <meta name="generator" content="Hugo 0.84.0">
         <title>Si Conciliación</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
-
         <!-- Bootstrap core CSS -->
         <link href="public/assets_seer/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -53,82 +51,112 @@
         <main>
         
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#6A0F49"/>
-            </svg>
-            <div class="container">
-                <div class="carousel-caption text-end">
-                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 4"></button>
                 </div>
-                <div class="carousel-caption text-start">
-                    <h1>Solicitud en línea.</h1>
-                    <p>Puedes realizar tu solicitud en línea.</p>
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="https://michoacan.cencolab.mx/asesoria/seleccion" style="text-decoration: none; background-color: #DEC512;">
-                            Generar Solicitud
-                        </a>
-                    </p>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                        </svg>
+                        <div class="container">
+                            <div class="carousel-caption text-end">
+                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                            </div>
+                            <div class="carousel-caption text-start">
+                                <h1>Solicitud en línea.</h1>
+                                <p>Puedes realizar tu solicitud en línea.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-primary" href="https://michoacan.cencolab.mx/asesoria/seleccion" style="text-decoration: none; background-color: #DEC512;">
+                                        Generar Solicitud
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                        </svg>
+                        <div class="container">
+                            <div class="carousel-caption text-end">
+                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                            </div>
+                            <div class="carousel-caption text-start">
+                                <h1>Registrar poder.</h1>
+                                <p>Inicia tu registro como apoderado.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #DEC512;">
+                                        Generar Registro
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                        </svg>
+                        <div class="container">
+                            <div class="carousel-caption text-end">
+                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                            </div>
+                            <div class="carousel-caption text-start">
+                                <h1>Citas ratificación.</h1>
+                                <p>Realiza tu cita de ratificación.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-primary" href="#" style="text-decoration: none; background-color: #DEC512;">
+                                        Generar Cita
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                        </svg>
+                        <div class="container">
+                            <div class="carousel-caption text-end">
+                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                            </div>
+                            <div class="carousel-caption text-start">
+                                <h1>Calculadora de prestanciones.</h1>
+                                <p>Calculo aproximado.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-primary" href="https://cclmichoacan.gob.mx/Calculadora.html" style="text-decoration: none; background-color: #DEC512;">
+                                        Realizar cálculo.
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                        </svg>
+                        <div class="container">
+                            <div class="carousel-caption text-end">
+                                <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
+                            </div>
+                            <div class="carousel-caption text-start">
+                                <h1>Sí Conciliación.</h1>
+                                <p>Sistema integral de Conciliación.</p>
+                                <p>
+                                    <a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
+                                        Ingresar
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#6A0F49"/>
-            </svg>
-            <div class="container">
-                <div class="carousel-caption text-end">
-                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                </div>
-                <div class="carousel-caption text-start">
-                    <h1>Registrar poder.</h1>
-                    <p>Inicia tu registro como apoderado.</p>
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #DEC512;">
-                            Generar Registro
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#6A0F49"/>
-            </svg>
-            <div class="container">
-                <div class="carousel-caption text-end">
-                    <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
-                </div>
-                <div class="carousel-caption text-start">
-                    <h1>Sí Conciliación.</h1>
-                    <p>Sistema integral de Conciliación.</p>
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #DEC512;">
-                            Ingresar
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
-
-            
                 <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -176,8 +204,8 @@
                     <div class="col-lg-4">
                         <img src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Lázaro Cardenas</h2>
-                        <p></p>
-                        <p><a class="btn btn-secondary" href="#">Ver Ubicación &raquo;</a></p>
+                        <p>Calle paracho número 26 colonia 600 casas C.p. 60950</p>
+                        <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Paracho+26,+600+Casas,+60954+Cdad.+L%C3%A1zaro+C%C3%A1rdenas,+Mich./@17.9664748,-102.2234345,17z/data=!3m1!4b1!4m10!1m2!2m1!1sCalle+paracho+n%C3%BAmero+26+colonia+600+casas+C.p.+60950!3m6!1s0x84315c8d3b8b9bdf:0xe98a2dd18850e4cf!8m2!3d17.9664698!4d-102.2185636!15sCjVDYWxsZSBwYXJhY2hvIG7Dum1lcm8gMjYgY29sb25pYSA2MDAgY2FzYXMgQy5wLiA2MDk1MJIBEWNvbXBvdW5kX2J1aWxkaW5n4AEA!16s%2Fg%2F11fsjvfnh9?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoASAFQAw%3D%3D">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                 </div><!-- /.row -->
 

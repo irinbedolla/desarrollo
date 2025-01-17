@@ -232,7 +232,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label>*Identificación oficial</label><br>
-                                                {!! Form::file('documentoIne', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                                {!! Form::file('documentoIne', ['class' => 'form-control-file', 'accept' => '.pdf', 'required']) !!}
                                                 <div class="invalid-feedback">
                                                     La Identificación es obligatoria.
                                                 </div>
@@ -242,7 +242,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label>*Documento que acredite la representación</label><br>
-                                                {!! Form::file('documentoRepresentacion', ['class' => 'form-control-file', 'accept' => '.pdf']) !!}
+                                                {!! Form::file('documentoRepresentacion', ['class' => 'form-control-file', 'accept' => '.pdf', 'required']) !!}
                                                 <div class="invalid-feedback">
                                                     El documento de representación es obligatorio.
                                                 </div>

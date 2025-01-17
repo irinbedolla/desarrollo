@@ -21,6 +21,7 @@
                                             <th style="color: #fff;">Nombre</th>
                                             <th style="color: #fff;">E-mail</th>
                                             <th style="color: #fff;">Rol</th>
+                                            <th style="color: #fff;">Delegacíon</th>
                                             <th style="color: #fff;">Acciones</th>
                                         </thead>
                                         <tbody class="contenidobusqueda">
@@ -36,6 +37,7 @@
                                                             @endforeach
                                                         @endif
                                                     </td>
+                                                    <td>{{$usuario->delegacion}}</td>
                                                     <td>
                                                         @can('editar-usuario')
                                                             <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}" onclick=editar_usuario();>Editar</a>

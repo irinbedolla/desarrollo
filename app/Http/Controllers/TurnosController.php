@@ -30,11 +30,14 @@ class TurnosController extends Controller
     {
         $fecha_actual = date('Y-m-d');
         $relacionEloquent = 'roles';
-        
+        $id = auth()->user()->id;
+        $user = User::find($id);
+
+
         $auxiliares = User::whereHas($relacionEloquent, function ($query) {
             return $query->where('name', '=', 'Auxiliar');
         })
-        ->where('delegacion', 'Morelia')
+        ->where('delegacion', $user["delegacion"])
         ->get();
 
         $auxiliares_morelia = array();
@@ -72,6 +75,8 @@ class TurnosController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $id = auth()->user()->id;
+        $user = User::find($id);
 
         request()->validate([
             'nombre' => 'required',
@@ -98,7 +103,9 @@ class TurnosController extends Controller
         $relacionEloquent = 'roles';
         $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
             return $query->where('name', '=', 'Auxiliar');
-        })->get();
+        })
+        ->where('delegacion', $user["delegacion"])
+        ->get();
 
         $listado_ocupados = array();
         $listado_auxiliares = array(); 
@@ -110,7 +117,7 @@ class TurnosController extends Controller
 
         foreach($usuariosauxiliares as $token ){
             //Validar que solo sea morelia
-            if($token["delegacion"] == "Morelia"){
+            //if($token["delegacion"] == "Morelia"){
                 //Si la lista no esta vacia
                 if(!empty($listado_ocupados)){
                     //Buscamos si existen auxiliares libres
@@ -143,7 +150,7 @@ class TurnosController extends Controller
                         array_push($listado_auxiliares, $token["id"]);
                     }
                 }
-            }
+            //}
         }
 
 
@@ -194,6 +201,7 @@ class TurnosController extends Controller
                 'tipo'          => $data["tipo"],
                 'fecha'         => $fecha_actual,
                 'hora'          => $hora_actual,
+                'delegacion'    => $user["delegacion"],
                 'estatus'       => 'no atendido'
             );
 
@@ -231,6 +239,7 @@ class TurnosController extends Controller
                 'tipo'          => $data["tipo"],
                 'fecha'         => $fecha_actual,
                 'hora'          => $hora_actual,
+                'delegacion'    => $user["delegacion"],
                 'estatus'       => 'no atendido'
             );
             Turnos::create($data_insertar);
@@ -577,10 +586,13 @@ class TurnosController extends Controller
     }
 
     public function turnos(){
+        $id = auth()->user()->id;
+        $user = User::find($id);
         $fecha_actual = date('Y-m-d');
 
         $turnos = DB::table('turnos')
         ->where('turnos.fecha', $fecha_actual)
+        ->where('turnos.delegacion', $user["delegacion"])
         ->where('turnos.estatus','no atendido')
         ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
         ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo')
@@ -591,10 +603,13 @@ class TurnosController extends Controller
     }
 
     public function estadistica(){
+        $id = auth()->user()->id;
+        $user = User::find($id);
+
         $auxiliares = User::whereHas('roles', function ($query) {
             return $query->where('name', '=', 'Auxiliar');
         })
-        ->where('delegacion', 'Morelia')
+        ->where('delegacion', $user["delegacion"])
         ->get();
 
         return view('turnos.estadistica',compact('auxiliares'));
@@ -686,6 +701,8 @@ class TurnosController extends Controller
     {
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
+        $id = auth()->user()->id;
+        $user = User::find($id);
 
         //Se actualizan los estatus
         $turno              = Turnos::find($id);
@@ -697,11 +714,13 @@ class TurnosController extends Controller
         $relacionEloquent = 'roles';
         $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
             return $query->where('name', '=', 'Auxiliar');
-        })->get();
+        })
+        ->where('delegacion', $user["delegacion"])
+        ->get();
         
         foreach($usuariosauxiliares as $token ){
             //Validar que solo sea morelia
-            if($token["delegacion"] == "Morelia"){
+            //if($token["delegacion"] == "Morelia"){
                 //Si la lista no esta vacia
                 if($turno["tipo"] == "Ratificación"){
                     //Validar si random es diferente de 3-5-7
@@ -713,7 +732,7 @@ class TurnosController extends Controller
                 }else{
                     array_push($listado_auxiliares, $token["id"]);
                 }
-            }
+            //}
         }
         //validar si hay disponibles
         $random = array_rand($listado_auxiliares);

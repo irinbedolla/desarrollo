@@ -73,6 +73,20 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
+                                                    <label for="confirm-password">Sexo</label>
+                                                    <select class="form-control" name="sexo" required>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="H">Hombre</option>
+                                                        <option value="M">Mujer</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Debes seleccionar al menos un Sexo.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
                                                     <label for="password">Estado del solicitante</label>
                                                     <select id="estado_solicitante" class="form-control" name="estado_solicitante" required>
                                                         <option value="">Seleccione</option>
@@ -105,6 +119,10 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                                <button id="addRow" type="button" class="btn btn-info">Agregar Persona</button>
+                                            </div>
+                                                
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="confirm-password">Citado</label>
@@ -112,6 +130,9 @@
                                                 </div>
                                             </div>
 
+                                            <div id="newRow" class="col-xs-12 col-sm-12 col-md-12"></div>
+
+                                            
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Estado del citado</label>
@@ -135,20 +156,6 @@
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         El Municipio es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Sexo</label>
-                                                    <select class="form-control" name="sexo" required>
-                                                        <option value="">Seleccione</option>
-                                                        <option value="H">Hombre</option>
-                                                        <option value="M">Mujer</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Debes seleccionar al menos un Sexo.
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,6 +255,54 @@
 
 
 @section('scripts')
+<script>
+    $( document ).ready(function() {
+        // agregar registro
+        $("#addRow").click(function () {
+            var html = '';
+            html += '<div id="inputFormRow">';
+
+
+                //NOMBRE
+                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
+                html += '<div class="form-group">';
+                html += ' <label for="">Nombre Completo</label>';
+                html += '<input type="text" name="nombres[]" class="form-control" autocomplete="off">';
+                html += '</div> </div>';
+                //DIRECCION
+                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
+                html += '<div class="form-group">';
+                html += ' <label for="">Dirección</label>';
+                html += '<input type="text" name="direccion[]" class="form-control" autocomplete="off">';
+                html += '</div> </div>';
+                //TELEFONO
+                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
+                html += '<div class="form-group">';
+                html += ' <label for="">Telefono°</label>';
+                html += '<input type="number" maxlength="10" name="telefono[]" class="form-control" autocomplete="off">';
+                html += '</div> </div>';
+                //INE
+                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
+                html += '<div class="form-group">';
+                html += ' <label for="">INE</label>';
+                html += '<input type="text" name="ines[]" class="form-control" autocomplete="off">';
+                html += '</div> </div>';
+
+
+            html += '<div class="input-group-append">';
+            html += '<button id="removeRow" type="button" class="btn btn-danger">Borrar</button>';
+            html += '</div>';
+            html += '</div>';
+            
+            $('#newRow').append(html);
+        });
+        
+        // borrar registro
+        $(document).on('click', '#removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
+        });
+    });
+</script>
     <script src="../public/js/estadistica/estadistica.js"></script>
 @endsection
 

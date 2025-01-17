@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('misturnos') }}"  onclick=crear_turnos();>Cargar turnos</a>
                             <div class="table-responsive">
-                                <table id="tabla_usuarios" class="table table-striped mt-2">
+                                <table id="example" class="table table-striped mt-2">
                                     <thead style="background-color: #4A001F;">
                                         <th style="color: #fff;">ID</th>
                                         <th style="color: #fff;">Nombre</th>
