@@ -46,7 +46,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; height: auto;">
+                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
                                 <h1>Solicitud en línea.</h1>
@@ -65,7 +65,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; height: auto;">
+                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
                                 <h1>Registro de <br>representaciones legales.</h1>
@@ -84,7 +84,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; height: auto;">
+                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
                                 <h1>Citas ratificación.</h1>
@@ -103,7 +103,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; height: auto;">
+                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
                                 <h1>Calculadora de prestaciones.</h1>
@@ -122,7 +122,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; height: auto;">
+                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
                                 <h1>Sí Conciliación.</h1>

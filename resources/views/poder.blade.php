@@ -29,10 +29,16 @@
             height: 100%;
             z-index: 9999;
             background: url('public/assets/images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+           /* background-color: #6A0F49;/*<p style="color: #CEA845*/
             opacity: .8;
         }
     </style>
 
+    <style>
+        .section-header{
+            background-color:#6A0F49;
+        }
+    </style>
     @livewireStyles
 
     @yield('page_css')
@@ -44,12 +50,12 @@
 
     <div id="app">  
         <section class="section">
-            <div class="section-header">
-                <h3 style="text-align: center;">Registro de poder patronal.</h3>
+            <div class="section-header" style="background-color:#6A0F49"><img src="public/assets_seer/images/ccl.png" width="180" height="100" style="position: absolute; left: 1700px; top: 8px;"/>
+                <h3 class="text-center" style="color:#CEA845">Registro de representaciones legales</h3>
             </div>
             <div class="section-body">
-                <div class="row">
-                    <div class="col-lg-12">
+                <div class="row"> 
+                    <div class="col-lg-12" >
                         <div class="card">
                             <div class="card-body">
                                 @if(session()->has('success'))
@@ -77,8 +83,9 @@
                                         </button>
                                     </div>
                                 @endif
-                                <h3 class="text-center">Datos del representante legal.</h3>
-
+                                <div style="background-color:#6A0f49">
+                                    <h3 class="text-center" style="color:#CEA845">Datos del representante legal</h3>
+                                </div>    
                                 <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                                 {!! Form::open(array('route'=>'poderes.publico', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
                                     <div class="row">
@@ -144,7 +151,7 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <h4 class="text-center">Datos de la empresa</h4>
+                                                <h4 class="text-center" style="color:#CEA845">Datos de la empresa</h4>
                                             </div>
                                         </div>
 
@@ -225,7 +232,7 @@
 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <h4 class="text-center">Documentos</h4>
+                                                <h4 class="text-center" style="color:#CEA845">Documentos</h4>
                                             </div>
                                         </div>
 
@@ -269,8 +276,8 @@
                                         </div>
                                         
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                    <a href="{{ url('/'); }}" class="btn btn-primary">Regresar</a>    
+                                    <button type="submit" class="btn btn-primary" style=" background-color:#CEA845">Guardar</button>
+                                    <a href="{{ url('/'); }}" class="btn btn-primary" style=" background-color:#CEA845">Regresar</a>    
                                 {!! Form::close() !!}
                                 </div>
                             </div>
