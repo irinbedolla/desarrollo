@@ -8,6 +8,7 @@
     <!-- Bootstrap 4.1.1 -->
     <link href="public/assets_seer/assets/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
+    <link rel="icon" href="public/assets_seer/images/icono.png" type="image/x-icon">
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link href="public/assets/css/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <link href="public/assets/css/iziToast.min.css" rel="stylesheet">
@@ -291,9 +292,8 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        
-                                        <div class="form-group"><div class="col-md-6"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div align="center">
                                             <button type="submit" class="btn btn-primary" style="background-color:#CEA845;">Guardar</button>
                                             <a href="{{ url('/'); }}" class="btn btn-primary" style=" background-color:#CEA845;">Regresar</a>    
                                         </div>
