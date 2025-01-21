@@ -35,14 +35,24 @@
     </style>
 
     <style>
-        .section-header{
-            background-color:#6A0F49;
+       /* .cabecera{   
+            width:2000px;
+            height:100px;
+        }*/
+    </style>
+    <style>
+        /*.img{
+            display: flex;
+            justify-content: center;
         }
+       /* .btn btn-primary{
+
+        }*/
     </style>
     @livewireStyles
 
     @yield('page_css')
-    <!-- Template CSS -->
+    <!-- Template CSS <img src="public/assets_seer/images/ccl.png" width="180" height="90" style="position: absolute; left: 100px; top: 10px; right:0px;"/>  -->
     <link rel="stylesheet" href="public/web/css/style.css">
     <link rel="stylesheet" href="public/web/css/components.css">
     @yield('page_css')
@@ -50,8 +60,13 @@
 
     <div id="app">  
         <section class="section">
-            <div class="section-header" style="background-color:#6A0F49"><img src="public/assets_seer/images/ccl.png" width="180" height="100" style="position: absolute; left: 1700px; top: 8px;"/>
-                <h3 class="text-center" style="color:#CEA845">Registro de representaciones legales</h3>
+            <div class="col-lg-12" >
+                <div style="background-color:#6A0F49">
+                    <div align="right"><br>
+                        <img src="public/assets_seer/images/ccl.png" style="max-width: 10%" class="text-center">
+                    </div>
+                    <h3 class="text-center" style="color:#CEA845">Registro de representaciones legales</h3>    
+                </div>
             </div>
             <div class="section-body">
                 <div class="row"> 
@@ -276,8 +291,13 @@
                                         </div>
                                         
                                     </div>
-                                    <button type="submit" class="btn btn-primary" style=" background-color:#CEA845">Guardar</button>
-                                    <a href="{{ url('/'); }}" class="btn btn-primary" style=" background-color:#CEA845">Regresar</a>    
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        
+                                        <div class="form-group"><div class="col-md-6"></div>
+                                            <button type="submit" class="btn btn-primary" style="background-color:#CEA845;">Guardar</button>
+                                            <a href="{{ url('/'); }}" class="btn btn-primary" style=" background-color:#CEA845;">Regresar</a>    
+                                        </div>
+                                    </div>    
                                 {!! Form::close() !!}
                                 </div>
                             </div>
