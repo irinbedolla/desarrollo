@@ -37,6 +37,7 @@
 
 @yield('page_css')
 <!-- Template CSS -->
+    <link rel="icon"       href="../../../public/assets_seer/images/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../public/web/css/style.css">
     <link rel="stylesheet" href="../../../public/web/css/components.css">
     @yield('page_css')

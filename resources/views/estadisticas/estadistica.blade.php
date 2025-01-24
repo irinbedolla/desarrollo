@@ -69,7 +69,8 @@
                                             </div>
                                         </div>
 
-                                        <div id="resu_detalla"  style="display:none" class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Filtros solicitud</h4>
@@ -281,6 +282,7 @@
                                                 </div>
                                             </div>    
                                         </div>
+
                                         <div id="concentrado"  style="display:none">
                                             <div class="col-xs-12 col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -306,6 +308,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">General</button>
                                         </div>

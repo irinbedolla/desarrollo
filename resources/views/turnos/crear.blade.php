@@ -54,6 +54,47 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">Caso de excepción</label>
+                                            <input id="exepcion" type="checkbox" name="caso" aria-label="Caso de excepción">
+                                        </div>
+                                    </div>
+
+                                        <div id="div1" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Edad</label>
+                                                <input type="number" name="edad" class="form-control"> 
+                                                <div class="invalid-feedback">
+                                                    El campo edad es obligatorio.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="div2" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Sexo</label>
+                                                <select name="sexo" class="form-control">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="H">Hombre</option>
+                                                    <option value="M">Mujer</option>
+                                                    <option value="NB">No Binarios</option>
+                                                    <option value="LGBTTTIQ">LGBTTTIQ+</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    El campo sexo es obligatorio.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="div3" style="display: none;" class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="name">Conflicto</label>
+                                                <textarea name="conflicto" class="form-control"></textarea>
+                                                <div class="invalid-feedback">
+                                                    El campo edad es obligatorio.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
@@ -70,7 +111,7 @@
     </section>
 @endsection
 
-<div id="nuevo_turno" style ="display: none;">
+<div id="nuevo_turno" style="display: none;">
     <div>.</div>
     <div class="loader"></div>
 </div>
@@ -78,4 +119,17 @@
 
 @section('scripts')
     <script src="../public/js/turnos/turnos.js"></script>
+    <script>
+        $('input[type="checkbox"]').on('change', function(e){
+            if (this.checked) {
+                document.getElementById("div1").style.display = "block";
+                document.getElementById("div2").style.display = "block";
+                document.getElementById("div3").style.display = "block";
+            } else {
+                document.getElementById("div1").style.display = "none";
+                document.getElementById("div2").style.display = "none";
+                document.getElementById("div3").style.display = "none";
+            }
+        });
+    </script>
 @endsection

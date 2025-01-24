@@ -38,6 +38,7 @@
 
     @yield('page_css')
     <!-- Template CSS -->
+    <link rel="icon" href="public/assets_seer/images/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="public/web/css/style.css">
     <link rel="stylesheet" href="public/web/css/components.css">
     @yield('page_css')
@@ -114,7 +115,7 @@
         <div class="main-content">
             <section class="section">
                 <div class="section-header">
-                    <h3 class="page__heading">Sistema integral de conciliación</h3>
+                    <h3 class="page__heading">Sistema integral para la conciliación</h3>
                 </div>
                 <div class="section-body">
                     <div class="row">
@@ -124,7 +125,7 @@
                                     <div class="row">
                                         <ul class="navbar-nav flex-grow-1 justify-content-center">
                                             <li class="nav-item text-center">
-                                                <img src="public/assets_seer/images/logos.png" alt="" style="max-width: 25%; height: auto;">
+                                                <img src="public/assets_seer/images/ccl.png" alt="" style="max-width: 50%; height: auto;">
                                             </li>
                                         </ul>
                                     </div>

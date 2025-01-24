@@ -41,7 +41,11 @@
                                                     <td>{{$turno->tipo}}</td>
                                                     <td>{{$turno->estatus}}</td>
                                                     <td>{{$turno->fecha}}:{{$turno->hora}}</td>
-                                                    <td><a class="btn btn-info" href="{{ route('cambiar',$turno->id) }}" onclick=disponibles();>Cambiar</a>
+                                                    @if($turno->exepcion == "No")
+                                                        <td><a class="btn btn-info" href="{{ route('cambiar',$turno->id) }}" onclick=disponibles();>Cambiar</a>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

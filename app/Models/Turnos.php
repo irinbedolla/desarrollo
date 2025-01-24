@@ -10,5 +10,5 @@ class Turnos extends Model
     //use HasFactory;
     protected $table = 'turnos';
     protected $primaryKey = 'id';
-    protected $fillable = ['consecutivo','fecha','hora','auxiliar','solicitante','tipo','lugar_auxiliar','estatus','delegacion'];
+    protected $fillable = ['consecutivo','fecha','hora','auxiliar','solicitante','tipo','lugar_auxiliar','estatus','delegacion','exepcion','edad','sexo','conflicto'];
 }

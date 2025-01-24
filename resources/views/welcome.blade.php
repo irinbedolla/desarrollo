@@ -88,7 +88,7 @@
                                 <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
                             </div>
                             <div class="carousel-caption text-start">
-                                <h1>Calculadora de prestaciones.</h1>
+                                <h1>Calculadora de <br>prestaciones.</h1>
                                 <p>Cálculo aproximado.</p>
                                 <p>
                                     <a class="btn btn-lg btn-primary" href="https://cclmichoacan.gob.mx/Calculadora.html" style="text-decoration: none; background-color: #CEA845;">
@@ -129,7 +129,7 @@
                                 <h1>Cursos y Capacitaciones.</h1>
                                 <p>Ingresar a los cursos.</p>
                                 <p>
-                                    <a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #CEA845;">
+                                    <a class="btn btn-lg btn-primary" href="#" style="text-decoration: none; background-color: #CEA845;">
                                         Inicio
                                     </a>
                                 </p>

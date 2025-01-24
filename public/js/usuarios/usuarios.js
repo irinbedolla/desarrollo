@@ -11,7 +11,7 @@
                     event.stopPropagation();
                     form.classList.add('was-validated');
                 } else {
-                    $('#menu_carga').show();
+                    $('#nuevo_usuario').show();
                 }
             }, false);
         });
@@ -19,9 +19,9 @@
 })();
 
 function crear_usuario() {
-    $('#menu_carga').show();
+    $('#nuevo_usuario').show();
 }
 
 function editar_usuario() {
-    $('#menu_carga').show();
+    $('#nuevo_usuario').show();
 }

@@ -83,7 +83,6 @@ class TurnosController extends Controller
             'tipo' => 'required',
         ], $data);
 
-        	
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
         $numero_consecutivo = 0;
@@ -100,151 +99,189 @@ class TurnosController extends Controller
             $numero_consecutivo++;
         }
         
-        $relacionEloquent = 'roles';
-        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
-            return $query->where('name', '=', 'Auxiliar');
-        })
-        ->where('delegacion', $user["delegacion"])
-        ->get();
+        ///////Vamos a validar si es excepcion se va cambiar el rol///////
+        //Si existe caso de expecion
+        if(isset($data["caso"])){
+            $relacionEloquent = 'roles';
+            $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Excepcion');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
 
-        $listado_ocupados = array();
-        $listado_auxiliares = array(); 
+            $data_insertar= array(
+                'consecutivo'   => $numero_consecutivo,
+                'solicitante'   => $data["nombre"],
+                'auxiliar'      => $usuariosauxiliares[0]["id"],
+                'lugar_auxiliar'=> "Departamento de Igualdad de Género",
+                'tipo'          => $data["tipo"],
+                'fecha'         => $fecha_actual,
+                'hora'          => $hora_actual,
+                'delegacion'    => $user["delegacion"],
+                'estatus'       => "no atendido",
+                'exepcion'      => "Si",
+                'edad'          => $data["edad"],
+                'sexo'          => $data["sexo"],
+                'conflicto'     => $data["conflicto"]
 
-        //Voy a leer los usuario que tengan estatus ocupado
-        foreach($ocupados as $token ){
-            array_push($listado_ocupados, $token["id_auxiliar"]);
+            );
+            
+            $data_insertar_disponible= array(
+                'id_auxiliar'   => $usuariosauxiliares[0]["id"],
+                'fecha'         => $fecha_actual,
+                'hora'          => $hora_actual,
+                'estatus'       => 'Ocupado'
+            );
+
+            TurnoDisponible::create($data_insertar_disponible);
+            Turnos::create($data_insertar);
         }
+        ///// Si no es caso de exepcion ////////////////
+        else{
+            $relacionEloquent = 'roles';
+            $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Auxiliar');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
 
-        foreach($usuariosauxiliares as $token ){
-            //Validar que solo sea morelia
-            //if($token["delegacion"] == "Morelia"){
-                //Si la lista no esta vacia
-                if(!empty($listado_ocupados)){
-                    //Buscamos si existen auxiliares libres
-                    if(in_array($token["id"], $listado_ocupados)){
+            $listado_ocupados = array();
+            $listado_auxiliares = array(); 
+
+            //Voy a leer los usuario que tengan estatus ocupado
+            foreach($ocupados as $token ){
+                array_push($listado_ocupados, $token["id_auxiliar"]);
+            }
+
+            foreach($usuariosauxiliares as $token ){
+                //Validar que solo sea morelia
+                //if($token["delegacion"] == "Morelia"){
+                    //Si la lista no esta vacia
+                    if(!empty($listado_ocupados)){
+                        //Buscamos si existen auxiliares libres
+                        if(in_array($token["id"], $listado_ocupados)){
+                        }
+                        else{
+                            //if validar si es ratificaccion
+                            if($data["tipo"] == "Ratificación"){
+                                //Validar si random es diferente de 3-5-7
+                                if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7 ){
+                                }
+                                else{
+                                    array_push($listado_auxiliares, $token["id"]);    
+                                }
+                            }else{
+                                array_push($listado_auxiliares, $token["id"]);
+                            }
+                        }
                     }
+                    //Si la lista es vacia agregamos a todos los auxiliares
                     else{
-                        //if validar si es ratificaccion
                         if($data["tipo"] == "Ratificación"){
                             //Validar si random es diferente de 3-5-7
                             if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7 ){
                             }
                             else{
-                                array_push($listado_auxiliares, $token["id"]);    
+                                array_push($listado_auxiliares, $token["id"]);
                             }
                         }else{
                             array_push($listado_auxiliares, $token["id"]);
                         }
                     }
-                }
-                //Si la lista es vacia agregamos a todos los auxiliares
-                else{
-                    if($data["tipo"] == "Ratificación"){
-                        //Validar si random es diferente de 3-5-7
-                        if($token["id"] == 3 || $token["id"] == 5 || $token["id"] ==7 ){
-                        }
-                        else{
-                            array_push($listado_auxiliares, $token["id"]);
-                        }
-                    }else{
-                        array_push($listado_auxiliares, $token["id"]);
-                    }
-                }
-            //}
-        }
-
-
-        //validar si hay disponibles
-        if(isset($listado_auxiliares) && count($listado_auxiliares) > 0 ){
-            $random = array_rand($listado_auxiliares);
-            
-            //Relacion auxiliar con usuario
-            switch($listado_auxiliares[$random]){
-                case 6: 
-                    //Erandi
-                    $lugar_auxiliar = "Auxiliar 1";
-                    break;
-                case 10: 
-                    //Rosario
-                    $lugar_auxiliar = "Auxiliar 2";
-                    break;
-                case 8: 
-                    //Mayra
-                    $lugar_auxiliar = "Auxiliar 3";
-                    break;
-                case 9: 
-                    //Luis
-                    $lugar_auxiliar = "Auxiliar 4";
-                    break;
-                case 3: 
-                    //Yessiu
-                    $lugar_auxiliar = "Auxiliar 5";
-                    break;
-                case 7: 
-                    //Clever
-                    $lugar_auxiliar = "Auxiliar 6";
-                    break;
-                case 5: 
-                    //Sandra
-                    $lugar_auxiliar = "Auxiliar 7";
-                    break;
-                default:
-                    $lugar_auxiliar = "Pendiente";
-                    break;
+                //}
             }
 
-            $data_insertar= array(
-                'consecutivo'   => $numero_consecutivo,
-                'solicitante'   => $data["nombre"],
-                'auxiliar'      => $listado_auxiliares[$random],
-                'lugar_auxiliar'=> $lugar_auxiliar,
-                'tipo'          => $data["tipo"],
-                'fecha'         => $fecha_actual,
-                'hora'          => $hora_actual,
-                'delegacion'    => $user["delegacion"],
-                'estatus'       => 'no atendido'
-            );
+            //validar si hay disponibles
+            if(isset($listado_auxiliares) && count($listado_auxiliares) > 0 ){
+                $random = array_rand($listado_auxiliares);
+                
+                //Relacion auxiliar con usuario
+                switch($listado_auxiliares[$random]){
+                    case 6: 
+                        //Erandi
+                        $lugar_auxiliar = "Auxiliar 1";
+                        break;
+                    case 10: 
+                        //Rosario
+                        $lugar_auxiliar = "Auxiliar 2";
+                        break;
+                    case 8: 
+                        //Mayra
+                        $lugar_auxiliar = "Auxiliar 3";
+                        break;
+                    case 9: 
+                        //Luis
+                        $lugar_auxiliar = "Auxiliar 4";
+                        break;
+                    case 3: 
+                        //Yessiu
+                        $lugar_auxiliar = "Auxiliar 5";
+                        break;
+                    case 7: 
+                        //Clever
+                        $lugar_auxiliar = "Auxiliar 6";
+                        break;
+                    case 5: 
+                        //Sandra
+                        $lugar_auxiliar = "Auxiliar 7";
+                        break;
+                    default:
+                        $lugar_auxiliar = "Pendiente";
+                        break;
+                }
 
-            Turnos::create($data_insertar);
-            //Validar si tiene estatus disponible para insertar o actualizar
-            $validar_estatus = TurnoDisponible::where('fecha', $fecha_actual)
-            ->where('id_auxiliar', $listado_auxiliares[$random])
-            ->select('turno_disponible.estatus')
-            ->get();
-            
-            if(count($validar_estatus) == 0){
-                $data_insertar_disponible= array(
-                    'id_auxiliar'   => $listado_auxiliares[$random],
+                $data_insertar= array(
+                    'consecutivo'   => $numero_consecutivo,
+                    'solicitante'   => $data["nombre"],
+                    'auxiliar'      => $listado_auxiliares[$random],
+                    'lugar_auxiliar'=> $lugar_auxiliar,
+                    'tipo'          => $data["tipo"],
                     'fecha'         => $fecha_actual,
                     'hora'          => $hora_actual,
-                    'estatus'       => 'Ocupado'
+                    'delegacion'    => $user["delegacion"],
+                    'estatus'       => 'no atendido'
                 );
-                
-                TurnoDisponible::create($data_insertar_disponible);
-            }
-            else{
-                $data_update = DB::table('turno_disponible')
+
+                Turnos::create($data_insertar);
+                //Validar si tiene estatus disponible para insertar o actualizar
+                $validar_estatus = TurnoDisponible::where('fecha', $fecha_actual)
                 ->where('id_auxiliar', $listado_auxiliares[$random])
-                ->update(['estatus' => 'Ocupado']);
+                ->select('turno_disponible.estatus')
+                ->get();
+                
+                if(count($validar_estatus) == 0){
+                    $data_insertar_disponible= array(
+                        'id_auxiliar'   => $listado_auxiliares[$random],
+                        'fecha'         => $fecha_actual,
+                        'hora'          => $hora_actual,
+                        'estatus'       => 'Ocupado'
+                    );
+                    
+                    TurnoDisponible::create($data_insertar_disponible);
+                }
+                else{
+                    $data_update = DB::table('turno_disponible')
+                    ->where('id_auxiliar', $listado_auxiliares[$random])
+                    ->update(['estatus' => 'Ocupado']);
+                }
+                
             }
-            
+            //Si no hay disponibles se va agregar turno con el auxiliar en 0 que es en espera 
+            else{
+                $data_insertar= array(
+                    'consecutivo'   => $numero_consecutivo,
+                    'solicitante'   => $data["nombre"],
+                    'auxiliar'      => 0,
+                    'lugar_auxiliar'=> "Pendiente",
+                    'tipo'          => $data["tipo"],
+                    'fecha'         => $fecha_actual,
+                    'hora'          => $hora_actual,
+                    'delegacion'    => $user["delegacion"],
+                    'estatus'       => 'no atendido'
+                );
+                Turnos::create($data_insertar);
+            }
         }
-        //Si no hay disponibles se va agregar turno con el auxiliar en 0 que es en espera 
-        else{
-            $data_insertar= array(
-                'consecutivo'   => $numero_consecutivo,
-                'solicitante'   => $data["nombre"],
-                'auxiliar'      => 0,
-                'lugar_auxiliar'=> "Pendiente",
-                'tipo'          => $data["tipo"],
-                'fecha'         => $fecha_actual,
-                'hora'          => $hora_actual,
-                'delegacion'    => $user["delegacion"],
-                'estatus'       => 'no atendido'
-            );
-            Turnos::create($data_insertar);
-        }
-        
         return redirect()->route('turnos');
     }
 
@@ -256,7 +293,7 @@ class TurnosController extends Controller
         ->where('id_auxiliar', $id)
         ->get();
 
-        //Si existe voy actilizar
+        //Si existe voy actualizar
         if(!count($ocupados) == 0){
             $data_update = DB::table('turno_disponible')
             ->where('id_auxiliar', $id)
@@ -425,6 +462,7 @@ class TurnosController extends Controller
         $id = auth()->user()->id;
         $fecha_actual = date('Y-m-d');
 
+        /////Validar si es auxiliar o exepcion /////
         $misturnos = Turnos::where('fecha', $fecha_actual)
         ->where('auxiliar', $id)
         ->get();
@@ -460,7 +498,33 @@ class TurnosController extends Controller
         ->update(['estatus' => 'Disponible']);
 
         //Se va buscar en fila si existe algun otro y se va asiganar
-        if($id == 3 || $id == 5 || $id ==7 ){
+        if($turnos["exepcion"] == "Si"){
+            $user = User::find($IDauxiliar);
+
+            $relacionEloquent = 'roles';
+            $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Excepcion');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
+            
+            $turno_update= array(
+                'auxiliar'       => $usuariosauxiliares[0]["id"],
+                'lugar_auxiliar' => "Departamento de casos de Excepción"
+            );
+            $disponible_update= array(
+                'estatus'       => 'Ocupado'
+            );
+
+            $turno = Turnos::find($id);
+            $turno->update($turno_update);
+
+            $persona = DB::table('turno_disponible')
+            ->where('id_auxiliar', 13)
+            ->where('fecha', $fecha_actual)
+            ->update(['estatus' => 'Ocupado']);
+        }
+        else if($id == 3 || $id == 5 || $id ==7 ){
             $ocupados = Turnos::where('fecha', $fecha_actual)
             ->where('auxiliar', 0)
             ->where('tipo', 'Solicitud')
@@ -595,7 +659,7 @@ class TurnosController extends Controller
         ->where('turnos.delegacion', $user["delegacion"])
         ->where('turnos.estatus','no atendido')
         ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-        ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo')
+        ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.exepcion')
         ->get();
 
         
