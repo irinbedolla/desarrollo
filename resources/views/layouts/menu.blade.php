@@ -40,6 +40,7 @@
             </a>
         @endrole
     @endauth
+
     @auth
         @role('Administrador')
             <a class="nav-link" href="{{ route('usuarios') }}">
@@ -178,6 +179,7 @@
             </a>
         @endrole
     @endauth
+    
     @auth
         @role('Excepcion')
             <a class="nav-link" href="{{ route('poderes') }}">

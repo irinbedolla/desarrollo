@@ -75,5 +75,5 @@
 
 
 @section('scripts')
-    <script src="../public/js/turnos/turnos.js"></script>
+    <script src="../public/js/usuarios/usuarios.js"></script>
 @endsection

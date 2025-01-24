@@ -12,7 +12,8 @@
                 <img alt="image" src="../public/assets_seer/images/ccl.png"
                      class="rounded-circle mr-1 thumbnail-rounded user-thumbnail ">
                 <div class="d-sm-none d-lg-inline-block">
-                    Hola, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>
+                    Hola, {{\Illuminate\Support\Facades\Auth::user()->name}}
+                </div>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
