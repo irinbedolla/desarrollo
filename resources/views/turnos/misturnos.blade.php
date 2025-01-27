@@ -28,7 +28,11 @@
                                                 <td>{{$turnos->estatus}}</td>
                                                 <td>
                                                     @if($turnos->estatus == "no atendido")
-                                                    <a class="btn btn-info" href="{{ route('turnos.terminado', $turnos->id)}}" onclick=no_disponible();>Terminado</a>
+                                                        @if($turnos->exepcion == "Si")
+                                                            <a class="btn btn-info" href="{{ route('turnos.terminado_revisar', $turnos->id)}}" onclick=no_disponible();>Terminado</a>
+                                                        @else
+                                                            <a class="btn btn-info" href="{{ route('turnos.terminado', $turnos->id)}}" onclick=no_disponible();>Terminado</a>
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>

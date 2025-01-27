@@ -122,6 +122,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/capacitaciones/guardar_modulo',               [CapacitacionController::class, 'guardar_modulo'])->name('capacitaciones.crear_modulo');
         Route::post('/capacitaciones/guardar_modulo_editar',        [CapacitacionController::class, 'guardar_modulo_editar'])->name('capacitaciones.editar_modulo_guardar');
         Route::get('/capacitaciones/terminar/{id}',                 [CapacitacionController::class, 'terminar'])->name('capacitaciones.terminado');
+        Route::get('/capacitaciones/terminar/{id}',                 [CapacitacionController::class, 'terminar'])->name('capacitaciones.terminado');
     //Fin capacitaciones
 
     //Mis capacitaciones
@@ -195,6 +196,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/estadistica',     [TurnosController::class, 'estadistica'])->name('turno_estadistica');
         Route::post('/turnos/mostrar',        [TurnosController::class, 'mostrar'])->name('turnos_mostrar');
         Route::get('/turnos/cambiar/{id}',    [TurnosController::class, 'cambiar'])->name('cambiar');
+        Route::get('/turnos/terminado/{id}',  [TurnosController::class, 'terminado_confirmar'])->name('turnos.terminado_revisar');
+        Route::post('/turnos/edit',           [TurnosController::class, 'edit'])->name('turnos.edit');
     //Fin de  turnos
 
     //Segundo_encuentro

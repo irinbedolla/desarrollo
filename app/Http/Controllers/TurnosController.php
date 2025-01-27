@@ -520,7 +520,7 @@ class TurnosController extends Controller
             $turno->update($turno_update);
 
             $persona = DB::table('turno_disponible')
-            ->where('id_auxiliar', 13)
+            ->where('id_auxiliar', $usuariosauxiliares[0]["id"])
             ->where('fecha', $fecha_actual)
             ->update(['estatus' => 'Ocupado']);
         }
@@ -765,8 +765,8 @@ class TurnosController extends Controller
     {
         $fecha_actual = date('Y-m-d');
         $hora_actual  = date("H:i:s");
-        $id = auth()->user()->id;
-        $user = User::find($id);
+        $id_user = auth()->user()->id;
+        $user = User::find($id_user);
 
         //Se actualizan los estatus
         $turno              = Turnos::find($id);
@@ -852,4 +852,48 @@ class TurnosController extends Controller
         
         return redirect()->route('turnos.listado');
     }
+
+    public function terminado_confirmar($id){
+        $turno = Turnos::find($id);
+        return view('turnos.confirmar', compact('turno'));
+    }
+
+    public function edit(Request $request)
+    {
+        $data = $request->all();
+        $id_user = auth()->user()->id;
+        $user = User::find($id_user);
+        $fecha_actual = date('Y-m-d');
+
+        $relacionEloquent = 'roles';
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Excepcion');
+        })
+        ->where('delegacion', $user["delegacion"])
+        ->get();
+
+        $turno_update= array(
+            'solicitante'   => $data["nombre"],
+            'tipo'          => $data["tipo"],
+            'edad'          => $data["edad"],
+            'sexo'          => $data["sexo"],
+            'conflicto'     => $data["conflicto"],
+            'vulnerables'   => $data["vulnerables"],
+            'estatus'       => "atendido"
+        );
+
+        $turno = Turnos::find($data["id"]);
+        $turno->update($turno_update);
+
+        
+        $persona = DB::table('turno_disponible')
+        ->where('id_auxiliar', $usuariosauxiliares[0]["id"])
+        ->where('fecha', $fecha_actual)
+        ->update(['estatus' => 'Ocupado']);
+
+
+
+        return redirect()->route('misturnos');
+    }
+
 }
