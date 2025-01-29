@@ -112,24 +112,22 @@
                                                 </div>
                                             </div>
 
-
+                            <!-- Comienzo de citados -->                                        
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Citado</h4>
                                                 </div>
                                             </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-2">
-                                                <button id="addRow" type="button" class="btn btn-info">Agregar Persona</button>
+                                            <div class="col-xs-12 col-sm-6 col-md-2"><BR>
+                                                <button id="addRow" type="button" class="btn btn-info">Agregar Citado</button>
                                             </div>
-                                                
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="confirm-password">Citado</label>
                                                     <input type="text" class="form-control" name="citado"  oninput="this.value = this.value.toUpperCase()" required>
                                                 </div>
                                             </div>
-
+                                           
                                             <div id="newRow" class="col-xs-12 col-sm-12 col-md-12"></div>
 
                                             
@@ -173,7 +171,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Motivo de Solicitud</h4>
@@ -228,7 +226,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                           
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                             </div>
@@ -262,38 +260,56 @@
             var html = '';
             html += '<div id="inputFormRow">';
 
-
-                //NOMBRE
+                //NOMBRE CITADO
+                html +='<div class="col-xs-12 col-sm-6 col-md-4">';
+                html +='<div class="form-group">';
+                html +='<label for="confirm-password">Citado</label>';
+                html +='<input type="text" class="form-control" name="citado"  oninput="this.value = this.value.toUpperCase()" required>';
+                html +='</div> </div>';                                
+                                            
+                //ESTADO
                 html += '<div class="col-xs-12 col-sm-12 col-md-12">';
                 html += '<div class="form-group">';
-                html += ' <label for="">Nombre Completo</label>';
-                html += '<input type="text" name="nombres[]" class="form-control" autocomplete="off">';
-                html += '</div> </div>';
-                //DIRECCION
+                html += '<label for="password">Estado del citado</label>';
+                html += '<select id="estado_citado" class="form-control" name="estado_citado" required>';
+                html += '<option value="">Seleccione</option>';
+                html += '@foreach($estados as $est)';
+                html += '<option value="{{$est['id']}}">{{$est['nombre']}} </option>';
+                html += '@endforeach';
+                html += '</select>';
+                html += '<div class="invalid-feedback">';
+                html += 'El Estado es obligatorio.';
+                html += '</div> </div> </div>';                            
+                
+                //MUNICIPIO
                 html += '<div class="col-xs-12 col-sm-12 col-md-12">';
                 html += '<div class="form-group">';
-                html += ' <label for="">Dirección</label>';
-                html += '<input type="text" name="direccion[]" class="form-control" autocomplete="off">';
-                html += '</div> </div>';
-                //TELEFONO
-                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
-                html += '<div class="form-group">';
-                html += ' <label for="">Telefono°</label>';
-                html += '<input type="number" maxlength="10" name="telefono[]" class="form-control" autocomplete="off">';
-                html += '</div> </div>';
-                //INE
-                html += '<div class="col-xs-12 col-sm-12 col-md-12">';
-                html += '<div class="form-group">';
-                html += ' <label for="">INE</label>';
-                html += '<input type="text" name="ines[]" class="form-control" autocomplete="off">';
-                html += '</div> </div>';
-
-
+                html += '<label for="password">Municipio del citado</label>';
+                html += '<select id="municipio_citado" name="municipio_citado" class="form-control" disable>';
+                html += '<option value=""> --Primero selecciona un estado --</option>';
+                html += '</select>';
+                html += '<div class="invalid-feedback">';
+                html += 'El Municipio es obligatorio.';
+                html += '</div> </div> </div>';
+                
+                //TIPO DE PERSONA
+                html +='<div class="col-xs-12 col-sm-6 col-md-4">';
+                html +='<div class="form-group">';
+                html +='<label for="confirm-password">Tipo persona</label>';
+                html +='<select class="form-control" name="tipo_persona" required>';
+                html +='<option value="">Seleccione</option>';
+                html +='<option value="Fisica">Fisica</option>';
+                html +='<option value="Moral">Moral</option>';
+                html +='</select>';
+                html +='<div class="invalid-feedback">';
+                html +='El tipo de persona es obligatorio.';
+                html += '</div> </div> </div>';                                    
+                
             html += '<div class="input-group-append">';
             html += '<button id="removeRow" type="button" class="btn btn-danger">Borrar</button>';
             html += '</div>';
             html += '</div>';
-            
+
             $('#newRow').append(html);
         });
         
