@@ -103,6 +103,66 @@
                                                 </div>
                                             </div>
 
+
+                                            @if(isset($audiencia))
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <h4 class="text-center">Audiencias Anteriores</h4>
+                                                    </div>
+                                                </div>
+                                                @foreach($audiencia as $audi)
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="email">Folio de la audiencia</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["numero_audiencia"];?>">
+                                                        </div>
+                                                    </div> 
+                                                    
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="email">Número de audiencia</label>
+                                                            <input type="number" class="form-control" name="numero_audiencias" value="<?=$audi["numero_audiencias"];?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Estatus de audiencias</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["estatus_conciliacion"];?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Monto del convenio</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["monto"];?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Multa</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["multa"];?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Tipo</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["tipo"];?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Observaciones</label>
+                                                            <input type="text" class="form-control" value="<?=$audi["observaciones"];?>">
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+
+
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Audiencia</h4>

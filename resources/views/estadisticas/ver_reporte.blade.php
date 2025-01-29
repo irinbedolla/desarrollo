@@ -44,6 +44,25 @@
             <h3 class="page__heading">Estadisticas</h3>
         </div>
         <div class="section-body">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+            </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -69,14 +88,12 @@
                                             <th style="color: #fff;">Sexo del solicitante</th>
                                             <th style="color: #fff;">Estado del solicitante</th>
                                             <th style="color: #fff;">Municipio del solicitante</th>
-                                            <th style="color: #fff;">Citado</th>
-                                            <th style="color: #fff;">Actividad Economica</th>
-                                            <th style="color: #fff;">Estado del citado</th>
-                                            <th style="color: #fff;">Municipio del citado</th>
+                                            <th style="color: #fff;">Citados</th>
                                             <th style="color: #fff;">Motivo</th>
                                             <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Usuario</th>
                                             <th style="color: #fff;">Dias Transcurridos</th>
+                                            <th style="color: #fff;">Audiencias</th>
                                         </thead>
                                         <tbody>
                                             @foreach($solicitudes as $solicitud)
@@ -90,9 +107,6 @@
                                                     <td>{{$solicitud->estado}}</td>
                                                     <td>{{$solicitud->municipio}}</td>
                                                     <td>{{$solicitud->citado}}</td>
-                                                    <td>{{$solicitud->actividad_economica}}</td>
-                                                    <td>{{$solicitud->estado_citado}}</td>
-                                                    <td>{{$solicitud->municipio_citado}}</td>
                                                     <td>{{$solicitud->motivo}}</td>
                                                     <td>{{$solicitud->notificacion}}</td>
                                                     <td>{{$solicitud->usuario}}</td>
@@ -102,6 +116,9 @@
                                                         $interval = date_diff($datetime1, $datetime2);
                                                     @endphp
                                                     <td>{{$interval->format('%R%a días')}}</td>
+                                                    <td>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -191,8 +208,8 @@
                                                     <td>{{$audiencia->fecha}}</td>
                                                     <td>{{$audiencia->NUE}}</td>
                                                     <td>{{$audiencia->solicitante}}</td>
-                                                    <td>{{$ratificacion->estado}}</td>
-                                                    <td>{{$ratificacion->municipio}}</td>
+                                                    <td>{{$audiencia->estado}}</td>
+                                                    <td>{{$audiencia->municipio}}</td>
                                                     <td>{{$audiencia->actividad_economica}}</td>
                                                     <td>{{$audiencia->citado}}</td>
                                                     <td>{{$audiencia->numero_audiencia}}</td>

@@ -1246,11 +1246,13 @@ class SeerController extends Controller
         ], $data);
 
 
-        $data_general = SeerPerGeneral::
-        where('id', $data["id"])
-        //->update(['citado' => $data["citado"]])
-        ->update(['validado_conciliador' => "Guardado"]);
-          
+        if($data["estatus"] != "Archivada"){
+            $data_general = SeerPerGeneral::
+            where('id', $data["id"])
+            //->update(['citado' => $data["citado"]])
+            ->update(['validado_conciliador' => "Guardado"]);
+        }
+
         $data_general = SeerPerAuxiliar::
         where('id_solicitud', $data["id"])
         ->update(['actividad_economica' => $data["actividad_economica"]]);
@@ -1287,7 +1289,8 @@ class SeerController extends Controller
 
         $general  = SeerPerGeneral::find($id);
         $auxiliar = SeerPerAuxiliar::where("id_solicitud",$id)->first();
-        
+        $audiencia = SeerPerConciliador::where("id_solicitud",$id)->get();
+
         $estado_citado = Estados::find($general["estado_solicitante"]);
         $mun_citado    = Municipios::find($general["mun_solicitante"]);
 
@@ -1296,7 +1299,7 @@ class SeerController extends Controller
 
         $conciliador    = User::find($general["conciliador_id"]);
         
-        return view('estadisticas.crearPersonaCon', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador'));
+        return view('estadisticas.crearPersonaCon', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador','audiencia'));
     }
 
     public function ver_conciliador($id){
@@ -1306,7 +1309,8 @@ class SeerController extends Controller
 
         $general  = SeerPerGeneral::find($id);
         $auxiliar = SeerPerAuxiliar::where("id_solicitud",$id)->first();
-        
+        $audiencia = SeerPerConciliador::where("id_solicitud",$id)->get();
+
         $estado_citado = Estados::find($general["estado_solicitante"]);
         $mun_citado    = Municipios::find($general["mun_solicitante"]);
 
@@ -1315,7 +1319,7 @@ class SeerController extends Controller
 
         $conciliador = SeerPerConciliador::where("id_solicitud",$id)->first();
 
-        return view('estadisticas.verPersonaCon', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador'));
+        return view('estadisticas.verPersonaCon', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador','audiencia'));
     }
 
     public function index_convenios(){

@@ -69,94 +69,95 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Filtros solicitud</h4>
+                                            </div>
+                                        </div>
+
                                         <div class="col-xs-12 col-sm-6 col-md-4">
-
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <h4 class="text-center">Filtros solicitud</h4>
-                                                </div>
+                                            <div class="form-group">
+                                                <label multiple for="name">Auxiliar</label>
+                                                <select class="form-control" name="auxiliar">
+                                                    <option value="">Todos</option>
+                                                    @foreach($usuariosauxiliares as $user)
+                                                        <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                                </select>
                                             </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label multiple for="name">Auxiliar</label>
-                                                    <select class="form-control" name="auxiliar">
-                                                        <option value="">Todos</option>
-                                                        @foreach($usuariosauxiliares as $user)
-                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Tipo solicitud</label>
+                                                <select  class="form-control" name="tipo_solicitud">
+                                                    <option value="">Todos</option>
+                                                    <option value="Solictudes">Solictudes</option>
+                                                    <option value="Ratificaciones">Ratificaciones</option>
+                                                </select>
                                             </div>
+                                        </div>
 
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Tipo solicitud</label>
-                                                    <select  class="form-control" name="tipo_solicitud">
-                                                        <option value="">Todos</option>
-                                                        <option value="Solictudes">Solictudes</option>
-                                                        <option value="Ratificaciones">Ratificaciones</option>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Tipo de persona</label>
+                                                <select  class="form-control" name="tipo_persona">
+                                                    <option value="">Todos</option>
+                                                    <option value="Solictudes">Fisica</option>
+                                                    <option value="Ratificaciones">Moral</option>
                                                     </select>
-                                                </div>
                                             </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Tipo de persona</label>
-                                                    <select  class="form-control" name="tipo_persona">
-                                                        <option value="">Todos</option>
-                                                        <option value="Solictudes">Fisica</option>
-                                                        <option value="Ratificaciones">Moral</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        </div>
                                             
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Motivo</label>
-                                                    <select  class="form-control" name="motivo">
-                                                        <option value="">Todos</option>
-                                                        <option value="Despido">Despido</option>
-                                                        <option value="Pago de prestaciones">Pago de prestaciones</option>
-                                                        <option value="Recision de la relación laboral">Recision de la relación laboral</option>
-                                                        <option value="Derecho de preferencia">Derecho de preferencia</option>
-                                                        <option value="Derecho de antiguedad">Derecho de antiguedad</option>
-                                                        <option value="Derecho de ascesnso">Derecho de ascesnso</option>
-                                                        <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Motivo</label>
+                                                <select  class="form-control" name="motivo">
+                                                    <option value="">Todos</option>
+                                                    <option value="Despido">Despido</option>
+                                                    <option value="Pago de prestaciones">Pago de prestaciones</option>
+                                                    <option value="Recision de la relación laboral">Recision de la relación laboral</option>
+                                                    <option value="Derecho de preferencia">Derecho de preferencia</option>
+                                                    <option value="Derecho de antiguedad">Derecho de antiguedad</option>
+                                                    <option value="Derecho de ascesnso">Derecho de ascesnso</option>
+                                                    <option value="Terminación voluntaria de relación laboral">Terminación voluntaria de relación laboral</option>  
+                                                    <option value="Falta de acuerdo">Falta de acuerdo</select>
                                             </div>
+                                        </div>
                                             
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Estatus</label>
-                                                    <select  class="form-control" name="estatus">
-                                                        <option value="">Todos</option>
-                                                        <option value="Pendiente">Pendiente</option>
-                                                        <option value="Parcial">Parcial</option>
-                                                        <option value="Cumplido">Cumplido</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Estatus</label>
+                                                <select  class="form-control" name="estatus">
+                                                    <option value="">Todos</option>
+                                                    <option value="Pendiente">Pendiente</option>
+                                                    <option value="Parcial">Parcial</option>
+                                                    <option value="Cumplido">Cumplido</option>
+                                                </select>
                                             </div>
+                                        </div>
 
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Notificación</label>
-                                                    <select  class="form-control" name="centro">
-                                                        <option value="">Todos</option>
-                                                        <option value="Centro">Centro</option>
-                                                        <option value="Trabajador">Trabajador</option>
-                                                        <option value="Ambos">Ambos</option>
-                                                    </select>
-                                                </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Notificación</label>
+                                                <select  class="form-control" name="centro">
+                                                    <option value="">Todos</option>
+                                                    <option value="Centro">Centro</option>
+                                                    <option value="Trabajador">Trabajador</option>
+                                                    <option value="Ambos">Ambos</option>
+                                                    <option value="Exhorto">Exhorto</option>
+                                                </select>
                                             </div>
+                                        </div>
                                             
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <h4 class="text-center">Filtros audiencias</h4>
-                                                </div>
+
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <h4 class="text-center">Filtros audiencias</h4>
                                             </div>
+                                        </div>
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
@@ -175,11 +176,11 @@
                                                     <label multiple for="name">Tipo estatus</label>
                                                     <select  class="form-control" name="tipo_audiencia">
                                                         <option value="">Todos</option>
-                                                        <option value="Conciliacion">Conciliacion</option>
+                                                        <option value="Conciliacion">Convenio</option>
                                                         <option value="No conciliacion">No conciliacion</option>
                                                         <option value="Archivado">Archivado</option>
                                                         <option value="Archivado por incomparecencia">Archivado por incomparecencia</option>
-                                                        <option value="Regenerada">Regenerada</option>
+                                                        <option value="Regenerada">Reagendada</option>
                                                         <option value="Incompetencia">Incompetencia</option>
                                                     </select>
                                                 </div>
@@ -191,7 +192,7 @@
                                                     <select  class="form-control" name="tipo_audiencia">
                                                         <option value="">Todos</option>
                                                         <option value="Presencial">Presencial</option>
-                                                        <option value="Linea">Linea</option>
+                                                        <option value="Via remota">Via remota</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -228,6 +229,9 @@
                                                         <option value="">Todos</option>
                                                         <option value="H">Hombres</option>
                                                         <option value="M">Mujeres</option>
+                                                        <option value="No Binario">No Binario</option>
+                                                        <option value="Prefiero no decir">Prefiero no decir</option>
+                                                        <option value="Otro">Otro</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -282,33 +286,7 @@
                                                 </div>
                                             </div>    
                                         </div>
-
-                                        <div id="concentrado"  style="display:none">
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group">
-                                                    <label multiple for="name">Auxiliar</label>
-                                                    <select class="form-control" name="auxiliar">
-                                                        <option value="">Todos</option>
-                                                        @foreach($usuariosauxiliares as $user)
-                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="name">Conciliador</label>
-                                                    <select  class="form-control" name="conciliador">
-                                                        <option value="">Todos</option>
-                                                        @foreach($usuariosconciliador as $user)
-                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
-                                                        @endforeach
-                                                </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">General</button>
                                         </div>
@@ -336,11 +314,11 @@
         $('#reporte').change(function(){
             var valorCambiado =$(this).val();
             if((valorCambiado == 'Concentrado')){
-                $('#resu_detalla').css('display','none');
+                $('#resu_detallado').css('display','none');
                 $('#concentrado').css('display','block');
             }
             else{
-                $('#resu_detalla').css('display','block');
+                $('#resu_detallado').css('display','block');
                 $('#concentrado').css('display','none');
             }
         });

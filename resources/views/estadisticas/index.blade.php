@@ -67,6 +67,7 @@
                                                 <th style="color: #fff;">Número unico de identificación</th>
                                                 <th style="color: #fff;">Solicitante</th>
                                                 <th style="color: #fff;">Citado</th>
+                                                <th style="color: #fff;">Estatus</th>
                                                 <th style="color: #fff;">Detalles</th>
                                             </thead>
                                             <tbody>
@@ -77,6 +78,7 @@
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
                                                         <td>{{$persona->citado}}</td>
+                                                        <td>{{$persona->validado_conciliador}}</td>
                                                         @if($persona->validado_conciliador == "Pendiente")
                                                             <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
                                                         @else
