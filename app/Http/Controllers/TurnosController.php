@@ -896,4 +896,25 @@ class TurnosController extends Controller
         return redirect()->route('misturnos');
     }
 
+    public function cambio($id){
+        $id_user = auth()->user()->id;
+        $user = User::find($id_user);
+
+        $relacionEloquent = 'roles';
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Excepcion');
+        })
+        ->where('delegacion', $user["delegacion"])
+        ->get();
+
+        $turno_update= array(
+            'auxiliar'      =>  $usuariosauxiliares[0]["id"],
+            'lugar_auxiliar'=> "Departamento de Igualdad de Género"
+        );
+
+        $turno = Turnos::find($id);
+        $turno->update($turno_update);
+
+        return redirect()->route('misturnos');
+    }
 }

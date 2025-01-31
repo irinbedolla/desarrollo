@@ -196,8 +196,9 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/turnos/estadistica',     [TurnosController::class, 'estadistica'])->name('turno_estadistica');
         Route::post('/turnos/mostrar',        [TurnosController::class, 'mostrar'])->name('turnos_mostrar');
         Route::get('/turnos/cambiar/{id}',    [TurnosController::class, 'cambiar'])->name('cambiar');
-        Route::get('/turnos/terminado/{id}',  [TurnosController::class, 'terminado_confirmar'])->name('turnos.terminado_revisar');
+        Route::get('/turnos/terminadoR/{id}', [TurnosController::class, 'terminado_confirmar'])->name('turnos.terminado_revisar');
         Route::post('/turnos/edit',           [TurnosController::class, 'edit'])->name('turnos.edit');
+        Route::get('/turnos/cambio/{id}',     [TurnosController::class, 'cambio'])->name('turnos.cambioexcepcion');
     //Fin de  turnos
 
     //Segundo_encuentro
