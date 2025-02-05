@@ -50,7 +50,7 @@
                                                         <td>{{$persona->fecha}}</td>
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
-                                                        <td>{{$persona->citado}}</td>
+                                                        <td><a class="btn btn-primary" href="{{ route('seer.VerCitados', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
                                                     </tr>
                                                 @endforeach

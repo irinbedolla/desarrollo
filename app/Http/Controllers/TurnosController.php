@@ -688,15 +688,21 @@ class TurnosController extends Controller
             'fecha_final'   => 'required|date',
         ], $data);
 
+        $id = auth()->user()->id;
+        $user = User::find($id);
+
+
         if($data["auxiliares"] == "" && $data["tipo"] == ""){
             $suma_turnos = DB::table('turnos')
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->selectRaw('count(id) as total')
             ->first();
 
             $turnos = Turnos::where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
             ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
@@ -709,6 +715,7 @@ class TurnosController extends Controller
             ->where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.auxiliar',$data["auxiliares"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->selectRaw('count(id) as total')
             ->first();
 
@@ -717,26 +724,49 @@ class TurnosController extends Controller
             where("turnos.fecha",">=",$data["fecha_inicial"])
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.auxiliar',$data["auxiliares"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
             ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();
         }
         else if($data["auxiliares"] == "" && $data["tipo"] != ""){
-            $suma_turnos = DB::table('turnos')
-            ->where("turnos.fecha",">=",$data["fecha_inicial"])
-            ->where('turnos.fecha',"<=", $data["fecha_final"])
-            ->where('turnos.tipo',$data["tipo"])
-            ->selectRaw('count(id) as total')
-            ->first();
+            if($data["tipo"] == "exepcion"){
+                $suma_turnos = DB::table('turnos')
+                ->where("turnos.fecha",">=",$data["fecha_inicial"])
+                ->where('turnos.fecha',"<=", $data["fecha_final"])
+                ->where('turnos.exepcion',"Si")
+                ->where('turnos.delegacion', $user["delegacion"])
+                ->selectRaw('count(id) as total')
+                ->first();
+
+                $turnos = Turnos::
+                where("turnos.fecha",">=",$data["fecha_inicial"])
+                ->where('turnos.fecha',"<=", $data["fecha_final"])
+                ->where('turnos.exepcion',"Si")
+                ->where('turnos.delegacion', $user["delegacion"])
+                ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
+                ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
+                ->get();
+            }
+            else{
+                $suma_turnos = DB::table('turnos')
+                ->where("turnos.fecha",">=",$data["fecha_inicial"])
+                ->where('turnos.fecha',"<=", $data["fecha_final"])
+                ->where('turnos.tipo',$data["tipo"])
+                ->where('turnos.delegacion', $user["delegacion"])
+                ->selectRaw('count(id) as total')
+                ->first();
 
 
-            $turnos = Turnos::
-            where("turnos.fecha",">=",$data["fecha_inicial"])
-            ->where('turnos.fecha',"<=", $data["fecha_final"])
-            ->where('turnos.tipo',$data["tipo"])
-            ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
-            ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
-            ->get();
+                $turnos = Turnos::
+                where("turnos.fecha",">=",$data["fecha_inicial"])
+                ->where('turnos.fecha',"<=", $data["fecha_final"])
+                ->where('turnos.tipo',$data["tipo"])
+                ->where('turnos.delegacion', $user["delegacion"])
+                ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
+                ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
+                ->get();
+            }
         }
         else{
             $suma_turnos = DB::table('turnos')
@@ -744,6 +774,7 @@ class TurnosController extends Controller
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.tipo',$data["tipo"])
             ->where('turnos.auxiliar',$data["auxiliares"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->selectRaw('count(id) as total')
             ->first();
 
@@ -753,6 +784,7 @@ class TurnosController extends Controller
             ->where('turnos.fecha',"<=", $data["fecha_final"])
             ->where('turnos.tipo',$data["tipo"])
             ->where('turnos.auxiliar',$data["auxiliares"])
+            ->where('turnos.delegacion', $user["delegacion"])
             ->leftjoin('users', 'users.id', '=', 'turnos.auxiliar')
             ->select('users.name','turnos.id','turnos.solicitante','turnos.fecha','turnos.hora','turnos.estatus','turnos.tipo','turnos.hora_fin','turnos.updated_at')
             ->get();

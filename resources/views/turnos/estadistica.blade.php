@@ -72,12 +72,16 @@
                                                 <option value="">Seleccione</option>
                                                 <option value="Ratificación">Ratificación</option>
                                                 <option value="Solicitud">Solicitud</option>
+                                                <option value="exepcion">Casos de Excepcion</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-primary">Generar</button>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                     </div>
                                 </div>
                             {!! Form::close() !!}

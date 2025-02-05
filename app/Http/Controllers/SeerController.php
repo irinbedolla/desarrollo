@@ -16,6 +16,7 @@ use App\Models\SeerPerAuxiliar;
 use App\Models\SeerPerConciliador;
 use App\Models\SeerColectivas;
 use App\Models\SeerConvenios;
+use App\Models\SeerCitados;
 
 //Para sacar el Id del usuario
 use Illuminate\Support\Facades\Auth;
@@ -1054,6 +1055,7 @@ class SeerController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name')->all();
         $estados = Estados::all();
+        $municipios = Municipios::all();
         $relacionEloquent = 'roles';
 
         $conciliadores = User::whereHas($relacionEloquent, function ($query) {
@@ -1062,7 +1064,7 @@ class SeerController extends Controller
         ->where('delegacion', $user["delegacion"])
         ->get();
 
-        return view('estadisticas.crearPersonaAux', compact('user','userRole', 'estados','conciliadores'));
+        return view('estadisticas.crearPersonaAux', compact('user','userRole','municipios','estados','conciliadores'));
     }
 
     public function create_persona_r(){
@@ -1071,6 +1073,7 @@ class SeerController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name')->all();
         $estados = Estados::all();
+        $municipios = Municipios::all();
         $relacionEloquent = 'roles';
 
         $conciliadores = User::whereHas($relacionEloquent, function ($query) {
@@ -1079,7 +1082,7 @@ class SeerController extends Controller
         ->where('delegacion', $user["delegacion"])
         ->get();
 
-        return view('estadisticas.crearPersonaAuxR', compact('user','userRole', 'estados','conciliadores'));
+        return view('estadisticas.crearPersonaAuxR', compact('user','userRole','municipios','estados','conciliadores'));
     }
 
     public function obtenerMunicipio($id){
@@ -1091,6 +1094,7 @@ class SeerController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         $fecha_actual = date('y-m-d');
+        $cont = count($data["citado"]);
 
         //Validar documentacion
         request()->validate([
@@ -1100,14 +1104,10 @@ class SeerController extends Controller
             'estado_solicitante'    => 'required|numeric',
             'mun_solicitante'       => 'required|numeric',
             'actividad_economica'   => 'required',
-            'citado'                => 'required',
-            'estado_citado'         => 'required|numeric',
-            'municipio_citado'      => 'required|numeric',
             'conciliador_id'        => 'required|numeric',
 
             //Auxiliares
             'sexo'                  => 'required|in:H,M',
-            'tipo_persona'          => 'required|in:Moral,Fisica',
             'motivo'                => 'required|in:Despido,Pago de prestaciones,Recision de la relación laboral,Derecho de preferencia,Derecho de antiguedad,Derecho de ascesnso,Terminación voluntaria de relación laboral',
             'notificacion'          => 'required|in:Trabajador,Centro,Ambos',
 
@@ -1120,15 +1120,12 @@ class SeerController extends Controller
             'solicitante'           => $data["solicitante"],
             'estado_solicitante'    => $data["estado_solicitante"],
             'mun_solicitante'       => $data["mun_solicitante"],
-            'citado'                => $data["citado"],
-            'estado_citado'         => $data["estado_citado"],
-            'mun_citado'            => $data["municipio_citado"],
             'user_id'               => $id,
             'conciliador_id'        => $data["conciliador_id"],
             'delegacion'            => $user["delegacion"],
         ];
 
-        SeerPerGeneral::create($data_general);  
+        //SeerPerGeneral::create($data_general);  
         $id_general  = SeerPerGeneral::latest('id')->first();
 
         $data_auxiliar = [
@@ -1140,7 +1137,18 @@ class SeerController extends Controller
             'notificacion'              => $data["notificacion"],
             'tipo_solicitud'            => "Solicitud",
         ];
-        SeerPerAuxiliar::create($data_auxiliar);  
+        //SeerPerAuxiliar::create($data_auxiliar);  
+
+        for($i = 0; $i < $cont; $i++) {
+            $data_citado = [
+                'id_solicitud'  => $id_general["id"],
+                'fecha'         => $fecha_actual,
+                'nombre'        => $data["citado"][$i], 
+                'id_municipio'  => $data["estado_citado"][$i], 
+                'id_estado'     => $data["municipio_citado"][$i]
+            ];
+            SeerCitados::create($data_citado);
+        }
 
         return redirect()->route('seer');
     }
