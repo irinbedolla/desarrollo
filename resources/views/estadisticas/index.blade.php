@@ -47,7 +47,7 @@
                                                 @foreach($personas as $persona)
                                                     <tr>
                                                         <td style="display: none;">{{$persona->id}}</td>
-                                                        <td>{{$persona->fecha}}</td>
+                                                        <td>{{$persona->fecha}}</td> 
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.VerCitados', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>

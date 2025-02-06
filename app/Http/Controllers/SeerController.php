@@ -1492,4 +1492,4 @@ class SeerController extends Controller
 
         return view('estadisticas.crearConcentradoConVer', compact('estadisticas','userRole'));
     }
-}
+} 

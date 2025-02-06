@@ -12,5 +12,4 @@ class SeerAuxiliares extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['user_id','solicitudes', 'ratificaciones', 'asesorias', 'expediente_consulta', 'expediente_escaneo', 'expediente_foliar', 
     'cuantificacion', 'exhortos', 'audiencias_celebradas', 'cumplimientos', 'fecha', 'delegacion'];
-
 }
