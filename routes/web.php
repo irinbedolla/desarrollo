@@ -181,7 +181,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/seer/mostrar',                    [SeerController::class, 'mostrar_reporte'])->name('seer.mostar');
         Route::post('/seer/persona',                    [SeerController::class, 'auxiliar_persona'])->name('seer.auxiliar_persona');
         Route::get('/seer/persona/{id}',                [SeerController::class, 'ver_auxiliar'])->name('seer.estadistica_consultar');
-        Route::get('/seer/ver/{id}',                [SeerController::class, 'ver_citados'])->name('seer.VerCitados');
     //Fin Seer
 
     //Turnos

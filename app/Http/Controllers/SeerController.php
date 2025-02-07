@@ -1125,19 +1125,19 @@ class SeerController extends Controller
             'delegacion'            => $user["delegacion"],
         ];
 
-        //SeerPerGeneral::create($data_general);  
+        SeerPerGeneral::create($data_general);  
         $id_general  = SeerPerGeneral::latest('id')->first();
 
         $data_auxiliar = [
             'id_solicitud'              => $id_general["id"],
             'sexo'                      => $data["sexo"],
-            'tipo_persona'              => $data["tipo_persona"],
             'actividad_economica'       => $data["actividad_economica"],
             'motivo'                    => $data["motivo"],
             'notificacion'              => $data["notificacion"],
             'tipo_solicitud'            => "Solicitud",
         ];
-        //SeerPerAuxiliar::create($data_auxiliar);  
+        
+        SeerPerAuxiliar::create($data_auxiliar);  
 
         for($i = 0; $i < $cont; $i++) {
             $data_citado = [
