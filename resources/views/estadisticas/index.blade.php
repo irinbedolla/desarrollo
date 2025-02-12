@@ -50,7 +50,9 @@
                                                         <td>{{$persona->fecha}}</td> 
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
-                                                        <td><a class="btn btn-primary" href="{{ route('seer.VerCitados', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
+                                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="consultarCitados()" data-target="#modal_verCitados">
+                                                            Ver
+                                                        </button></td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
                                                     </tr>
                                                 @endforeach
@@ -81,8 +83,8 @@
                                                         <td>{{$persona->validado_conciliador}}</td>
                                                         @if($persona->validado_conciliador == "Pendiente")
                                                             <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
-                                                        @else
-                                                            <td><a class="btn btn-primary" href="{{ route('persona_ver', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
+                                                        @else 
+                                                        <td><a class="btn btn-primary" data-toggle="modal" href="{{ route('persona_ver', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
                                                         @endif
                                                     </tr>
                                                 @endforeach
@@ -214,14 +216,51 @@
             </div>
         </div>
         
+        <div id="menu_carga" style ="display: none;">
+            <div>.</div>
+            <div class="loader"></div>
+        </div>
+        
+        
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="modal_verCitados" tabindex="-1" role="dialog" aria-labelledby="CitadosModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">CITADOS</h5>
+            </div>
+            <div class="modal-body">  
+                <div id="citados" class="tabcontent">
+                    <div class="table-responsive">
+                        <div id="T_citados" class="table table-striped mt-1"> 
+                    
+                            <table id="tabla_citados" class="table table-striped mt-1">
+                                <thead style="background-color: #4A001F;">
+                                    <th style="display: none;">ID</th>
+                                    <th style="color: #fff;">Citado</th>
+                                    <th style="color: #fff;">Estado</th>
+                                    <th style="color: #fff;">Municipio</th>
+                                    <th style="color: #fff;">Fecha</th>
+                                </thead>
+                                <tbody name="m_citados" id="m_citados">
+                                        
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Fin Modal -->
+    
 @endsection
 
 
-<div id="menu_carga" style ="display: none;">
-    <div>.</div>
-    <div class="loader"></div>
-</div>
 
 
 @section('scripts')
