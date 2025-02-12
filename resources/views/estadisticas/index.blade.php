@@ -29,6 +29,9 @@
                                         <a class="btn btn-warning" href="{{ route('ver_consentrado_con') }}" onclick=nuevo_estadistica();> Ver</a>
                                     @endif
                                 @endif
+                                @if($userRole[0] == "Notificador")
+                                    <a class="btn btn-warning" href="{{ route('create_notificador') }}" onclick=nuevo_estadistica();> Consentrado</a>
+                                @endif
                             @endcan
                             
                             @can('ver-seer')
@@ -94,36 +97,34 @@
                                 @endif
                                 @if($userRole[0] == "Notificador")
                                     <div class="table-responsive">
-                                        <table id="example" class="table table-striped mt-1">
+                                        <table id="example" class="table table-striped mt-1" style="text-align:center">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
                                                 <th style="color: #fff;">Fecha</th>
-                                                <th style="color: #fff;">Solicitudes atendidas</th>
-                                                <th style="color: #fff;">Audiencias programadas</th>
-                                                <th style="color: #fff;">Audiencias celebradas</th>
-                                                <th style="color: #fff;">Convenios conciliatorios</th>
-                                                <th style="color: #fff;">Ratificaciones de convenios</th>
-                                                <th style="color: #fff;">Constancia de no conciliación</th>
-                                                <th style="color: #fff;">Cuantificaciones</th>
+                                                <th style="color: #fff;">Citatorios</th>
                                                 <th style="color: #fff;">Asesorías</th>
-                                                <th style="color: #fff;">Integración de expediente</th>
-                                                <th style="color: #fff;">Audiencia colectiva</th>
+                                                <th style="color: #fff;">Solicitudes Levantadas</th>
+                                                <th style="color: #fff;">Ratificaciones</th>
+                                                <th style="color: #fff;">Multas Notificadas</th>
+                                                <th style="color: #fff;">Informe Diario</th>
+                                                <th style="color: #fff;">Informes Foráneos</th>
+                                                <th style="color: #fff;">Integrar Expediente</th>
+                                                <th style="color: #fff;">Escaneo de Documentos</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($estadisticas as $estadistica)
                                                     <tr>
                                                         <td style="display: none;">{{$estadistica->id}}</td>
                                                         <td>{{$estadistica->fecha}}</td>
-                                                        <td>{{$estadistica->solicitues_atendidas}}</td>
-                                                        <td>{{$estadistica->audiencia_programada}}</td>
-                                                        <td>{{$estadistica->audiencia_celebradas}}</td>
-                                                        <td>{{$estadistica->convenios_conciliatorios}}</td>
-                                                        <td>{{$estadistica->ratificaciones_convenio}}</td>
-                                                        <td>{{$estadistica->contancias_no_conciliacion}}</td>
-                                                        <td>{{$estadistica->cuantificaciones}}</td>
-                                                        <td>{{$estadistica->asesorias}}</td>
-                                                        <td>{{$estadistica->integracion_expediente}}</td>
-                                                        <td>{{$estadistica->colectivas}}</td>
+                                                        <td>{{$estadistica->citatorios}}</td>
+                                                        <td>{{$estadistica->asesorias_notificador}}</td>
+                                                        <td>{{$estadistica->solicitudes_levantadas}}</td>
+                                                        <td>{{$estadistica->ratificaciones_notificador}}</td>
+                                                        <td>{{$estadistica->multas_notificador}}</td>
+                                                        <td>{{$estadistica->informe_diario}}</td>
+                                                        <td>{{$estadistica->informe_foraneo}}</td>
+                                                        <td>{{$estadistica->integrar_expediente}}</td>
+                                                        <td>{{$estadistica->escaneo_documentos}}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

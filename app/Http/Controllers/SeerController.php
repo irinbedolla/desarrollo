@@ -55,7 +55,8 @@ class SeerController extends Controller
         
         //Si es delegado le va salir todo lo de su delegacion de todos los roles
         if($userRole[0] == "Notificador"){
-            $estadisticas = SeerNotificadores::where('delegacion', $user["delegacion"])->get();
+            $personas = null;
+            $estadisticas = SeerNotificadores::where('delegacion', $user["delegacion"])->where('user_id', $id)->get();
         }
         //Si es otro usuario le va mostrar unicamente las del ese usuario
         else if($userRole[0] == "Auxiliar"){
@@ -126,6 +127,16 @@ class SeerController extends Controller
         return view('estadisticas.crearConsentradoVer', compact('estadisticas','userRole'));
     }
 
+    public function create_notificadores()
+    {
+        $id = auth()->user()->id;
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name')->all();
+
+        return view('estadisticas.crearNotificador', compact('user','userRole'));
+    }
+
     public function store_notificador(Request $request){
         $data = $request->all();
         $id = auth()->user()->id;
@@ -187,16 +198,16 @@ class SeerController extends Controller
 
         //Validar documentacion
         request()->validate([
-            'solicitues_atendidas'          => 'required|numeric',
-            'audiencia_programada'          => 'required|numeric',
-            'audiencia_celebradas'          => 'required|numeric',
-            'convenios_conciliatorios'      => 'required|numeric',
-            'ratificaciones_convenio'       => 'required|numeric',
-            'contancias_no_conciliacion'    => 'required|numeric',
-            'cuantificaciones'              => 'required|numeric',
-            'asesorias'                     => 'required|numeric',
-            'integracion_expediente'        => 'required|numeric',
-            'colectivas'                    => 'required|numeric',
+            'citatorios'                    => 'required|numeric',
+            'asesorias_notificador'         => 'required|numeric',
+            'solicitudes_levantadas'        => 'required|numeric',
+            'ratificaciones_notificador'    => 'required|numeric',
+            'razon_registrada'              => 'required|numeric',
+            'multas_notificador'            => 'required|numeric',
+            'informe_diario'                => 'required|numeric',
+            'informe_foraneo'               => 'required|numeric',
+            'integrar_expediente'           => 'required|numeric',
+            'escaneo_documentos'            => 'required|numeric',
         ], $data);
 
         $data['user_id'] = $user["id"];

@@ -32,7 +32,7 @@
 
                             @if($userRole[0] == "Conciliador")
                                 <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST')) !!}
+                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">

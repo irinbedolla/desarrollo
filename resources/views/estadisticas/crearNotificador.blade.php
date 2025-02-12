@@ -30,81 +30,79 @@
 
                             @endif
 
-                            @if($userRole[0] == "Auxiliar")
+                            @if($userRole[0] == "Notificador")
                                 <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                                {!! Form::open(array('route'=>'seer.store_auxiliar', 'method'=>'POST',  'class' => 'needs-validation','novalidate')) !!}
+                                {!! Form::open(array('route'=>'seer.store_notificador', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="name">Solicitudes</label>
-                                                <input type="number" class="form-control" name="solicitudes" value="<?=$estadisticas["solicitudes"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="email">Ratificaciones</label>
-                                                <input type="number" class="form-control" name="ratificaciones" value="<?=$estadisticas["ratificaciones"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="password">Asesorias</label>
-                                                <input type="number" class="form-control" name="asesorias" value="<?=$estadisticas["asesorias"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-2">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Consulta Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_consulta" value="<?=$estadisticas["expediente_consulta"];?>" readonly>
+                                                <label for="name">Citatorios</label>
+                                                <input type="int" class="form-control" name="citatorios" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Escanear Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_escaneo" value="<?=$estadisticas["expediente_escaneo"];?>" readonly>
+                                                <label for="email">Asesorías</label>
+                                                <input type="number" class="form-control" name="asesorias_notificador" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Foliar Expediente</label>
-                                                <input type="number" class="form-control" name="expediente_foliar" value="<?=$estadisticas["expediente_foliar"];?>" readonly>
+                                                <label for="password">Solicitudes Levantadas</label>
+                                                <input type="number" class="form-control" name="solicitudes_levantadas" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Exhortos</label>
-                                                <input type="number" class="form-control" name="exhortos" value="<?=$estadisticas["exhortos"];?>" readonly>
+                                                <label for="confirm-password">Ratificaciones</label>
+                                                <input type="number" class="form-control" name="ratificaciones_notificador" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Audiencias Celebradas</label>
-                                                <input type="number" class="form-control" name="audiencias_celebradas"  value="<?=$estadisticas["audiencias_celebradas"];?>" readonly>
+                                                <label for="confirm-password">Multas Notificadas</label>
+                                                <input type="number" class="form-control" name="multas_notificador" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Registro Cumplimiento</label>
-                                                <input type="number" class="form-control" name="cumplimientos" value="<?=$estadisticas["cumplimientos"];?>" readonly>
+                                                <label for="confirm-password">Informe Diario</label>
+                                                <input type="number" class="form-control" name="informe_diario" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="confirm-password">Cuentificación Total($)</label>
-                                                <input type="number" class="form-control" name="cuantificacion" value="<?=$estadisticas["cuantificacion"];?>" readonly>
+                                                <label for="confirm-password">Informes Foráneos</label>
+                                                <input type="number" class="form-control" name="informe_foraneo" maxlength="10" pattern="[0-9]+" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Integrar Expediente</label>
+                                                <input type="number" class="form-control" name="integrar_expediente" maxlength="10" pattern="[0-9]+" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="confirm-password">Escaneo de Documentos</label>
+                                                <input type="number" class="form-control" name="escaneo_documentos" maxlength="10" pattern="[0-9]+" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <a class="btn btn-primary" href="{{ route('seer') }}">Regresar</a>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
+                                        
                                     </div>
+                                {!! Form::close() !!}
                             @endif
 
                         </div>
@@ -115,3 +113,12 @@
     </section>
 @endsection
 
+<div id="menu_carga" style ="display: none;">
+    <div>.</div>
+    <div class="loader"></div>
+</div>
+
+
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection
