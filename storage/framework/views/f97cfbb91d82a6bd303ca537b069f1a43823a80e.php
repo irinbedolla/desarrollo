@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\trabajo\resources\views/profile/change_password.blade.php ENDPATH**/ ?>
