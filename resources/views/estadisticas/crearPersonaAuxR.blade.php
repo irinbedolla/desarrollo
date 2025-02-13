@@ -46,6 +46,13 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
+                                                    <label for="confirm-password">Fecha de confirmación de la solicitud</label>
+                                                    <input type="date" class="form-control" name="fecha_confirmacion" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
                                                     <label for="email">Solicitante</label>
                                                     <input type="text" class="form-control" name="solicitante"  oninput="this.value = this.value.toUpperCase()" required>
                                                     <div class="invalid-feedback">
@@ -60,6 +67,20 @@
                                                     <input type="text" class="form-control" name="actividad_economica"  oninput="this.value = this.value.toUpperCase()" required>
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="confirm-password">Sexo</label>
+                                                    <select class="form-control" name="sexo" required>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="H">Hombre</option>
+                                                        <option value="M">Mujer</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Debes seleccionar al menos un Sexo.
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,73 +113,18 @@
                                             </div>
 
 
+                                             <!-- Comienzo de citados -->                                        
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Citado</h4>
                                                 </div>
                                             </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Citado</label>
-                                                    <input type="text" class="form-control" name="citado"  oninput="this.value = this.value.toUpperCase()" required>
-                                                </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-2"><BR>
+                                                <button id="addRow" type="button" class="btn btn-info">Agregar Citado</button>
                                             </div>
+                                           
 
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Estado del citado</label>
-                                                    <select id="estado_citado" class="form-control" name="estado_citado" required>
-                                                        <option value="">Seleccione</option>
-                                                        @foreach($estados as $est)
-                                                            <option value="{{$est['id']}}">{{$est['nombre']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        El Estado es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Municipio del citado</label>
-                                                    <select id="municipio_citado" name="municipio_citado" class="form-control" disabled>
-                                                        <option value=""> --Primero selecciona un estado --</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        El Municipio es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Sexo</label>
-                                                    <select class="form-control" name="sexo" required>
-                                                        <option value="">Seleccione</option>
-                                                        <option value="H">Hombre</option>
-                                                        <option value="M">Mujer</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Debes seleccionar al menos un Sexo.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Tipo persona</label>
-                                                    <select class="form-control" name="tipo_persona" required>
-                                                        <option value="">Seleccione</option>
-                                                        <option value="Fisica">Fisica</option>
-                                                        <option value="Moral">Moral</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        El tipo de persona es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="newRow" ></div>
 
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
@@ -266,6 +232,84 @@
 
 
 @section('scripts')
+    <script>
+        $( document ).ready(function() {
+            // agregar registro
+            $("#addRow").click(function () {
+                var html = '';
+                html += '<div id="inputFormRow">';
+
+                    //NOMBRE CITADO
+                    html +='<div class="col-xs-12 col-sm-6 col-md-6">';
+                    html +='<div class="form-group">';
+                    html +='<label for="confirm-password">Citado</label>';
+                    html +='<input type="text" class="form-control" name="citado[]"  oninput="this.value = this.value.toUpperCase()" required>';
+                    html +='</div> </div>';                                
+                                                
+                    //ESTADO
+                    html += '<div class="col-xs-12 col-sm-12 col-md-6">';
+                    html += '<div class="form-group">';
+                    html += '<label for="password">Estado del citado</label>';
+                    html += '<select id="estado_citado" class="form-control" name="estado_citado[]" required>';
+                    html += '<option value="">Seleccione</option>';
+                    html += '@foreach($estados as $est)';
+                    html += '<option value="{{$est['id']}}">{{$est['nombre']}} </option>';
+                    html += '@endforeach';
+                    html += '</select>';
+                    html += '<div class="invalid-feedback">';
+                    html += 'El Estado es obligatorio.';
+                    html += '</div> </div> </div>';                            
+                    
+                    //MUNICIPIO
+                    html += '<div class="col-xs-12 col-sm-12 col-md-6">';
+                    html += '<div class="form-group">';
+                    html += '<label for="password">Municipio del citado</label>';
+                    html += '<select id="municipio_citado" name="municipio_citado[]" class="form-control" disable>';
+                    html += '<option value="">Seleccione</option>';
+                    html += '@foreach($municipios as $mun)';
+                    html += '<option value="{{$mun['id']}}">{{$mun['nombre']}} </option>';
+                    html += '@endforeach';
+                    html += '</select>';
+                    html += '<div class="invalid-feedback">';
+                    html += 'El Municipio es obligatorio.';
+                    html += '</div> </div> </div>';
+                    
+                    //DIRECCION
+                    html += '<div class="col-xs-12 col-sm-12 col-md-6">';
+                    html += '<div class="form-group">';
+                    html += '<label for="password">Dirección del citado</label>';
+                    html +='<input type="text" class="form-control" name="direccion[]"  oninput="this.value = this.value.toUpperCase()" required>';
+                    html += '<div class="invalid-feedback">';
+                    html += 'La Dirección es obligatoria.';
+                    html += '</div> </div> </div>';
+
+                    //TIPO DE PERSONA
+                    html +='<div class="col-xs-12 col-sm-6 col-md-6">';
+                    html +='<div class="form-group">';
+                    html +='<label for="confirm-password">Tipo persona</label>';
+                    html +='<select class="form-control" name="tipo_persona[]" required>';
+                    html +='<option value="">Seleccione</option>';
+                    html +='<option value="Fisica">Fisica</option>';
+                    html +='<option value="Moral">Moral</option>';
+                    html +='</select>';
+                    html +='<div class="invalid-feedback">';
+                    html +='El tipo de persona es obligatorio.';
+                    html += '</div> </div> </div>';                                    
+                    
+                html += '<div class="input-group-append">';
+                html += '<button id="removeRow" type="button" class="btn btn-danger">Borrar</button>';
+                html += '</div>';
+                html += '</div>';
+
+                $('#newRow').append(html);
+            });
+            
+            // borrar registro
+            $(document).on('click', '#removeRow', function () {
+                $(this).closest('#inputFormRow').remove();
+            });
+        });
+    </script>
     <script src="../public/js/estadistica/estadistica.js"></script>
 @endsection
 

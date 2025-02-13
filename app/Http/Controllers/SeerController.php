@@ -56,7 +56,10 @@ class SeerController extends Controller
         //Si es delegado le va salir todo lo de su delegacion de todos los roles
         if($userRole[0] == "Notificador"){
             $personas = null;
-            $estadisticas = SeerNotificadores::where('delegacion', $user["delegacion"])->where('user_id', $id)->get();
+            $estadisticas = SeerPerGeneral::where('seer_citados.id_notificador', $id)
+            ->join('seer_citados','seer_citados.id_solicitud','=','seer_general.id')
+            ->select('seer_citados.id','seer_general.NUE','seer_general.solicitante','seer_citados.nombre','seer_citados.direccion','seer_citados.estatus')
+            ->get();
         }
         //Si es otro usuario le va mostrar unicamente las del ese usuario
         else if($userRole[0] == "Auxiliar"){
@@ -73,6 +76,19 @@ class SeerController extends Controller
         }
         else if($userRole[0] == "Delegado"){
             $estadisticas = SeerDelegados::where('user_id', $id)->get();
+        }
+        if($userRole[0] == "Enlace"){
+            $personas = User::whereHas('roles', function ($query) {
+                return $query->where('name', '=', 'Notificador');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
+
+            $estadisticas = SeerPerGeneral::join('seer_citados','seer_citados.id_solicitud','=','seer_general.id')
+            ->select('seer_citados.id','seer_general.NUE','seer_general.solicitante','seer_citados.nombre','seer_citados.direccion','seer_citados.estatus')
+            ->where('seer_general.delegacion', $user["delegacion"])
+            ->where('seer_citados.id_notificador', 0)
+            ->get();
         }
 
         return view('estadisticas.index',compact('estadisticas','userRole','personas'));
@@ -1154,7 +1170,8 @@ class SeerController extends Controller
             $data_citado = [
                 'id_solicitud'  => $id_general["id"],
                 'fecha'         => $fecha_actual,
-                'nombre'        => $data["citado"][$i], 
+                'nombre'        => $data["citado"][$i],
+                'direccion'     => $data["direccion"][$i], 
                 'id_municipio'  => $data["estado_citado"][$i], 
                 'id_estado'     => $data["municipio_citado"][$i]
             ];
@@ -1169,6 +1186,7 @@ class SeerController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
         $fecha_actual = date('y-m-d');
+        $cont = count($data["citado"]);
 
         //Validar documentacion
         request()->validate([
@@ -1178,14 +1196,9 @@ class SeerController extends Controller
             'estado_solicitante'    => 'required|numeric',
             'mun_solicitante'       => 'required|numeric',
             'actividad_economica'   => 'required',
-            'citado'                => 'required',
-            'estado_citado'         => 'required|numeric',
-            'municipio_citado'      => 'required|numeric',
-            'conciliador_id'        => 'required|numeric',
 
             //Auxiliares
             'sexo'                  => 'required|in:H,M',
-            'tipo_persona'          => 'required|in:Moral,Fisica',
             'motivo'                => 'required|in:Despido,Pago de prestaciones,Recision de la relación laboral,Derecho de preferencia,Derecho de antiguedad,Derecho de ascesnso,Terminación voluntaria de relación laboral',
             'notificacion'          => 'required|in:Trabajador,Centro,Ambos',
             'monto'                 => 'required|numeric',
@@ -1198,9 +1211,6 @@ class SeerController extends Controller
             'solicitante'           => $data["solicitante"],
             'estado_solicitante'    => $data["estado_solicitante"],
             'mun_solicitante'       => $data["mun_solicitante"],
-            'citado'                => $data["citado"],
-            'estado_citado'         => $data["estado_citado"],
-            'mun_citado'            => $data["municipio_citado"],
             'user_id'               => $id,
             'conciliador_id'        => $data["conciliador_id"],
             'delegacion'            => $user["delegacion"],
@@ -1212,7 +1222,6 @@ class SeerController extends Controller
         $data_auxiliar = [
             'id_solicitud'              => $id_general["id"],
             'sexo'                      => $data["sexo"],
-            'tipo_persona'              => $data["tipo_persona"],
             'actividad_economica'       => $data["actividad_economica"],
             'motivo'                    => $data["motivo"],
             'notificacion'              => $data["notificacion"],
@@ -1221,6 +1230,18 @@ class SeerController extends Controller
             'tipo_solicitud'            => "Ratificación",
         ];
         SeerPerAuxiliar::create($data_auxiliar);  
+
+        for($i = 0; $i < $cont; $i++) {
+            $data_citado = [
+                'id_solicitud'  => $id_general["id"],
+                'fecha'         => $fecha_actual,
+                'nombre'        => $data["citado"][$i], 
+                'direccion'     => $data["direccion"][$i], 
+                'id_municipio'  => $data["estado_citado"][$i], 
+                'id_estado'     => $data["municipio_citado"][$i]
+            ];
+            SeerCitados::create($data_citado);
+        }
 
         return redirect()->route('seer');
     }
@@ -1240,9 +1261,9 @@ class SeerController extends Controller
         $mun_solicitante    = Municipios::find($general["mun_citado"]);
 
         $conciliador    = User::find($general["conciliador_id"]);
-        
+        $citados = SeerCitados::where("id_solicitud",$id)->get();
 
-        return view('estadisticas.verPersonaAux', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador'));
+        return view('estadisticas.verPersonaAux', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador','citados'));
     }
 
     public function conciliador_persona(Request $request){
@@ -1268,7 +1289,6 @@ class SeerController extends Controller
         if($data["estatus"] != "Archivada"){
             $data_general = SeerPerGeneral::
             where('id', $data["id"])
-            //->update(['citado' => $data["citado"]])
             ->update(['validado_conciliador' => "Guardado"]);
         }
 
@@ -1310,15 +1330,21 @@ class SeerController extends Controller
         $auxiliar = SeerPerAuxiliar::where("id_solicitud",$id)->first();
         $audiencia = SeerPerConciliador::where("id_solicitud",$id)->get();
 
-        $estado_citado = Estados::find($general["estado_solicitante"]);
-        $mun_citado    = Municipios::find($general["mun_solicitante"]);
+        $citados = SeerCitados::
+        join("seer_general","seer_citados.id_solicitud", "=" , "seer_general.id")
+        ->join("estados","estados.id", "=", "seer_citados.id_estado")
+        ->join("municipios","municipios.id", "=", "seer_citados.id_municipio")
+        ->where("seer_citados.id_solicitud",$id)
+        ->select("seer_citados.nombre as citado","estados.nombre","municipios.nombre")
+        ->get();
 
-        $estado_solicitante = Estados::find($general["estado_citado"]);
-        $mun_solicitante    = Municipios::find($general["mun_citado"]);
+        
+        $estado_solicitante = Estados::find($general["estado_solicitante"]);
+        $mun_solicitante    = Municipios::find($general["mun_solicitante"]);
 
         $conciliador    = User::find($general["conciliador_id"]);
         
-        return view('estadisticas.crearPersonaCon', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador','audiencia'));
+        return view('estadisticas.crearPersonaCon', compact('userRole','general','auxiliar','citados','mun_solicitante','estado_solicitante','conciliador','audiencia'));
     }
 
     public function ver_conciliador($id){
@@ -1503,4 +1529,34 @@ class SeerController extends Controller
 
         return view('estadisticas.crearConcentradoConVer', compact('estadisticas','userRole'));
     }
-} 
+
+    public function obtenerCitados($id){
+        return SeerCitados::where('id_solicitud', $id)->get();
+    }
+
+
+    public function seer_estatus($id){
+        $citados  = SeerCitados::find($id);
+        $id = $citados->id;
+
+        return view('estadisticas.actualizarCitado', compact('id'));
+    }
+
+    public function update_notificador(Request $request){
+        $data = $request->all();
+
+        SeerCitados::where('id', $data["id"])
+        ->update(['estatus' => $data["estatus"]],['obervaciones' => $data["observaciones"]]);
+
+        return redirect()->route('seer'); 
+    }
+
+    public function store_enlace(Request $request){
+        $data = $request->all();
+        
+        SeerCitados::where('id', $data["id"])
+        ->update(['id_notificador' => $data["notificador"]]);
+
+        return redirect()->route('seer');
+    }
+}

@@ -199,6 +199,23 @@
             </a>
         @endrole
     @endauth
+
+    @auth
+        @role('Enlace')
+            <a class="nav-link" href="{{ route('poderes') }}">
+                <i class="fas fa-id-card"></i></i><span class="text-dark" onclick="poderes()">Poderes</span>
+            </a>
+            <a class="nav-link" href="{{ route('seer') }}">
+                <i class="fa fa-book" aria-hidden="true"></i></i><span class="text-dark" onclick="estadistica()">SEER</span>
+            </a>
+            <a class="nav-link" href="{{ route('miscapacitaciones') }}">
+                <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="mis_capacitaciones()">Mis capacitaciones</span>
+            </a>
+            <a class="nav-link" href="{{ route('expedientes') }}">
+                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
+            </a>
+        @endrole
+    @endauth
 </li>
 
 

@@ -250,6 +250,15 @@
                 html += '<div class="invalid-feedback">';
                 html += 'El Municipio es obligatorio.';
                 html += '</div> </div> </div>';
+
+                //DIRECCION
+                html += '<div class="col-xs-12 col-sm-12 col-md-6">';
+                html += '<div class="form-group">';
+                html += '<label for="password">Dirección del citado</label>';
+                html +='<input type="text" class="form-control" name="direccion[]"  oninput="this.value = this.value.toUpperCase()" required>';
+                html += '<div class="invalid-feedback">';
+                html += 'La Dirección es obligatoria.';
+                html += '</div> </div> </div>';
                 
                 //TIPO DE PERSONA
                 html +='<div class="col-xs-12 col-sm-6 col-md-6">';

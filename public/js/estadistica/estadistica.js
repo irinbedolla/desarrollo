@@ -80,6 +80,91 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+/*
+$('#botonVerCitado').click(function (){
+    console.log("si llego");
+});
+*/
+
+function botonVerCitado(id){
+    $.get('../api/citados/'+id, function (data){
+        var html = '';
+        
+        for(var i=0; i<data.length; ++i){
+            html += '<tr>';
+                html += '<td>';
+                html += ''+data[i].nombre+'';
+                html += '</td>';
+                html += '<td>';
+                html += ''+data[i].direccion+'';
+                html += '</td>';
+            html += '</tr>';
+        }
+
+        $('#m_citados').html(html);
+    });
+    /*
+    $.ajax({
+        url: "{{ route('my_route')}}",
+        //url: "../../sistema-integral/app/Http/Controllers/SeerController.php/buscarCitados",
+        type: "POST",
+        data: id,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function (datos) {
+            if(datos.length > 0){
+            document.getElementById("charcct").innerHTML = '<span class="font-weight-bold text-success form-text text-muted">Disponible</span>';
+            }
+            else{
+            document.getElementById("charcct").innerHTML = '<span class="font-weight-bold text-danger form-text text-muted">No existe CCT</span>';
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+    */
+}
 
 
+/*
+function botonVerCitado(id){
+    //document.getElementById("lista_usuarios").style.display='none';
+    var url="../../sistema-integral/resources/views/estadisticas/prueba.blade.php";    
+    $.post(url,{id:id},
+    function(data){
+        $('#m_citados').html(data);
+    }); 
+}
+*/
 
+
+function buscarCCT(cct){
+    var formData = new FormData();
+    formData.append("cct", cct);
+
+    $.ajax({
+        url: "../Movimientos/buscarDisponivilidadCCT",
+        type: "POST",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function (datos) {
+            if(datos.length > 0){
+            document.getElementById("charcct").innerHTML = '<span class="font-weight-bold text-success form-text text-muted">Disponible</span>';
+            }
+            else{
+            document.getElementById("charcct").innerHTML = '<span class="font-weight-bold text-danger form-text text-muted">No existe CCT</span>';
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+}

@@ -57,42 +57,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <h4 class="text-center">Citado</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Citado</label>
-                                                <input type="text" class="form-control" name="citado" value="<?=$general["citado"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="password">Estado del citado</label>
-                                                <input type="text" class="form-control" value="<?=$estado_citado["nombre"];?>" readonly>   
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="password">Municipio del citado</label>
-                                                <input type="text" class="form-control" value="<?=$mun_citado["nombre"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Sexo</label>
-                                                <input type="text" class="form-control" value="<?=$auxiliar["sexo"];?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label for="confirm-password">Tipo persona</label>
-                                                <input type="text" class="form-control" value="<?=$auxiliar["tipo_persona"];?>" readonly>
-                                            </div>
-                                        </div>
-
                                         <div class="col-xs-12 col-sm-6 col-md-3">
                                             <div class="form-group">
                                                 <label for="confirm-password">Motivo de Solicitud</label>

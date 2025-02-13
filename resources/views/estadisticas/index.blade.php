@@ -14,23 +14,10 @@
                                 @if($userRole[0] == "Auxiliar")
                                     <a class="btn btn-warning" href="{{ route('create_persona_solicitud') }}"    onclick=nuevo_estadistica();>Solicitud</a>
                                     <a class="btn btn-warning" href="{{ route('create_persona_ratificacion') }}" onclick=nuevo_estadistica();>Ratificación</a>
-                                    @if($estadisticas == null)
-                                        <a class="btn btn-warning" href="{{ route('create_consentrado_aux') }}" onclick=nuevo_estadistica();> Consentrado</a>
-                                    @else
-                                        <a class="btn btn-warning" href="{{ route('create_consentrado_ver') }}" onclick=nuevo_estadistica();> Ver</a>
-                                    @endif
                                 @endif
                                 @if($userRole[0] == "Conciliador")
-                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"    onclick=nuevo_estadistica();>Convenios</a>
+                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"    onclick=nuevo_estadistica();>Cumplimientos</a>
                                     <a class="btn btn-warning" href="{{ route('index_colectivas') }}"    onclick=nuevo_estadistica();>Colectivas</a>
-                                    @if($estadisticas == null)
-                                        <a class="btn btn-warning" href="{{ route('create_consentrado_con') }}" onclick=nuevo_estadistica();> Consentrado</a>
-                                    @else
-                                        <a class="btn btn-warning" href="{{ route('ver_consentrado_con') }}" onclick=nuevo_estadistica();> Ver</a>
-                                    @endif
-                                @endif
-                                @if($userRole[0] == "Notificador")
-                                    <a class="btn btn-warning" href="{{ route('create_notificador') }}" onclick=nuevo_estadistica();> Consentrado</a>
                                 @endif
                             @endcan
                             
@@ -53,9 +40,10 @@
                                                         <td>{{$persona->fecha}}</td> 
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
-                                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" onclick="consultarCitados()" data-target="#modal_verCitados">
-                                                            Ver
-                                                        </button></td>
+                                                        <td>
+                                                            <button onclick="botonVerCitado(<?=$persona->id?>)"; type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_verCitados">
+                                                                Ver</button>
+                                                        </td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
                                                     </tr>
                                                 @endforeach
@@ -100,31 +88,23 @@
                                         <table id="example" class="table table-striped mt-1" style="text-align:center">
                                             <thead style="background-color: #4A001F;">
                                                 <th style="display: none;">ID</th>
-                                                <th style="color: #fff;">Fecha</th>
-                                                <th style="color: #fff;">Citatorios</th>
-                                                <th style="color: #fff;">Asesorías</th>
-                                                <th style="color: #fff;">Solicitudes Levantadas</th>
-                                                <th style="color: #fff;">Ratificaciones</th>
-                                                <th style="color: #fff;">Multas Notificadas</th>
-                                                <th style="color: #fff;">Informe Diario</th>
-                                                <th style="color: #fff;">Informes Foráneos</th>
-                                                <th style="color: #fff;">Integrar Expediente</th>
-                                                <th style="color: #fff;">Escaneo de Documentos</th>
+                                                <th style="color: #fff;">Expediente</th>
+                                                <th style="color: #fff;">Solicitante</th>
+                                                <th style="color: #fff;">Citado</th>
+                                                <th style="color: #fff;">Dirección</th>
+                                                <th style="color: #fff;">Estatus</th>
+                                                <th style="color: #fff;">Acciones</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($estadisticas as $estadistica)
                                                     <tr>
                                                         <td style="display: none;">{{$estadistica->id}}</td>
-                                                        <td>{{$estadistica->fecha}}</td>
-                                                        <td>{{$estadistica->citatorios}}</td>
-                                                        <td>{{$estadistica->asesorias_notificador}}</td>
-                                                        <td>{{$estadistica->solicitudes_levantadas}}</td>
-                                                        <td>{{$estadistica->ratificaciones_notificador}}</td>
-                                                        <td>{{$estadistica->multas_notificador}}</td>
-                                                        <td>{{$estadistica->informe_diario}}</td>
-                                                        <td>{{$estadistica->informe_foraneo}}</td>
-                                                        <td>{{$estadistica->integrar_expediente}}</td>
-                                                        <td>{{$estadistica->escaneo_documentos}}</td>
+                                                        <td>{{$estadistica->NUE}}</td>
+                                                        <td>{{$estadistica->solicitante}}</td>
+                                                        <td>{{$estadistica->nombre}}</td>
+                                                        <td>{{$estadistica->direccion}}</td>
+                                                        <td>{{$estadistica->estatus}}</td>
+                                                        <td><a class="btn btn-info" href="{{ route('seer.notificador', $estadistica->id) }}" onclick=nuevo_estadistica();>Atender</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -207,6 +187,47 @@
                                         </table>
                                     </div>
                                 @endif
+                                @if($userRole[0] == "Enlace")
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-striped mt-1" style="text-align:center">
+                                            <thead style="background-color: #4A001F;">
+                                                <th style="display: none;">ID</th>
+                                                <th style="color: #fff;">Expediente</th>
+                                                <th style="color: #fff;">Solicitante</th>
+                                                <th style="color: #fff;">Citado</th>
+                                                <th style="color: #fff;">Dirección</th>
+                                                <th style="color: #fff;">Estatus</th>
+                                                <th style="color: #fff;">Acciones</th>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($estadisticas as $estadistica)
+                                                    <tr>
+                                                        <td style="display: none;">{{$estadistica->id}}</td>
+                                                        <td>{{$estadistica->NUE}}</td>
+                                                        <td>{{$estadistica->solicitante}}</td>
+                                                        <td>{{$estadistica->nombre}}</td>
+                                                        <td>{{$estadistica->direccion}}</td>
+                                                        <td>{{$estadistica->estatus}}</td>
+                                                        <td>
+                                                            {!! Form::open(array('route'=>'seer.store_enlace', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
+                                                                <input type="hidden" name="id" value="{{$estadistica->id}}">
+                                                                <select class="form-control" name="notificador">
+                                                                    <option value="">Seleccione</option>
+                                                                    @foreach($personas as $persona)
+                                                                        <option value="{{$persona->id}}">{{$persona->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                    <button type="submit" class="btn btn-primary">Asignar</button>
+                                                                </div>
+                                                            {!! Form::close() !!}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
                             @endcan
                             <!-- Centramos la paginación a la derecha-->
                             <div class="pagination justify-content-end">
@@ -222,41 +243,41 @@
             <div class="loader"></div>
         </div>
         
+@section('scripts')
+    <script src="../public/js/estadistica/estadistica.js"></script>
+@endsection
         
     </section>
     <!-- Modal -->
-    <div class="modal fade" id="modal_verCitados" tabindex="-1" role="dialog" aria-labelledby="CitadosModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" >
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">CITADOS</h5>
-            </div>
-            <div class="modal-body">  
-                <div id="citados" class="tabcontent">
-                    <div class="table-responsive">
-                        <div id="T_citados" class="table table-striped mt-1"> 
-                    
-                            <table id="tabla_citados" class="table table-striped mt-1">
-                                <thead style="background-color: #4A001F;">
-                                    <th style="display: none;">ID</th>
-                                    <th style="color: #fff;">Citado</th>
-                                    <th style="color: #fff;">Estado</th>
-                                    <th style="color: #fff;">Municipio</th>
-                                    <th style="color: #fff;">Fecha</th>
-                                </thead>
-                                <tbody name="m_citados" id="m_citados">
-                                        
-                                </tbody>
-                            </table>
+        <div class="modal fade" id="modal_verCitados" tabindex="-1" role="dialog" aria-labelledby="CitadosModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">CITADOS</h5>
+                    </div>
+                <div class="modal-body">  
+                    <div id="citados" class="tabcontent">
+                        <div class="table-responsive">
+                            <div id="T_citados" class="table table-striped mt-1"> 
+                        
+                                <table id="tabla_citados" class="table table-striped mt-1">
+                                    <thead style="background-color: #4A001F;">
+                                        <th style="display: none;">ID</th>
+                                        <th style="color: #fff;">Citado</th>
+                                        <th style="color: #fff;">Estado</th>
+                                        <th style="color: #fff;">Municipio</th>
+                                        <th style="color: #fff;">Fecha</th>
+                                    </thead>
+                                    <tbody  id="m_citados">
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
         </div>
-    </div>
     <!-- Fin Modal -->
     
 @endsection
@@ -264,6 +285,3 @@
 
 
 
-@section('scripts')
-    <script src="../public/js/estadistica/estadistica.js"></script>
-@endsection
