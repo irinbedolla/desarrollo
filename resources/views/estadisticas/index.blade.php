@@ -12,11 +12,13 @@
                         <div class="card-body">
                             @can('crear-seer')
                                 @if($userRole[0] == "Auxiliar")
-                                    <a class="btn btn-warning" href="{{ route('create_persona_solicitud') }}"    onclick=nuevo_estadistica();>Solicitud</a>
-                                    <a class="btn btn-warning" href="{{ route('create_persona_ratificacion') }}" onclick=nuevo_estadistica();>Ratificación</a>
+                                    <a class="btn btn-warning" href="{{ route('create_persona_solicitud') }}"   onclick=nuevo_estadistica();>Solicitud</a>
+                                    <a class="btn btn-warning" href="{{ route('create_persona_ratificacion') }}"onclick=nuevo_estadistica();>Ratificación</a>
+                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"            onclick=nuevo_estadistica();>Pagos</a>
+                                    <a class="btn btn-warning" href="{{ route('create_asesoria') }}"            onclick=nuevo_estadistica();>Asesorias-{{$asesorias->total}}</a>
                                 @endif
                                 @if($userRole[0] == "Conciliador")
-                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"    onclick=nuevo_estadistica();>Cumplimientos</a>
+                                    <a class="btn btn-warning" href="{{ route('index_convenios') }}"    onclick=nuevo_estadistica();>Pagos</a>
                                     <a class="btn btn-warning" href="{{ route('index_colectivas') }}"    onclick=nuevo_estadistica();>Colectivas</a>
                                 @endif
                             @endcan
@@ -32,6 +34,7 @@
                                                 <th style="color: #fff;">Solicitante</th>
                                                 <th style="color: #fff;">Citado</th>
                                                 <th style="color: #fff;">Detalles</th>
+                                                <th style="color: #fff;">Auciencia</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($personas as $persona)
@@ -45,6 +48,7 @@
                                                                 Ver</button>
                                                         </td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
+                                                        <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Solicitud</h3>
+                            <h3 class="text-center">Registrar Pago</h3>
                             
                             <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
                             @if ($errors->any())
@@ -30,7 +30,7 @@
                             @endif
 
                             @can('crear-seer')
-                                @if($userRole[0] == "Conciliador")
+                                @if($userRole[0] == "Auxiliar" || $userRole[0] == "Conciliador")
                                     <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                                     {!! Form::open(array('route'=>'seer.crear_convenio', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                         <div class="row">
@@ -54,24 +54,6 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="email">Solicitante</label>
-                                                    <input type="text" class="form-control" name="solicitante" oninput="this.value = this.value.toUpperCase()" required>
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Citado</label>
-                                                    <input type="text" class="form-control" name="citado" oninput="this.value = this.value.toUpperCase()" required>
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
                                                     <label for="password">Monto</label>
                                                     <input type="number" name="monto" class="form-control" required>   
                                                     <div class="invalid-feedback">
@@ -82,20 +64,11 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Tipo de pago</label>
-                                                    <input type="text" name="tipo_pago" class="form-control" oninput="this.value = this.value.toUpperCase()" required>   
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Estatus</label>
-                                                    <select class="form-control" name="solicitud" required>
+                                                    <select class="form-control" name="tipo_pago" required>
                                                         <option value="">Seleccione</option>
-                                                        <option value="Concluido">Concluido</option>
-                                                        <option value="Parcialidades">Parcialidades</option>
-                                                        <option value="Incumplimiento">Incumplimiento</option>
+                                                        <option value="Efectivo">Efectivo</option>
+                                                        <option value="Cheque">Cheque</option>
+                                                        <option value="Transferencia">Transferencia</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.

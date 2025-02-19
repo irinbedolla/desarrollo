@@ -17,6 +17,7 @@ use App\Models\SeerPerConciliador;
 use App\Models\SeerColectivas;
 use App\Models\SeerConvenios;
 use App\Models\SeerCitados;
+use App\Models\SeerAsesoria;
 
 //Para sacar el Id del usuario
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,10 @@ class SeerController extends Controller
         else if($userRole[0] == "Auxiliar"){
             $personas     = SeerPerGeneral::where('fecha', $fecha_actual)->where('user_id', $id)->get();
             $estadisticas = SeerAuxiliares::where('fecha', $fecha_actual)->where('user_id', $id)->first();
+            $asesorias    = SeerAsesoria::where('fecha', $fecha_actual)->where('id_usuario', $id)
+            ->selectRaw('count(seer_asesorias.id) as total')
+            ->first();
+            return view('estadisticas.index',compact('estadisticas','userRole','personas','asesorias'));
         }
         else if($userRole[0] == "Conciliador"){
             //solo le van aparecer solicitudes
@@ -1296,24 +1301,29 @@ class SeerController extends Controller
         where('id_solicitud', $data["id"])
         ->update(['actividad_economica' => $data["actividad_economica"]]);
 
-
         $data_conciliador = [
             'id_solicitud'          => $data["id"],
             'numero_audiencia'      => $data["numero_audiencia"],
             'numero_audiencias'     => $data["numero_audiencias"],
             'estatus_conciliacion'  => $data["estatus"],
             'monto'                 => $data["monto"],
-            'cumplimiento_pago'     => $data["cumplimiento"],
-            'observaciones'         => $data["observacion"],
+            'rfc'                   => $data["rfc"],
+            'NSS'                   => $data["NSS"],
             'multa'                 => $data["multa"],
             'tipo'                  => $data["solicitud"],
             'validado'              => 'Validado',
         ];
+        if($data["multa"] != "Si"){
+            $data_conciliador["monto_multa"] = $data["monto_multa"];
+        }
         if($data["motivo_archivo"] != null || $data["motivo_archivo"] != ''){
             $data_conciliador["motivo_archivo"] = $data["motivo_archivo"];
         }
         if($data["fecha_reprogracion"] != null || $data["fecha_reprogracion"] != ''){
             $data_conciliador["fecha_reprogracion"] = $data["fecha_reprogracion"];
+        }
+        if($data["estatus"] == "Conciliacion" || $data["estatus"] == "No conciliacion"){
+            $data_conciliador["fecha_conclucion"] = $fecha_actual;
         }
         
         SeerPerConciliador::create($data_conciliador);  
@@ -1332,12 +1342,11 @@ class SeerController extends Controller
 
         $citados = SeerCitados::
         join("seer_general","seer_citados.id_solicitud", "=" , "seer_general.id")
-        ->join("estados","estados.id", "=", "seer_citados.id_estado")
-        ->join("municipios","municipios.id", "=", "seer_citados.id_municipio")
+        ->join("estados","estados.id", "=", "seer_citados.id_municipio")
+        ->join("municipios","municipios.id", "=", "seer_citados.id_estado")
         ->where("seer_citados.id_solicitud",$id)
-        ->select("seer_citados.nombre as citado","estados.nombre","municipios.nombre")
+        ->select("seer_citados.nombre as citado","estados.nombre as estado","municipios.nombre as municipio")
         ->get();
-
         
         $estado_solicitante = Estados::find($general["estado_solicitante"]);
         $mun_solicitante    = Municipios::find($general["mun_solicitante"]);
@@ -1373,10 +1382,9 @@ class SeerController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name')->all();
         $fecha_actual = date('y-m-d');
-        
-       
+
         //solo le van aparecer solicitudes
-        $convenios = SeerConvenios::where('fecha', $fecha_actual)->where('conciliador', $id)->get();
+        $convenios = SeerConvenios::where('fecha', $fecha_actual)->where('user_id', $id)->get();
 
         return view('estadisticas.index_convenios',compact('convenios','userRole'));
     }
@@ -1390,7 +1398,7 @@ class SeerController extends Controller
         
        
         //solo le van aparecer solicitudes
-        $convenios = SeerConvenios::where('fecha', $fecha_actual)->where('conciliador', $id)->get();
+        $convenios = SeerConvenios::where('fecha', $fecha_actual)->where('user_id', $id)->get();
 
         return view('estadisticas.crear_convenio',compact('convenios','userRole'));
     }
@@ -1405,13 +1413,10 @@ class SeerController extends Controller
         request()->validate([
             'fecha'         => 'required|date',
             'NUE'           => 'required|min:18|max:18',
-            'solicitante'   => 'required',
-            'citado'        => 'required',
             'monto'         => 'required|numeric',
             'tipo_pago'     => 'required',
-            'solicitud'     => 'required|in:Concluido,Parcialidades,Incumplimiento',
         ], $data);
-        $data['conciliador'] = $id;
+        $data['user_id'] = $id;
 
         SeerConvenios::create($data);  
 
@@ -1557,6 +1562,29 @@ class SeerController extends Controller
         SeerCitados::where('id', $data["id"])
         ->update(['id_notificador' => $data["notificador"]]);
 
+        return redirect()->route('seer');
+    }
+
+    public function create_asesoria(){
+        return view('estadisticas.crearAsesorias');
+    }
+
+    public function store_asesorias(Request $request){
+        $data = $request->all();
+        $id = auth()->user()->id;
+        $user = User::find($id);
+
+        //Validar documentacion
+        request()->validate([
+            'nombre' => 'required',
+            'sexo'   => 'required',
+        ], $data);
+
+        $data['id_usuario'] = $user["id"];
+        $data['fecha'] = date('Y-m-d');
+        $data['delegacion'] = $user["delegacion"];
+
+        SeerAsesoria::create($data);  
         return redirect()->route('seer');
     }
 }

@@ -160,6 +160,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/seer/persona_s',                   [SeerController::class, 'create_persona_s'])->name('create_persona_solicitud');
         Route::get('/seer/persona_r',                   [SeerController::class, 'create_persona_r'])->name('create_persona_ratificacion');
         Route::post('/seer/personar',                   [SeerController::class, 'auxiliar_personar'])->name('seer.auxiliar_personar');
+        Route::get('/seer/asseria',                     [SeerController::class, 'create_asesoria'])->name('create_asesoria');
+        Route::post('/seer/aserorias',                  [SeerController::class, 'store_asesorias'])->name('seer.store_asesoria');
         //Rutas de conciliadores
         Route::get('/seer/createCon',                   [SeerController::class, 'create_conciliador'])->name('create_consentrado_con');
         Route::get('/seer/ver',                         [SeerController::class, 'ver_consentrado_con'])->name('ver_consentrado_con');
@@ -215,9 +217,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/registro/store',          [RegistroController::class, 'store'])->name('registro.store');
     //FIN Segundo_encuentro
 
-    //Reportes
-       // Route::get('/reporte/turnos',   [ExportController::class, 'exportar_turnos'])->name('reporte.turnos');
-    //Fin de reportes
 });
 
 

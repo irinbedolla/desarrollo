@@ -30,7 +30,7 @@
                             @endif
 
                             @can('crear-seer')
-                                @if($userRole[0] == "Conciliador")
+                                @if($userRole[0] == "Auxiliar" || $userRole[0] == "Conciliador")
                                     <!--Se realiza el envío de datos con formulario de Laravel Collective-->
                                     {!! Form::open(array('route'=>'seer.conciliador_persona', 'method'=>'POST', 'class' => 'needs-validation','novalidate')) !!}
                                         <div class="row">
@@ -50,46 +50,16 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Estado del solicitante</label>
-                                                    <input type="text" class="form-control" value="<?=$estado_citado["nombre"];?>" readonly>
+                                                    <input type="text" class="form-control" value="<?=$estado_solicitante["nombre"];?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Municipio del solicitante</label>
-                                                    <input type="text" class="form-control" value="<?=$mun_citado["nombre"];?>" readonly>
+                                                    <input type="text" class="form-control" value="<?=$mun_solicitante["nombre"];?>" readonly>
                                                 </div>
                                             </div>
-
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <h4 class="text-center">Citado</h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Citado</label>
-                                                    <input type="text" class="form-control" name="citado" value="<?=$citados["citado"];?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Estado del citado</label>
-                                                    <input type="text" class="form-control" value="<?=$citados["nombre"];?>" readonly>   
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="password">Municipio del citado</label>
-                                                    <input type="text" class="form-control" value="<?=$citados["nombre"];?>" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
-                                                    <label for="confirm-password">Tipo persona</label>
-                                                    <input type="text" class="form-control" value="<?=$citados["tipo_persona"];?>" readonly>
-                                                </div>
-                                            </div>
-
+                                            
                                             <div class="col-xs-12 col-sm-6 col-md-3">
                                                 <div class="form-group">
                                                     <label for="confirm-password">Notificación</label>
@@ -97,7 +67,35 @@
                                                 </div>
                                             </div>
 
-
+                                            @if(isset($audiencia))
+                                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <h4 class="text-center">Citado(s)</h4>
+                                                    </div>
+                                                </div>
+                                                @foreach($citados as $citado)
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="confirm-password">Citado</label>
+                                                            <input type="text" class="form-control" name="citado" value="<?=$citado["citado"];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="password">Estado del citado</label>
+                                                            <input type="text" class="form-control" value="<?=$citado["estado"];?>" readonly>   
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="password">Municipio del citado</label>
+                                                            <input type="text" class="form-control" value="<?=$citado["municipio"];?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                           
+                                           
                                             @if(isset($audiencia))
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
@@ -146,13 +144,6 @@
                                                             <input type="text" class="form-control" value="<?=$audi["tipo"];?>">
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                                        <div class="form-group">
-                                                            <label for="confirm-password">Observaciones</label>
-                                                            <input type="text" class="form-control" value="<?=$audi["observaciones"];?>">
-                                                        </div>
-                                                    </div>
                                                 @endforeach
                                             @endif
 
@@ -175,6 +166,16 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
+                                                    <label for="password">RFC del patron</label>
+                                                    <input type="text" name="rfc" class="form-control" minlength="13" maxlength="13" oninput="this.value = this.value.toUpperCase()" required> 
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>  
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
                                                     <label for="email">Folio de la audiencia</label>
                                                     <input type="text" class="form-control" name="numero_audiencia" required>
                                                     <div class="invalid-feedback">
@@ -183,10 +184,38 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                                <div class="form-group">
+                                                    <label for="email">Número de audiencia</label>
+                                                    <input type="number" class="form-control" name="numero_audiencias" required>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                                <div class="form-group">
+                                                    <label for="email">Cuenta con NSS</label>
+                                                    <select class="form-control" name="NSS" required>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        El campo es obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="email">Número de audiencias</label>
-                                                    <input type="number" class="form-control" name="numero_audiencias" required>
+                                                    <label for="password">Tipo de solicitud</label>
+                                                    <select class="form-control" name="solicitud" required>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Presencial">Presencial</option>
+                                                        <option value="Linea">Linea</option>
+                                                    </select>
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
@@ -244,18 +273,8 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="password">Observaciones</label>
-                                                    <input type="text" name="observacion" class="form-control">   
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
                                                     <label for="password">Multa</label>
-                                                    <select class="form-control" name="multa" required>
+                                                    <select id="multa" class="form-control" name="multa" required>
                                                         <option value="">Seleccione</option>
                                                         <option value="Si">Si</option>
                                                         <option value="No">No</option>
@@ -266,27 +285,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div id="montoMulta" style="display:none" class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="password">Tipo de solicitud</label>
-                                                    <select class="form-control" name="solicitud" required>
-                                                        <option value="">Seleccione</option>
-                                                        <option value="Presencial">Presencial</option>
-                                                        <option value="Linea">Linea</option>
-                                                    </select>
+                                                    <label for="confirm-password">Monto de la multa</label>
+                                                    <input type="number" name="monto_multa" class="form-control">
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <div class="form-group">
-                                                    <label for="password">Cumplimiento de pago</label>
-                                                    <input type="text" name="cumplimiento" class="form-control"> 
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>  
                                                 </div>
                                             </div>
 
@@ -319,7 +324,8 @@
     <script src="../../public/js/estadistica/estadistica.js"></script>
     <script>
         $('#estatus').change(function(){
-            var valorCambiado =$(this).val();
+            var valorCambiado = $('#estatus').val();
+            console.log(valorCambiado);
             if((valorCambiado == 'Archivada')){
                 $('#Archivadas').css('display','block');
                 $('#Reprogramada').css('display','none');
@@ -331,6 +337,16 @@
             else{
                 $('#Archivadas').css('display','none');
                 $('#Reprogramada').css('display','none');
+            }
+        });
+
+        $('#multa').change(function(){
+            var valor = $('#multa').val();
+            if((valor == 'Si')){
+                $('#montoMulta').css('display','block');
+            }
+            else{
+                $('#montoMulta').css('display','none');
             }
         });
     </script>

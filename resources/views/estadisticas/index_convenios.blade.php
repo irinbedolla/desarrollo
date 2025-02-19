@@ -13,18 +13,15 @@
                             @can('crear-seer')
                                 <a class="btn btn-warning" href="{{ route('convenios_agregar') }}"    onclick=nuevo_estadistica();>Agregar</a>
                                 <a class="btn btn-info" href="{{ route('seer') }}"                    onclick=nuevo_estadistica();>Regresar</a>
-                                @if($userRole[0] == "Conciliador")
+                                @if($userRole[0] == "Conciliador" || $userRole[0] == "Auxiliar")
                                         <table id="tabla_seer_auxiliar" class="table table-striped mt-1">
                                             <div class="table-responsive">
                                                 <thead style="background-color: #4A001F;">
                                                     <th style="display: none;">ID</th>
                                                     <th style="color: #fff;">Fecha</th>
                                                     <th style="color: #fff;">Número unico de identificación</th>
-                                                    <th style="color: #fff;">Solicitante</th>
-                                                    <th style="color: #fff;">Citado</th>
                                                     <th style="color: #fff;">Monto</th>
                                                     <th style="color: #fff;">Tipo de pago</th>
-                                                    <th style="color: #fff;">Estatus</th>
                                                 </thead>
                                                 <tbody>
                                                     @foreach($convenios as $convenio)
@@ -32,11 +29,8 @@
                                                             <td style="display: none;">{{$convenio->id}}</td>
                                                             <td>{{$convenio->fecha}}</td>
                                                             <td>{{$convenio->NUE}}</td>
-                                                            <td>{{$convenio->solicitante}}</td>
-                                                            <td>{{$convenio->citado}}</td>
                                                             <td>${{number_format($convenio->monto,2)}}</td>
                                                             <td>{{$convenio->tipo_pago}}</td>
-                                                            <td>{{$convenio->estatus}}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
