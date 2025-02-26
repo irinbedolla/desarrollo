@@ -49,13 +49,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Reporte</h3>
+                            <h3 class="text-center">Reporte Detallado</h3>
                             <a class="btn btn-primary" href="{{ route('seer.estadistica') }}">Regresar</a>
                             <div class="tab">
                                 <button class="tablinks" onclick="openCity(event, 'solicitud')">Solicitudes</button>
                                 <button class="tablinks" onclick="openCity(event, 'ratificacion')">Ratificaciones</button>
                                 <button class="tablinks" onclick="openCity(event, 'audiencia')">Audiencia</button>
-                                <button class="tablinks" onclick="openCity(event, 'convenios')">Convenios</button>
+                                <button class="tablinks" onclick="openCity(event, 'convenios')">Pagos</button>
                                 <button class="tablinks" onclick="openCity(event, 'colectiva')">Colectiva</button>
                             </div>
                             <div id="solicitud" class="tabcontent">
@@ -63,7 +63,6 @@
                                     <table id="tabla_seer_auxiliares" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
-                                            <th style="color: #fff;">Fecha de registro</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
                                             <th style="color: #fff;">Número unico de identificación</th>
                                             <th style="color: #fff;">Solicitante</th>
@@ -75,13 +74,11 @@
                                             <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Usuario</th>
                                             <th style="color: #fff;">Dias Transcurridos</th>
-                                            <th style="color: #fff;">Audiencias</th>
                                         </thead>
                                         <tbody name="m_solicitud" id="m_solicitud">
                                             @foreach($solicitudes as $solicitud)
                                                 <tr>
                                                     <td style="display: none;">{{$solicitud->id}}</td>
-                                                    <td>{{$solicitud->fecha}}</td>
                                                     <td>{{$solicitud->fecha_confirmacion}}</td>
                                                     <td>{{$solicitud->NUE}}</td>
                                                     <td>{{$solicitud->solicitante}}</td>
@@ -92,28 +89,27 @@
                                                     <td>{{$solicitud->motivo}}</td>
                                                     <td>{{$solicitud->notificacion}}</td>
                                                     <td>{{$solicitud->usuario}}</td>
-                                                    @php 
-                                                        $datetime1 = date_create($solicitud->fecha);
-                                                        $datetime2 = date_create($solicitud->fecha_confirmacion);  
-                                                        $interval = date_diff($datetime1, $datetime2);
-                                                    @endphp
-                                                    <td>{{$interval->format('%R%a días')}}</td>
-                                                    <td>
-                                                       <button type="button" data-toggle="modal" onclick="visualizaAudiencias()" class="btn btn-primary">Ver</button>   
-                                                    </td>
+                                                        @if($solicitud->fecha_conclucion == null)
+                                                            <td>No esta concluida</td>
+                                                        @else
+                                                            @php
+                                                            $datetime1 = date_create($solicitud->fecha_confirmacion);
+                                                            $datetime2 = date_create($solicitud->fecha_conclucion);  
+                                                            $interval = date_diff($datetime1, $datetime2);
+                                                            @endphp
+                                                            <td>{{$interval->format('%R%a días')}}</td>
+                                                        @endif
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            
                             <div id="ratificacion" class="tabcontent">
                                 <div class="table-responsive">
                                     <table id="tabla_seer_conciliadores" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
-                                            <th style="color: #fff;">Fecha de registro</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
                                             <th style="color: #fff;">Número unico de identificación</th>
                                             <th style="color: #fff;">Solicitante</th>
@@ -122,48 +118,63 @@
                                             <th style="color: #fff;">Municipio del solicitante</th>
                                             <th style="color: #fff;">Citado</th>
                                             <th style="color: #fff;">Actividad Economica</th>
-                                            <th style="color: #fff;">Estado del citado</th>
-                                            <th style="color: #fff;">Municipio del citado</th>
                                             <th style="color: #fff;">Motivo</th>
-                                            <th style="color: #fff;">Notificación</th>
                                             <th style="color: #fff;">Monto</th>
                                             <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Usuario</th>
-                                            <th style="color: #fff;">Dias Transcurridos</th>
                                         </thead>
                                         <tbody>
                                             @foreach($ratificaciones as $ratificacion)
                                                 <tr>
                                                     <td style="display: none;">{{$ratificacion->id}}</td>
-                                                    <td>{{$ratificacion->fecha}}</td>
                                                     <td>{{$ratificacion->fecha_confirmacion}}</td>
                                                     <td>{{$ratificacion->NUE}}</td>
                                                     <td>{{$ratificacion->solicitante}}</td>
                                                     <td>{{$ratificacion->sexo}}</td>
-                                                    <td>{{$ratificacion->actividad_economica}}</td>
                                                     <td>{{$ratificacion->estado}}</td>
                                                     <td>{{$ratificacion->municipio}}</td>
                                                     <td>{{$ratificacion->citado}}</td>
-                                                    <td>{{$ratificacion->estado_citado}}</td>
-                                                    <td>{{$ratificacion->municipio_citado}}</td>
-                                                    <td>{{$ratificacion->tipo_persona}}</td>
+                                                    <td>{{$ratificacion->actividad_economica}}</td>
                                                     <td>{{$ratificacion->motivo}}</td>
                                                     <td>${{number_format($ratificacion->monto,2)}}</td>
                                                     <td>{{$ratificacion->estatus}}</td>
                                                     <td>{{$ratificacion->usuario}}</td>
-                                                    @php 
-                                                        $datetime1 = date_create($solicitud->fecha);
-                                                        $datetime2 = date_create($solicitud->fecha_confirmacion);  
-                                                        $interval = date_diff($datetime1, $datetime2);
-                                                    @endphp
-                                                    <td>{{$interval->format('%R%a días')}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            
+                            <div id="audiencia" class="tabcontent">
+                                <div class="table-responsive">
+                                    <table id="tabla_seer_conciliadores" class="table table-striped mt-1">
+                                        <thead style="background-color: #4A001F;">
+                                            <th style="display: none;">ID</th>
+                                            <th style="color: #fff;">Fecha confirmacíon</th>
+                                            <th style="color: #fff;">Fecha conclución</th>
+                                            <th style="color: #fff;">Número de audiencias</th>
+                                            <th style="color: #fff;">Estatus</th>
+                                            <th style="color: #fff;">Monto</th>
+                                            <th style="color: #fff;">Multa</th>
+                                            <th style="color: #fff;">Conciliador</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($audiencia as $audien)
+                                                <tr>
+                                                    <td style="display: none;">{{$audien->id}}</td>
+                                                    <td>{{$audien->fecha_confirmacion}}</td>
+                                                    <td>{{$audien->fecha_conclucion}}</td>
+                                                    <td>{{$audien->numero_audiencias}}</td>
+                                                    <td>{{$audien->estatus_conciliacion}}</td>
+                                                    <td>${{number_format($audien->monto,2)}}</td>
+                                                    <td>{{$audien->multa}}</td>
+                                                    <td>{{$audien->usuario}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <div id="convenios" class="tabcontent">
                                 <div class="table-responsive">
                                     <table id="tabla_seer_convenios" class="table table-striped mt-1">
@@ -171,11 +182,8 @@
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha</th>
                                             <th style="color: #fff;">Número unico de identificación</th>
-                                            <th style="color: #fff;">Solicitante</th>
-                                            <th style="color: #fff;">Citado</th>
                                             <th style="color: #fff;">Monto</th>
                                             <th style="color: #fff;">Tipo pago</th>
-                                            <th style="color: #fff;">Estatus</th>
                                             <th style="color: #fff;">Usuario</th>
                                         </thead>
                                         <tbody>
@@ -184,11 +192,8 @@
                                                     <td style="display: none;">{{$convenio->id}}</td>
                                                     <td>{{$convenio->fecha}}</td>
                                                     <td>{{$convenio->NUE}}</td>
-                                                    <td>{{$convenio->solicitante}}</td>
-                                                    <td>{{$convenio->citado}}</td>
                                                     <td>${{number_format($convenio->monto,2)}}</td>
                                                     <td>{{$convenio->tipo_pago}}</td>
-                                                    <td>{{$convenio->estatus}}</td>
                                                     <td>{{$convenio->usuario}}</td>
                                                 </tr>
                                             @endforeach
@@ -242,26 +247,16 @@
               <h5 class="modal-title" id="exampleModalLongTitle">AUDIENCIAS</h5>
             </div>
             <div class="modal-body">  
-                <div id="audiencia"> 
+                <div id="audiencia2"> 
                     <div class="table-responsive">
                         <table id="tabla_seer_audienicias" class="table table-striped mt-1">
                             <thead style="background-color: #4A001F;">
                                 <th style="display: none;">ID</th>
-                                <th style="color: #fff;">Fecha</th>
-                                <th style="color: #fff;">Número único de identificación</th>
-                                <th style="color: #fff;">Solicitante</th>
-                                <th style="color: #fff;">Estado</th>
-                                <th style="color: #fff;">Municipio</th>
-                                <th style="color: #fff;">Actividad Económica</th>
-                                <th style="color: #fff;">Citado</th>
                                 <th style="color: #fff;">Número de audiencia</th>
                                 <th style="color: #fff;">Estatus</th>
                                 <th style="color: #fff;">Monto</th>
-                                <th style="color: #fff;">Cumplimiento</th>
-                                <th style="color: #fff;">Observación</th>
                                 <th style="color: #fff;">Multa</th>
                                 <th style="color: #fff;">Tipo solicitud</th>
-                                <th style="color: #fff;">Usuario</th>
                             </thead>
                             <tbody name="m_audiencia" id="m_audiencia">
                     
@@ -290,27 +285,16 @@
     <script src="../public/js/estadistica/estadistica.js"></script>
     <script>
         var audiencias=@json($audiencia);
-        console.log(typeof(audiencias));
         function visualizaAudiencias(){
             let tbody=$("#m_audiencia");
             tbody.empty();
             audiencias.forEach(audiencia => {
                 tbody.append(`<tr> 
-                                <td>${audiencia.fecha}</td>
-                                <td>${audiencia.NUE}</td>
-                                <td>${audiencia.solicitante}</td>
-                                <td>${audiencia.estado}</td>
-                                <td>${audiencia.municipio}</td>
-                                <td>${audiencia.actividad_economica}</td>
-                                <td>${audiencia.citado}</td>
                                 <td>${audiencia.numero_audiencia}</td>
                                 <td>${audiencia.estatus_conciliacion}</td>
                                 <td>${audiencia.monto}</td>
-                                <td>${audiencia.cumplimiento_pago}</td>
-                                <td>${audiencia.observaciones}</td>
                                 <td>${audiencia.multa}</td>
                                 <td>${audiencia.tipo}</td>
-                                <td>${audiencia.usuario}</td>
                             </tr>`);
             });
             $("#modal_audiencia").modal('show');

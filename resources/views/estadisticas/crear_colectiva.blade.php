@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Estadisticas</h3>
+            <h3 class="page__heading">SEER - Colectiva</h3>
         </div>
         <div class="section-body">
             <?php $fecha_actual = date('d-m-Y');?>
@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Solicitud</h3>
+                            <h3 class="text-center">Datos de audiencia</h3>
                             
                             <!--Se realiza la validación de campos para ver si dejó alguno vacío-->
                             @if ($errors->any())

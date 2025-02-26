@@ -59,6 +59,7 @@ class SeerController extends Controller
             $personas = null;
             $estadisticas = SeerPerGeneral::where('seer_citados.id_notificador', $id)
             ->join('seer_citados','seer_citados.id_solicitud','=','seer_general.id')
+            ->where('seer_citados.estatus', 'Pendiente')
             ->select('seer_citados.id','seer_general.NUE','seer_general.solicitante','seer_citados.nombre','seer_citados.direccion','seer_citados.estatus')
             ->get();
         }
@@ -73,9 +74,10 @@ class SeerController extends Controller
         }
         else if($userRole[0] == "Conciliador"){
             //solo le van aparecer solicitudes
-            $personas     = SeerPerGeneral::where('fecha', $fecha_actual)->where('conciliador_id', $id)
+            $personas     = SeerPerGeneral::where('conciliador_id', $id)
             ->join('seer_auxiliares','seer_auxiliares.id_solicitud',"=",'seer_general.id')
             ->where('seer_auxiliares.tipo_solicitud','Solicitud')
+            ->where('seer_general.validado_conciliador','Pendiente')
             ->get();
             $estadisticas = SeerConciliadores::where('fecha', $fecha_actual)->where('user_id', $id)->first();
         }
@@ -291,30 +293,44 @@ class SeerController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name')->all();
-        
         $relacionEloquent = 'roles';
-        $usuariosconciliador = User::whereHas($relacionEloquent, function ($query) {
-            return $query->where('name', '=', 'Conciliador');
-        })
-        ->where('delegacion', $user["delegacion"])
-        ->get();
-        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
-            return $query->where('name', '=', 'Auxiliar');
-        })
-        ->where('delegacion', $user["delegacion"])
-        ->get();
-        $usuariosnotificadores = User::whereHas($relacionEloquent, function ($query) {
-            return $query->where('name', '=', 'Notificador');
-        })
-        ->where('delegacion', $user["delegacion"])
-        ->get();
 
+        if($userRole[0] == "Super Usuario" || $userRole[0] == "Administrador" || $userRole[0] == "Estadisticas"){
+            $usuariosconciliador = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Conciliador');
+            })
+            ->get();
+            $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Auxiliar');
+            })
+            ->get();
+            $usuariosnotificadores = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Notificador');
+            })
+            ->get();
+            $estadisticas = Sedes::pluck('nombre','id')->all();
+        }
+        else if($userRole[0] == "Enlace"){
+            $usuariosconciliador = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Conciliador');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
+            $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Auxiliar');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
+            $usuariosnotificadores = User::whereHas($relacionEloquent, function ($query) {
+                return $query->where('name', '=', 'Notificador');
+            })
+            ->where('delegacion', $user["delegacion"])
+            ->get();
+            $estadisticas = Sedes::pluck('nombre','id')->where('nombre', $user["delegacion"])->all();
+        }
         $estados = Estados::all();
         $municipios = Municipios::all();
 
-        //Listado de sedes
-        $estadisticas = Sedes::pluck('nombre','id')->all();
-        
         return view('estadisticas.estadistica', compact('user','userRole','estadisticas','usuariosconciliador','usuariosauxiliares','usuariosnotificadores','estados','municipios'));
     }
 
@@ -408,12 +424,12 @@ class SeerController extends Controller
         //Primeramente reporte detallado
         if($data["tipo_reporte"] == "Detallado"){
             //SOLICITUDES
-                $solicitudes = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"]);
+                $solicitudes = SeerPerGeneral::where("seer_general.fecha",">=",$data["fecha_inicial"])->where("seer_general.fecha","<=",$data["fecha_final"]);
                 $solicitudes = $solicitudes->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("estados as estado_citado","estado_citado.id","=","seer_general.estado_citado")
-                ->join("municipios as municipio_citado","municipio_citado.id","=","seer_general.mun_solicitante")
+                ->join("seer_citados","seer_citados.id_solicitud","=","seer_general.id")
+                ->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id")
                 ->join("users","users.id","=","seer_general.user_id");
 
                 if($sede != ""){
@@ -449,10 +465,11 @@ class SeerController extends Controller
                 if($nue != ""){
                     $solicitudes = $solicitudes->where("seer_general.NUE", $nue);
                 }
-                $solicitudes = $solicitudes->select("seer_general.id","seer_general.fecha","seer_general.fecha_confirmacion","seer_general.NUE",
-                "seer_general.solicitante","seer_auxiliares.actividad_economica",
-                "estados.nombre as estado","municipios.nombre as municipio","estado_citado.nombre as estado_citado","municipio_citado.nombre as municipio_citado",
-                "seer_general.citado","seer_auxiliares.sexo",
+                $solicitudes = $solicitudes->select("seer_general.id","seer_general.fecha_confirmacion","seer_general.fecha_confirmacion",
+                "seer_general.NUE","seer_general.solicitante","seer_auxiliares.actividad_economica",
+                "estados.nombre as estado","municipios.nombre as municipio",
+                "seer_citados.nombre as citado","seer_citados.direccion","seer_auxiliares.sexo",
+                "seer_conciliadores.fecha_conclucion",
                 "seer_auxiliares.tipo_persona","seer_auxiliares.motivo",
                 "seer_auxiliares.notificacion","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Solicitud")
@@ -460,18 +477,19 @@ class SeerController extends Controller
                 ->get();
 
             //RATIFICACIONES
-                $ratificaciones  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
+                $ratificaciones  = SeerPerGeneral::where("seer_general.fecha",">=",$data["fecha_inicial"])->where("seer_general.fecha","<=",$data["fecha_final"])
                 ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("estados as estado_citado","estado_citado.id","=","seer_general.estado_citado")
-                ->join("municipios as municipio_citado","municipio_citado.id","=","seer_general.mun_solicitante")
+                ->join("seer_citados","seer_citados.id_solicitud","=","seer_general.id")
+                //->join("estados as estado_citado","estado_citado.id","=","seer_general.estado_citado")
+                //->join("municipios as municipio_citado","municipio_citado.id","=","seer_general.mun_solicitante")
                 ->join("users","users.id","=","seer_general.user_id");
                 if($fecha_inicial != ""){
-                    $ratificaciones = $ratificaciones->where("fecha",">=",$fecha_inicial);
+                    $ratificaciones = $ratificaciones->where("seer_general.fecha",">=",$fecha_inicial);
                 }   
                 if($fecha_final != ""){
-                    $ratificaciones = $ratificaciones->where("fecha","<=",$fecha_final);
+                    $ratificaciones = $ratificaciones->where("seer_general.fecha","<=",$fecha_final);
                 }
                 if($sede != ""){
                     $ratificaciones = $ratificaciones->where("seer_general.delegacion", $sede);
@@ -492,24 +510,26 @@ class SeerController extends Controller
                     $ratificaciones = $ratificaciones->where("seer_general.NUE", $nue);
                 }
                 $ratificaciones = $ratificaciones->select("seer_general.id","seer_general.fecha","seer_general.fecha_confirmacion","seer_general.NUE","seer_general.solicitante",
-                "seer_auxiliares.actividad_economica",
-                "estados.nombre as estado","municipios.nombre as municipio","estado_citado.nombre as estado_citado","municipio_citado.nombre as municipio_citado",
-                "seer_general.citado","seer_auxiliares.sexo","seer_auxiliares.tipo_persona","seer_auxiliares.motivo",
+                "seer_auxiliares.actividad_economica","estados.nombre as estado","municipios.nombre as municipio",
+                //"estado_citado.nombre as estado_citado","municipio_citado.nombre as municipio_citado",
+                "seer_auxiliares.sexo","seer_auxiliares.tipo_persona","seer_auxiliares.motivo",
+                "seer_citados.nombre as citado","seer_citados.direccion",
                 "seer_auxiliares.monto","seer_auxiliares.estatus","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Ratificación")
                 ->get();
             //AUDIENCIA
-                $audiencia  = SeerPerGeneral::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
+                $audiencia  = SeerPerGeneral::where("seer_general.fecha",">=",$data["fecha_inicial"])->where("seer_general.fecha","<=",$data["fecha_final"])
                 ->join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id")
                 ->join("seer_conciliadores","seer_conciliadores.id_solicitud","=","seer_general.id")
                 ->join("estados","estados.id","=","seer_general.estado_solicitante")
                 ->join("municipios","municipios.id","=","seer_general.mun_solicitante")
-                ->join("users","users.id","=","seer_general.user_id");
+                ->join("users","users.id","=","seer_general.user_id")
+                ->join("seer_citados","seer_citados.id_solicitud","=","seer_general.id");
                 if($fecha_inicial != ""){
-                    $audiencia = $audiencia->where("fecha",">=",$fecha_inicial);
+                    $audiencia = $audiencia->where("seer_general.fecha",">=",$fecha_inicial);
                 }   
                 if($fecha_final != ""){
-                    $audiencia = $audiencia->where("fecha","<=",$fecha_final);
+                    $audiencia = $audiencia->where("seer_general.fecha","<=",$fecha_final);
                 }
                 if($sede != ""){
                     $audiencia = $audiencia->where("seer_general.delegacion", $sede);
@@ -532,9 +552,12 @@ class SeerController extends Controller
                 if($nue != ""){
                     $audiencia = $audiencia->where("seer_general.NUE", $nue);
                 }
-                $audiencia = $audiencia->select("seer_general.id","seer_general.fecha","seer_general.NUE","seer_general.solicitante","seer_general.citado",
+                $audiencia = $audiencia->select("seer_general.id","seer_general.fecha","seer_general.NUE",
+                "seer_general.solicitante","seer_general.fecha_confirmacion",
+                "seer_citados.nombre as citado","seer_citados.direccion",
                 "seer_auxiliares.actividad_economica",
-                "seer_conciliadores.numero_audiencia","seer_conciliadores.estatus_conciliacion","seer_conciliadores.monto","seer_conciliadores.cumplimiento_pago",
+                "seer_conciliadores.numero_audiencias","seer_conciliadores.estatus_conciliacion","seer_conciliadores.monto",
+                "seer_conciliadores.cumplimiento_pago","seer_conciliadores.fecha_conclucion",
                 "seer_conciliadores.observaciones","seer_conciliadores.multa","seer_conciliadores.tipo",
                 "estados.nombre as estado","municipios.nombre as municipio","users.name as usuario")
                 ->where("seer_auxiliares.tipo_solicitud", "Solicitud")
@@ -561,7 +584,7 @@ class SeerController extends Controller
                 ->get();
             //CONVENIOS
                 $convenios = SeerConvenios::where("fecha",">=",$data["fecha_inicial"])->where("fecha","<=",$data["fecha_final"])
-                ->join("users","users.id","=","seer_convenios.conciliador");
+                ->join("users","users.id","=","seer_convenios.user_id");
                 if($fecha_inicial != ""){
                     $convenios = $convenios->where("fecha",">=",$fecha_inicial);
                 }   
@@ -569,7 +592,7 @@ class SeerController extends Controller
                     $convenios = $convenios->where("fecha","<=",$data["fecha_final"]);
                 }
                 if($conciliador != ""){
-                    $convenios = $convenios->where("seer_convenios.conciliador", $conciliador);
+                    $convenios = $convenios->where("seer_convenios.user_id", $conciliador);
                 }
                 if($estado_solicitante != ""){
                     $convenios = $convenios->where("seer_convenios.estado_solicitante", $estado_solicitante);
@@ -773,23 +796,39 @@ class SeerController extends Controller
                 $colectivas = $colectivas->selectRaw('count(seer_colectivas.id) as colectivas')
                 ->first();
             //CONVENIOS
-                $convenios = SeerConvenios::join("users","users.id","=","seer_convenios.conciliador");
+                $convenios = SeerConvenios::join("users","users.id","=","seer_convenios.user_id");
                 if($fecha_inicial != ""){
                     $convenios = $convenios->where("fecha",">=",$fecha_inicial);
                 }   
                 if($fecha_final != ""){
                     $convenios = $convenios->where("fecha","<=",$data["fecha_final"]);
                 }
-                if($conciliador != ""){
-                    $convenios = $convenios->where("seer_convenios.conciliador", $conciliador);
-                }
-                if($estado_solicitante != ""){
-                    $convenios = $convenios->where("seer_convenios.estado_solicitante", $estado_solicitante);
-                }
-                if($nue != ""){
-                    $convenios = $convenios->where("seer_convenios.NUE", $nue);
-                }
                 $convenios = $convenios->selectRaw('count(seer_convenios.id) as convenios')
+                ->first();
+
+                $total_pagos = SeerConvenios::join("users","users.id","=","seer_convenios.user_id");
+                if($fecha_inicial != ""){
+                    $total_pagos = $total_pagos->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $total_pagos = $total_pagos->where("fecha","<=",$data["fecha_final"]);
+                }
+                $total_pagos = $total_pagos->selectRaw('SUM(seer_convenios.monto) as monto_pagos')
+                ->first();
+            //ASESORIAS
+                $asesorias = SeerAsesoria::join("users","users.id","=","seer_asesorias.id_usuario");
+                if($fecha_inicial != ""){
+                    $asesorias = $asesorias->where("fecha",">=",$fecha_inicial);
+                }   
+                if($fecha_final != ""){
+                    $asesorias = $asesorias->where("fecha","<=",$data["fecha_final"]);
+                }
+                /*
+                if($delegacion != ""){
+                    $asesorias = $asesorias->where("delegacion",$data["delegacion"]);
+                }
+                */
+                $asesorias = $asesorias->selectRaw('count(seer_asesorias.id) as asesorias')
                 ->first();
             //El numero de convenios con contancias de no conciliacion
                 $no_conciliacion  = SeerPerGeneral::join("seer_auxiliares","seer_auxiliares.id_solicitud","=","seer_general.id");
@@ -828,7 +867,7 @@ class SeerController extends Controller
             $convenios_total = $solicitudes["solicitudes"] + $ratificaciones["ratificaciones"];
             $porcenaje = ($convenios_total) / ($convenios_total + $no_conciliacion["audiencia"]);
              
-            return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios','porcenaje'));
+            return view('estadisticas.ver_reporte_cuantitativo', compact('solicitudes','ratificaciones','montoratificaciones','audiencia','montoaudiencia','colectivas','convenios','porcenaje','total_pagos','asesorias'));
         }
         else if($data["tipo_reporte"] == "Concentrado"){
             //SOLICITUDES
@@ -1022,7 +1061,7 @@ class SeerController extends Controller
                 $colectivas = $colectivas->selectRaw('count(seer_colectivas.id) as colectivas')
                 ->first();
             //CONVENIOS
-                $convenios = SeerConvenios::join("users","users.id","=","seer_convenios.conciliador");
+                $convenios = SeerConvenios::join("users","users.id","=","seer_convenios.user_id");
                 if($fecha_inicial != ""){
                     $convenios = $convenios->where("fecha",">=",$fecha_inicial);
                 }   
@@ -1030,7 +1069,7 @@ class SeerController extends Controller
                     $convenios = $convenios->where("fecha","<=",$data["fecha_final"]);
                 }
                 if($conciliador != ""){
-                    $convenios = $convenios->where("seer_convenios.conciliador", $conciliador);
+                    $convenios = $convenios->where("seer_convenios.user_id", $conciliador);
                 }
                 if($estado_solicitante != ""){
                     $convenios = $convenios->where("seer_convenios.estado_solicitante", $estado_solicitante);
@@ -1177,8 +1216,8 @@ class SeerController extends Controller
                 'fecha'         => $fecha_actual,
                 'nombre'        => $data["citado"][$i],
                 'direccion'     => $data["direccion"][$i], 
-                'id_municipio'  => $data["estado_citado"][$i], 
-                'id_estado'     => $data["municipio_citado"][$i]
+                //'id_municipio'  => $data["estado_citado"][$i], 
+                //'id_estado'     => $data["municipio_citado"][$i]
             ];
             SeerCitados::create($data_citado);
         }
@@ -1205,7 +1244,6 @@ class SeerController extends Controller
             //Auxiliares
             'sexo'                  => 'required|in:H,M',
             'motivo'                => 'required|in:Despido,Pago de prestaciones,Recision de la relación laboral,Derecho de preferencia,Derecho de antiguedad,Derecho de ascesnso,Terminación voluntaria de relación laboral',
-            'notificacion'          => 'required|in:Trabajador,Centro,Ambos',
             'monto'                 => 'required|numeric',
             'estatus'               => 'required|in:Pendiente,Parcial,Cumplido',
         ], $data);
@@ -1229,7 +1267,6 @@ class SeerController extends Controller
             'sexo'                      => $data["sexo"],
             'actividad_economica'       => $data["actividad_economica"],
             'motivo'                    => $data["motivo"],
-            'notificacion'              => $data["notificacion"],
             'monto'                     => $data["monto"],
             'estatus'                   => $data["estatus"],
             'tipo_solicitud'            => "Ratificación",
@@ -1242,8 +1279,8 @@ class SeerController extends Controller
                 'fecha'         => $fecha_actual,
                 'nombre'        => $data["citado"][$i], 
                 'direccion'     => $data["direccion"][$i], 
-                'id_municipio'  => $data["estado_citado"][$i], 
-                'id_estado'     => $data["municipio_citado"][$i]
+                //'id_municipio'  => $data["estado_citado"][$i], 
+                //'id_estado'     => $data["municipio_citado"][$i]
             ];
             SeerCitados::create($data_citado);
         }
@@ -1291,7 +1328,7 @@ class SeerController extends Controller
         ], $data);
 
 
-        if($data["estatus"] != "Archivada"){
+        if($data["estatus"] == "Conciliacion" || $data["estatus"] == "No conciliacion" || $data["estatus"] == "Archivada"){
             $data_general = SeerPerGeneral::
             where('id', $data["id"])
             ->update(['validado_conciliador' => "Guardado"]);
@@ -1341,18 +1378,16 @@ class SeerController extends Controller
         $audiencia = SeerPerConciliador::where("id_solicitud",$id)->get();
 
         $citados = SeerCitados::
-        join("seer_general","seer_citados.id_solicitud", "=" , "seer_general.id")
-        ->join("estados","estados.id", "=", "seer_citados.id_municipio")
-        ->join("municipios","municipios.id", "=", "seer_citados.id_estado")
-        ->where("seer_citados.id_solicitud",$id)
-        ->select("seer_citados.nombre as citado","estados.nombre as estado","municipios.nombre as municipio")
+        where("seer_citados.id_solicitud",$id)
+        ->join("seer_general","seer_citados.id_solicitud", "=" , "seer_general.id")
+        ->select('seer_citados.nombre as citado', 'seer_citados.direccion')
+        ->groupBy("seer_citados.id")
         ->get();
-        
+
         $estado_solicitante = Estados::find($general["estado_solicitante"]);
         $mun_solicitante    = Municipios::find($general["mun_solicitante"]);
+        $conciliador        = User::find($general["conciliador_id"]);
 
-        $conciliador    = User::find($general["conciliador_id"]);
-        
         return view('estadisticas.crearPersonaCon', compact('userRole','general','auxiliar','citados','mun_solicitante','estado_solicitante','conciliador','audiencia'));
     }
 

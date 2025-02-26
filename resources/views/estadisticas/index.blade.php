@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">SEER</h3>
+            <h3 class="page__heading">SEER - {{$userRole[0]}}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -70,16 +70,19 @@
                                             <tbody>
                                                 @foreach($personas as $persona)
                                                     <tr>
-                                                        <td style="display: none;">{{$persona->id}}</td>
+                                                        <td style="display: none;">{{$persona->id_solicitud}}</td>
                                                         <td>{{$persona->fecha}}</td>
                                                         <td>{{$persona->NUE}}</td>
                                                         <td>{{$persona->solicitante}}</td>
-                                                        <td>{{$persona->citado}}</td>
+                                                        <td>
+                                                            <button onclick="botonVerCitado(<?=$persona->id?>)"; type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_verCitados">
+                                                            Ver</button>
+                                                        </td>
                                                         <td>{{$persona->validado_conciliador}}</td>
                                                         @if($persona->validado_conciliador == "Pendiente")
-                                                            <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
+                                                            <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id_solicitud) }}" onclick=consultar_estadistica();>Audiencia</a></td>
                                                         @else 
-                                                        <td><a class="btn btn-primary" data-toggle="modal" href="{{ route('persona_ver', $persona->id) }}" onclick=consultar_estadistica();>Ver</a></td>
+                                                        <td><a class="btn btn-primary" data-toggle="modal" href="{{ route('persona_ver', $persona->id_solicitud) }}" onclick=consultar_estadistica();>Ver</a></td>
                                                         @endif
                                                     </tr>
                                                 @endforeach
@@ -265,12 +268,10 @@
                             <div id="T_citados" class="table table-striped mt-1"> 
                         
                                 <table id="tabla_citados" class="table table-striped mt-1">
-                                    <thead style="background-color: #4A001F;">
+                                    <thead style="background-color:;">
                                         <th style="display: none;">ID</th>
                                         <th style="color: #fff;">Citado</th>
-                                        <th style="color: #fff;">Estado</th>
-                                        <th style="color: #fff;">Municipio</th>
-                                        <th style="color: #fff;">Fecha</th>
+                                        <th style="color: #fff;">Dirección</th>
                                     </thead>
                                     <tbody  id="m_citados">
                                             

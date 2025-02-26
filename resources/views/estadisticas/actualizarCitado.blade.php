@@ -40,6 +40,8 @@
                                                 <option value="">Selecciona</option>
                                                 <option value="Notificada">Notificado</option>
                                                 <option value="No notificada">No notificado</option>
+                                                <option value="Exhorto">Exhorto</option>
+                                                <option value="Juez">Notificado por Juez</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 El campo es obligatorio.

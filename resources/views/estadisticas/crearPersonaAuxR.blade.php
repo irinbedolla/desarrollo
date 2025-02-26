@@ -153,21 +153,6 @@
 
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
-                                                    <label for="confirm-password">Notificación</label>
-                                                    <select class="form-control" name="notificacion" required>
-                                                        <option value="">Seleccione</option>
-                                                        <option value="Trabajador">Por el trabajador</option>
-                                                        <option value="Centro">Por el centro</option>
-                                                        <option value="Ambos">Ambos</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        El campo es obligatorio.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                                <div class="form-group">
                                                     <label for="password">Conciliador</label>
                                                     <select class="form-control" name="conciliador_id" required>
                                                         <option value="">Seleccione</option>
@@ -245,34 +230,6 @@
                     html +='<label for="confirm-password">Citado</label>';
                     html +='<input type="text" class="form-control" name="citado[]"  oninput="this.value = this.value.toUpperCase()" required>';
                     html +='</div> </div>';                                
-                                                
-                    //ESTADO
-                    html += '<div class="col-xs-12 col-sm-12 col-md-6">';
-                    html += '<div class="form-group">';
-                    html += '<label for="password">Estado del citado</label>';
-                    html += '<select id="estado_citado" class="form-control" name="estado_citado[]" required>';
-                    html += '<option value="">Seleccione</option>';
-                    html += '@foreach($estados as $est)';
-                    html += '<option value="{{$est['id']}}">{{$est['nombre']}} </option>';
-                    html += '@endforeach';
-                    html += '</select>';
-                    html += '<div class="invalid-feedback">';
-                    html += 'El Estado es obligatorio.';
-                    html += '</div> </div> </div>';                            
-                    
-                    //MUNICIPIO
-                    html += '<div class="col-xs-12 col-sm-12 col-md-6">';
-                    html += '<div class="form-group">';
-                    html += '<label for="password">Municipio del citado</label>';
-                    html += '<select id="municipio_citado" name="municipio_citado[]" class="form-control" disable>';
-                    html += '<option value="">Seleccione</option>';
-                    html += '@foreach($municipios as $mun)';
-                    html += '<option value="{{$mun['id']}}">{{$mun['nombre']}} </option>';
-                    html += '@endforeach';
-                    html += '</select>';
-                    html += '<div class="invalid-feedback">';
-                    html += 'El Municipio es obligatorio.';
-                    html += '</div> </div> </div>';
                     
                     //DIRECCION
                     html += '<div class="col-xs-12 col-sm-12 col-md-6">';

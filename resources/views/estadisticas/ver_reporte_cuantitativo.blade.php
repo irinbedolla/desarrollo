@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Reporte</h3>
+                            <h3 class="text-center">Reporte Cuantitativo</h3>
                             <a class="btn btn-primary" href="{{ route('seer.estadistica') }}">Regresar</a>
                             <div id="solicitud" class="tabcontent">
                                 <div class="table-responsive">
@@ -32,15 +32,19 @@
                                         <thead style="background-color: #4A001F;">
                                             <th style="color: #fff;">Audiencias</th>
                                             <th style="color: #fff;">Convenio de audiencias</th>
-                                            <th style="color: #fff;">Convenios</th>
+                                            <th style="color: #fff;">N° Pagos</th>
+                                            <th style="color: #fff;">Total de Pagos</th>
+                                            <th style="color: #fff;">Asesorias</th>
                                             <th style="color: #fff;">Colectivas</th>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{$audiencia->audiencia}}</td>
                                                 <td>${{ number_format($montoaudiencia->audiencia,2) }}</td>
-                                                <td>{{$colectivas->colectivas}}</td>
                                                 <td>{{$convenios->convenios}}</td>
+                                                <td>${{ number_format($total_pagos->monto_pagos, 2)}}</td>
+                                                <td>{{$asesorias->asesorias}}</td>
+                                                <td>{{$colectivas->colectivas}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

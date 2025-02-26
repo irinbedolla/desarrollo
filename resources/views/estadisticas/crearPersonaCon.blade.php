@@ -74,22 +74,16 @@
                                                     </div>
                                                 </div>
                                                 @foreach($citados as $citado)
-                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
                                                         <div class="form-group">
                                                             <label for="confirm-password">Citado</label>
                                                             <input type="text" class="form-control" name="citado" value="<?=$citado["citado"];?>">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
                                                         <div class="form-group">
-                                                            <label for="password">Estado del citado</label>
-                                                            <input type="text" class="form-control" value="<?=$citado["estado"];?>" readonly>   
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6 col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="password">Municipio del citado</label>
-                                                            <input type="text" class="form-control" value="<?=$citado["municipio"];?>" readonly>
+                                                            <label for="password">Dirección</label>
+                                                            <input type="text" class="form-control" value="<?=$citado["direccion"];?>" readonly>   
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -229,7 +223,7 @@
                                                         <option value="">Seleccione</option>
                                                         <option value="Conciliacion">Conciliacion</option>
                                                         <option value="No conciliacion">No Conciliacion</option>
-                                                        <option value="Regenerada">Regenerada</option>
+                                                        <option value="Regenerada">Reagendada</option>
                                                         <option value="Archivada">Archivada</option>
                                                     </select>
                                                     <div class="invalid-feedback">
