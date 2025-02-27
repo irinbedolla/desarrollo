@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html class="wide wow-animation" lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,13 +43,13 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/1.jpeg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Solicitud en línea.</h1>
                                 <p>Puedes realizar tu solicitud en línea.</p>
                                 <p>
@@ -57,18 +57,18 @@
                                         Generar Solicitud
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/4.jpeg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Citas ratificación.</h1>
                                 <p>Realiza tu cita de ratificación.</p>
                                 <p>
@@ -76,18 +76,18 @@
                                         Generar Cita
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/8.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Calculadora de <br>prestaciones.</h1>
                                 <p>Cálculo aproximado.</p>
                                 <p>
@@ -95,18 +95,18 @@
                                         Realizar cálculo.
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/20.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Registro de <br>representaciones legales.</h1>
                                 <p>Inicia tu registro como apoderado.</p>
                                 <p>
@@ -114,18 +114,18 @@
                                         Generar Registro
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/27.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Cursos y Capacitaciones.</h1>
                                 <p>Ingresar a los cursos.</p>
                                 <p>
@@ -133,18 +133,18 @@
                                         Inicio
                                     </a>
                                 </p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
                         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#6A0F49"/>
+                            <rect width="100%" height="100%" fill="#A9ABAE"/>
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/ccl-r.png" alt="" style="max-width: 50%; position:relative; top:100px; right:70px;">
+                                <img class="Absbottom" src="public/assets_seer/images/CCLMichoacan.png" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <div class="carousel-caption text-start">
+                            <!--<div class="carousel-caption text-start">
                                 <h1>Sí Conciliación.</h1>
                                 <p>Sistema integral de Conciliación.</p>
                                 <p>
@@ -152,7 +152,7 @@
                                         Ingresar
                                     </a>
                                 </p>
-                            </div>
+                            </div>--->
                         </div>
                     </div>
                 </div>
@@ -167,12 +167,115 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-
-
+	        <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Servicios</h3> <br><br><br>
+            <div style="display: block; text-align: center;">
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 20px; font-family: Arial; color: #000000">Solicitud en línea.</h2> <img
+                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="https://michoacan.cencolab.mx/asesoria/seleccion" target="_blank" style="display: contents;">
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">En esta sección pordrá generar su solicitud el línea.</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas ratificación</h2> <img
+                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="#" target="_blank" style="display: contents;">
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br>Realiza tu cita de ratificación.</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones.</h2>
+                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank"
+                                style="display: contents; color: white;">
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Cálculo aproximado de prestaciones.
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Registro de <br>representaciones legales</h2> <img
+                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="#" target="_blank" tyle="display: contents;">
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br><br>Inicia tu registro como apoderado.</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
+                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="#" target="_blank"
+                                style="display: contents; color: white;">
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Ingresar a los cursos.
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Sí Conciliación</h2>
+                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="{{ route('login') }}" target="_blank"
+                                style="display: contents; color: white;">
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Sistema integral de Conciliación.
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asistencia en línea</h2>
+                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="{{ route('login') }}" target="_blank"
+                                style="display: contents; color: white;">
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes duda consulta aquí.
+                    </div>
+                </div>
+	        </div>
+            <br>
+            <h3 class="" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Sedes</h3> <br><br><br>
+            
             <!-- Marketing messaging and featurettes
             ================================================== -->
             <!-- Wrap the rest of the page in another container to center all the content. -->
-
+            <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Sedes</h3> <br><br><br>
             <div class="container marketing">
 
                 <!-- Three columns of text below the carousel -->
@@ -181,8 +284,7 @@
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Morelia</h2>
                         <p>BLVD. GARCÍA DE LEÓN 1575, CHAPULTEPEC ORIENTE, C.P. 58260 MORELIA, MICH.</p>
-                        <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+del+Estado+de+Michoac%C3%A1n/@19.6886808,-101.1665464,17z/data=!3m1!4b1!4m6!3m5!1s0x86972e4da3b81177:0xb3bdb18efbe90610!8m2!3d19.6886758!4d-101.1639715!16s%2Fg%2F11tjwgnyhz?entry=ttu" target="_blank">
-                            Ver Ubicación &raquo;</a></p>
+                        <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+del+Estado+de+Michoac%C3%A1n/@19.6886808,-101.1665464,17z/data=!3m1!4b1!4m6!3m5!1s0x86972e4da3b81177:0xb3bdb18efbe90610!8m2!3d19.6886758!4d-101.1639715!16s%2Fg%2F11tjwgnyhz?entry=ttu" target="_blank">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
