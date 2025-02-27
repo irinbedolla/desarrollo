@@ -265,7 +265,7 @@
                         <div class="flip-box-back">
                             <a href="{{ route('login') }}" target="_blank"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes duda consulta aquí.
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes duda consulta aquí. 
                     </div>
                 </div>
 	        </div>
