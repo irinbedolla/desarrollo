@@ -30,6 +30,11 @@
         <link href="public/assets/css/carousel.css" rel="stylesheet">
     </head>
     <body>
+    <header class="section page-header">
+    <div class="rd-navbar-panel">
+		<div class="rd-navbar-brand"><img src="public/assets_seer/images/Logos gobiernos.png"></a></div>
+	</div>
+
         <main>
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
                 <div class="carousel-indicators">
@@ -167,13 +172,15 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-	        <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Servicios</h3> <br><br><br>
+
+	        <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestros Servicios</h3> <br><br><br>
+            
             <div style="display: block; text-align: center;">
                 <div class="flip-box">
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 20px; font-family: Arial; color: #000000">Solicitud en línea.</h2> <img
-                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                src="public/assets_seer/images/4A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
@@ -187,7 +194,7 @@
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas ratificación</h2> <img
-                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                src="public/assets_seer/images/1A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
@@ -201,7 +208,7 @@
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones.</h2>
-                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                            <img src="public/assets_seer/images/5A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
@@ -216,7 +223,7 @@
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Registro de <br>representaciones legales</h2> <img
-                                src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                                src="public/assets_seer/images/6A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
@@ -230,7 +237,7 @@
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
-                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                            <img src="public/assets_seer/images/2A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
@@ -259,23 +266,21 @@
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asistencia en línea</h2>
-                            <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                            <img src="public/assets_seer/images/3A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
                             <a href="{{ route('login') }}" target="_blank"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes duda consulta aquí. 
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes dudas consulta aquí. 
+                            </a>
+                        </div>
                     </div>
-                </div>
-	        </div>
-            <br>
-            <h3 class="" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Sedes</h3> <br><br><br>
-            
-            <!-- Marketing messaging and featurettes
-            ================================================== -->
-            <!-- Wrap the rest of the page in another container to center all the content. -->
-            <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Sedes</h3> <br><br><br>
+	            </div>
+            </div> 
+
+            <br><br><br><br><br><br>
+            <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestras sedes</h3> <br><br><br>
             <div class="container marketing">
 
                 <!-- Three columns of text below the carousel -->
