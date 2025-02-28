@@ -30,11 +30,6 @@
         <link href="public/assets/css/carousel.css" rel="stylesheet">
     </head>
     <body>
-    <header class="section page-header">
-    <div class="rd-navbar-panel">
-		<div class="rd-navbar-brand"><img src="public/assets_seer/images/Logos gobiernos.png"></a></div>
-	</div>
-
         <main>
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
                 <div class="carousel-indicators">
@@ -52,7 +47,7 @@
                         </svg>
                         <div class="container">
                             <div class="carousel-caption text-end">
-                                <img class="Absbottom" src="public/assets_seer/images/1.jpeg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
+                                <img class="Absbottom" src="public/assets_seer/images/1.jpeg" alt="" style="max-width: 60%; position:relative; top:100px; right:100px;">
                             </div>
                             <!--<div class="carousel-caption text-start">
                                 <h1>Solicitud en línea.</h1>
@@ -198,7 +193,7 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="#" target="_blank" style="display: contents;">
+                            <a href="#" target="_self" style="display: contents;">
                                 <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br>Realiza tu cita de ratificación.</h2>
                             </a>
                         </div>
@@ -227,7 +222,7 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="#" target="_blank" tyle="display: contents;">
+                            <a href="#" target="_self" tyle="display: contents;">
                                 <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br><br>Inicia tu registro como apoderado.</h2>
                             </a>
                         </div>
@@ -241,7 +236,7 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="#" target="_blank"
+                            <a href="#" target="_self"
                                 style="display: contents; color: white;">
                                 <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Ingresar a los cursos.
                             </a>
@@ -256,7 +251,7 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="{{ route('login') }}" target="_blank"
+                            <a href="{{ route('login') }}" target="_self"
                                 style="display: contents; color: white;">
                                 <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Sistema integral de Conciliación.
                         </div>
@@ -270,7 +265,7 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="{{ route('login') }}" target="_blank"
+                            <a href="{{ route('login') }}" target="_self"
                                 style="display: contents; color: white;">
                                 <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes dudas consulta aquí. 
                             </a>
