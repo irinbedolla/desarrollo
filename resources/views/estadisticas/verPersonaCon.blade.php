@@ -138,14 +138,14 @@
                                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                                         <div class="form-group">
                                                             <label for="confirm-password">Monto del convenio</label>
-                                                            <input type="text" class="form-control" value="<?=$audi["monto"];?>">
+                                                            <input type="number" step="0.01" class="form-control" value="<?=$audi["monto"];?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                                         <div class="form-group">
                                                             <label for="confirm-password">Multa</label>
-                                                            <input type="text" class="form-control" value="<?=$audi["multa"];?>">
+                                                            <input type="number" step="0.01" class="form-control" value="<?=$audi["multa"];?>">
                                                         </div>
                                                     </div>
 

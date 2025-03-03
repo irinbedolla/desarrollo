@@ -55,7 +55,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Monto</label>
-                                                    <input type="number" name="monto" class="form-control" required>   
+                                                    <input type="number" name="monto" class="form-control" step="0.01" required>   
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>

@@ -121,14 +121,14 @@
                                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                                         <div class="form-group">
                                                             <label for="confirm-password">Monto del convenio</label>
-                                                            <input type="text" class="form-control" value="<?=$audi["monto"];?>">
+                                                            <input step="any" type="number" class="form-control" value="<?=$audi["monto"];?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                                         <div class="form-group">
                                                             <label for="confirm-password">Multa</label>
-                                                            <input type="text" class="form-control" value="<?=$audi["multa"];?>">
+                                                            <input step="any" type="number" class="form-control" value="<?=$audi["multa"];?>">
                                                         </div>
                                                     </div>
 
@@ -258,7 +258,7 @@
                                             <div class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="password">Monto del convenio</label>
-                                                    <input type="number" name="monto" class="form-control"  required>   
+                                                    <input type="number" step="0.01" name="monto" class="form-control"  required>   
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
@@ -282,7 +282,7 @@
                                             <div id="montoMulta" style="display:none" class="col-xs-12 col-sm-6 col-md-4">
                                                 <div class="form-group">
                                                     <label for="confirm-password">Monto de la multa</label>
-                                                    <input type="number" name="monto_multa" class="form-control">
+                                                    <input type="number" step="0.01" name="monto_multa" class="form-control">
                                                     <div class="invalid-feedback">
                                                         El campo es obligatorio.
                                                     </div>
