@@ -1640,4 +1640,56 @@ class SeerController extends Controller
         $poder = Poder::find($id)->delete();
         return redirect()->route('poderes');
     }
+
+    //Editar
+    public function edit($id){
+        $id = auth()->user()->id;
+        $persona = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $persona->roles->pluck('name')->all();
+        $fecha_actual = date('y-m-d');
+        $resultado = $this->ver_auxiliar($id);
+        
+        return view('estadisticas.editar_verPersonaAux', compact('persona', 'userRole','id'));       
+    }
+
+    public function update(Request $request,$id){
+        $data = $request->all();
+        $persona = User::find($id);
+
+        request()->validate([
+            'NUE'                 => 'required',
+            'solicitante'         => 'required',
+            'actividad_economica' => 'required',
+            'estado_solicitante'  => 'required|digits:10',
+            'mun_solicitante'     => 'required',
+            'citado'              => 'required',
+            'estado_citado'       => 'required',
+            'municipio_citado'    => 'required',
+            'tipo_persona'        => 'required',
+            'motivo'              => 'required',
+            'notificacion'        => 'required',
+            'conciliador_id'      => 'required',
+        ], $data);
+
+        $data_update= array(
+            'NUE'                   => $data["NUE"],
+            'solicitante'           => $data["solicitante"],
+            'actividad_economica'   => $data["actividad_economica"], 
+            'estado_solicitante'    => $data["estado_solicitante"], 
+            'mun_solicitante'       => $data["mun_solicitante"],
+            'citado'                => $data["citado"],
+            'estado_citado'         => $data["estado_citado"],
+            'municipio_citado'      => $data["municipio_citado"],
+            'tipo_persona'          =>$data["tipo_persona"],
+            'motivo'                => $data["motivo"],
+            'notificacion'          => $data["notificacion"],
+            'conciliador_id'        => $data["conciliador_id"],
+        );
+
+
+        $persona->update($data_update);
+        return redirect()->route('seer.estadistica_consultar');
+        //return redirect()->route('persona');
+    }
 }
