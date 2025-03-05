@@ -1643,17 +1643,35 @@ class SeerController extends Controller
 
     //Editar
     public function edit($id){
-        $id = auth()->user()->id;
+       // $resultado = $this->ver_auxiliar($id);
+        /*$id = auth()->user()->id;
         $persona = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $persona->roles->pluck('name')->all();
-        $fecha_actual = date('y-m-d');
-        $resultado = $this->ver_auxiliar($id);
+        $fecha_actual = date('y-m-d');*/
+       /* $id_usuario = auth()->user()->id;
+        $user = User::find($id_usuario);
+        $userRole = $user->roles->pluck('name')->all();
+
+        $general  = SeerPerGeneral::find($id);
+        $auxiliar = SeerPerAuxiliar::where("id_solicitud",$id)->first();
         
-        return view('estadisticas.editar_verPersonaAux', compact('persona', 'userRole','id'));       
+        $estado_citado = Estados::find($general["estado_solicitante"]);
+        $mun_citado    = Municipios::find($general["mun_solicitante"]);
+
+        $estado_solicitante = Estados::find($general["estado_citado"]);
+        $mun_solicitante    = Municipios::find($general["mun_citado"]);
+
+        $conciliador    = User::find($general["conciliador_id"]);
+        
+
+        return view('estadisticas.verPersonaAux', compact('userRole','general','auxiliar','estado_citado','mun_citado','estado_solicitante','mun_solicitante','conciliador'));  
+    */
+        $solicitud = SeerPerAuxiliar::find($id);
+        return view('estadisticas.crearPersonaAux', compact('solicitud'));
     }
 
-    public function update(Request $request,$id){
+   /* public function update(Request $request,$id){
         $data = $request->all();
         $persona = User::find($id);
 
@@ -1691,5 +1709,5 @@ class SeerController extends Controller
         $persona->update($data_update);
         return redirect()->route('seer.estadistica_consultar');
         //return redirect()->route('persona');
-    }
+    }*/
 }

@@ -29,7 +29,7 @@
                                 </div>
                             @endif
                             <!--Se realiza el envío de datos con formulario de Laravel Collective-->
-                            {!! Form::model($persona, ['method' => 'PATCH', 'files' => true, 'route' => ['persona.update', $persona ,$persona->id], 'class' => 'needs-validation','novalidate' ]) !!}
+                            {!! Form::model($userRole, ['method' => 'PATCH', 'files' => true, 'route' => ['persona.update', $persona ,$persona->id], 'class' => 'needs-validation','novalidate' ]) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
