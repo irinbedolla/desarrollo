@@ -174,13 +174,13 @@
                 <div class="flip-box">
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
-                            <h2 style="font-size: 20px; font-family: Arial; color: #000000">Solicitud en línea.</h2> <img
+                            <h2 style="font-size: 20px; font-family: Arial; color: #000000">Solicitud en línea</h2> <img
                                 src="public/assets_seer/images/4A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
                             <a href="https://michoacan.cencolab.mx/asesoria/seleccion" target="_blank" style="display: contents;">
-                                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">En esta sección pordrá generar su solicitud el línea.</h2>
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff"><br>En esta sección pordrá generar su solicitud el línea.</h2>
                             </a>
                         </div>
                     </div>
@@ -202,14 +202,14 @@
                 <div class="flip-box">
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
-                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones.</h2>
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones</h2>
                             <img src="public/assets_seer/images/5A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
                             <a href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Cálculo aproximado de prestaciones.
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Cálculo aproximado de prestaciones.</h2>
                             </a>
                         </div>
                     </div>
@@ -222,23 +222,9 @@
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="#" target="_self" tyle="display: contents;">
-                                <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br><br>Inicia tu registro como apoderado.</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-box">
-                    <div class="flip-box-inner">
-                        <div class="flip-box-front">
-                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
-                            <img src="public/assets_seer/images/2A.jpeg" alt="Descripción de la imagen"
-                                style="width: 100px; height: auto;">
-                        </div>
-                        <div class="flip-box-back">
                             <a href="#" target="_self"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Ingresar a los cursos.
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Inicia tu registro como apoderado.</h2>
                             </a>
                         </div>
                     </div>
@@ -253,7 +239,23 @@
                         <div class="flip-box-back">
                             <a href="{{ route('login') }}" target="_self"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Sistema integral de Conciliación.
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema integral de Conciliación.</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-box">
+                    <div class="flip-box-inner">
+                        <div class="flip-box-front">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
+                            <img src="public/assets_seer/images/2A.jpeg" alt="Descripción de la imagen"
+                                style="width: 100px; height: auto;">
+                        </div>
+                        <div class="flip-box-back">
+                            <a href="#" target="_self"
+                                style="display: contents; color: white;">
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Ingresar a los cursos.</h2>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -267,7 +269,7 @@
                         <div class="flip-box-back">
                             <a href="{{ route('login') }}" target="_self"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Si tienes dudas consulta aquí. 
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Si tienes dudas consulta aquí.</h2>
                             </a>
                         </div>
                     </div>

@@ -34,7 +34,8 @@
                                                 <th style="color: #fff;">Solicitante</th>
                                                 <th style="color: #fff;">Citado</th>
                                                 <th style="color: #fff;">Detalles</th>
-                                                <th style="color: #fff;">Auciencia</th>
+                                                <th style="color: #fff;">Audiencia</th>
+                                                <th style="color: #fff;">Borrar</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($personas as $persona)
@@ -49,6 +50,7 @@
                                                         </td>
                                                         <td><a class="btn btn-primary" href="{{ route('seer.estadistica_consultar', $persona->id) }}" onclick=consultar_estadistica();>Consultar</a></td>
                                                         <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=consultar_estadistica();>Audiencia</a></td>
+                                                        <td><a class="btn btn-primary" href="{{ route('create_persona_con', $persona->id) }}" onclick=();>borrar</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
