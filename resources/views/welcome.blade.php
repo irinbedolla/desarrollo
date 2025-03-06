@@ -10,7 +10,7 @@
 
         <!-- Bootstrap core CSS -->
         <link href="public/assets_seer/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="icon" href="public/assets_seer/images/icono.png" type="image/x-icon">
+        <link rel="icon" href="public/assets_seer/images/logo-ccl.png" type="image/x-icon">
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -25,11 +25,49 @@
                 font-size: 3.5rem;
                 }
             }
+            header{
+                display:flex;
+                min-height: 70px;
+                background-color: white;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                }
+            .logo{
+            display: flex;
+            align-items: center;
+            }
+
+            .logo img{
+            height: 50px;
+            margin-right: 10px;
+            }
+
+            nav a{
+            font-weight: 600;
+            padding-right: 10px;
+            }
+
+            nav a:hover{
+                color:white;
+            }
         </style>
         <!-- Custom styles for this template -->
         <link href="public/assets/css/carousel.css" rel="stylesheet">
     </head>
     <body>
+        <header>
+            <div class="logo">
+                <img src="public/assets_seer/images/logo-ccl.png" alt="">
+                <img src="public/assets_seer/images/Logos gobiernos.png"alt="">
+                <h2 class="nombre-dep">SI CONCILIO</h2>
+            </div>
+            <nav>
+                <a href="" class="nav-link">Inicio</a>
+                <a href="" class="nav-link">Servicios</a>
+                <a href="" class="nav-link">Nuestras sedes</a>
+            </nav>
+        </header>
         <main>
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
                 <div class="carousel-indicators">
@@ -49,15 +87,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/1.jpeg" alt="" style="max-width: 60%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Solicitud en línea.</h1>
-                                <p>Puedes realizar tu solicitud en línea.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="https://michoacan.cencolab.mx/asesoria/seleccion" style="text-decoration: none; background-color: #CEA845;">
-                                        Generar Solicitud
-                                    </a>
-                                </p>
-                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -68,15 +97,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/4.jpeg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Citas ratificación.</h1>
-                                <p>Realiza tu cita de ratificación.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="#" style="text-decoration: none; background-color: #CEA845;">
-                                        Generar Cita
-                                    </a>
-                                </p>
-                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -87,15 +107,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/8.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Calculadora de <br>prestaciones.</h1>
-                                <p>Cálculo aproximado.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="https://cclmichoacan.gob.mx/Calculadora.html" style="text-decoration: none; background-color: #CEA845;">
-                                        Realizar cálculo.
-                                    </a>
-                                </p>
-                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -106,15 +117,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/20.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Registro de <br>representaciones legales.</h1>
-                                <p>Inicia tu registro como apoderado.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="{{ route('poder-crear') }}" style="text-decoration: none; background-color: #CEA845;">
-                                        Generar Registro
-                                    </a>
-                                </p>
-                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -125,15 +127,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/27.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Cursos y Capacitaciones.</h1>
-                                <p>Ingresar a los cursos.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="#" style="text-decoration: none; background-color: #CEA845;">
-                                        Inicio
-                                    </a>
-                                </p>
-                            </div>-->
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -144,15 +137,6 @@
                             <div class="carousel-caption text-end">
                                 <img class="Absbottom" src="public/assets_seer/images/CCLMichoacan.png" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
                             </div>
-                            <!--<div class="carousel-caption text-start">
-                                <h1>Sí Conciliación.</h1>
-                                <p>Sistema integral de Conciliación.</p>
-                                <p>
-                                    <a class="btn btn-lg btn-primary" href="{{ route('login') }}" style="text-decoration: none; background-color: #CEA845;">
-                                        Ingresar
-                                    </a>
-                                </p>
-                            </div>--->
                         </div>
                     </div>
                 </div>
@@ -180,7 +164,7 @@
                         </div>
                         <div class="flip-box-back">
                             <a href="https://michoacan.cencolab.mx/asesoria/seleccion" target="_blank" style="display: contents;">
-                                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff"><br>En esta sección pordrá generar su solicitud el línea.</h2>
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
                             </a>
                         </div>
                     </div>
@@ -188,13 +172,13 @@
                 <div class="flip-box">
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
-                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas ratificación</h2> <img
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas para ratificación</h2> <img
                                 src="public/assets_seer/images/1A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
                             <a href="#" target="_self" style="display: contents;">
-                                <h2 style="font-size: 22px; font-family: Arial; color:#ffff"><br>Realiza tu cita de ratificación.</h2>
+                                <h2 style="font-size: 22px; font-family: Arial; color:#ffff">Es un servicio que permite a las partes que terminan su relación laboral, acudir con previa cita ante el Centro de Concicliación Laboral a ratificar su acuerdo, con el fin de brindar seguridad jurídica.</h2>
                             </a>
                         </div>
                     </div>
@@ -209,7 +193,7 @@
                         <div class="flip-box-back">
                             <a href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Cálculo aproximado de prestaciones.</h2>
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Es una herramienta digital que permite a las personas, conocer los cálculos aproximados de las prestaciones laborales, que serán consideradas dentro de la audiencia de conciliación.</h2>
                             </a>
                         </div>
                     </div>
@@ -224,7 +208,7 @@
                         <div class="flip-box-back">
                             <a href="#" target="_self"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Inicia tu registro como apoderado.</h2>
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es una plataforma digital, que permite a las personas empleadoras registrar a sus representantes legales, con la finalidad de agilizar el procedimiento de conciliación.</h2>
                             </a>
                         </div>
                     </div>
@@ -262,14 +246,14 @@
                 <div class="flip-box">
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
-                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asistencia en línea</h2>
+                            <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asesoría virtual</h2>
                             <img src="public/assets_seer/images/3A.jpeg" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
                             <a href="{{ route('login') }}" target="_self"
                                 style="display: contents; color: white;">
-                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Si tienes dudas consulta aquí.</h2>
+                                <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es un servicio informático que podrás consultar con la finalidad de atender y resolver preguntas acerca de nuestros servicios.</h2>
                             </a>
                         </div>
                     </div>
@@ -282,31 +266,31 @@
 
                 <!-- Three columns of text below the carousel -->
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Morelia</h2>
                         <p>BLVD. GARCÍA DE LEÓN 1575, CHAPULTEPEC ORIENTE, C.P. 58260 MORELIA, MICH.</p>
                         <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+del+Estado+de+Michoac%C3%A1n/@19.6886808,-101.1665464,17z/data=!3m1!4b1!4m6!3m5!1s0x86972e4da3b81177:0xb3bdb18efbe90610!8m2!3d19.6886758!4d-101.1639715!16s%2Fg%2F11tjwgnyhz?entry=ttu" target="_blank">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Uruapan</h2>
                         <p>NUEVO PARICUTÍN NO 308, COL. JARDINES DE SAN RAFAEL, C.P. 30136 URUAPAN MICHOACÁN.</p>
                         <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+Uruapan/@19.4183803,-102.0080912,17z/data=!3m1!4b1!4m6!3m5!1s0x842de3549b0e069b:0x5044e26ce5f7e25a!8m2!3d19.4183753!4d-102.0055163!16s%2Fg%2F11ryt409m2?entry=ttu" target="_blank">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Zamora</h2>
                         <p>JUSTO SIERRA PONIENTE NO 290, CP. COL. JARDINES DE CATEDRAL, C.P. 59600 ZAMORA, MICHOACÁN.</p>
                         <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Justo+Sierra+209,+Jardines+de+Catedral,+Zamora+de+Hidalgo,+Mich./@19.9820742,-102.2817188,17z/data=!3m1!4b1!4m5!3m4!1s0x842e88c79f23a3c5:0x70d579455d9255cb!8m2!3d19.9820692!4d-102.2791439?entry=ttu">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Zitácuaro</h2>
                         <p>CALLE CUAUHTEMOC ORIENTE 15, ZITÁCUARO, MICHOACÁN.</p>
                         <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Cuauht%C3%A9moc+Ote.+15,+Cuauhtemoc,+61506+Zit%C3%A1cuaro,+Mich./@19.4385694,-100.3564309,17z/data=!3m1!4b1!4m6!3m5!1s0x85d2a4a1dec711b3:0x68685762f8695d11!8m2!3d19.4385644!4d-100.353856!16s%2Fg%2F11c21h6jl_?entry=ttu">Ver Ubicación &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
                         <h2>Lázaro Cardenas</h2>
                         <p>CALLE PARACHO NUMERO 26 COLONIA 600 CASAS CP. 60950</p>
@@ -326,7 +310,7 @@
 
             <!-- FOOTER -->
             <footer class="container">
-                <p class="float-end"><a href="#">Regresar</a></p>
+                <p class="float-end"><!--<a href="#">Regresar</a>--></p>
                 <p>&copy; 2023–2027.</p>
             </footer>
         </main>
