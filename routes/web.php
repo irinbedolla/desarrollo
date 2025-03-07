@@ -30,6 +30,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/chat', [HomeController::class, 'chats']);
+//Route::get('/chat/create',[HomeController::class, 'create'])->name('chat.create');
+//Route::post('/chat/create/save', [HomeController::class, 'store'])->name('chat.store');
+Route::post('/chat/crear',      [HomeController::class, 'store'])->name('RespuestasChat.store');
+Route::post('/chat/crearUno/',  [HomeController::class, 'storeUno'])->name('RespuestasChat.storeUno');
+
+
 
 Route::get('/pantalla', function () {
     $fecha_actual = date('Y-m-d');
