@@ -31,20 +31,18 @@
                 justify-content: center;
                 align-items: center;
                 font-family: Arial, sans-serif;
-                padding: 50px;
                 background-color: #f4f4f9;
             }
             .chat-box {
                 background-color: white;
-                padding: 20px;
-                border-radius: 10px;
+                padding: 10px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                width: 900px;
-                max-width: 1000px;
+                max-width: 500px;
+                max-height: 600px;
                 margin: 0 auto;
             }
             .form-container h2 {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 text-align: center;
             }
             h2 {
@@ -66,18 +64,21 @@
                 border-radius: 5px;
             }
             .btn {
-                padding: 10px 20px;
+               
                 background-color: #CEA845;
                 color: white;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
+                justify-content:center;
+                align-items:center;
             }
             .btn:hover {
                 background-color: #CEA845;
             }
             .needs-validation
             {
+                
                 background-color: #4A001F;
             }
             
@@ -85,10 +86,12 @@
 
     </head>
     <body>
+        
+
         <!-- Formulario -->
         {!! Form::open(array('route'=>'RespuestasChat.store', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
             @csrf
-            <div class="chat-box" style="position: relative; top:100px; right:0px; left:0px;">
+            <div class="chat-box" style="position: relative; top:50px; right:0px; left:0px;">
                 <h1>Asistente Centro de Conciliación</h1>
                 <p align="center"><b>¿Cómo te podemos ayudar?</b></p>
                 <div class="form-container">
@@ -100,8 +103,10 @@
                                 <div class="invalid-feedback">
                                     El nombre es obligatorio.
                                 </div>
-                            </div><br>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            </div> <br>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="form-group">
                                 <div class="form-group">
                                     <p for="ciudad" class="preg">Ciudad</p>
                                     <input type="text" class="form-control" placeholder="*Ciudad" name="ciudad" oninput="this.value = this.value.toUpperCase()" required>
@@ -109,32 +114,32 @@
                                         La ciudad es obligatoria.
                                     </div>
                                 </div>
-                            </div><br>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
+                            </div>  <br> 
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="form-group">
                                 <div class="form-group">
                                     <!-- muestra las preguntas guardadas -->
                                     <label class="preg" for="pregunta">Selecciona una pregunta:</label><br>
-                                    <select  name="idPregunta" id="preguntasChat" required>
+                                    <select class="form-control" name="idPregunta" id="preguntasChat" required>
                                         @foreach($preguntasChats as $preguntasChat)
                                             <div>
                                                 <option value="{{ $preguntasChat->id }}"> {{ $preguntasChat->pregunta }} </option>
                                             </div>
                                         @endforeach 
-                                    </select> 
+                                    </select>
                                 </div>
-                            </div>        
-                        </div>
+                            </div><br>
+                        </div>            
                     </div>  
-                    @if(isset($id))
-                        <p>{{ $ver_res->respuesta }}</p> 
-                        <p>{{ $ver_res->pregunta }}        
-                    @endif
-                    <button type="submit" style="position: relative; top:0px; right:0px; left:750px;"  class="btn">
+                    
+                    <br><br>
+                    <button type="submit" class="btn" style="position: relative; top:0px; right:0px; left:225px;">
                         Enviar
-                    </button>
-                           
+                    </button>     
                 </div>
             </div>
         {!! Form::close() !!}
+    
     </body>
 </html>

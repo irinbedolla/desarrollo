@@ -285,12 +285,12 @@ header{
                     <div class="flip-box-inner">
                         <div class="flip-box-front">
                             <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asesoría virtual</h2>
-                            <img src="public/assets_seer/images/3A.jpeg" alt="Descripción de la imagen"
+                            <img src="public/assets_seer/images/chatbot.png" alt="Descripción de la imagen"
                                 style="width: 100px; height: auto;">
                         </div>
                         <div class="flip-box-back">
-                            <a href="{{ route('login') }}" target="_self"
-                                style="display: contents; color: white;">
+                            <a href="{{ route('chat') }}" onclick="window.open(this.href, 'mywin', 'left=' + (window.innerWidth - 500) + ',top=' + (window.innerHeight - 550) + ',width=500,height=550,toolbar=1,resizable=0'); return false;" target="_self" style="display: contents; color: white;">
+    
                                 <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es un servicio informático que podrás consultar con la finalidad de atender y resolver preguntas acerca de nuestros servicios.</h2>
                             </a>
                         </div>
