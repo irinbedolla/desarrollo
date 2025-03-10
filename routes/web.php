@@ -14,6 +14,7 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\SeerController;
 use App\Http\Controllers\TurnosController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,12 @@ use App\Http\Controllers\RegistroController;
 */
 
 Route::get('/', function () {
+   // Route::get('chat', [HomeController::class, 'chats']);
     return view('welcome');
 });
-
-Route::get('/chat', [HomeController::class, 'chats']);
-//Route::get('/chat/create',[HomeController::class, 'create'])->name('chat.create');
-//Route::post('/chat/create/save', [HomeController::class, 'store'])->name('chat.store');
-Route::post('/chat/crear',      [HomeController::class, 'store'])->name('RespuestasChat.store');
-Route::post('/chat/crearUno/',  [HomeController::class, 'storeUno'])->name('RespuestasChat.storeUno');
+Route::get('chat', [Controller::class, 'chats'])->name('chat');
+Route::post('/chat/crear',      [Controller::class, 'store'])->name('RespuestasChat.store');
+Route::post('/chat/crearUno/',  [Controller::class, 'storeUno'])->name('RespuestasChat.storeUno');
 
 
 
