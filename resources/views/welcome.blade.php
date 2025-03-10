@@ -6,10 +6,11 @@
         <meta name="description" content="">
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Ing. ISBM">
+        <link href="public/assets/css/carousel.css" rel="stylesheet">
         <title>Si Conciliación</title>
-
         <!-- Bootstrap core CSS -->
-        <link href="public/assets_seer/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="icon" href="public/assets_seer/images/logo-ccl.png" type="image/x-icon">
         <style>
             .bd-placeholder-img {
@@ -25,49 +26,86 @@
                 font-size: 3.5rem;
                 }
             }
-            header{
-                display:flex;
-                min-height: 70px;
-                background-color: white;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px;
-                }
-            .logo{
-            display: flex;
-            align-items: center;
-            }
+            body{
+    font-family: sans-serif;
+    margin:0;
+  }
+header{
+    display:flex;
+    min-height: 70px;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  main{
+    margin-top: 70px;
+  }
+  .logo .nombre-dep{
+    text-align: center;
+  }
 
-            .logo img{
-            height: 50px;
-            margin-right: 10px;
-            }
+  .logo{
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img{
+    height: 50px;
+    margin-right: 30px;
+  }
 
-            nav a{
-            font-weight: 600;
-            padding-right: 10px;
-            }
-
-            nav a:hover{
-                color:white;
-            }
+  nav a{
+    font-weight: 600;
+    padding-right: 10px;
+  }
+  
+  nav a:hover{
+      color:white;
+  }
+  
+  @media (max-width:700px){
+    header{
+      flex-direction: column;
+    }
+    nav{
+      padding: 10px 10px;
+    }
+  }
+            
         </style>
         <!-- Custom styles for this template -->
-        <link href="public/assets/css/carousel.css" rel="stylesheet">
+
     </head>
     <body>
-        <header>
-            <div class="logo">
-                <img src="public/assets_seer/images/logo-ccl.png" alt="">
-                <img src="public/assets_seer/images/Logos gobiernos.png"alt="">
-                <h2 class="nombre-dep">SI CONCILIO</h2>
-            </div>
-            <nav>
-                <a href="" class="nav-link">Inicio</a>
-                <a href="" class="nav-link">Servicios</a>
-                <a href="" class="nav-link">Nuestras sedes</a>
-            </nav>
-        </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="logo" href="#"></a>
+            <img src="public/assets_seer/images/Logos gobiernos.png"alt="">
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="#">SI CONCILIO<span class="sr-only"></span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="welcome.blade.php">Inicio<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="welcome.blade.php#servicios">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="welcome.blade.php#sedes">Nuestras sedes</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+            </span>
+        </div>
+    </nav>
         <main>
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
                 <div class="carousel-indicators">
@@ -152,8 +190,8 @@
                 </button>
             </div>
 
+            <h3 id="servicios"></h3>
 	        <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestros Servicios</h3> <br><br><br>
-            
             <div style="display: block; text-align: center;">
                 <div class="flip-box">
                     <div class="flip-box-inner">
@@ -260,6 +298,7 @@
 	            </div>
             </div> 
 
+            <h3 id="sedes"><
             <br><br><br><br><br><br>
             <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestras sedes</h3> <br><br><br>
             <div class="container marketing">
@@ -315,7 +354,8 @@
             </footer>
         </main>
 
-        <script src="public/assets_seer/assets/dist/js/bootstrap.bundle.min.js"></script>
+        <!--<script src="public/assets_seer/assets/dist/js/bootstrap.bundle.min.js"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     </body>
 </html>
