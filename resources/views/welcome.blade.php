@@ -26,69 +26,19 @@
                 font-size: 3.5rem;
                 }
             }
-            body{
-                font-family: sans-serif;
-                margin:0;
-            }
-            header{
-                display:flex;
-                min-height: 70px;
-                background-color: white;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px;
-                top: 0;
-                width: 100%;
-                z-index: 100;
-            }
-            main{
-                margin-top: 70px;
-            }
-            .logo .nombre-dep{
-                text-align: center;
-            }
-
-            .logo{
-                display: flex;
-                align-items: center;
-            }
-            
-            .logo img{
-                height: 50px;
-                margin-right: 30px;
-            }
-
-            nav a{
-                font-weight: 600;
-                padding-right: 10px;
-            }
-            
-            nav a:hover{
-                color:white;
-            }
-            
-            @media (max-width:700px){
-                header{
-                flex-direction: column;
-                }
-                nav{
-                padding: 10px 10px;
-                }
-            }
-            
+              
         </style>
         <!-- Custom styles for this template -->
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="logo" href="#"></a>
-        <img src="public/assets_seer/images/Logos gobiernos.png"alt="">
+        <div class="rd-navbar-panel">
+            <div class="rd-navbar-brand">
+                <img src="public/assets_seer/images/logo-ccl.png"class="img-fluid, mx-auto, my-auto" style="max-width: 4%; position:relative;"></a>
+                <img src="public/assets_seer/images/Logos gobiernos.png"class="img-fluid, mx-auto, my-auto" style="max-width: 8%; position:relative;"></a>
+            </div>
+		</div>
         <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item active">
-                    <a class="navbar-brand" href="#">SI CONCILIO<span class="sr-only"></span></a>
-                </li>
-            </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="welcome.blade.php">Inicio<span class="sr-only"></span></a>
@@ -97,7 +47,7 @@
                     <a class="nav-link" href="welcome.blade.php#servicios">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="welcome.blade.php#sedes">Nuestras sedes</a>
+                    <a class="nav-link" href="welcome.blade.php#sedes">Sedes</a>
                 </li>
             </ul>
             <span class="navbar-text"></span>
