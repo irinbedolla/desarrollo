@@ -32,7 +32,7 @@
                 padding: 10px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
                 max-width: 500px;
-                max-height: 600px;
+                /*max-height: 600px;*/
                 margin: 0 auto;
             }
             .form-container h2 {
@@ -89,13 +89,13 @@
                 <div class="form-container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
+                            <h2 >Hola {{ $registro->nombre_completo }}</h2>
+                            @if(isset($idPregunta))
+                                <p><b>{{ $ver_res->pregunta }}</b></p>                   
+                                <p>{{ $ver_res->respuesta }}</p>    
+                            @endif
+                                
                             @if($registro)
-                                <h2 >Hola {{ $registro->nombre_completo }}</h2>
-                                @if(isset($id))
-                                    <p><b>{{ $ver_res->pregunta }} </b></p>
-                                    <p>{{ $ver_res->respuesta }}</p> 
-                                          
-                                @endif
                                 @if(isset($idPregunta))
                                     @foreach($res as $re)
                                         <p><b>{{ $re->pregunta }}</b></p>                   
@@ -110,7 +110,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label class="preg" for="pregunta">Selecciona una pregunta:</label>
-                                <select  class="form-control" name="idPregunta" id="preguntasChat" required>
+                                <select  class="form-control" name="idPregunta" id="preguntasChat" required autofocus>
                                     @foreach($preguntasChats as $preguntasChat)
                                         <div>
                                             <option value="{{ $preguntasChat->id }}"> {{ $preguntasChat->pregunta }} </option>
@@ -129,5 +129,10 @@
             </div>       
         {!! Form::close() !!}         
     </body>
+    <script>
+        window.onload = function() {
+            document.LoginForm.occupationSelect.focus();
+        }
+    </script>
 
 </html>

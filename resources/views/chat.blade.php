@@ -86,8 +86,6 @@
 
     </head>
     <body>
-        
-
         <!-- Formulario -->
         {!! Form::open(array('route'=>'RespuestasChat.store', 'method'=>'POST', 'files' => true, 'class' => 'needs-validation','novalidate')) !!}
             @csrf
@@ -132,7 +130,6 @@
                             </div><br>
                         </div>            
                     </div>  
-                    
                     <br><br>
                     <button type="submit" class="btn" style="position: relative; top:0px; right:0px; left:225px;">
                         Enviar
@@ -140,6 +137,6 @@
                 </div>
             </div>
         {!! Form::close() !!}
-    
+       
     </body>
 </html>
