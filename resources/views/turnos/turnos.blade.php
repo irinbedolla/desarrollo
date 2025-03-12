@@ -40,9 +40,9 @@
                                                     <td>{{$turno->solicitante}}</td>
                                                     <td>{{$turno->tipo}}</td>
                                                     <td>{{$turno->estatus}}</td>
-                                                    <td>{{$turno->fecha}}:{{$turno->hora}}</td>
+                                                    <td>{{$turno->hora}}</td>
                                                     @if($turno->exepcion == "No")
-                                                        <td><a class="btn btn-info" href="{{ route('cambiar',$turno->id) }}" onclick=disponibles();>Cambiar</a>
+                                                        <td><a class="btn btn-info" href="{{ route('cambiar',$turno->id) }}" onclick=disponibles();>Asignar</a>
                                                     @else
                                                         <td></td>
                                                     @endif

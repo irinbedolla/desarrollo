@@ -54,14 +54,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="name">Caso de excepción</label>
-                                            <input id="exepcion" type="checkbox" name="caso" aria-label="Caso de excepción">
-                                        </div>
-                                    </div>
 
-                                        <div id="div1" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Edad</label>
                                                 <input type="number" name="edad" class="form-control"> 
@@ -70,7 +64,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="div2" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Sexo</label>
                                                 <select name="sexo" class="form-control">
@@ -85,7 +79,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="div3" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Grupos vulnerables</label>
                                                 <select name="vulnerables" class="form-control">
@@ -100,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="div4" style="display: none;" class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Conflicto</label>
                                                 <textarea name="conflicto" class="form-control"></textarea>
