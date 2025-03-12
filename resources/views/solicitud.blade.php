@@ -17,8 +17,10 @@
                /* width: 80%;
                 height: 60vh; /* 20% de la altura de la ventana */
                 /*object-fit: cover; /* Mantiene la proporción de la imagen, recortándola si es necesario */
-                width: 100vw;
-                height: 60vh;
+                width: 40vw;
+                height: 40vh;
+                margin: 12px auto 12px;
+                display: block;
                 background-size: contain;
             }
             
@@ -74,21 +76,22 @@
         <div style="display: block; text-align: center;">
             <div class="container marketing">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-1">
                     </div>
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/asesoria/10" class="button-link" target="_blank">
                             SOY TRABAJADOR
                         </a>
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-2">
                     </div>
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/asesoria/20" class="button-link" target="_blank">
                             SOY PATRÓN    
                         </a>
                     </div>
-                    
+                    <div class="col-lg-1">
+                    </div>
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/solicitudes/create-public?solicitud=4" class="button-link" target="_blank">
                             SOY SINDICATO
