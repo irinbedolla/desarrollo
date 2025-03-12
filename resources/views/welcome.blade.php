@@ -148,7 +148,7 @@
                         style="width: 100px; height: auto;">
                     </div>
                 <div class="flip-box-back">
-                    <a href="https://michoacan.cencolab.mx/asesoria/seleccion" target="_blank" style="display: contents;">
+                    <a href="{{ route('solicitud') }}" target="_blank" style="display: contents;">
                         <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
                     </a>
                 </div>
