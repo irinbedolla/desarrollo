@@ -147,102 +147,102 @@
                         src="public/assets_seer/images/contrato.png" alt="Descripción de la imagen"
                         style="width: 100px; height: auto;">
                     </div>
-                <div class="flip-box-back">
-                    <a href="https://michoacan.cencolab.mx/asesoria/seleccion" target="_blank" style="display: contents;">
-                        <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
-                    </a>
+                    <div class="flip-box-back">
+                        <a href="{{ route('solicitud') }}" target="_blank" style="display: contents;">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas para ratificación</h2> <img
+                            src="public/assets_seer/images/calendario-diario.png" alt="Descripción de la imagen"
+                            style="width: 100px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="#" target="_self" style="display: contents;">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#ffff">Es un servicio que permite a las partes que terminan su relación laboral, acudir con previa cita ante el Centro de Concicliación Laboral a ratificar su acuerdo, con el fin de brindar seguridad jurídica.</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones</h2>
+                        <img src="public/assets_seer/images/calculadora.png" alt="Descripción de la imagen"
+                            style="width: 100px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank"
+                            style="display: contents; color: white;">
+                            <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Es una herramienta digital que permite a las personas, conocer los cálculos aproximados de las prestaciones laborales, que serán consideradas dentro de la audiencia de conciliación.</h2>
+                        </a>
+                    </div>
+                </div>    
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Registro de <br>representaciones legales</h2> <img
+                            src="public/assets_seer/images/registro.png" alt="Descripción de la imagen"
+                            style="width: 100px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="#" target="_self"
+                            style="display: contents; color: white;">
+                            <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es una plataforma digital, que permite a las personas empleadoras registrar a sus representantes legales, con la finalidad de agilizar el procedimiento de conciliación.</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Sí Concilio</h2>
+                        <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                            style="width: 250px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="{{ route('login') }}" target="_self"
+                            style="display: contents; color: white;">
+                            <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema integral de Conciliación.</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
+                        <img src="public/assets_seer/images/leccion.png" alt="Descripción de la imagen"
+                            style="width: 100px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="#" target="_self"
+                            style="display: contents; color: white;">
+                            <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Ingresar a los cursos.</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asesoría virtual</h2>
+                        <img src="public/assets_seer/images/chatbot.png" alt="Descripción de la imagen"
+                            style="width: 100px; height: auto;">
+                    </div>
+                    <div class="flip-box-back">
+                        <a href="{{ route('chat') }}" onclick="window.open(this.href, 'mywin', 'left=' + (window.innerWidth - 500) + ',top=' + (window.innerHeight - 550) + ',width=500,height=550,toolbar=1,resizable=0'); return false;" target="_self" style="display: contents; color: white;">
+                            <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es un servicio informático que podrás consultar con la finalidad de atender y resolver preguntas acerca de nuestros servicios.</h2>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas para ratificación</h2> <img
-                        src="public/assets_seer/images/calendario-diario.png" alt="Descripción de la imagen"
-                        style="width: 100px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="{{ route('create_cita') }}" target="_self" style="display: contents;">
-                        <h2 style="font-size: 22px; font-family: Arial; color:#ffff">Es un servicio que permite a las partes que terminan su relación laboral, acudir con previa cita ante el Centro de Concicliación Laboral a ratificar su acuerdo, con el fin de brindar seguridad jurídica.</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones</h2>
-                    <img src="public/assets_seer/images/calculadora.png" alt="Descripción de la imagen"
-                        style="width: 100px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank"
-                        style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Es una herramienta digital que permite a las personas, conocer los cálculos aproximados de las prestaciones laborales, que serán consideradas dentro de la audiencia de conciliación.</h2>
-                    </a>
-                </div>
-            </div>    
-        </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Registro de <br>representaciones legales</h2> <img
-                        src="public/assets_seer/images/registro.png" alt="Descripción de la imagen"
-                        style="width: 100px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="{{ route('poder-crear') }}" target="_self"
-                        style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es una plataforma digital, que permite a las personas empleadoras registrar a sus representantes legales, con la finalidad de agilizar el procedimiento de conciliación.</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Sí Concilio</h2>
-                    <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
-                        style="width: 250px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="{{ route('login') }}" target="_self"
-                        style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema integral de Conciliación.</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y Capacitaciones</h2>
-                    <img src="public/assets_seer/images/leccion.png" alt="Descripción de la imagen"
-                        style="width: 100px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="#" target="_self"
-                        style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Ingresar a los cursos.</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="flip-box">
-            <div class="flip-box-inner">
-                <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asesoría virtual</h2>
-                    <img src="public/assets_seer/images/chatbot.png" alt="Descripción de la imagen"
-                        style="width: 100px; height: auto;">
-                </div>
-                <div class="flip-box-back">
-                    <a href="{{ route('chat') }}" onclick="window.open(this.href, 'mywin', 'left=' + (window.innerWidth - 500) + ',top=' + (window.innerHeight - 550) + ',width=500,height=550,toolbar=1,resizable=0'); return false;" target="_self" style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es un servicio informático que podrás consultar con la finalidad de atender y resolver preguntas acerca de nuestros servicios.</h2>
-                    </a>
-                </div>
-            </div>
-	    </div>
-
         <h3 id="sedes"></h3>
         <br><br><br><br><br><br>
         <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestras sedes</h3> <br><br><br>

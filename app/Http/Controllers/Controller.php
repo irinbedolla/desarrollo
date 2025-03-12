@@ -16,7 +16,11 @@ use App\Models\SeerChatRP;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
+    public function solicitud()
+    {
+        return view('solicitud');
+    }
+
     //Funciones para chat
     public function chats()
     {   
