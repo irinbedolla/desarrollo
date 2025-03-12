@@ -162,7 +162,7 @@
                         style="width: 100px; height: auto;">
                 </div>
                 <div class="flip-box-back">
-                    <a href="#" target="_self" style="display: contents;">
+                    <a href="{{ route('create_cita') }}" target="_self" style="display: contents;">
                         <h2 style="font-size: 22px; font-family: Arial; color:#ffff">Es un servicio que permite a las partes que terminan su relación laboral, acudir con previa cita ante el Centro de Concicliación Laboral a ratificar su acuerdo, con el fin de brindar seguridad jurídica.</h2>
                     </a>
                 </div>
@@ -191,7 +191,7 @@
                         style="width: 100px; height: auto;">
                 </div>
                 <div class="flip-box-back">
-                    <a href="#" target="_self"
+                    <a href="{{ route('poder-crear') }}" target="_self"
                         style="display: contents; color: white;">
                         <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es una plataforma digital, que permite a las personas empleadoras registrar a sus representantes legales, con la finalidad de agilizar el procedimiento de conciliación.</h2>
                     </a>

@@ -59,6 +59,9 @@ Route::get('/pantalla', function () {
     Route::get('/poder', [App\Http\Controllers\PoderController::class, 'show'])->name('poder');
     Route::post('/poderes/publico', [PoderController::class, 'publico'])->name('poderes.publico');
     Route::get('publico', [HomeController::class, 'publico'])->name('publico');
+    //Rutas de citas
+    Route::get('citas',             [TurnosController::class, 'create_publico'])->name('create_cita');
+    Route::post('/citas/store',     [TurnosController::class, 'store_publico'])->name('turnos.publico');
 
 Auth::routes();
 

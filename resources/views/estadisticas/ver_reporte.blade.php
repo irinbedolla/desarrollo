@@ -60,7 +60,7 @@
                             </div>
                             <div id="solicitud" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_auxiliares" class="table table-striped mt-1">
+                                    <table id="tabla_solicitud" class="table-striped" style="width:100%">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
@@ -107,7 +107,7 @@
                             </div>
                             <div id="ratificacion" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_conciliadores" class="table table-striped mt-1">
+                                    <table id="tabla_ratificaciones" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
@@ -147,7 +147,7 @@
                             </div>
                             <div id="audiencia" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_conciliadores" class="table table-striped mt-1">
+                                    <table id="tabla_audiencias" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha confirmacíon</th>
@@ -177,7 +177,7 @@
                             </div>
                             <div id="convenios" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_convenios" class="table table-striped mt-1">
+                                    <table id="tabla_pago" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha</th>
@@ -203,7 +203,7 @@
                             </div>
                             <div id="colectiva" class="tabcontent">
                                 <div class="table-responsive">
-                                    <table id="tabla_seer_colectivas" class="table table-striped mt-1">
+                                    <table id="tabla_colectiva" class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
                                             <th style="display: none;">ID</th>
                                             <th style="color: #fff;">Fecha</th>

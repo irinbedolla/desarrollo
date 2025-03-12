@@ -949,4 +949,261 @@ class TurnosController extends Controller
 
         return redirect()->route('misturnos');
     }
+
+    public function create_publico(){
+        return view('citas');
+    }
+
+    public function store_publico(Request $request)
+    {
+        $data = $request->all();
+
+        request()->validate([
+            'nombre'    => 'required',
+            'edad'      => 'required|numeric',
+            'sexo'      => 'required|in:H,M,NB,LGBTTTIQ',
+            'conflicto' => 'required',
+            'sede'      => 'required',
+            'tipo'      => 'required',
+        ], $data);
+
+        //Vamos a buscar la proxima fecha disponible de la sede
+        $fecha_actual = date('Y-m-d');
+        $hora_actual  = date("H:i:s");
+        $numero_consecutivo = 0;
+        $relacionEloquent = 'roles';
+        $listado_diponibles = array();
+        $listado_auxiliares = array();
+        $consecutivo  = Turnos::latest('id')
+        ->where('fecha', $fecha_actual)
+        ->first();
+        
+        if(empty($consecutivo)){
+            $numero_consecutivo = 1;
+        }
+        else{
+            $numero_consecutivo = $consecutivo["consecutivo"];
+            $numero_consecutivo++;
+        }
+
+        //Validar la hora
+        switch($hora_actual){
+            case $hora_actual < "09:00:00" :
+                $hora_solicitud = "09:00:00";
+                break;
+            case ($hora_actual < "10:00:00" && $hora_actual > "09:00:00"):
+                $hora_solicitud = "10:00:00";
+                break;
+            case ($hora_actual < "11:00:00" && $hora_actual > "10:00:00"):
+                $hora_solicitud = "11:00:00";
+                break;
+            case ($hora_actual < "12:00:00" && $hora_actual > "11:00:00"):
+                $hora_solicitud = "12:00:00";
+                break;
+            case ($hora_actual < "13:00:00" && $hora_actual > "12:00:00"):
+                $hora_solicitud = "13:00:00";
+                break;
+            case ($hora_actual < "14:00:00" && $hora_actual > "13:00:00"):
+                $hora_solicitud = "14:00:00";
+                break;
+            default:
+                $hora_solicitud = "15:00:00";
+                break;
+        }
+
+        //Vamos a contar cuandos auxiliares existen en el CCL
+        $usuariosauxiliares = User::whereHas($relacionEloquent, function ($query) {
+            return $query->where('name', '=', 'Auxiliar');
+        })
+        ->where('delegacion', $data["sede"])
+        ->get();
+        
+        $numero_citas_sede = count($usuariosauxiliares);
+        //Vamos a ver cuantos citas hay en ese horario por sede
+        $fecha_revisar = $fecha_actual;
+            for($i=0;$i < 5;$i++){
+                //echo $hora_solicitud."- ".$fecha_revisar." : ";
+                //Validar si existe un horario mas
+                //if($hora_solicitud != "15:00:00"){
+                    switch($hora_solicitud){
+                        //Si los turnos de las 9 ya estan ocupados vamos a revisar a las 10
+                        case ($hora_solicitud == "09:00:00") :
+                            //$hora_solicitud = "10:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            echo $fecha_actual;
+                            dd($numero_citas);
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        case ($hora_solicitud == "10:00:00"):
+                            //$hora_solicitud = "11:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        case ($hora_solicitud == "11:00:00"):
+                            //$hora_solicitud = "12:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        case ($hora_solicitud == "12:00:00"):
+                            //$hora_solicitud = "13:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        case ($hora_solicitud == "13:00:00"):
+                            //$hora_solicitud = "14:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        case ($hora_solicitud == "14:00:00"):
+                            //$hora_solicitud = "15:00:00";
+                            $numero_citas = Turnos::where('fecha', $fecha_actual)
+                            ->where('hora', $hora_solicitud)
+                            ->where('delegacion', $data["sede"])->get();
+                            if($numero_citas_sede >= count($numero_citas)){
+                                $data_insertar= array(
+                                    'consecutivo'   => $numero_consecutivo,
+                                    'solicitante'   => $data["nombre"],
+                                    'auxiliar'      => 0,
+                                    'lugar_auxiliar'=> "Recepción",
+                                    'tipo'          => $data["tipo"],
+                                    'fecha'         => $fecha_revisar,
+                                    'hora'          => $hora_solicitud,
+                                    'hora_fin'      => $hora_actual,
+                                    'delegacion'    => $data["sede"],
+                                    'estatus'       => "no atendido",
+                                    'exepcion'      => "No",
+                                    'edad'          => $data["edad"],
+                                    'sexo'          => $data["sexo"],
+                                );    
+
+                                Turnos::create($data_insertar);
+                                break;
+                            }
+                        //Si ya es el ultimo horario tengo que mandar al otro dia
+                        default:
+                            //Ya son las 3 de la tarde o mas
+                            //Actualizo la fecha
+                            //$hora_solicitud = "09:00:00";
+                            $fechasuma = strtotime('+1 day', strtotime($fecha_revisar)); 
+                            $fecha = date('l', strtotime($fechasuma));
+
+                            if ($fecha == 'Saturday') {
+                                $fechasuma = strtotime('+2 day', strtotime($fecha_revisar)); 
+                                $fecha_revisar = date('Y-m-d', $fechasuma);
+                                $hora_solicitud = "09:00:00";
+                                //dd($fecha_revisar);
+                            }
+                            else{
+                                $fecha_revisar = date('Y-m-d', $fechasuma);
+                                $hora_solicitud = "09:00:00";
+                            }
+                            
+                    }
+                //}
+                //echo $i;
+            }
+            
+        //}
+        //return back()->with('success', 'Debes acudir al centro de conciliacion el dia:'.$fecha_actual.' a la hora:'.$hora_solicitud); 
+    }
 }

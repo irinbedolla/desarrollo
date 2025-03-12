@@ -308,7 +308,7 @@ class SeerController extends Controller
                 return $query->where('name', '=', 'Notificador');
             })
             ->get();
-            $estadisticas = Sedes::pluck('nombre','id')->all();
+            $estadisticas = Sedes::all();
         }
         else if($userRole[0] == "Enlace"){
             $usuariosconciliador = User::whereHas($relacionEloquent, function ($query) {
@@ -326,7 +326,8 @@ class SeerController extends Controller
             })
             ->where('delegacion', $user["delegacion"])
             ->get();
-            $estadisticas = Sedes::pluck('nombre','id')->where('nombre', $user["delegacion"])->all();
+            $esta = Sedes::where('nombre', $user["delegacion"])->first();
+            $estadisticas = Sedes::where('nombre', $user["delegacion"])->ORwhere('oficina_apoyo', $esta["id"])->get();
         }
         $estados = Estados::all();
         $municipios = Municipios::all();

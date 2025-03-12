@@ -208,8 +208,8 @@
                                                     <label for="name">Sede</label>
                                                     <select class="form-control" name="sede">
                                                         <option value="">Todos</option>
-                                                        @foreach($estadisticas as $aKey => $aSport)
-                                                            <option value="{{$aSport}}">{{$aSport}}</option>
+                                                        @foreach($estadisticas as $aSport)
+                                                            <option value="{{$aSport['id']}}">{{$aSport['nombre']}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

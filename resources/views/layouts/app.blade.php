@@ -110,6 +110,31 @@
             ordering: false,
             paging: true
         });
+        $('#tabla_solicitud').DataTable({
+            info: false,
+            ordering: false,
+            paging: true
+        });
+        $('#tabla_ratificaciones').DataTable({
+            info: false,
+            ordering: false,
+            paging: true
+        });
+        $('#tabla_audiencias').DataTable({
+            info: false,
+            ordering: false,
+            paging: true
+        });
+        $('#tabla_pago').DataTable({
+            info: false,
+            ordering: false,
+            paging: true
+        });
+        $('#tabla_colectiva').DataTable({
+            info: false,
+            ordering: false,
+            paging: true
+        });
     </script>
 
 @yield('page_js')
