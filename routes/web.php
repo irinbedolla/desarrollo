@@ -31,11 +31,15 @@ Route::get('/', function () {
    // Route::get('chat', [HomeController::class, 'chats']);
     return view('welcome');
 });
+
+//Nueva para solicitudes en línea
+Route::get('solicitud', [Controller::class, 'solicitud'])->name('solicitud');
+
+//Rutas para el chat
 Route::get('chat', [Controller::class, 'chats'])->name('chat');
 Route::post('/chat/crear',      [Controller::class, 'store'])->name('RespuestasChat.store');
 Route::post('/chat/crearUno/',  [Controller::class, 'storeUno'])->name('RespuestasChat.storeUno');
-
-
+//Fin chat
 
 Route::get('/pantalla', function () {
     $fecha_actual = date('Y-m-d');
