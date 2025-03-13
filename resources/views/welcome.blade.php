@@ -44,7 +44,7 @@
                     <a class="nav-link" href="welcome.blade.php" style="color: black;">INICIO<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="rd-nav-link" href="welcome.blade.php#servicios" style="color: black;">SERVICIOS</a>
+                    <a class="nav-link" href="welcome.blade.php#servicios" style="color: black;">SERVICIOS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="welcome.blade.php#sedes"style="color: black;">SEDES</a>
@@ -54,89 +54,7 @@
         </div>
     </nav>
     <main>
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-wrap="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 5"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/1.jpeg" alt="" style="max-width: 60%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/4.jpeg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/8.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/20.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/27.jpg" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#A9ABAE"/>
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <img class="Absbottom" src="public/assets_seer/images/CCLMichoacan.png" alt="" style="max-width: 70%; position:relative; top:100px; right:100px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
+        
         <h3 id="servicios"></h3>
 	    <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestros Servicios</h3> <br><br><br>
         <div style="display: block; text-align: center;">
