@@ -41,21 +41,20 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="welcome.blade.php" style="color: black;">INICIO<span class="sr-only"></span></a>
+                    <a class="nav-link" href="#" style="color: black;">INICIO<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="welcome.blade.php#servicios" style="color: black;">SERVICIOS</a>
+                    <a class="nav-link" href="#servicios" style="color: black;">SERVICIOS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="welcome.blade.php#sedes"style="color: black;">SEDES</a>
+                    <a class="nav-link" href="#sedes"style="color: black;">SEDES</a>
                 </li>
             </ul>
             <span class="navbar-text"></span>
         </div>
     </nav>
     <main>
-        
-        <h3 id="servicios"></h3>
+    <section id="servicios">
 	    <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestros Servicios</h3> <br><br><br>
         <div style="display: block; text-align: center;">
             <div class="flip-box">
@@ -161,8 +160,8 @@
                 </div>
             </div>
 	    </div>
-
-        <h3 id="sedes"></h3>
+    </section>
+    <section id="sedes">
         <br><br><br><br><br><br>
         <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Nuestras sedes</h3> <br><br><br>
         <div class="container marketing">
@@ -202,7 +201,7 @@
                 <!-- START THE FEATURETTES -->
                 <hr class="featurette-divider">
         </div><!-- /.container -->
-
+    </section>
         <!-- FOOTER -->
         <footer class="container">
         <div class="footer-logo">
