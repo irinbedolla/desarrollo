@@ -147,12 +147,13 @@
                         src="public/assets_seer/images/contrato.png" alt="Descripción de la imagen"
                         style="width: 100px; height: auto;">
                     </div>
-                <div class="flip-box-back">
-                    <a href="{{ route('solicitud') }}" target="_blank" style="display: contents;">
-                        <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
-                    </a>
+                    <div class="flip-box-back">
+                        <a href="{{ route('solicitud') }}" target="_blank" style="display: contents;">
+                            <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </div>    
         </div>
         <div class="flip-box">
             <div class="flip-box-inner">
