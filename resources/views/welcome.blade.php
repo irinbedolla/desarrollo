@@ -119,14 +119,14 @@
         <div class="flip-box">
             <div class="flip-box-inner">
                 <div class="flip-box-front">
-                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">Sí Concilio</h2>
+                    <h2 style="font-size: 22px; font-family: Arial; color:#000000">SEER</h2>
                     <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
                         style="width: 250px; height: auto;">
                 </div>
                 <div class="flip-box-back">
                     <a href="{{ route('login') }}" target="_self"
                         style="display: contents; color: white;">
-                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema integral de Conciliación.</h2>
+                        <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema estadistica y evaluación de resultados.</h2>
                     </a>
                 </div>
             </div>
