@@ -14,9 +14,6 @@
         <link rel="icon" href="public/assets_seer/images/logo-ccl.png" type="image/x-icon">
         <style>
             .img{
-               /* width: 80%;
-                height: 60vh; /* 20% de la altura de la ventana */
-                /*object-fit: cover; /* Mantiene la proporción de la imagen, recortándola si es necesario */
                 width: 40vw;
                 height: 40vh;
                 margin: 12px auto 12px;
@@ -28,8 +25,10 @@
             .button-link {
                 display: inline-block;
                 padding: 10px 20px;
-                font-size: 40px;
+                font-size: 20px;
                 text-align: center;
+                width: 180px;   /* Establece el ancho fijo del botón */
+                height: 80px;  
                 background-color: #CEA845; /* Color de fondo */
                 color: white; /* Color del texto */
                 text-decoration: none; /* Elimina el subrayado del enlace */
@@ -76,25 +75,23 @@
         <div style="display: block; text-align: center;">
             <div class="container marketing">
                 <div class="row">
-                    <div class="col-lg-1">
+                    <div class="col-lg-3">
                     </div>
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/asesoria/10" class="button-link" target="_blank">
-                            SOY TRABAJADOR
+                            SOY <br>TRABAJADOR
                         </a>
                     </div>
-                    <div class="col-lg-2">
-                    </div>
+                    
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/asesoria/20" class="button-link" target="_blank">
-                            SOY PATRÓN    
+                            SOY <br>PATRÓN    
                         </a>
                     </div>
-                    <div class="col-lg-1">
-                    </div>
+                    
                     <div class="col-lg-2">
                         <a href="https://michoacan.cencolab.mx/solicitudes/create-public?solicitud=4" class="button-link" target="_blank">
-                            SOY SINDICATO
+                            SOY<br> SINDICATO
                         </a>
                     </div>
 
