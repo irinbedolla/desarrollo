@@ -107,66 +107,72 @@
         </div>
     </div>
   </div>
-  <section id="sedes">
-        <br><br><br><br><br><br>
-        <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Oficinas de apoyo</h3> <br><br><br>
-        <div class="container marketing">
-        
-            <!-- Three columns of text below the carousel -->
-            
-            
-            
-              
-                <div class="row d-flex justify-content-center">
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.5621762276137!2d-101.1639715!3d19.6886758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86972e4da3b81177%3A0xb3bdb18efbe90610!2sCentro%20de%20Conciliaci%C3%B3n%20Laboral%20del%20Estado%20de%20Michoac%C3%A1n!5e0!3m2!1ses!2smx!4v1741903615342!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Morelia</h2>
-                    <p>BLVD. GARCÍA DE LEÓN 1575, CHAPULTEPEC ORIENTE, C.P. 58260 MORELIA, MICH.</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+del+Estado+de+Michoac%C3%A1n/@19.6886808,-101.1665464,17z/data=!3m1!4b1!4m6!3m5!1s0x86972e4da3b81177:0xb3bdb18efbe90610!8m2!3d19.6886758!4d-101.1639715!16s%2Fg%2F11tjwgnyhz?entry=ttu" target="_blank">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.3941863635396!2d-100.353856!3d19.438564399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2a4a1dec711b3%3A0x68685762f8695d11!2sCuauht%C3%A9moc%20Ote.%2015%2C%20Cuauhtemoc%2C%2061506%20Zit%C3%A1cuaro%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741903737317!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Uruapan</h2>
-                    <p>NUEVO PARICUTÍN NO 308, COL. JARDINES DE SAN RAFAEL, C.P. 30136 URUAPAN MICHOACÁN.</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Centro+de+Conciliaci%C3%B3n+Laboral+Uruapan/@19.4183803,-102.0080912,17z/data=!3m1!4b1!4m6!3m5!1s0x842de3549b0e069b:0x5044e26ce5f7e25a!8m2!3d19.4183753!4d-102.0055163!16s%2Fg%2F11ryt409m2?entry=ttu" target="_blank">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.8618230362727!2d-102.0055163!3d19.418375299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842de3549b0e069b%3A0x5044e26ce5f7e25a!2sCentro%20de%20Conciliaci%C3%B3n%20Laboral%20Uruapan!5e0!3m2!1ses!2smx!4v1741903793739!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Zamora</h2>
-                    <p>JUSTO SIERRA PONIENTE NO 290, CP. COL. JARDINES DE CATEDRAL, C.P. 59600 ZAMORA, MICHOACÁN.</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Justo+Sierra+209,+Jardines+de+Catedral,+Zamora+de+Hidalgo,+Mich./@19.9820742,-102.2817188,17z/data=!3m1!4b1!4m5!3m4!1s0x842e88c79f23a3c5:0x70d579455d9255cb!8m2!3d19.9820692!4d-102.2791439?entry=ttu">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3795.263474379591!2d-102.22113852408104!3d17.96647488586339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84315c8d3b8b9bdf%3A0xe98a2dd18850e4cf!2sParacho%2026%2C%20600%20Casas%2C%2060954%20Cdad.%20L%C3%A1zaro%20C%C3%A1rdenas%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741903850875!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Zitácuaro</h2>
-                    <p>CALLE CUAUHTEMOC ORIENTE 15, ZITÁCUARO, MICHOACÁN.</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Cuauht%C3%A9moc+Ote.+15,+Cuauhtemoc,+61506+Zit%C3%A1cuaro,+Mich./@19.4385694,-100.3564309,17z/data=!3m1!4b1!4m6!3m5!1s0x85d2a4a1dec711b3:0x68685762f8695d11!8m2!3d19.4385644!4d-100.353856!16s%2Fg%2F11c21h6jl_?entry=ttu">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.6297033607684!2d-102.2791439!3d19.982069199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842e88c79f23a3c5%3A0x70d579455d9255cb!2sJusto%20Sierra%20209%2C%20Jardines%20de%20Catedral%2C%20Zamora%20de%20Hidalgo%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741903987431!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Lázaro Cardenas</h2>
-                    <p>CALLE PARACHO NUMERO 26 COLONIA 600 CASAS CP. 60950</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Paracho+26,+600+Casas,+60954+Cdad.+L%C3%A1zaro+C%C3%A1rdenas,+Mich./@17.9664748,-102.2234345,17z/data=!3m1!4b1!4m10!1m2!2m1!1sCalle+paracho+n%C3%BAmero+26+colonia+600+casas+C.p.+60950!3m6!1s0x84315c8d3b8b9bdf:0xe98a2dd18850e4cf!8m2!3d17.9664698!4d-102.2185636!15sCjVDYWxsZSBwYXJhY2hvIG7Dum1lcm8gMjYgY29sb25pYSA2MDAgY2FzYXMgQy5wLiA2MDk1MJIBEWNvbXBvdW5kX2J1aWxkaW5n4AEA!16s%2Fg%2F11fsjvfnh9?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoASAFQAw%3D%3D">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-6">
-                <div class="col-lg-6">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.6297033607684!2d-102.2791439!3d19.982069199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842e88c79f23a3c5%3A0x70d579455d9255cb!2sJusto%20Sierra%20209%2C%20Jardines%20de%20Catedral%2C%20Zamora%20de%20Hidalgo%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741903987431!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <!--<img src="public/assets_seer/images/logo-ccl.png" alt="" style="max-width: 30%; height: auto;">
-                    <h2>Lázaro Cardenas</h2>
-                    <p>CALLE PARACHO NUMERO 26 COLONIA 600 CASAS CP. 60950</p>
-                    <p><a class="btn btn-secondary" href="https://www.google.com/maps/place/Paracho+26,+600+Casas,+60954+Cdad.+L%C3%A1zaro+C%C3%A1rdenas,+Mich./@17.9664748,-102.2234345,17z/data=!3m1!4b1!4m10!1m2!2m1!1sCalle+paracho+n%C3%BAmero+26+colonia+600+casas+C.p.+60950!3m6!1s0x84315c8d3b8b9bdf:0xe98a2dd18850e4cf!8m2!3d17.9664698!4d-102.2185636!15sCjVDYWxsZSBwYXJhY2hvIG7Dum1lcm8gMjYgY29sb25pYSA2MDAgY2FzYXMgQy5wLiA2MDk1MJIBEWNvbXBvdW5kX2J1aWxkaW5n4AEA!16s%2Fg%2F11fsjvfnh9?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoASAFQAw%3D%3D">Ver Ubicación &raquo;</a></p>-->
-                </div><!-- /.col-lg-4 -->
-            </div><!-- /.row -->
-                <!-- START THE FEATURETTES -->
-                <!--<hr class="featurette-divider">-->
-        </div><!-- /.container -->
-    </section>
-
+  <section class="fondo-guinda" id="sedes">
+  <br><br><br><br><br><br>
+  <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Oficinas de apoyo</h3> <br><br><br>
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Morelia</h5>
+              <p class="card-text">BLVD. GARCÍA DE LEÓN 1575, CHAPULTEPEC ORIENTE, C.P. 58260 MORELIA, MICH.</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.5621762276137!2d-101.1639715!3d19.6886758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86972e4da3b81177%3A0xb3bdb18efbe90610!2sCentro%20de%20Conciliaci%C3%B3n%20Laboral%20del%20Estado%20de%20Michoac%C3%A1n!5e0!3m2!1ses!2smx!4v1741903615342!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Zitácuaro</h5>
+              <p class="card-text">CALLE CUAUHTEMOC ORIENTE 15, ZITÁCUARO, MICHOACÁN.</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.3941863635396!2d-100.353856!3d19.438564399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2a4a1dec711b3%3A0x68685762f8695d11!2sCuauht%C3%A9moc%20Ote.%2015%2C%20Cuauhtemoc%2C%2061506%20Zit%C3%A1cuaro%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741903737317!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Uruapan</h5>
+              <p class="card-text">NUEVO PARICUTÍN NO 308, COL. JARDINES DE SAN RAFAEL, C.P. 30136 URUAPAN MICHOACÁN.</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.8618230362727!2d-102.0055163!3d19.418375299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842de3549b0e069b%3A0x5044e26ce5f7e25a!2sCentro%20de%20Conciliaci%C3%B3n%20Laboral%20Uruapan!5e0!3m2!1ses!2smx!4v1741973550643!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lázaro Cardenas</h5>
+              <p class="card-text">CALLE PARACHO NUMERO 26 COLONIA 600 CASAS CP. 60950</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2683.6585547872874!2d-102.22036685499558!3d17.966342175550018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84315c8d3b8b9bdf%3A0xe98a2dd18850e4cf!2sParacho%2026%2C%20600%20Casas%2C%2060954%20Cdad.%20L%C3%A1zaro%20C%C3%A1rdenas%2C%20Mich.!5e0!3m2!1ses!2smx!4v1741973687846!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Zamora</h5>
+              <p class="card-text">JUSTO SIERRA PONIENTE NO 290, CP. COL. JARDINES DE CATEDRAL, C.P. 59600 ZAMORA, MICHOACÁN.</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.8618230362727!2d-102.0055163!3d19.418375299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842de3549b0e069b%3A0x5044e26ce5f7e25a!2sCentro%20de%20Conciliaci%C3%B3n%20Laboral%20Uruapan!5e0!3m2!1ses!2smx!4v1741903793739!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sahuayo</h5>
+              <p class="card-text">AV. UNIVERSIDAD SUR NO 300, Lomas de Universidad, C.P. 59103 SAHUAYO DE MORELOS, MICHOACÁN.</p>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.857449359436!2d-102.74617642404817!3d20.01449672183925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842efcf134505fbb%3A0x37c487e870973933!2sUniversidad%20de%20la%20Ci%C3%A9naga%20del%20Estado%20de%20Michoac%C3%A1n%20de%20Ocampo!5e0!3m2!1ses!2smx!4v1741906342052!5m2!1ses!2smx" width="448" height="448" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     </main>
     <footer id="contacto" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
