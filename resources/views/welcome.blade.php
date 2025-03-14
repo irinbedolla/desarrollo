@@ -121,7 +121,7 @@
             </div>
           </div>
         </div>
-         <p><a class="boton" href="{{ route('chat') }}" target="_blank">Ver más</a></p>
+          <p><a class="boton" href="{{ route('chat') }}" onclick="window.open(this.href, 'mywin', 'left=' + (window.innerWidth - 500) + ',top=' + (window.innerHeight - 550) + ',width=500,height=550,toolbar=1,resizable=0'); return false;" target="_self">Ver más</a></p>
       </div>  
     </div>   <!-- fin asesoria en línea -->
     <div class="card"> <!-- Inicio calculadora de prestaciones -->

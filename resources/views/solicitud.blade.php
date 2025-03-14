@@ -69,19 +69,19 @@
                         <div class="col-lg-3">
                         </div>
                         <div class="col-lg-2">
-                            <a href="https://michoacan.cencolab.mx/asesoria/10" class="button-link" target="_blank">
+                            <a href="https://michoacan.cencolab.mx/asesoria/10" class="button-link">
                                 SOY <br>TRABAJADOR
                             </a>
                         </div>
                         
                         <div class="col-lg-2">
-                            <a href="https://michoacan.cencolab.mx/asesoria/20" class="button-link" target="_blank">
+                            <a href="https://michoacan.cencolab.mx/asesoria/20" class="button-link">
                                 SOY <br>PATRÓN    
                             </a>
                         </div>
                         
                         <div class="col-lg-2">
-                            <a href="https://michoacan.cencolab.mx/solicitudes/create-public?solicitud=4" class="button-link" target="_blank">
+                            <a href="https://michoacan.cencolab.mx/solicitudes/create-public?solicitud=4" class="button-link">
                                 SOY<br> SINDICATO
                             </a>
                         </div>
