@@ -15,7 +15,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="icon" href="public/assets_seer/images/logo-ccl.png" type="image/x-icon">
         <style>
-            
+            .boton {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            text-align: center;
+            padding: 0.375rem 0.75rem; /* Tamaño del botón */
+            font-weight: 400;
+            background-color: #4A001F; /* Color de fondo inicial */
+            color: white; /* Color del texto */
+          }
+
+          /* Estilo al pasar el mouse */
+          .boton:hover {
+              color: #4A001F;
+              background-color: #FFC3D0; /* Nuevo color de fondo cuando el mouse está sobre el botón */
+              text-decoration: none;/* Elimina el subrayado del enlace */
+              border-radius: 5px; /* Bordes redondeados */
+          } 
         </style>
         <!-- Custom styles for this template -->
     </head>
@@ -75,38 +104,138 @@
       </a>
     </div>
   </section>
+  <!-- INICIANDO SERVICIOS -->
+  <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Tramites y servicios digitales</h3> <br><br><br>
   <div class="card-group">
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <div class="card">   <!-- Inicio asesoria en línea -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Asesoría virtual</h2>
+              <img src="public/assets_seer/images/chatbot.png" alt="Descripción de la imagen"
+                style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+               <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es un servicio informático que podrás consultar con la finalidad de atender y resolver preguntas acerca de nuestros servicios.</h2>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+         <p><a class="boton" href="{{ route('chat') }}" target="_blank">Ver más</a></p>
+      </div>  
+    </div>   <!-- fin asesoria en línea -->
+    <div class="card"> <!-- Inicio calculadora de prestaciones -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Calculadora de <br>prestaciones</h2>
+              <img src="public/assets_seer/images/calculadora.png" alt="Descripción de la imagen"
+                  style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+              <h2 style="font-size: 21px; font-family: Arial; color:#ffff">Es una herramienta digital que permite a las personas, conocer los cálculos aproximados de las prestaciones laborales, que serán consideradas dentro de la audiencia de conciliación.</h2>
+            </div>
+          </div>    
         </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-    </div>
+        <p><a class="boton" href="https://cclmichoacan.gob.mx/Calculadora.html" target="_blank">Ver más</a></p>
+      </div>    
+    </div> <!-- Fin calculadora de prestaciones -->
+    <div class="card"> <!-- Inicio solicitud en línea -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 20px; font-family: Arial; color: #000000">Solicitud en línea</h2> <img
+                src="public/assets_seer/images/contrato.png" alt="Descripción de la imagen"
+                style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+                <h2 style="font-size: 22px; font-family: Arial; color:#ffffff">Es un servicio rápido, eficiente que permite a las personas, tanto trabajadoras como empleadoras iniciar su solicitud para conciliar de forma digital a través de la página web.</h2>
+            </div>
+          </div>
+        </div> 
+        <p><a class="boton" href="{{ route('solicitud') }}" target="_blank">Ver más</a></p> 
+      </div> 
+    </div><!-- Inicio solicitud en línea -->
   </div>
+
+<!-- SEGUNDO BLOQUE DE SERVICIOS-->
+  <div class="card-group">
+    <div class="card">   <!-- Inicio citas de ratificación -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Citas de ratificación de convenios</h2> <img
+                src="public/assets_seer/images/calendario-diario.png" alt="Descripción de la imagen"
+                style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+              <h2 style="font-size: 22px; font-family: Arial; color:#ffff">Es un servicio que permite a las partes que terminan su relación laboral, acudir con previa cita ante el Centro de Concicliación Laboral a ratificar su acuerdo, con el fin de brindar seguridad jurídica.</h2>
+            </div>
+          </div>
+        </div>
+        <p><a class="boton" href="{{ route('create_cita') }}" target="_blank">Ver más</a></p>   
+      </div>  
+    </div>   <!-- fin citas de ratificación -->
+    <div class="card"> <!-- Inicio registro de rep. legales -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Registro de <br>representación legal patronal</h2> <img
+                src="public/assets_seer/images/registro.png" alt="Descripción de la imagen"
+                style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+              <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Es una plataforma digital, que permite a las personas empleadoras registrar a sus representantes legales, con la finalidad de agilizar el procedimiento de conciliación.</h2>
+            </div>
+          </div>
+        </div>
+        <p><a class="boton" href="{{ route('poder-crear') }}" target="_blank">Ver más</a></p>
+      </div>    
+    </div> <!-- Fin registro de rep. legales -->
+    <div class="card"> <!-- Inicio cursos y capacitaciones -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Cursos y capacitaciones</h2>
+              <img src="public/assets_seer/images/leccion.png" alt="Descripción de la imagen"
+                style="width: 100px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+              <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Ingresar a los cursos.</h2>
+            </div>
+          </div>
+        </div>
+        <p><a class="boton" href="#" target="_blank">Ver más</a></p> 
+      </div> 
+    </div><!-- Inicio  cursos y capacitaciones -->
+  </div>
+
+  <!-- TERCER BLOQUE DE SERVICIOS-->
+  <div class="card-group">
+     <div class="card">   <!-- Inicio Seer -->
+      <div style="display: block; text-align: center;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <h2 style="font-size: 22px; font-family: Arial; color:#000000">Seer</h2>
+              <img src="public/assets_seer/images/ccl-r.png" alt="Descripción de la imagen"
+                  style="width: 250px; height: auto;">
+            </div>
+            <div class="flip-box-back">
+               <h2 style="font-size: 21px; font-family: Arial; color:#ffff"><br>Sistema integral de Conciliación.</h2>
+            </div>
+          </div>
+        </div>
+        <p><a class="boton" href="{{ route('login') }}" target="_blank">Ver más</a></p>   
+      </div>  
+     </div>   <!-- fin Seer -->
+  </div>
+  <!-- FIN SERVICIOS  -->
   <section class="fondo-guinda" id="sedes">
   <br><br><br><br><br><br>
   <h3 class="wow fadeInLeft" style="text-align: center ; font-family:Nutmeg, Sans-serif;">Oficinas de apoyo</h3> <br><br><br>
@@ -175,19 +304,20 @@
   </section>
     </main>
     <footer id="contacto" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-            <span class="mb-3 mb-md-0 text-body-secondary">Telefono de contacto: (443) 6886337</span>
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+          <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">Teléfono de contacto:<b> (443) 688 6337</b></span>
+      </div>
+      <div class="col-md-4 d-flex align-items-center">
+        <div class="col-md-3, mx-auto, my-auto">
+          <a href="https://x.com/cclaboralmich"><img src="public/assets_seer/images/x-logo.png" style="width: 8%"></a>
+          &ensp;<a href="https://www.instagram.com/cclmichoacan/"><img src="public/assets_seer/images/instagram.png" style="width:10%"></a>
+          &ensp;<a href="https://www.facebook.com/conciliacionlaboralmich/?locale=es_LA"><img src="public/assets_seer/images/face.png" style="width:8%"></a>
         </div>
-        <div class="col-md-8 d-flex">
-            <div class="col-md-4">
-                <a href="https://x.com/cclaboralmich"><img src="public/assets_seer/images/tw.png" style="width: 10%"></a></div>
-            <div class="col-md-4"><a class="text-body-secondary" href="https://www.instagram.com/cclmichoacan/"><img src="public/assets_seer/images/tw.png" style="width:10%"></div>
-            <div class="col-md-4"><a class="text-body-secondary" href="https://www.facebook.com/conciliacionlaboralmich/?locale=es_LA"><img src="public/assets_seer/images/tw.png" style="width:10%"></div>
-        </div>
-    </footer>
+      </div>
+    </footer> 
 
       <!--<script src="public/assets_seer/assets/dist/js/bootstrap.bundle.min.js"></script>-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
