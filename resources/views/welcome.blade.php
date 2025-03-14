@@ -113,7 +113,7 @@
     <div class="container marketing">
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Morelia</h5>
               <p class="card-text">BLVD. GARCÍA DE LEÓN 1575, CHAPULTEPEC ORIENTE, C.P. 58260 MORELIA, MICH.</p>
@@ -122,7 +122,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Zitácuaro</h5>
               <p class="card-text">CALLE CUAUHTEMOC ORIENTE 15, ZITÁCUARO, MICHOACÁN.</p>
@@ -133,7 +133,7 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Uruapan</h5>
               <p class="card-text">NUEVO PARICUTÍN NO 308, COL. JARDINES DE SAN RAFAEL, C.P. 30136 URUAPAN MICHOACÁN.</p>
@@ -142,7 +142,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Lázaro Cardenas</h5>
               <p class="card-text">CALLE PARACHO NUMERO 26 COLONIA 600 CASAS CP. 60950</p>
@@ -153,7 +153,7 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Zamora</h5>
               <p class="card-text">JUSTO SIERRA PONIENTE NO 290, CP. COL. JARDINES DE CATEDRAL, C.P. 59600 ZAMORA, MICHOACÁN.</p>
@@ -162,7 +162,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card card text-white" style="background-color:#6a0f49">
             <div class="card-body">
               <h5 class="card-title">Sahuayo</h5>
               <p class="card-text">AV. UNIVERSIDAD SUR NO 300, Lomas de Universidad, C.P. 59103 SAHUAYO DE MORELOS, MICHOACÁN.</p>
