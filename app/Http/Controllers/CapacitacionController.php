@@ -64,28 +64,12 @@ class CapacitacionController extends Controller
 
     public function edit($id)
     {
-        $persona = Persona::where('id_usuario', $id)->first();
-        return view('capacitaciones.editar', compact('persona'));
+        $persona = Persona::where('id_usuario', $id)
+              ->update(['estatus' => "Aceptado"]);
+
+        return redirect()->route('capacitaciones.personas');
     }
 
-    public function update(Request $request, $id)
-    {
-        $data = $request->all();
-        $persona = Persona::where('id_usuario', $id)->first();
-
-        request()->validate([
-            'id'           => 'required',
-            'nombre'       => 'required',
-            'estatus'      => 'required',
-        ], $data);
-        
-        
-        $persona = DB::table('persona')
-              ->where('id_usuario', $data["id"])
-              ->update(['estatus' => $data["estatus"]]);
-
-        return redirect()->route('capacitaciones');
-    }
 
     public function destroy($id)
     {
@@ -357,7 +341,9 @@ class CapacitacionController extends Controller
     }
 
     public function agregar_personas($id){
+        //Revisar esta funcion
         $capacitacion = $id;
+        
         $personas_aceptadas = Persona::join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
         ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $id)
@@ -370,7 +356,8 @@ class CapacitacionController extends Controller
 
     public function persona_incluir($cap, $per){
         $modulos = Modulo::where('id_cap', $cap)->get();   
-
+        //Borrar esto
+        $id = $cap;
         foreach($modulos as $mod){
             $data = [
                 'capacitacion' => $cap,
@@ -381,30 +368,27 @@ class CapacitacionController extends Controller
             CapacitacionPersona::create($data);
         }
 
-        $personas_aceptadas = DB::table('persona')
-        ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
+        $personas_aceptadas = Persona::join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
         ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $cap)
         ->groupBy('persona.id')->get();
-        //$personas = Persona::where('estatus', 'Aceptado')->paginate(10); 
-        //return view('capacitaciones.personas_agregar', compact('capacitacion','personas','personas_aceptadas'));
-        return redirect()->route('capacitaciones');
+        $personas = Persona::where('estatus', 'Aceptado')->get();
+
+        return redirect()->route('capacitaciones.addpersonas', compact('id'));
     }
 
     public function persona_quitar($cap, $per){
-        $capacitacion = $cap;
+        $id = $cap;
         $modulo_borrar = CapacitacionPersona::where(['capacitacion' => $cap, 'persona' => $per])->delete();
 
-        $personas_aceptadas = DB::table('persona')
-        ->join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
+        $personas_aceptadas = persona::join('capacitaciones_persona', 'capacitaciones_persona.persona', '=', 'persona.id')
         ->select('persona.id', 'persona.id_usuario', 'persona.nombre', 'persona.cargo', 'persona.area_adcripcion')
         ->where('capacitaciones_persona.capacitacion', $cap)
         ->groupBy('capacitaciones_persona.persona')
-        ->all();
+        ->get();
 
-        //$personas = Persona::where('estatus', 'Aceptado')->paginate(10);
-        //return view('capacitaciones.personas_agregar', compact('capacitacion','personas','personas_aceptadas'));
-        return redirect()->route('capacitaciones');
+        //return redirect()->route('capacitaciones');
+        return redirect()->route('capacitaciones.addpersonas', compact('id'));
     }
 
     public function personas_calificacion($id){

@@ -197,6 +197,25 @@
                                                 </div>
                                             </div>
 
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <h4 class="text-center">Filtros notificador</h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                                <div class="form-group">
+                                                    <label for="name">Notificadores</label>
+                                                    <select  class="form-control" name="notificador">
+                                                        <option value="">Todos</option>
+                                                        @foreach($usuariosconciliador as $user)
+                                                            <option value="{{$user['id']}}">{{$user['name']}}</option>
+                                                        @endforeach
+                                                </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <h4 class="text-center">Filtros generales</h4>

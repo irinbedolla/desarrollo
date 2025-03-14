@@ -10,7 +10,9 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('expedientes') }}"> Regresar</a>
-                            <a class="btn btn-info" href="{{ route('expedientes.documento', $id) }}" onclick="nuevo_estadistica()";> Subir</a>
+                            @if($rol != "Capacitacion Admin")
+                                <a class="btn btn-info" href="{{ route('expedientes.documento', $id) }}" onclick="nuevo_estadistica()";> Subir</a>
+                            @endif
                                 <div class="table-responsive">
                                     <table class="table table-striped mt-1">
                                         <thead style="background-color: #4A001F;">
@@ -18,7 +20,9 @@
                                             <th style="color: #fff;">Nombre del documento</th>
                                             <th style="color: #fff;">Documento</th>
                                             <th style="color: #fff;">Ver</th>
-                                            <th style="color: #fff;">Borrar</th>
+                                            @if($rol != "Capacitacion Admin")
+                                                <th style="color: #fff;">Borrar</th>
+                                            @endif
                                         </thead>
                                         <tbody>
                                             @foreach($documentos as $doc)
@@ -26,11 +30,13 @@
                                                     <td>{{ $doc->nombre }}</td>
                                                     <td>{{ $doc->documento }}</td>
                                                     <td><a target="_blank" class="btn btn-info" href="../../storage/app/documentos_personal/{{$doc->id_usuario}}/{{$doc->documento}}">PDF</a></td>
+                                                    @if($rol != "Capacitacion Admin")
                                                     <td>
-                                                    {!! Form::open(['method'=>'DELETE', 'route'=> ['expedientes.delete', $doc->id], 'style'=>'display:inline']) !!}
-                                                        {!! Form::submit('Borrar', ['class'=> 'btn btn-danger', 'onclick' => 'nuevo_estadistica()']) !!}
-                                                    {!! Form::close() !!}
+                                                        {!! Form::open(['method'=>'DELETE', 'route'=> ['expedientes.delete', $doc->id], 'style'=>'display:inline']) !!}
+                                                            {!! Form::submit('Borrar', ['class'=> 'btn btn-danger', 'onclick' => 'nuevo_estadistica()']) !!}
+                                                        {!! Form::close() !!}
                                                     </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach    
                                         </tbody>

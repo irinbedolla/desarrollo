@@ -112,13 +112,13 @@ Route::group(['middleware' => ['auth']], function(){
     //Fin Poder
 
     //Capacitaciones
-        Route::get('/capacitaciones/index',           [CapacitacionController::class, 'index'])->name('capacitaciones.index');
-        Route::get('/capacitaciones/index',           [CapacitacionController::class, 'index'])->name('capacitaciones');
-        Route::get('/capacitaciones/create',          [CapacitacionController::class, 'create'])->name('capacitaciones.create');
-        Route::get('/capacitaciones/edit/{id}',       [CapacitacionController::class, 'edit'])->name('capacitaciones.edit');
-        Route::post('/capacitaciones/store',          [CapacitacionController::class, 'store'])->name('capacitaciones.store');
-        Route::patch('/capacitaciones/update/{post}', [CapacitacionController::class, 'update'])->name('capacitaciones.update');
-        Route::delete('/capacitaciones/destroy/{id}', [CapacitacionController::class, 'destroy'])->name('capacitaciones.destroy');
+        Route::get('/capacitaciones/index',                         [CapacitacionController::class, 'index'])->name('capacitaciones.index');
+        Route::get('/capacitaciones/index',                         [CapacitacionController::class, 'index'])->name('capacitaciones');
+        Route::get('/capacitaciones/create',                        [CapacitacionController::class, 'create'])->name('capacitaciones.create');
+        Route::get('/capacitaciones/edit/{id}',                     [CapacitacionController::class, 'edit'])->name('capacitaciones.edit');
+        Route::post('/capacitaciones/store',                        [CapacitacionController::class, 'store'])->name('capacitaciones.store');
+        Route::patch('/capacitaciones/update/{post}',               [CapacitacionController::class, 'update'])->name('capacitaciones.update');
+        Route::delete('/capacitaciones/destroy/{id}',               [CapacitacionController::class, 'destroy'])->name('capacitaciones.destroy');
 
         Route::get('/capacitaciones/personas',                      [CapacitacionController::class, 'personas'])->name('capacitaciones.personas');
         Route::get('/capacitaciones/personas_documentos/{id}',      [CapacitacionController::class, 'personas_documentos'])->name('personas.documentos');

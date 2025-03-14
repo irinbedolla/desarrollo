@@ -34,6 +34,7 @@
                                         <tbody>
                                             @foreach($capacitaciones as $capacitacion)
                                                 <tr>
+                                                    <td style="display: none;">{{$capacitacion->id}}</td>
                                                     <td>{{$capacitacion->nombre}}</td>
                                                     <td>{{$capacitacion->estatus}}</td>
                                                     <td>

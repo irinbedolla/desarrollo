@@ -92,13 +92,17 @@ class ExpedienteController extends Controller
     }
 
     public function personas_documentos($id){
+        $id_usuario = auth()->user()->id;
+        $usuario    = User::find($id_usuario);
+        $rol        = $usuario->getRoleNames()->first();
         $documentos = Documentos::where('id_usuario', $id)->get();
-        return view('expedientes.documentos', compact('documentos','id'));
+        return view('expedientes.documentos', compact('documentos','id','rol'));
     }
 
     public function documento($id){
-        $usuario = User::find($id);
-        $persona = Persona::where('id_usuario', $id)->first();
+        
+        $usuario    = User::find($id);
+        $persona    = Persona::where('id_usuario', $id)->first();
         return view('expedientes.subir', compact('usuario','persona','id'));
     }
 
@@ -116,7 +120,6 @@ class ExpedienteController extends Controller
             $data_doc['nombre']     = $data["tilulo_universitario"];
             $data_doc['documento']  = $nombrediplomado;
         }
-
         Documentos::create($data_doc);
         return redirect()->route('expedientes.documentos', $data["id"]);
     }

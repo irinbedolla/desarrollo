@@ -94,7 +94,7 @@
                 <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="mis_capacitaciones()">Mis capacitaciones</span>
             </a>
             <a class="nav-link" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
+                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Mi Expediente</span>
             </a>
         @endrole
     @endauth
@@ -132,11 +132,11 @@
     
     @auth
         @role('Capacitacion Admin')
-            <a<a class="nav-link" href="{{ route('capacitaciones') }}">
+            <a class="nav-link" href="{{ route('capacitaciones') }}">
                 <i class="fa fa-suitcase" aria-hidden="true"></i></i><span class="text-dark" onclick="capacitaciones()">Capacitaciones</span>
             </a>
             <a class="nav-link" href="{{ route('expedientes') }}">
-                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expediente</span>
+                <i class="fas fa-folder" aria-hidden="true"></i></i><span class="text-dark" onclick="expedientes()">Expedientes</span>
             </a>
         @endrole
     @endauth
